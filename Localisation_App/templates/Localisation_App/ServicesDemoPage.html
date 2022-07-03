@@ -1,0 +1,44 @@
+{% extends 'Localisation_App/base.html' %}
+{% load static %}
+
+{% block servicesDemo %}
+<div>
+  <h4>Services Demo</h4>s
+
+  <div style="margin-left:500px"><a href="{% url 'Localisation_App:srvTTS' %}">srvTTS</a>--------------------<a
+      href="{% url 'Localisation_App:srvTransliteration' %}">srvTransliteration</a></div>
+
+  {% if service == "srvTTS" %}
+  <div style="max-width:800px; max-height:600px; margin-left:300px;margin-top:50px;margin-bottom:50px;background-color:rgb(228 186 84 / 90%)">
+  <form action={% url 'Localisation_App:srvTTS' %} method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h5>TTS</h5>
+    <div>
+      <div class="form-control">{{TTS_Form.Select_Language_Pair}}</div><br />
+      <div class="form-control">{{TTS_Form.Gender}}</div><br />
+      <div class="form-control">{{TTS_Form.InputText}}</div><br />
+
+      {% if Status == "success" %}
+      <audio controls style="margin-top:20px; margin-left:240px;">
+        <source src={{outspeech_filepath}} type="audio/ogg">
+      </audio>
+      {% endif %}<br />
+      <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+ 
+      <button type="submit" class="btn btn-primary" style="margin-left:350px; margin-bottom:20px">submit</button>
+    </div>
+  </form>
+
+
+  {% elif service == "srvTransliteration" %}
+  <form action={% url 'Localisation_App:srvTransliteration' %} method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="max-width:1000px; max-height:1000px; margin:200px;background-color:red">{{data}}</div>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+  </form>
+
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'Localisation_App/base.html' %} {% load static %} {% block websitepolicies %}
+
+<title>Website Policies</title>
+<link
+  href="{% static 'Localisation_App/css/websitepolicies.css' %}"
+  rel="stylesheet"
+/>
+
+<div class="container-fluid">
+  <h4 class="web-main-title">Website Policies</h4>
+
+  <div class="row main">
+    <div class="col-2 first-section">
+      <nav class="navigation">
+        <ul>
+          {% for f_sub_data in footer_sub_data %}
+          <li class="nav-item">
+            <a
+              href="{% url 'Localisation_App:websitepolicydata' f_sub_data.id %}"
+              id="an1"
+              onclick="changecolor(id)"
+              class="active"
+
+              >{{f_sub_data.Footer_Links_Info_SubTitle}}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="col-9 second-section">
+      {% if content %}
+      <section id="#copyright">
+        <div>
+          <h4 class="web-title">{{ content.Footer_Links_Info_SubTitle }}</h4>
+          <div class="web-content">
+            {{ content.Footer_Links_Info_SubContent|safe }}
+          </div>
+        </div>
+      </section>
+      {% else %}
+      <h1>No data found!</h1>
+      {% endif %}
+
+      {% comment %} <section id="policy">
+        <div>
+          <h4 class="web-title">Hyperlinking Policy</h4>
+          <h5 class="web-sub-title">Links to external websites/portals</h5>
+          <p class="web-content">
+            In some places in this portal, you shall find links to other
+            websites/portals.These links have been placed for your convenience.
+            C-DAC is not responsible for the contents and reliability of the
+            linked websites and does not necessarily endorse the views expressed
+            in them. Mere presence of the link or its listing on this portal
+            should not be assumed as endorsement of any kind. We can not
+            guarantee that these links will work all times and we have no
+            control over availability of linked pages.
+          </p>
+          <h5 class="web-sub-title">
+            Links to localization portal by other websites
+          </h5>
+          <p class="web-content">
+            We do not object to you linking directly to the information that is
+            hosted on this portal and no prior permission is required for the
+            same. However, we would like you to inform us about any links
+            provided to this portal so that you can be informed of any changes
+            or updates therein. Also, we do not permit our pages to be loaded
+            into frames on your site. The pages belonging to this portal must
+            load into a newly opened browser window of the user.
+          </p>
+        </div>
+      </section>
+      <section id="terms">
+        <div>
+          <h4 class="web-title">Terms of Use</h4>
+          <p class="web-content">
+            This portal is designed, developed and hosted by C-DAC., Though all
+            efforts have been made to ensure the accuracy and currency of the
+            content on this pPortal, the same should not be construed as a
+            statement of law or used for any legal purposes. C-DAC accepts no
+            responsibility in relation to the accuracy, completeness, usefulness
+            or otherwise, of the contents. Users are advised to verify/check any
+            information with the relevant Government department(s) and/or other
+            source(s), and to obtain any appropriate professional advice before
+            acting on the information provided in the portal.
+          </p>
+          <p>
+            In no event will the Government of India or C-DAC be liable for any
+            expense, loss or damage including, without limitation, indirect or
+            consequential loss or damage, or any expense, loss or damage
+            whatsoever arising from use, or loss of data, arising out of, or in
+            connection with the use of this portal.
+          </p>
+          <p>
+            Links to other websites that have been included on this portal are
+            provided for public convenience only. C-DAC is not responsible for
+            the contents or reliability of linked websites and does not endorse
+            the view expressed within them. We cannot guarantee the availability
+            of such linked pages at all times.
+          </p>
+          <p>
+            These terms and conditions shall be governed by, and construed in
+            accordance with the Indian Laws. Any dispute arising under these
+            terms and conditions shall be subject to the exclusive jurisdiction
+            of the courts of India.
+          </p>
+        </div>
+      </section>
+
+      <section id="privacy">
+        <div>
+          <h4 class="web-title">Privacy Policy</h4>
+          <p class="web-content">
+            Localization Portal and applications based on localization portal
+            does not automatically capture any specific personal information
+            from you, (like name, phone number or e-mail address), that allows
+            us to identify you individually.
+          </p>
+          <p>
+            If for any specific reason, the localization portal requests you to
+            provide personal information, you will be informed for the
+            particular purposes for which the information is gathered and
+            adequate security measures will be taken to protect your personal
+            information.
+          </p>
+          <p>
+            We do not sell or share any personally identifiable information
+            volunteered on the localization portal site to any third party
+            (public/private). Any information provided to this Portal portal
+            will be protected from loss, misuse, unauthorized access or
+            disclosure, alteration, or destruction.
+          </p>
+          <p>
+            We gather certain information about the user, such as Internet
+            Protocol (IP) addresses, domain name, browser type, operating
+            system, the date and time of the visit and the pages visited. We
+            make no attempt to link these addresses with the identity of
+            individuals visiting our site unless an attempt to damage the site
+            has been detected.
+          </p>
+        </div>
+      </section> {% endcomment %}
+    </div>
+  </div>
+</div>
+
+{% comment %}
+<script>
+  function changecolor(id) {
+    console.log(id);
+    let tag1 = document.getElementById(id);
+    tag1.setAttribute("style", "color:yellow");
+  }
+</script>
+{% endcomment %} {% endblock %}

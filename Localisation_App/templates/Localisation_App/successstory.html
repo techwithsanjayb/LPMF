@@ -1,0 +1,317 @@
+{% extends 'Localisation_App/base.html' %}
+
+{% load static %}
+
+{% block successstory %}
+<link href="{% static 'Localisation_App/css/success-stories.css' %}" rel="stylesheet" />
+
+<div class="container-fluid success-box p-3">
+  <div class="row p-3">
+    <div class="col-lg-3">
+      <div class="success-sidebar">
+
+        <form action={% url 'Localisation_App:successstorySearch' story_title %}  method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-8">
+              {% if story_title == 'none' %}
+              <input
+              class="form-control me-2"
+              type="text"
+              name="storyname"
+              placeholder="Search"
+              aria-label="Search"
+            />{% else %}
+            <input
+              class="form-control me-2"
+              type="text"
+              name="storyname"
+              value={{ story_title }}
+              placeholder="Search"
+              aria-label="Search"
+            />{% endif %}
+            </div>
+            <div class="col-4">
+              <input class="btn btn-primary" type="submit" value="Search"/>
+            </div>
+            <hr style="margin-top: 20px;">
+          </div>
+
+        </form>
+      
+        <h3  style="margin-top:-20px;">Categories</h3>
+        
+        <!-- Success Stories Count :{{ count }} -->
+        <form action={% url 'Localisation_App:successstory' %} method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          
+          {% if satus_All_Checked == 'True' %}
+          <div class="success-list">
+          <input class="sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked"
+            checked="checked" />
+
+          <label class="sidebar-item-text" for="vehicle1">All</label><br />
+        </div>
+          {% else %}
+          <div class="success-list">
+          <input class="sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked" />
+
+          <label class="sidebar-item-text" for="vehicle1">All</label><br />
+          </div>
+          {% endif %}
+          {% if satus_All_Checked == 'True' %}
+          <ul class="success-list">
+
+            {% for category in SuccessStrories_CategoryData %}
+           
+            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}" />
+
+            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStrories_CategoryType }}</label><br />
+            {% endfor %}
+          </ul>
+          {% else %}
+          <ul class="success-list">
+            {% for category in SuccessStrories_CategoryData %}
+            {% if category.SuccessStrories_Cat_Status %}
+            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}"
+              checked="checked" />
+
+            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStrories_CategoryType }}</label><br />
+            {% else %}
+            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}" />
+
+            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStrories_CategoryType }}</label><br />
+            {% endif %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <button class='btn btn-primary' type="submit" value="Fetch">Filter</button>
+        </form>
+
+
+      </div>
+    </div>  
+    
+    <div class="col-lg-9">
+    
+      <input class="text-center rounded-5 success-header-1 p-3 my-3"  value="Success Stories"
+      disabled ></input>
+      <!-- <div class="success-subheading">
+       Caption
+      </div> -->
+      <div class="row">
+
+        {% for stories in page.object_list %}
+        {% if stories.SuccessStories_PublishedStatus != 'Unpublished' %}
+        <div class="col-lg-6">
+          <div class="success-story-card">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+             
+              <div class="carousel-inner">
+                {% if stories.SuccessStories_Upload_Image_1 != '' %}
+                <div class="carousel-item active" data-bs-interval="10000">
+                  <img src="/media/{{ stories.SuccessStories_Upload_Image_1 }}" class="success-card-image" alt="..." />
+                  <div class="carousel-caption d-none d-md-block">
+                    <!-- <h5>First slide label</h5>
+                    <p>
+                      Some representative placeholder content for the first
+                      slide.
+                    </p> -->
+                  </div>
+                </div>
+                {% endif %}
+                {% if stories.SuccessStories_Upload_Image_2 != '' %}
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="/media/{{ stories.SuccessStories_Upload_Image_2 }}" class="success-card-image" alt="..." />
+                  <div class="carousel-caption d-none d-md-block">
+                    <!-- <h5>Second slide label</h5>
+                    <p>
+                      Some representative placeholder content for the second
+                      slide.
+                    </p> -->
+                  </div>
+                </div>
+                {% endif %}
+                {% if stories.SuccessStories_Upload_Image_3 != '' %}
+                <div class="carousel-item">
+                  <img src="/media/{{ stories.SuccessStories_Upload_Image_3 }}" class="success-card-image" alt="..." />
+                  <div class="carousel-caption d-none d-md-block">
+                    <!-- <h5>Third slide label</h5>
+                    <p>
+                      Some representative placeholder content for the third
+                      slide.
+                    </p> -->
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+              <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button> -->
+            </div>
+            <div class="success-story-card-title">{{ stories.SuccessStories_TitleName }}</div>
+            <div class="success-story-card-description">
+              {{ stories.SuccessStories_Description|safe|slice:":200" }}
+            </div>
+            <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a></div>
+          </div>
+        </div>
+        {% if forloop.last %}
+      </div>
+      {% else %}
+      {% if forloop.counter|divisibleby:"2" %}
+      <div></div>
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+      {% if Pagination_Type == 'All_Data' %}
+        <div class="container">
+          <div class="row" style="width: 500px;">
+            <div class="col-md-12 offset-md-3">
+              <!-- <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p> -->
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item">
+                    {% if page.has_previous %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{page.previous_page_number}}"
+                      tabindex="-1">Previous</a>
+                    {% endif %}
+                  </li>
+                  {% for num_page in page.paginator.page_range %}
+                  {% if page.number == num_page %}
+                  <li class="page-item active">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% else %}
+                  <li class="page-item">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  {% endfor %}
+
+                  <li class="page-item">
+                    {% if page.has_next %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{page.next_page_number}}">Next</a>
+                    {% endif %}
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
+
+        </div>
+    
+        {% elif Pagination_Type == 'Searched_Post' %}
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 offset-md-3">
+              <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item">
+                    {% if page.has_previous %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstorySearch' story_title %}?page={{page.previous_page_number}}"
+                      tabindex="-1">Previous</a>
+                    {% endif %}
+                  </li>
+                  {% for num_page in page.paginator.page_range %}
+                  {% if page.number == num_page %}
+                  <li class="page-item active">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstorySearch' story_title %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% else %}
+                  <li class="page-item">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstorySearch' story_title %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  {% endfor %}
+
+                  <li class="page-item">
+                    {% if page.has_next %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstorySearch' story_title %}?page={{page.next_page_number}}">Next</a>
+                    {% endif %}
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      {% elif Pagination_Type == 'Category_Post' %}
+     
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 offset-md-3">
+              <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item">
+                    {% if page.has_previous %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{page.previous_page_number}}"
+                      tabindex="-1">Previous</a>
+                    {% endif %}
+                  </li>
+                  {% for num_page in page.paginator.page_range %}
+                  {% if page.number == num_page %}
+                  <li class="page-item active">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% else %}
+                  <li class="page-item">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  {% endfor %}
+
+                  <li class="page-item">
+                    {% if page.has_next %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:successstory' %}?page={{page.next_page_number}}">Next</a>
+                    {% endif %}
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
+
+        </div>
+        {% else %}
+        No data
+      {% endif %}
+   
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

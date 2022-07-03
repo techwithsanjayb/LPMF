@@ -1,0 +1,312 @@
+{% extends 'Localisation_App/base.html' %}
+
+{% load static %}
+
+{% block tools %}
+
+<div class="container-fluid">
+  <!-- <div class="tools-page-header">
+    Tools
+  </div> -->
+  <input
+  type="button"
+  class="text-center rounded-5 tools-page-header"
+  value="Tools"
+  disabled 
+/>
+  <div class="row tools-box">
+    <div class="col-sm-12 col-lg-3">
+      <div class="tools-sidebar-section">
+        <form action={% url 'Localisation_App:toolsSearch' tools_title %}  method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row p-3">
+            <div class="col-8">
+              {% if tools_title == 'none' %}
+              <input
+              class="form-control me-2"
+              type="text"
+              name="toolname"
+              placeholder="Search"
+              aria-label="Search"
+            />{% else %}
+            <input
+              class="form-control me-2"
+              type="text"
+              name="toolname"
+              value={{ tools_title }}
+              placeholder="Search"
+              aria-label="Search"
+            />{% endif %}
+            </div>
+            <div class="col-4">
+              
+        <input class="btn btn-primary" type="submit" value="Search"/>
+            </div>
+            <hr style="margin-top: 20px;">
+          </div>
+    
+        </form>
+
+    <!-- {{ count }} -->
+
+        <h3 style="margin-top:-20px;">Categories</h3>
+        
+        <form action={% url 'Localisation_App:tools' %} method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if satus_All_Checked == 'True' %}
+          <div class="success-list">
+          <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked"
+            checked="checked" />
+
+          <label class="tools-sidebar-item-text" for="vehicle1">All</label><br />
+        </div>
+          {% else %}
+          <div class="success-list">
+          <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked" />
+
+          <label class="tools-sidebar-item-text" for="vehicle1">All</label><br />
+          </div>
+          {% endif %}
+          {% if satus_All_Checked == 'True' %}
+        <ul>
+          {% for categories in toolscategory %}
+          <input
+            class="tools-sidebar-item"
+            type="checkbox"
+            id="vehicle1"
+            name="checkbox"
+            value="{{ categories.pk }}"
+            onclick=" "
+          />
+          <label class="tools-sidebar-item-text" for="vehicle1"
+            >{{ categories.Tools_CategoryType }}</label
+          ><br />
+          {% endfor %}  
+        </ul>
+        {% else %}
+        <ul>
+        {% for categories in toolscategory %}
+        {% if categories.Tools_Cat_Status %}
+        <input
+        class="tools-sidebar-item"
+        type="checkbox"
+        id="vehicle1"
+        name="checkbox"
+        value="{{ categories.pk }}"
+        checked="checked"
+      />
+      <label class="tools-sidebar-item-text" for="vehicle1"
+        >{{ categories.Tools_CategoryType }}</label
+      ><br />
+      {% else %}
+      <input
+      class="tools-sidebar-item"
+      type="checkbox"
+      id="vehicle1"
+      name="checkbox"
+      value="{{ categories.pk }}"
+      onclick=" "
+    />
+    <label class="tools-sidebar-item-text" for="vehicle1"
+      >{{ categories.Tools_CategoryType }}</label
+    ><br />
+    {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+        <button class='btn btn-primary filter-button' type="submit" value="Fetch">Filter</button>
+      </form>
+
+
+
+      </div>
+    </div>
+
+
+    <div class="col-9">
+      <div class="row ">
+        {% for data in page.object_list %}
+        <div class="col-sm-12 col-lg-12 ">
+          <div class="tools-main-card-section">
+           
+            <div class="row">
+              <div class="col-sm-12 col-lg-4">
+             
+                <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
+                <div class="tools-size">
+                  File Size : {{ data.ToolsData_fileSize}}
+                </div>
+                <div class="tools-section-button">
+                  {% if data.ToolsData_UploadSupportDocument != '' %}
+                <a style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadSupportDocument}}" download>Download
+                    </a> 
+                    {% endif %}
+                  {% if data.ToolsData_UploadToolCode != '' %}
+                <a style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>Download
+                  </a> 
+                  {% endif %}
+                 
+                </div>
+
+              </div>
+              
+             
+              <div class="col-sm-12 col-lg-8">
+                <h2>{{ data.ToolsData_HeadingName }}</h2>
+                <p>
+                  {{ data.ToolsData_Description|safe }}
+                </p>
+                Last Updated Date : {{data.ToolsData_LastUpdatedDate|date:"M d, Y"}}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" />
+      {% endfor %}
+
+
+      <div class="section p-3" > 
+        {% if Pagination_Type == 'All_Data' %}
+          <div class="container">
+            <div class="row" style="width:500px">
+              <div class="col-md-12 offset-md-3">
+                <p style="width:200px">Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
+                <nav aria-label="..." style="width:200px">
+                  <ul class="pagination" style="width:500px;">
+                    <li class="page-item">
+                      {% if page.has_previous %}
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{page.previous_page_number}}"
+                        tabindex="-1">Previous</a>
+                      {% endif %}
+                    </li>
+                    {% for num_page in page.paginator.page_range %}
+                    {% if page.number == num_page %}
+                    <li class="page-item active">
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{num_page}}">{{num_page}}<span
+                          class="sr-only">(current)</span></a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{num_page}}">{{num_page}}<span
+                          class="sr-only">(current)</span></a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+  
+                    <li class="page-item">
+                      {% if page.has_next %}
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{page.next_page_number}}">Next</a>
+                      {% endif %}
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+  
+            </div>
+  
+          </div>
+       
+        {% elif Pagination_Type == 'Searched_Post' %}
+        <div class="container">
+          <div class="row">
+            <div class=" col-lg-12 col-md-12 offset-md-3">
+              <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item">
+                    {% if page.has_previous %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:toolsSearch' tools_title %}?page={{page.previous_page_number}}"
+                      tabindex="-1">Previous</a>
+                    {% endif %}
+                  </li>
+                  {% for num_page in page.paginator.page_range %}
+                  {% if page.number == num_page %}
+                  <li class="page-item active">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:toolsSearch' tools_title %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% else %}
+                  <li class="page-item">
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:toolsSearch' tools_title %}?page={{num_page}}">{{num_page}}<span
+                        class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  {% endfor %}
+
+                  <li class="page-item">
+                    {% if page.has_next %}
+                    <a class="page-link"
+                      href="{% url 'Localisation_App:toolsSearch' tools_title %}?page={{page.next_page_number}}">Next</a>
+                    {% endif %}
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+     
+        {% elif Pagination_Type == 'Category_Post' %}
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 offset-md-3">
+                <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
+                <nav aria-label="...">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      {% if page.has_previous %}
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{page.previous_page_number}}"
+                        tabindex="-1">Previous</a>
+                      {% endif %}
+                    </li>
+                    {% for num_page in page.paginator.page_range %}
+                    {% if page.number == num_page %}
+                    <li class="page-item active">
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{num_page}}">{{num_page}}<span
+                          class="sr-only">(current)</span></a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{num_page}}">{{num_page}}<span
+                          class="sr-only">(current)</span></a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+  
+                    <li class="page-item">
+                      {% if page.has_next %}
+                      <a class="page-link"
+                        href="{% url 'Localisation_App:tools' %}?page={{page.next_page_number}}">Next</a>
+                      {% endif %}
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        {% else %}
+        No data
+        {% endif %}
+      </div>
+
+      </div>
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

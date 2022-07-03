@@ -1,0 +1,32 @@
+.contact-us-heading{
+  background-color: #023047 !important;
+  color:white;
+  width: 300px;
+  height: 50px;
+  font-family: 'Heebo', sans-serif;;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.contact-us-card {
+  margin-top: 40px;
+  border: none;
+  width: 1500px;
+  height: auto;
+  box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%);
+}
+
+
+.contact-us-icon  {
+    font-size: 1.6em;
+    width: 1.8em;
+    text-align: center;
+    line-height: 1.6em;
+    background: #666;
+    color: #fff;
+    border-radius: 50%; /* or 50% width & line-height */
+  }
+
+.contact-us-canvas{
+  background-color: #666;
+}

@@ -1,0 +1,77 @@
+/*FAQ's CSS*/
+/* 
+.faq-main {
+    background: url("../../../static/Localisation_App/img/faq1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 2100px;
+}
+
+.faq-Title {
+    color: #000000;
+    letter-spacing: -0.005em;
+    margin: 40px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.general {
+    margin-top: 30px;
+    margin-left: 240px;
+    margin-right: 230px;
+    height: 40px;
+    background-color: #0A4866;
+}
+
+#question {
+    color: white;
+    padding-top: 3px;
+}
+
+.section1 {
+    margin-top: 10px;
+    margin-left: 240px;
+    margin-right: 230px;
+} */
+
+/*FAQ's CSS*/
+
+.faq-main {
+    background: url("../../../static/Localisation_App/img/faq1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: auto;
+}
+
+.faq-Title {
+    color: #000000;
+    letter-spacing: -0.005em;
+    margin: 40px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.general {
+    margin-top: 30px;
+    margin-left: 240px;
+    margin-right: 230px;
+    height: 40px;
+    background-color: #0A4866;
+}
+
+#question {
+    color: white;
+    padding-top: 3px;
+    margin-left: 10px;
+}
+
+.section1 {
+    margin-top: 10px;
+    margin-left: 240px;
+    margin-right: 230px;
+}
+
+.btn1 {
+    background-color: #F1F3F6;
+    font-size: 20px;
+}

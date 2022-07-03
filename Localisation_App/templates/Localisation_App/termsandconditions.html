@@ -1,0 +1,256 @@
+{% extends 'Localisation_App/base.html' %} 
+{% load static %} 
+{% block termsandconditions %}
+
+<title>Terms & Conditions</title>
+<link
+  href="{% static 'Localisation_App/css/terms_and_conditions.css' %}"
+  rel="stylesheet"
+/>
+
+<div class="container">
+  <div class="col-12">
+    <h4 class="terms-main-title">{{ content.Footer_Links_Title }}</h4>
+  </div>
+
+  {% comment %} Terms and conditions sections starts here {% endcomment %}
+
+  <div class="terms-main">
+   {{ content.Footer_Links_Content|safe }}
+{% comment %} <p>
+      This notice and terms and conditions mentioned here pertains to C-DAC,
+      Department of Electronics and Information Technology, Govt. of India, Data
+      Centre Web site "www.localisation.gov.in" also known as
+      "www.localization.gov.in" and "www.localisation.cdac.in" and all services
+      refering to this site here after referred to as "this Web site".
+    </p>
+    <p>
+      All content of this Web site is owned or controlled by DeitY and is
+      protected by worldwide copyright laws.
+    </p>
+    <p>
+      “This Web site” contains information, artwork, text, video, audio,
+      software tools and technologies, documentation, services, etc used only
+      for information and also for use by a valid download licence holder only.
+      You must not modify or use the Materials for any other purpose without
+      DeitY's express written consent. By using and/or downloading any Materials
+      from DeitY's Web site, you will be deemed to agree to these terms:
+    </p>
+    <ul>
+      <li>Ownership of Materials</li>
+      <li>Software and Documentation Information</li>
+      <li>Enforcement of Intellectual Property Rights</li>
+      <li>Feedback and Information</li>
+      <li>Warranties and Disclaimers</li>
+      <li>Arbitrations</li>
+      <li>Updates</li>
+    </ul>
+  </div>
+  <h4 class="terms-title">Ownership of Materials</h4>
+  <div class="terms-content">
+    <p>
+      The Materials contained in this site is copyrighted and must not be
+      distributed, modified, reproduced in whole or in part or services consumed
+      without the written consent of C-DAC prior to usage. Materials only for
+      consumption by e-Governance developers/departments.
+    </p>
+    <p>Software and Documentation Information</p>
+  </div>
+
+  <h4 class="terms-title">Documentation</h4>
+  <div class="terms-content">
+    <p>
+      DeitY provides documentation to explain how to use the resources available
+      on this website. Any person is hereby authorized to:
+    </p>
+    <ol type="A">
+      <li>
+        store this documentation on a single computer for personal use only and
+      </li>
+      <li>
+        print copies of documentation for personal use only, provided that the
+        documentation contains DeitY's copyright notice.
+      </li>
+    </ol>
+    <p>
+      You may want to download a copy of the Materials and/or use services for
+      your personal, noncommercial internal use only by getting the permission
+      from DeitY . This is a personal license, and under no circumstances shall
+      this license be construed as a transfer of title to any Materials found at
+      this Site.
+    </p>
+    <p>
+      The license granted by DeitY herein is subject to the following
+      restrictions: You must not: (a) modify the Materials or use them for any
+      commercial purpose, or any public display, performance, sale or rental;
+      (b) Decompile, reverse engineer, or disassemble software Materials except
+      and only to the extent permitted by applicable law or specific license;
+      (c) remove any copyright or other proprietary notices from the Materials;
+      (d) transfer the Materials to another person; (e) use any such Materials
+      on any other Web site or networked computer environment. You agree to
+      prevent any unauthorized copying of the Materials. DeitY will terminate
+      this license at any time if you are in breach of the terms of this
+      Agreement. Upon termination, you will immediately destroy the Materials.
+    </p>
+  </div>
+  <h4 class="terms-title">Third Party Companies and Products</h4>
+  <div class="terms-content">
+    <p>
+      Mention of some third-party products, companies and Web sites on the
+      DeitY's Web site is only for informational purposes and constitutes
+      neither an endorsement nor a recommendation, unless otherwise indicated.
+      DeitY assumes no responsibility with regard to the selection, performance
+      or use of these products or vendors. DeitY provides this only as a
+      convenience to our users.
+    </p>
+    <p>
+      This is to inform you that the above mentioned third party products,
+      companies and Web sites are independent of DeitY and DeitY has no control
+      over the contents, selection, performance or use of such third party Web
+      sites. A link to a other Web sites does not mean that DeitY endorses or
+      accepts any responsibility for the content or use of such Web site.
+    </p>
+    <p>Enforcement of Intellectual Property Rights</p>
+    <p>
+      DeitY actively and aggressively enforces its intellectual property rights
+      to the fullest extent of the law.
+    </p>
+  </div>
+  <h4 class="terms-title">Feedback and Information</h4>
+  <div class="terms-content">
+    <p>
+      Any information and/or feedback you provide at this site shall be deemed
+      to be non-confidential. DeitY shall be free to use such information on an
+      unrestricted basis. DeitY will be free to copy, disclose, distribute,
+      incorporate and otherwise use the submissions and all data, images, sound,
+      text or other content embodied therein for any purposes it deems fit,
+      commercial or noncommercial, without liability or compensation to any
+      person or entity. (Also refer to DeitY Privacy Policy.)
+    </p>
+    <p>
+      The sender of any communications to the DeitY Web site or otherwise to the
+      owners of this site shall be responsible for the content and information
+      contained therein, including its truthfulness and accuracy.
+    </p>
+  </div>
+  <h4 class="terms-title">Warranties and Disclaimers</h4>
+  <div class="terms-content">
+    <p>
+      DeitY intends that the information and data contained in the DeitY Data
+      Centre Web site to be accurate and reliable, however, since the
+      information and data have been compiled by DIT from a variety of sources,
+      it is provided on "AS IS" basis.
+    </p>
+    <ol>
+      <li>
+        DeitY EXPRESSLY DISCLAIMS, ALL WARRANTIES AND/OR CONDITIONS, EXPRESSED
+        OR IMPLIED, AS TO ANY MATTER WHATSOEVER RELATING TO OR REFERENCED BY THE
+        DeitY WEB SITE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+        AND/OR CONDITIONS OF MERCHANTABILITY OR SATISFACTORY QUALITY AND FITNESS
+        FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT.
+      </li>
+      <li>
+        IN NO EVENT SHALL DeitY OR ITS' LICENSORS/SUPPLIERS BE LIABLE FOR ANY
+        DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF
+        PROFITS, BUSINESS INTERRUPTION, LOSS OF INFORMATION) ARISING OUT OF THE
+        USE OF OR INABILITY TO USE THE MATERIALS, EVEN IF DeitY HAS BEEN ADVISED
+        OF THE POSSIBILITY OF SUCH DAMAGES.
+      </li>
+      <li>
+        DeitY ALSO DOES NOT WARRANT THAT THE FUNCTIONS CONTAINED IN THE
+        MATERIALS WILL BE UNINTERRUPTED OR ERROR-FREE, THAT DEFECTS WILL BE
+        CORRECTED, OR THAT THIS SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE
+        FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
+      </li>
+      <li>
+        YOU UNDERSTAND AND AGREE THAT ANY MATERIALS DOWNLOADED OR OTHERWISE
+        OBTAINED THROUGH THE USE OF THE SITE IS AT YOUR OWN DISCRETION AND RISK
+        AND THAT YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER
+        SYSTEM OR LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OF MATERIALS.
+      </li>
+      <li>
+        DeitY DOES NOT GIVE ANY WARRANTY REGARDING ANY GOODS OR SERVICES
+        OBTAINED THROUGH THE SITE OR ANY TRANSACTIONS ENTERED INTO THROUGH THE
+        SITE.
+      </li>
+      <li>
+        UNDER NO CIRCUMSTANCES SHALL DeitY BE LIABLE FOR ANY DIRECT, INDIRECT,
+        INCIDENTAL, PUNITIVE, SPECIAL OR CONSEQUENTIAL DAMAGES, RESULTING FROM:
+        <ol type="A">
+          <li>THE USE OR THE INABILITY TO USE THE SITE</li>
+          <li>
+            MESSAGES RECEIVED OR TRANSACTIONS ENTERED INTO THROUGH THE SITE
+          </li>
+          <li>THE MATERIALS IN THE SITE</li>
+          <li>ACCURACY OF SERVICES REFERING TO THIS SITE</li>
+          <li>
+            ANY OTHER MATTER RELATED TO THE SITE, EVEN IF DeitY HAS BEEN ADVISED
+            OF THE POSSIBILITY OF SUCH DAMAGES
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <p>
+      BECAUSE SOME JURISDICTIONS PROHIBIT THE EXCLUSION OR LIMITATION OF
+      LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION
+      MAY NOT APPLY TO YOU.
+    </p>
+    <p>
+      DeitY may provide access to DeitYs' international data and, therefore, may
+      contain references or cross references to DeitY products, programs and
+      services that are not announced in your country. Such reference does not
+      imply that DeitY in your country intends to announce such products,
+      programs or services.
+    </p>
+    <p>
+      Though all the efforts are made to convey accurate meaning while
+      translating into target language, however, because of language specificity
+      and understanding by human translators / vetter it may not be possible
+      always
+    </p>
+  </div>
+  <h4 class="terms-title">Arbitrations</h4>
+  <div class="terms-content">
+    This Web site is controlled by DeitY from its offices in New Delhi in the
+    State of Delhi within the Union of India. Those who choose to access this
+    Web site from other locations do so on their own initiative and are
+    responsible for compliance with applicable local laws, if and to the extent
+    that local laws are applicable. Any claim relating to the Materials shall be
+    governed by the laws of the Union of India. Any dispute or difference
+    arising for the use of this site or in the interpretation of this
+    agreement/notice shall be referred to the the webmaster at DeitY . The
+    decision of the webmaster shall be final and binding. In the event of a
+    dispute, the jurisdiction for the settling shall be in the courts in Delhi,
+    India only.
+    <p></p>
+  </div>
+  <h4 class="terms-title">Indeminification</h4>
+  <div class="terms-content">
+    <p>
+      C-DAC and DeitY are indeminified from all cases arising out of quality of
+      output (of services hosted / linked from the portal) , which has been done
+      to the best of the ability. For all legal purposes ,only the copy of the
+      content in original language holds true.
+    </p>
+  </div>
+  <h4 class="terms-title">Updates</h4>
+  <div class="terms-content">
+    <p>
+      DeitY reserves the right to revise, change or modify these Terms at any
+      time by updating this posting or by inserting legal notices located on
+      particular pages at this Site. Please remember to visit this page from
+      time to time to review any amendments to the above Terms and their effect
+      on your use of this Site and the Materials contained therein. The
+      information contained in this Web site is subject to change without notice
+    </p>
+    <p>
+      You choose to use the information and services by choice knowing and
+      agreeing to the above.
+    </p>  {% endcomment %}
+
+  </div>
+
+  {% comment %} Terms and conditions sections ends here {% endcomment %}
+</div>
+
+{% endblock %}

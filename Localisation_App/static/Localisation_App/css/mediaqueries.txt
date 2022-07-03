@@ -1,0 +1,47 @@
+.box{
+    height:300px;
+    width:300px;
+    background-color:red;
+}
+
+
+/* laptop */
+@media screen 
+  and (min-device-width: 1025px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .box{
+        height:300px;
+        width:300px;
+        background-color:green;
+    }
+
+
+}
+
+/* Tablet Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .box{
+        height:300px;
+        width:300px;
+        background-color:black;
+    }
+}
+/* mobile */
+@media screen 
+  and (min-device-width: 480px) 
+  and (max-device-width: 767px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+    .box{
+        height:300px;
+        width:300px;
+        background-color:blue;
+    }
+
+
+}

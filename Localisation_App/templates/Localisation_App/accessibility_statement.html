@@ -1,0 +1,20 @@
+{% extends 'Localisation_App/base.html' %} 
+{% load static %} 
+{% block accessibilitystatement %}
+
+<title>Accessibility statement</title>
+<link
+  href="{% static 'Localisation_App/css/accessibility_statement.css' %}"
+  rel="stylesheet"
+/>
+
+<div class="container main-container">
+  <h4 class="as-main-title">{{ content.Footer_Links_Title }}</h4>
+  <div>
+
+    {{ content.Footer_Links_Content|safe }}
+  </div>
+ 
+</div>
+
+{% endblock %}

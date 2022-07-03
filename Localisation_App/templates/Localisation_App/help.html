@@ -1,0 +1,41 @@
+{% extends 'Localisation_App/base.html' %} {% load static %} {% block help %}
+
+<title>Help</title>
+<link href="{% static 'Localisation_App/css/help.css' %}" rel="stylesheet" />
+
+<div class="container-fluid">
+  <h4 class="help-main-title">Help</h4>
+  <div class="row main">
+    <div class="col-3 first-section">
+      <nav class="help-navigation">
+        <ul>
+          
+          {% for f_sub_data in footer_sub_data %}
+          <li class="nav-item">
+            <a href="{% url 'Localisation_App:helpData' f_sub_data.id %}">{{f_sub_data.Footer_Links_Info_SubTitle}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="col-8 second-section">
+      <!-- Sections of this Portal start from here -->
+
+      
+
+
+      {% if content %}
+      <div id="sec1">
+        <h4 class="help-title">{{ content.Footer_Links_Info_SubTitle }}</h4>
+
+        <div> {{ content.Footer_Links_Info_SubContent|safe }}</div>
+      </div>
+      {% else %}
+      <h1>No data found!</h1>
+      {% endif %}
+
+      <!-- Software to open zip files ends here -->
+    </div>
+  </div>
+</div>
+{% endblock%}

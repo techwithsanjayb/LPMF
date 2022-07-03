@@ -1,0 +1,8 @@
+localisation.sql
+__pycache__
+**/media
+**/ToolsCode
+ToolsCode/*.*
+**/ToolsCode/*.*
+*.zip
+

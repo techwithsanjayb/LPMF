@@ -1,0 +1,325 @@
+from distutils.command.upload import upload
+from django.db import models
+from ckeditor.fields import RichTextField
+# Create your models here.
+
+'''
+    AUTHOR NAME      : Sanjay Bhargava
+    CREATED DATE     : 14-05-2022
+    MODEL NAME       : TopMenuItems
+    DISCRIPTION      : THE BELOW MODEL STORES TOP MENU ITEMS NAME APPEARING ON THE TOP OF PAGES.
+'''
+
+
+class TopMenuItems(models.Model):
+    TopMenuItems_Name = models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name_plural = "Top Menu Items"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.TopMenuItems_Name
+
+
+'''
+    AUTHOR NAME      : Shubhangni Asati, Shweta Patil, Abhijeet Thorat
+    CREATED DATE     : 15-05-2022
+    MODEL NAME       : Article
+    DISCRIPTION      : THE BELOW MODEL STORES TEXT CONTENT FOR THE ARTICLES OF THE DIFFERENT PAGES OF WEBSITE.
+'''
+
+
+class Article(models.Model):
+    Article_HeadingName = models.CharField(max_length=100)
+    Article_Description = RichTextField()
+    Article_Image = models.ImageField(
+        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True)
+    Article_CreationDate = models.DateTimeField(auto_now_add=True,  blank=True)
+    Article_LastUpdatedDate = models.DateTimeField(auto_now=True,  blank=True)
+    Article_PublishedDate = models.DateTimeField(
+        auto_now_add=True,  blank=True)
+    Article_PublishedStatus = (
+        ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
+    Article_PublishedStatus = models.CharField(
+        max_length=20, choices=Article_PublishedStatus, default="Unpublished")
+    Article_ContentGivenBy = models.CharField(max_length=100)
+    Article_MenuId = models.ForeignKey(TopMenuItems, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Article"
+        ordering = ['Article_HeadingName']
+
+    def __str__(self):
+        return self.Article_HeadingName
+
+
+'''
+    AUTHOR NAME      : Shubhangni Asati, Shweta Patil, Abhijeet Thorat
+    CREATED DATE     : 15-05-2022
+    MODEL NAME       : Article
+    DISCRIPTION      : THE BELOW MODEL STORES SUCCESS STORIES DATA FOR THE LOCALISATION PORTAL.
+'''
+
+
+class SuccessStrories_Category(models.Model):
+    SuccessStrories_CategoryType = models.CharField(max_length=100)
+    SuccessStrories_Cat_Status = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "Success Strories Category Type"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.SuccessStrories_CategoryType
+
+
+class SuccessStories(models.Model):
+    SuccessStories_TitleName = models.CharField(max_length=100)
+    SuccessStories_Link = models.URLField(max_length=100)
+    SuccessStories_Description = RichTextField()
+    SuccessStories_CreationDate = models.DateTimeField(
+        auto_now_add=True,  blank=True)
+    SuccessStories_PublishedDate = models.DateTimeField(
+        auto_now_add=True,  blank=True)
+    SuccessStories_LastUpdatedDate = models.DateTimeField(
+        auto_now=True,  blank=True)
+    SuccessStories_PublishedStatus = (
+        ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
+    SuccessStories_PublishedStatus = models.CharField(
+        max_length=20, choices=SuccessStories_PublishedStatus, default="Unpublished")
+    SuccessStories_Upload_Image_1 = models.ImageField(
+        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+
+    SuccessStories_Upload_Image_2 = models.ImageField(
+        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    SuccessStories_Upload_Image_3 = models.ImageField(
+        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    SuccessStories_Upload_Image_4 = models.ImageField(
+        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    SuccessStories_Upload_Image_5 = models.ImageField(
+        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+
+    SuccessStories_category = models.ForeignKey(
+        SuccessStrories_Category, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "SuccessStories"
+        ordering = ['SuccessStories_TitleName']
+
+    def __str__(self):
+        return self.SuccessStories_TitleName
+
+
+class Tools_Category(models.Model):
+    Tools_CategoryType = models.CharField(max_length=100)
+    Tools_Cat_Status = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "Tools Category Type"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.Tools_CategoryType
+
+
+class Tools_Searched_Title(models.Model):
+    Tools_Searched_Title_Name = models.CharField(max_length=500)
+
+    class Meta:
+        verbose_name_plural = "Tools Searched Title Name"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.Tools_Searched_Title_Name
+
+
+class ToolsData(models.Model):
+    ToolsData_HeadingName = models.CharField(max_length=100)
+    ToolsData_Description = RichTextField()
+    ToolsData_CategoryType = models.ForeignKey(
+        Tools_Category, on_delete=models.CASCADE)
+    ToolsData_fileSize = models.CharField(max_length=30, default="")
+    ToolsData_VersionNumber = models.IntegerField()
+    ToolsData_UploadSupportDocument = models.FileField(
+        upload_to="Localisation_App/ToolsDocument", null=True, blank=True)
+    ToolsData_UploadToolCode = models.FileField(
+        upload_to="Localisation_App/ToolsCode", null=True, blank=True)
+    ToolsData_UploadedDate = models.DateTimeField(
+        auto_now_add=True,  blank=True)
+    ToolsData_LastUpdatedDate = models.DateTimeField(
+        auto_now=True, blank=True, null=True)
+    ToolsData_DownloadCounter = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = "ToolsData"
+        ordering = ['ToolsData_HeadingName']
+
+    def __str__(self):
+        return self.ToolsData_HeadingName
+
+
+class Resources_Category(models.Model):
+    Resources_CategoryType = models.CharField(max_length=100)
+    Resources_Cat_Status = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "Resources Category Type"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.Resources_CategoryType
+
+
+class ResourceData(models.Model):
+    ResourceData_HeadingName = models.CharField(max_length=100)
+    ResourceData_Description = RichTextField()
+    ResourceData_CategoryType = models.ForeignKey(
+        Resources_Category, on_delete=models.CASCADE)
+    ResourceData_fileSize = models.CharField(max_length=30, default="")
+    ResourceData_VersionNumber = models.IntegerField()
+    ResourceData_UploadSupportDocument = models.FileField(
+        upload_to="Localisation_App/media/ResourceDataDocument", null=True, blank=True)
+    ResourceData_UploadResourceCode = models.FileField(
+        upload_to="Localisation_App/media/ResourceData", null=True, blank=True)
+    ResourceData_UploadedDate = models.DateTimeField(
+        auto_now_add=True,  blank=True)
+    ResourceData_LastUpdatedDate = models.DateTimeField(
+        auto_now=True, blank=True, null=True)
+    ResourceData_DownloadCounter = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = "ResourceData"
+        ordering = ['ResourceData_HeadingName']
+
+    def __str__(self):
+        return self.ResourceData_HeadingName
+
+
+class NewsAndEvents(models.Model):
+    NewsAndEvents_HeadingName = models.CharField(max_length=100)
+    NewsAndEvents_CreationDate = models.DateTimeField(
+        auto_now=True,  blank=True)
+    NewsAndEvents_UpdatedDate = models.DateTimeField(
+        auto_now_add=True,  blank=True)
+    NewsAndEvents_Link = models.URLField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = "NewsAndEvents"
+        ordering = ['NewsAndEvents_HeadingName']
+
+    def __str__(self):
+        return self.NewsAndEvents_HeadingName
+
+
+class FAQs_Category(models.Model):
+    FAQs_CategoryType = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "FAQs Category Type"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.FAQs_CategoryType
+
+
+class FAQs(models.Model):
+    FAQs_Question = models.CharField(max_length=1000)
+    FAQs_Answer = RichTextField()
+    FAQs_CategoryType = models.ForeignKey(
+        FAQs_Category, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "FAQs"
+        ordering = ['FAQs_Question']
+
+    def __str__(self):
+        return self.FAQs_Question
+
+
+class Services(models.Model):
+    Services_Name = models.CharField(max_length=100)
+    Services_Description = models.CharField(max_length=300)
+    Services_links = models.CharField(max_length=300)
+
+    class Meta:
+        verbose_name_plural = "Services"
+        ordering = ['Services_Name']
+
+    def __str__(self):
+        return self.Services_Name
+
+
+class Footer_Links(models.Model):
+    Footer_Links_Title = models.CharField(max_length=100)
+    Footer_Links_Content = RichTextField()
+
+    class Meta:
+        verbose_name_plural = "Footer"
+        ordering = ['Footer_Links_Title']
+
+    def __str__(self):
+        return self.Footer_Links_Title
+
+
+class Footer_Links_Info(models.Model):
+    Footer_Links_Info_SubTitle = models.CharField(max_length=100)
+    Footer_Links_Info_SubContent = RichTextField()
+    Footer_Links_Info_MainTitle = models.ForeignKey(
+        Footer_Links, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Footer Info"
+        ordering = ['Footer_Links_Info_SubTitle']
+
+    def __str__(self):
+        return self.Footer_Links_Info_SubTitle
+
+
+class FooterMenuItems(models.Model):
+    FooterMenuItems_Name = models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name_plural = "Footer Menu Items"
+        ordering = ['id']
+
+    def __str__(self):
+        return self.FooterMenuItems_Name
+
+
+'''
+    AUTHOR NAME      : TANVI PATIL
+    CREATED DATE     : 21-06-2022
+    MODEL NAME       : Contact Us
+    DISCRIPTION      : THE BELOW MODEL STORES CONTACT US DATA FOR THE LOCALISATION PORTAL.
+'''
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=10)
+    option = models.CharField(max_length=30)
+    comment = models.TextField()
+
+
+class CarouselData(models.Model):
+    title = models.CharField(max_length=100)
+    sub_title = models.CharField(max_length=100)
+    caption = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Carousel Data"
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+
+class User(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=60, default=None)
+    password = models.CharField(max_length=300)
+    Confirm_password = models.CharField(max_length=300)
+    phone = models.IntegerField(default=None)
+    date = models.DateField(auto_now=True, blank=True, null=True)

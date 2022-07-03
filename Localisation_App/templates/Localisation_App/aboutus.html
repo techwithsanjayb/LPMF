@@ -1,0 +1,52 @@
+{% extends 'Localisation_App/base.html' %}
+
+{% load static %}
+
+{% block aboutus %}
+
+  <!--About Us start-->
+  <div class="container-fluid testting">
+    <div class="col-12" data-aos="fade-down" data-aos-duration="1000">
+      <!-- <h4 class="aboutUs-Title">{{ ArticleData.0.Article_HeadingName }}</h4> -->
+      <div class="text-center p-3">
+      <input
+      type="button"
+      class="text-center rounded-5 about-us-section-heading"
+      value={{ ArticleData.0.Article_HeadingName }}
+    />
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-lg-6" data-aos="fade-down" data-aos-duration="1200">
+        <img src="/media/{{ ArticleData.0.Article_Image }}" class="d-block w-100" alt="..." />
+      </div>
+      <div class="col-sm-12 col-lg-6 p-3" data-aos="fade-down" data-aos-duration="1200">
+        <div class="aboutUs-section-para">
+          &nbsp; &nbsp;{{ ArticleData.0.Article_Description|safe|slice:":1419" }}
+        </div>
+      </div>
+    </div>
+    
+        <div class="aboutUs-section-para" style="margin-top:-40px;padding: 0 30px;" data-aos="fade-down" data-aos-duration="1400">
+          {{ ArticleData.0.Article_Description|safe|slice:"1419:" }}
+        </div>
+
+  </div>
+  <!-- <div class="row">
+    <p class="aboutUs-para">
+      This framework will help the MMPs in two ways:
+      1. Surface localization of the user interface and static information on a given website.
+      2. Internal localization of online applications including linked databases.
+      LPMF supports all the 22 official languages in the country. The portal is expected to serve all MMPs as an online
+      facilitation Centre for access to information on language technology standards, essentials of the localization
+      processes and training being conducted by C-DAC on these topics. It will also serve as a resource Centre for
+      essential technical documents, localization tools and web services to help developers in localization of various
+      applications planned under their respective Mission Mode Project.
+    </p>
+  </div> -->
+</div>
+
+
+
+<!--About Us end-->
+{% endblock %}
