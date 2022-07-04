@@ -136,17 +136,24 @@
                 <div class="tools-size">
                   File Size : {{ data.ToolsData_fileSize}}
                 </div>
-                <div class="tools-section-button">
-                  {% if data.ToolsData_UploadSupportDocument != '' %}
-                <a style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadSupportDocument}}" download>Download
-                    </a> 
-                    {% endif %}
-                  {% if data.ToolsData_UploadToolCode != '' %}
-                <a style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>Download
+
+
+                {% if data.ToolsData_UploadSupportDocument != '' %} 
+                <a style= "text-decoration: none;color:white" href= "/media/{{data.ToolsData_UploadSupportDocument}}" download>
+                   <div class= "tools-section-button" >Download </div > 
                   </a> 
-                  {% endif %}
-                 
-                </div>
+                {% endif %} 
+
+                {% if data.ToolsData_UploadToolCode != '' %} 
+                <a style= "text-decoration: none;color:white" href= "/media/{{data.ToolsData_UploadToolCode}}" download>
+                   <div class= "tools-section-button" >Download </div> 
+                  </a> 
+                {% endif %} 
+  
+
+
+
+
 
               </div>
               
