@@ -1,4 +1,3 @@
-from distutils.command.upload import upload
 from django.db import models
 from ckeditor.fields import RichTextField
 # Create your models here.
@@ -34,7 +33,7 @@ class Article(models.Model):
     Article_HeadingName = models.CharField(max_length=100)
     Article_Description = RichTextField()
     Article_Image = models.ImageField(
-        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True)
+        upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True)
     Article_CreationDate = models.DateTimeField(auto_now_add=True,  blank=True)
     Article_LastUpdatedDate = models.DateTimeField(auto_now=True,  blank=True)
     Article_PublishedDate = models.DateTimeField(
@@ -62,16 +61,16 @@ class Article(models.Model):
 '''
 
 
-class SuccessStrories_Category(models.Model):
-    SuccessStrories_CategoryType = models.CharField(max_length=100)
-    SuccessStrories_Cat_Status = models.BooleanField(default=False)
+class SuccessStories_Category(models.Model):
+    SuccessStories_CategoryType = models.CharField(max_length=100)
+    SuccessStories_Cat_Status = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name_plural = "Success Strories Category Type"
-        ordering = ['id']
+        verbose_name_plural = "Success Stories Category"
+        ordering = ['SuccessStories_CategoryType']
 
     def __str__(self):
-        return self.SuccessStrories_CategoryType
+        return self.SuccessStories_CategoryType
 
 
 class SuccessStories(models.Model):
@@ -89,22 +88,24 @@ class SuccessStories(models.Model):
     SuccessStories_PublishedStatus = models.CharField(
         max_length=20, choices=SuccessStories_PublishedStatus, default="Unpublished")
     SuccessStories_Upload_Image_1 = models.ImageField(
-        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
     SuccessStories_Upload_Image_2 = models.ImageField(
-        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     SuccessStories_Upload_Image_3 = models.ImageField(
-        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     SuccessStories_Upload_Image_4 = models.ImageField(
-        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     SuccessStories_Upload_Image_5 = models.ImageField(
-        upload_to="Localisation_App/media", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
     SuccessStories_category = models.ForeignKey(
-        SuccessStrories_Category, on_delete=models.CASCADE)
+        SuccessStories_Category, on_delete=models.CASCADE, null=True, blank=True)
+    SuccessStories_Cdac_Contribution = models.CharField(
+        max_length=500, null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = "SuccessStories"
+        verbose_name_plural = "Success Stories"
         ordering = ['SuccessStories_TitleName']
 
     def __str__(self):
@@ -116,8 +117,8 @@ class Tools_Category(models.Model):
     Tools_Cat_Status = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name_plural = "Tools Category Type"
-        ordering = ['id']
+        verbose_name_plural = "Tools Category"
+        ordering = ['Tools_CategoryType']
 
     def __str__(self):
         return self.Tools_CategoryType
@@ -152,7 +153,7 @@ class ToolsData(models.Model):
     ToolsData_DownloadCounter = models.IntegerField()
 
     class Meta:
-        verbose_name_plural = "ToolsData"
+        verbose_name_plural = "Tools Data"
         ordering = ['ToolsData_HeadingName']
 
     def __str__(self):
@@ -164,8 +165,8 @@ class Resources_Category(models.Model):
     Resources_Cat_Status = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name_plural = "Resources Category Type"
-        ordering = ['id']
+        verbose_name_plural = "Resources Category"
+        ordering = ['Resources_CategoryType']
 
     def __str__(self):
         return self.Resources_CategoryType
@@ -179,9 +180,9 @@ class ResourceData(models.Model):
     ResourceData_fileSize = models.CharField(max_length=30, default="")
     ResourceData_VersionNumber = models.IntegerField()
     ResourceData_UploadSupportDocument = models.FileField(
-        upload_to="Localisation_App/media/ResourceDataDocument", null=True, blank=True)
+        upload_to="Localisation_App/ResourceDataDocument", null=True, blank=True)
     ResourceData_UploadResourceCode = models.FileField(
-        upload_to="Localisation_App/media/ResourceData", null=True, blank=True)
+        upload_to="Localisation_App/ResourceData", null=True, blank=True)
     ResourceData_UploadedDate = models.DateTimeField(
         auto_now_add=True,  blank=True)
     ResourceData_LastUpdatedDate = models.DateTimeField(
@@ -189,7 +190,7 @@ class ResourceData(models.Model):
     ResourceData_DownloadCounter = models.IntegerField()
 
     class Meta:
-        verbose_name_plural = "ResourceData"
+        verbose_name_plural = "Resource Data"
         ordering = ['ResourceData_HeadingName']
 
     def __str__(self):
@@ -205,7 +206,7 @@ class NewsAndEvents(models.Model):
     NewsAndEvents_Link = models.URLField(max_length=200)
 
     class Meta:
-        verbose_name_plural = "NewsAndEvents"
+        verbose_name_plural = "News And Events"
         ordering = ['NewsAndEvents_HeadingName']
 
     def __str__(self):
@@ -216,10 +217,11 @@ class FAQs_Category(models.Model):
     FAQs_CategoryType = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "FAQs Category Type"
-        ordering = ['id']
+        verbose_name_plural = "FAQs Category"
+        ordering = ['FAQs_CategoryType']
 
     def __str__(self):
+
         return self.FAQs_CategoryType
 
 
@@ -255,7 +257,7 @@ class Footer_Links(models.Model):
     Footer_Links_Content = RichTextField()
 
     class Meta:
-        verbose_name_plural = "Footer"
+        verbose_name_plural = "Footer Links"
         ordering = ['Footer_Links_Title']
 
     def __str__(self):
@@ -302,6 +304,29 @@ class Contact(models.Model):
     option = models.CharField(max_length=30)
     comment = models.TextField()
 
+    class Meta:
+        verbose_name_plural = "Contact Us"
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+class User(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=60, default=None)
+    password = models.CharField(max_length=300)
+    Confirm_password = models.CharField(max_length=300)
+    phone = models.IntegerField(default=None)
+    date = models.DateField(auto_now=True, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "User"
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
 
 class CarouselData(models.Model):
     title = models.CharField(max_length=100)
@@ -314,12 +339,3 @@ class CarouselData(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class User(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=60, default=None)
-    password = models.CharField(max_length=300)
-    Confirm_password = models.CharField(max_length=300)
-    phone = models.IntegerField(default=None)
-    date = models.DateField(auto_now=True, blank=True, null=True)

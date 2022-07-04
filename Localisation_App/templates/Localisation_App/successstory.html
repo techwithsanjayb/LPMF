@@ -62,25 +62,25 @@
           {% if satus_All_Checked == 'True' %}
           <ul class="success-list">
 
-            {% for category in SuccessStrories_CategoryData %}
+            {% for category in SuccessStories_CategoryData %}
            
             <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}" />
 
-            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStrories_CategoryType }}</label><br />
+            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br />
             {% endfor %}
           </ul>
           {% else %}
           <ul class="success-list">
-            {% for category in SuccessStrories_CategoryData %}
-            {% if category.SuccessStrories_Cat_Status %}
+            {% for category in SuccessStories_CategoryData %}
+            {% if category.SuccessStories_Cat_Status %}
             <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}"
               checked="checked" />
 
-            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStrories_CategoryType }}</label><br />
+            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br />
             {% else %}
             <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}" />
 
-            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStrories_CategoryType }}</label><br />
+            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br />
             {% endif %}
             {% endfor %}
           </ul>

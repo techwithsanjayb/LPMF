@@ -38,6 +38,8 @@ MEDIA_URL = "/media/"
 INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
+    # 'adminlte3',
+    # 'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,6 +84,22 @@ WSGI_APPLICATION = 'Localisation_Project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'localisation_db',
+        'USER': 'root',
+        'PASSWORD': 'l0c@lm@r!@',
+        'HOST': '10.208.10.193',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',
+            'charset': 'utf8mb4'
+        }
+    },
+
+}
 
 
 # DATABASES = {

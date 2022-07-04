@@ -1,0 +1,2398 @@
+/* For Default Screen Size */
+
+/* sticky Button */
+/* 
+.sticky-button {
+    height: 200px;
+    background-color: rgb(66, 177, 197);
+    width: 30px;
+    font-size: 20px;
+    position: fixed;
+    top: 30%;
+    right: 0;
+    -webkit-transform: translateY(50%);
+    -ms-transform: translateY(50%);
+    transform: translateY(10%);
+    padding-top: 20px;
+} */
+
+.sticky-button {
+    width: 80px;
+    height: 130px;
+    background-color: #669999;
+    position: relative;
+    position: fixed;
+    top: 20%;
+    right: 0;
+    -webkit-transform: translateY(50%);
+    -ms-transform: translateY(50%);
+    transform: translateY(10%);
+
+    padding: 20px 20px 20px 20px;
+}
+
+.sticky-button:hover{
+    animation: square-to-circle 2.5s .5s infinite cubic-bezier(1, .015, .295, 1.225) alternate-reverse;
+}
+@keyframes square-to-circle {
+    0%  {
+      border-radius:0 0 0 0;
+      background:;
+      transform:rotate(45deg);
+    }
+    25%  {
+      border-radius:60% 0 60% 0;
+      background:darksalmon;
+      transform:rotate(135deg);
+    }
+    50%  {
+      border-radius:80% 80% 0 0;
+      background:indianred;
+      transform:rotate(180deg);
+    }
+    75%  { 
+      border-radius:80% 80% 80% 0;
+      background:lightcoral;
+      transform:rotate(315deg);
+    }
+    100% {  
+      border-radius:50%;
+      background:darksalmon;
+      transform:rotate(404deg);
+    }
+  }
+.sticky-button a {
+    writing-mode: vertical-rl;
+    white-space: wrap;
+    transform: rotate(180deg);
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+
+}
+
+/* End Stcky Button */
+
+/* Navbar Start */
+
+.quote {
+    height: 40px;
+    width: 180px;
+    background: #ECB471;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #023047;
+}
+
+.quote:hover {
+    height: 40px;
+    width: 180px;
+    background: #ECB471;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #023047;
+}
+
+.customNav {
+    background: #219EBC;
+}
+
+.items {
+    font-size: 22px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-right: 25px;
+    color: #646363;
+    text-shadow: 1px 2px 3px rgba(179, 179, 179, 0.46);
+}
+
+.items:hover {
+    color: #219EBC;
+}
+
+
+/* Navbar Ends */
+
+
+/* Carousel Start */
+
+.carousel-inner-text {
+    background: url("../img/service5.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 700px;
+}
+
+.carousel-inner-text-2 {
+    background: url("../img/Services11.jpg");
+    background-size: cover;
+    height: 700px;
+}
+
+.carousel-inner-text-3 {
+    background: url("../img/Cost4.jpg");
+    background-size: cover;
+    height: 700px;
+}
+
+.carousel-title {
+    /* text-align: center; */
+    /* padding-left: 200px; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 39px;
+    text-align: left;
+    /* padding-top: 300px; */
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+.carousel-inner-text>.carousel-title {
+    padding-left: 200px;
+    padding-top: 250px;
+}
+
+.carousel-inner-text-2>.carousel-title {
+    padding-left: 200px;
+    padding-top: 250px;
+}
+
+.carousel-inner-text-3>.carousel-title {
+    padding-left: 200px;
+    padding-top: 250px;
+}
+
+
+/* 
+
+.carousel-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 39px;
+    text-align: left;
+    padding-top: 300px;
+    letter-spacing: -0.015em;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+} */
+
+.carousel-subtitle-1 {
+    /* font-family: 'Montserrat'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 64px;
+    text-align: left;
+    padding-left: 200px;
+    /* or 52% */
+    letter-spacing: -0.015em;
+    color: #ED875C;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-subtitle-2 {
+    /* font-family: 'Montserrat'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 64px;
+    text-align: left;
+    padding-left: 200px;
+    /* or 52% */
+    letter-spacing: -0.015em;
+    color: #ED875C;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-subtitle-3 {
+    /* font-family: 'Montserrat'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 64px;
+    text-align: left;
+    padding-left: 200px;
+    /* or 52% */
+    letter-spacing: -0.015em;
+    color: #ED875C;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-caption-1 {
+    font-family: 'Mukta';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 0px;
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 20px;
+    /* identical to box height, or 150% */
+    letter-spacing: 0.005em;
+    color: #000000;
+}
+
+.carousel-caption-2 {
+    font-family: 'Mukta';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 0px;
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 15px;
+    /* identical to box height, or 150% */
+    letter-spacing: 0.005em;
+    color: #000000;
+}
+
+.carousel-caption-3 {
+    font-family: 'Mukta';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 0px;
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 20px;
+    /* identical to box height, or 150% */
+    letter-spacing: 0.005em;
+    color: #000000;
+}
+
+
+/* Carousel Ends */
+
+
+
+/* News start */
+
+.customNews {
+    height: 40px;
+    background-color: #F5AE59;
+}
+
+.newsclass {
+    height: 50px;
+    font-size: 25px !important;
+}
+
+.marqueeClass {
+    margin-top: 1px;
+}
+
+.news1 {
+    font-weight: 500;
+    color: #023047;
+    text-decoration: none;
+}
+
+
+/* News end */
+
+
+/* About Us start */
+
+.testting {
+    background: url('../img/AboutUs3.png');
+    background-size: cover;
+    /* margin-bottom: 20px; */
+}
+
+.aboutUs {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+}
+
+.aboutUs-Title {
+    text-align: center;
+    color: #219EBC;
+    margin: 20px;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.aboutUs-para {
+    margin-top: 30px;
+    text-align: justify;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 40px;
+    /* or 210% */
+    letter-spacing: -0.02em;
+    color: #6B6A6A;
+    mix-blend-mode: normal;
+    padding: 20px;
+}
+
+.about-us-section-heading {
+    background-color: #023047;
+    color: white;
+    width: 200px;
+    height: 50px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.aboutUs-section-para {
+    margin-top: -30px;
+    text-align: justify;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 40px;
+    padding-right: 20px;
+    /* or 210% */
+    letter-spacing: -0.02em;
+    color: #6B6A6A;
+    mix-blend-mode: normal;
+
+}
+
+.aboutus-Button {
+    width: 140px;
+    height: 49px;
+    background: #ED875C;
+    border-radius: 8px;
+    border: none;
+    margin-left: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.aboutus-Button2 {
+    width: 140px;
+    height: 49px;
+    background: #ED875C;
+    border-radius: 8px;
+    border: none;
+    margin-left: 570px;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.aboutus-Button2 a {
+    text-decoration: none;
+    color: white;
+}
+
+.aboutus-Button a {
+    text-decoration: none;
+    color: white;
+}
+
+.services-title {
+    font-size: 35px;
+    color: #EC9022;
+    margin-left: 550px;
+    margin-top: 50px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+
+/* About Us end */
+
+
+/* Counter Section Start */
+
+.counter {
+    margin-left: 300px;
+}
+
+.card1 {
+    width: 254px;
+    height: 178px;
+    margin-left: 50px;
+    background: #ffffff;
+    box-shadow: 3px 2px 5px 1px #DE6881;
+    border-radius: 22px;
+}
+
+.card1 a {
+    text-decoration: none;
+}
+
+.card2 {
+    width: 254px;
+    height: 178px;
+    margin-left: 50px;
+    background: #ffffff;
+    box-shadow: 3px 2px 5px 1px #ACDC7A;
+    border-radius: 22px;
+}
+
+.card2 a {
+    text-decoration: none;
+}
+
+.card3 {
+    width: 254px;
+    height: 178px;
+    margin-left: 60px;
+    background: #FFFFFF;
+    box-shadow: 3px 2px 5px 1px #EED58E;
+    border-radius: 22px;
+}
+
+.card3 a {
+    text-decoration: none;
+}
+
+.card4 {
+    width: 254px;
+    height: 178px;
+    margin-left: 60px;
+    background: #FFFFFF;
+    box-shadow: 3px 2px 5px 1px #8ECAE6;
+    border-radius: 22px;
+}
+
+.card4 a {
+    text-decoration: none;
+}
+
+.card-title {
+    margin-top: 5px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 550;
+    font-size: 25px;
+    line-height: 48px;
+    color: #646363;
+}
+
+.card-description {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: #4E4C4C;
+}
+
+.icon {
+    height: 70px;
+    width: 70px;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #FFB703;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+
+
+/* Counter Section End */
+
+
+/* links start */
+
+.linksContainer {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #EAEAEA;
+}
+
+
+/* links end */
+
+
+/* Vision start */
+
+.vision {
+    width: 100%;
+    height: 330px;
+    background-color: #023047;
+    background-image: url("../img/vision-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.vision-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 100px;
+    letter-spacing: -0.015em;
+    color: #F5AE59;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.vision-para {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    margin: 0px 460px 0px 460px;
+}
+
+
+/* vision end */
+
+
+/* Success Stories Section starts*/
+
+.serives-row {
+    margin: 20px;
+}
+
+.test {
+    max-width: 100%;
+    height: auto;
+}
+
+.card {
+    margin-top: 40px;
+    border: none;
+    box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%)
+}
+
+.card-text {
+    font-weight: 500;
+    font-size: 20px;
+    padding: 10px;
+    text-align: justify;
+}
+
+.success-title {
+    color: rgb(15, 43, 70);
+    font-family: 'Heebo', sans-serif;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 30px;
+}
+
+.success-link {
+    margin-left: 130px;
+    height: 40px;
+    width: 200px;
+    background-color: #ED875C;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+    border: none;
+
+}
+
+.success-link a {
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}
+
+.success-btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 8px 22px;
+    font-size: 22px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.warning-1 {
+    border-color: #ECB471;
+    color: #ECB471;
+}
+
+.warning-1:hover {
+    background: #ECB471;
+    color: white;
+}
+
+.success-read-more {
+    width: 140px;
+    height: 49px;
+    background: #ED875C;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 30px 0px 30px 750px;
+}
+
+.card-header:hover {
+    animation: zoom-in-zoom-out 2s ease;
+}
+
+
+/* .card:hover {
+      animation: zoom-in-zoom-out 2s ease;
+    } */
+
+
+/* Success Stories Section */
+
+.success-stories {
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+    background: url("../../../static/Localisation_App/img/Capa3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.success-header {
+    text-align: center;
+    color: #023047;
+    margin: 20px;
+    font-size: 35px;
+    font-weight: 700;
+    /* 
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 36px;
+    letter-spacing: 0.005em;
+    text-align: center;
+    color: #023047; */
+}
+
+@keyframes zoom-in-zoom-out {
+
+    /* 0% {
+        transform: scale(1.2, 1.2);
+      } */
+    100% {
+        transform: scale(1.2, 1.2);
+    }
+
+    /* 100% {
+        transform: scale(1, 1);
+      } */
+}
+
+
+/* Success Stories Section Ends */
+
+
+/* Cost Esitmate Section Start */
+
+.esitimate-cost-img {
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+.estimate-cost-content {
+    /* position: relative; */
+    background: url("../../../static/Localisation_App/img/Cost.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.estimate-cost-title {
+    margin-top: 150px;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 43px;
+    letter-spacing: 0.035em;
+    color: #023047;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.estimate-cost-money-img {
+    background: url("../../../static/Localisation_App/img/Cost.png");
+}
+
+.estimate-cost-button {
+    width: 230px;
+    height: 55px;
+    background-color: #023047;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
+    border-radius: 18px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 43px;
+    letter-spacing: 0.025em;
+    color: #FFFFFF;
+    margin-left: 320px;
+    margin-top: 20px;
+}
+
+.estimate-cost-button a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+/* Cost Esitmate Section Ends */
+
+.bhashni {
+    background: url('../img/BhashaniSection1.png');
+    height: 1200px;
+    background-size: cover;
+}
+
+.bhashni-new {
+    background: url('../img/BhashaniSection.png');
+    height: 1200px;
+    background-size: cover;
+}
+
+.bhashni-new-1 {
+    background: url('../img/BhashaniSection5.png');
+    height: 1200px;
+    background-size: cover;
+}
+
+
+/* Footer Section Start */
+
+.footer {
+    background-color: #023047;
+    color: white;
+    height: auto;
+    padding: 20px;
+}
+
+.footer-left {
+    /* border-right:2px solid #ffffffb5; */
+    padding: 30px 30px 0px 70px;
+    /* background-color: red; */
+}
+
+.footer-left a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-left a:hover {
+    color: rgb(23, 175, 235);
+}
+
+.footer-left h3 {
+    margin-left: 30px;
+}
+
+.footer-center {
+    /* border-right:2px solid #ffffffb5; */
+    padding: 30px 30px 0px 120px;
+    /* background-color: rgb(8, 8, 103); */
+}
+
+.footer-right {
+    padding: 30px 30px 0px 70px;
+    width: 300px;
+    /* background-color: rgb(1, 118, 50); */
+}
+
+.copyright-section {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 18px;
+    margin-right: 30px;
+}
+
+.footer-gist-section {
+    height: 100px;
+    width: 200px;
+}
+
+.footer-image-center {
+    width: 600px;
+}
+
+.footer-logo-1 {
+    margin-left: 10px;
+    width: 190px;
+}
+
+.footer-logo-2 {
+    width: 110px;
+}
+
+.footer-logo-3 {
+    width: 130px;
+}
+
+.footer-logo-4 {
+    width: 200px;
+}
+
+.line {
+    margin-left: -40px;
+    width: 700px;
+}
+
+
+/* Footer Section Ends*/
+
+@media only screen and (max-device-width: 1640px) {
+    .items {
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+        margin-right: 15px;
+        color: #646363;
+        text-shadow: 1px 2px 3px rgba(179, 179, 179, 0.46);
+    }
+
+    /* About Us section */
+    .aboutUs {
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-top: 30px;
+    }
+
+    .aboutUs-Title {
+        text-align: center;
+        color: #219EBC;
+        margin: 20px;
+        font-size: 35px;
+        font-weight: 700;
+    }
+
+    .aboutUs-para {
+        margin-top: 30px;
+        text-align: justify;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 40px;
+        /* or 210% */
+        letter-spacing: -0.02em;
+        color: #6B6A6A;
+        mix-blend-mode: normal;
+    }
+
+    .aboutus-Button {
+        width: 140px;
+        height: 49px;
+        left: 768px;
+        top: 702px;
+        background: #ED875C;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 20px;
+        color: white;
+    }
+
+    .aboutus-Button2 {
+        width: 140px;
+        height: 49px;
+        background: #ED875C;
+        border-radius: 8px;
+        border: none;
+        margin-left: 570px;
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .aboutus-Button2 a {
+        text-decoration: none;
+        color: white;
+    }
+
+    /* About Us end */
+    /* Counter Section Start */
+    .counter {
+        margin-left: 100px;
+    }
+
+    .services-title {
+        font-size: 35px;
+        color: #EC9022;
+        margin-left: 520px;
+        margin-top: 50px;
+        font-weight: 600;
+        margin-bottom: 50px;
+    }
+
+    .card1 {
+        width: 200px;
+        height: 150px;
+        margin-left: 150px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #DE6881;
+        border-radius: 22px;
+    }
+
+    .card2 {
+        width: 200px;
+        height: 150px;
+        margin-left: 50px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #ACDC7A;
+        border-radius: 22px;
+    }
+
+    .card3 {
+        width: 200px;
+        height: 150px;
+        margin-left: 60px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #EED58E;
+        border-radius: 22px;
+    }
+
+    .card4 {
+        width: 200px;
+        height: 150px;
+        margin-left: 60px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #8ECAE6;
+        border-radius: 22px;
+    }
+
+    .card-title {
+        margin-top: 5px;
+        margin-left: 60px;
+        font-style: normal;
+        font-weight: 550;
+        font-size: 32px;
+        line-height: 48px;
+        color: #646363;
+    }
+
+    .card-description {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        margin-left: 7px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+    .icon {
+        height: 70px;
+        width: 70px;
+        padding: 10px;
+        border-radius: 50px;
+        background-color: #FFB703;
+        margin-left: 60px;
+        margin-top: 10px;
+    }
+
+    /* Counter Section End */
+    /* Vision start */
+    .vision {
+        width: 100%;
+        height: 330px;
+        background-color: #023047;
+        background-image: url("../img/vision-background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .vision-title {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 100px;
+        letter-spacing: -0.015em;
+        color: #F5AE59;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .vision-para {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 42px;
+        letter-spacing: 0.03em;
+        color: #FFFFFF;
+        margin: 0px 350px 0px 350px;
+    }
+
+    /* vision end */
+    /* Success Stories Section */
+    .success-stories {
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        background: url("../../../static/Localisation_App/img/Capa.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .success-header {
+        text-align: center;
+        color: #023047;
+        margin: 20px;
+        font-size: 35px;
+        font-weight: 700;
+        /* 
+        font-style: normal;
+        font-weight: 600;
+        font-size: 60px;
+        line-height: 36px;
+        letter-spacing: 0.005em;
+        text-align: center;
+        color: #023047; */
+    }
+
+    @keyframes zoom-in-zoom-out {
+
+        /* 0% {
+            transform: scale(1.2, 1.2);
+          } */
+        100% {
+            transform: scale(1.2, 1.2);
+        }
+
+        /* 100% {
+            transform: scale(1, 1);
+          } */
+    }
+
+    .success-title {
+        color: rgb(15, 43, 70);
+        font-family: 'Heebo', sans-serif;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: -1px;
+        font-size: 25px;
+    }
+
+    .success-link {
+        margin-left: 120px;
+        height: 40px;
+        width: 200px;
+        background-color: #ED875C;
+        border-radius: 4px;
+        text-align: center;
+
+        box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+        border: none;
+    }
+
+    .success-link a {
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 600;
+        color: rgb(255, 255, 255);
+    }
+
+    .success-read-more {
+        font-size: 20px;
+        font-weight: 700;
+        padding-right: 0px;
+        margin: 30px 0px 30px 700px;
+    }
+
+    .card-text {
+        height: auto;
+        font-weight: 500;
+        font-size: 20px;
+        padding: 10px;
+        text-align: justify;
+    }
+
+    .card {
+        margin-top: 40px;
+        border: none;
+        height: auto;
+        box-shadow: 2px 2px 5px -1px rgba(142, 202, 230, 100%)
+    }
+
+    /* Success Stories Section Ends */
+    /* Cost Esitmate Section Start */
+    .esitimate-cost-img {
+        margin-left: 50px;
+    }
+
+    .estimate-cost-content {
+        /* position: relative; */
+        background: url("../../../static/Localisation_App/img/Cost.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .estimate-cost-title {
+        margin-top: 150px;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 43px;
+        letter-spacing: 0.035em;
+        color: #023047;
+        text-align: center;
+        margin-right: 20px;
+    }
+
+    .estimate-cost-money-img {
+        background: url("../../../static/Localisation_App/img/Cost.png");
+    }
+
+    .estimate-cost-button {
+        width: 230px;
+        height: 45px;
+        background-color: #023047;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
+        border-radius: 18px;
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 33px;
+        line-height: 43px;
+        letter-spacing: 0.025em;
+        color: #FFFFFF;
+        margin-top: 20px;
+        margin-left: 250px;
+    }
+
+    /* Cost Esitmate Section Ends */
+    /* Footer Section Start */
+    .footer {
+        background-color: #023047;
+        color: white;
+        height: auto;
+    }
+
+    .footer-left {
+        padding: 30px 30px 0px 30px;
+    }
+
+    .footer-left a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .footer-left a:hover {
+        color: rgb(23, 175, 235);
+    }
+
+    .footer-left h3 {
+        margin-left: 30px;
+    }
+
+    .footer-right {
+        padding: 30px 30px 0px 50px;
+    }
+
+    .quick {
+        font-size: 22px;
+    }
+
+    .designed {
+        font-size: 18px;
+    }
+
+    .line {
+        margin-left: -40px;
+        width: 600px;
+    }
+
+    .footer-center {
+        padding: 30px 30px 0px 60px;
+    }
+
+    .copyright-section {
+        font-size: 16px;
+        margin-right: 50px;
+    }
+
+    .footer-gist-section {
+        height: 70px;
+        width: 140px;
+    }
+
+    .footer-image-center {
+        width: 550px;
+    }
+
+    .footer-logo-1 {
+        margin-left: 2px;
+        width: 170px;
+    }
+
+    .footer-logo-2 {
+        width: 90px;
+    }
+
+    .footer-logo-3 {
+        width: 10px;
+    }
+
+    .footer-logo-4 {
+        width: 180px;
+    }
+
+    /* Footer Section Ends*/
+}
+
+@media only screen and (max-device-width: 1240px) {
+    .items {
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-right: 13px;
+        color: #646363;
+        text-shadow: 1px 2px 3px rgba(179, 179, 179, 0.46);
+    }
+
+    /* About Us section */
+    .aboutUs {
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-top: 30px;
+    }
+
+    .aboutUs-Title {
+        text-align: center;
+        color: #219EBC;
+        margin: 20px;
+        font-size: 35px;
+        font-weight: 700;
+    }
+
+    .aboutUs-para {
+        margin-top: 30px;
+        text-align: justify;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 40px;
+        /* or 210% */
+        letter-spacing: -0.02em;
+        color: #6B6A6A;
+        mix-blend-mode: normal;
+    }
+
+    .aboutus-Button {
+        width: 140px;
+        height: 49px;
+        left: 768px;
+        top: 702px;
+        background: #ED875C;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 20px;
+        color: white;
+    }
+
+    /* About Us end */
+    /* Counter Section Start */
+    .counter {
+        margin-left: 100px;
+    }
+
+    .services-title {
+        font-size: 42px;
+        color: #EC9022;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        margin-left: 0px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .card1 {
+        width: 400px;
+        height: 150px;
+        margin-left: 150px;
+        margin-top: 20px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #DE6881;
+        border-radius: 22px;
+    }
+
+    .card2 {
+        margin-top: 20px;
+        width: 400px;
+        height: 150px;
+        margin-left: 50px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #ACDC7A;
+        border-radius: 22px;
+    }
+
+    .card3 {
+        width: 400px;
+        height: 150px;
+        margin-left: 150px;
+        margin-top: 20px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #EED58E;
+        border-radius: 22px;
+    }
+
+    .card4 {
+        width: 400px;
+        height: 150px;
+        margin-left: 50px;
+        margin-top: 20px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #8ECAE6;
+        border-radius: 22px;
+    }
+
+    .card-title {
+        margin-top: 5px;
+        margin-left: 60px;
+        font-style: normal;
+        font-weight: 550;
+        font-size: 32px;
+        line-height: 48px;
+        color: #646363;
+    }
+
+    .card-description {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        margin-left: 7px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+    .icon {
+        height: 70px;
+        width: 70px;
+        padding: 10px;
+        border-radius: 50px;
+        background-color: #FFB703;
+        margin-left: 160px;
+        margin-top: 10px;
+    }
+
+    /* Counter Section End */
+    /* Vision start */
+    .vision {
+        width: 100%;
+        height: auto;
+        background-color: #023047;
+        background-image: url("../img/vision-background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .vision-title {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 42px;
+        margin-top: 20px;
+        /* line-height: 100px; */
+        letter-spacing: -0.015em;
+        color: #F5AE59;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .vision-para {
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 42px;
+        letter-spacing: 0.03em;
+        color: #FFFFFF;
+        margin: 0px 50px 0px 50px;
+        padding: 0px 20px 20px 20px;
+    }
+
+    /* vision end */
+    /* Success Stories Section */
+    .success-stories {
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        background: url("../../../static/Localisation_App/img/Capa.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .success-header {
+        text-align: center;
+        color: #023047;
+        margin: 20px;
+        font-size: 35px;
+        font-weight: 700;
+        /* 
+        font-style: normal;
+        font-weight: 600;
+        font-size: 60px;
+        line-height: 36px;
+        letter-spacing: 0.005em;
+        text-align: center;
+        color: #023047; */
+    }
+
+    @keyframes zoom-in-zoom-out {
+
+        /* 0% {
+            transform: scale(1.2, 1.2);
+          } */
+        100% {
+            transform: scale(1.2, 1.2);
+        }
+
+        /* 100% {
+            transform: scale(1, 1);
+          } */
+    }
+
+    .success-title {
+        color: rgb(15, 43, 70);
+        font-family: 'Heebo', sans-serif;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: -1px;
+        font-size: 35px;
+    }
+
+    .success-link {
+        margin-left: 380px;
+        height: 40px;
+        width: 200px;
+        background-color: #ED875C;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 600;
+        color: rgb(255, 255, 255);
+        box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+        border: none;
+    }
+
+    .success-read-more {
+        font-size: 20px;
+        font-weight: 700;
+        padding-right: 0px;
+        margin: 30px 0px 30px 300px;
+    }
+
+    .card-text {
+        height: auto;
+        font-weight: 500;
+        font-size: 20px;
+        padding: 10px;
+        text-align: justify;
+    }
+
+    .card {
+        margin-top: 20px;
+        margin-left: 100px;
+        width: 1000px;
+        border: none;
+        height: auto;
+        box-shadow: 2px 2px 5px -1px rgba(142, 202, 230, 100%)
+    }
+
+    /* Success Stories Section Ends */
+    /* Cost Esitmate Section Start */
+    .esitimate-cost-img {
+        margin-top: 50px;
+        margin-left: 50px;
+        padding-bottom: 30px;
+    }
+
+    .estimate-cost-content {
+        /* position: relative; */
+        background: url("../../../static/Localisation_App/img/Cost.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .estimate-cost-title {
+        margin-top: 150px;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 43px;
+        letter-spacing: 0.035em;
+        color: #023047;
+        text-align: center;
+        margin-right: 20px;
+    }
+
+    .estimate-cost-money-img {
+        background: url("../../../static/Localisation_App/img/Cost.png");
+    }
+
+    .estimate-cost-button {
+        width: 230px;
+        height: 45px;
+        background-color: #023047;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
+        border-radius: 18px;
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 33px;
+        line-height: 43px;
+        letter-spacing: 0.025em;
+        color: #FFFFFF;
+        margin-top: 20px;
+        margin-left: 180px;
+    }
+
+    /* Cost Esitmate Section Ends */
+    /* Footer Section Start */
+    .footer {
+        background-color: #023047;
+        color: white;
+        height: auto;
+    }
+
+    .footer-left {
+        padding: 20px 20px 0px 30px;
+        margin-right: 400px;
+    }
+
+    .footer-left h3 {
+        margin-left: 30px;
+    }
+
+    .footer-center {
+        padding: 20px 0px 20px 50px;
+        margin-right: 200px;
+    }
+
+    .footer-image-center {
+        width: 500px;
+    }
+
+    .footer-right {
+        padding: 20px 0px 0px 0px;
+        margin-left: 50px;
+    }
+
+    .quick {
+        font-size: 22px;
+    }
+
+    .line {
+        margin-left: -40px;
+        width: 600px;
+    }
+
+    .copyright-section {
+        font-size: 16px;
+        margin-right: 50px;
+    }
+
+    .footer-gist-section {
+        height: 70px;
+        width: 140px;
+    }
+
+    .footer-logo-1 {
+        width: 170px;
+    }
+
+    .footer-logo-2 {
+        width: 90px;
+    }
+
+    .footer-logo-4 {
+        width: 180px;
+    }
+}
+
+/* Tablet Portrait and Landscape */
+@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+
+    .services-title {
+        font-size: 35px;
+        color: #EC9022;
+        margin-top: 50px;
+        margin-left: 0px;
+        font-weight: 600;
+        margin-bottom: 50px;
+    }
+
+    .aboutUs-para {
+        margin-top: 30px;
+        text-align: justify;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 40px;
+        /* or 210% */
+        letter-spacing: -0.025em;
+        color: #6B6A6A;
+        mix-blend-mode: normal;
+    }
+
+    .card-text {
+        height: auto;
+        font-weight: 500;
+        font-size: 24px;
+        padding: 10px;
+        text-align: justify;
+    }
+
+    .card {
+        margin: 40px 0px 0px 60px;
+        border: none;
+        width: 800px;
+        height: auto;
+        padding-bottom: 10px;
+        box-shadow: 2px 2px 5px -1px rgba(142, 202, 230, 100%)
+    }
+
+    .success-link {
+        margin-left: 250px;
+        height: 50px;
+        width: 250px;
+        background-color: #ED875C;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: 600;
+        padding-top: 5px;
+        color: rgb(255, 255, 255);
+        box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+        border: none;
+    }
+
+    .success-title {
+        color: rgb(15, 43, 70);
+        font-family: 'Heebo', sans-serif;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: -1px;
+        font-size: 40px;
+    }
+
+    .success-read-more {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 30px;
+        text-align: center;
+        width: 170px;
+        height: 50px;
+        margin-left: 650px;
+    }
+
+    .success-link a {
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+    }
+
+    .aboutus-Button {
+        width: 140px;
+        height: 49px;
+        background: #ED875C;
+        border-radius: 8px;
+        border: none;
+        margin-left: 400px;
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .aboutus-Button a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .aboutus-Button2 {
+        width: 140px;
+        height: 49px;
+        background: #ED875C;
+        border-radius: 8px;
+        border: none;
+        margin-left: 300px;
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .aboutus-Button2 a {
+        text-decoration: none;
+        color: white;
+    }
+
+    /* Success Stories Section Ends */
+    /* Counter Section Start */
+    .counter {
+        margin-left: 0px;
+    }
+
+    .card1 {
+        width: 400px;
+        height: 278px;
+        margin-left: 160px;
+        margin-bottom: 30px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #DE6881;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card2 {
+        width: 400px;
+        height: 278px;
+        margin-left: 160px;
+        margin-bottom: 30px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #ACDC7A;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card3 {
+        width: 400px;
+        height: 278px;
+        margin-left: 160px;
+        margin-bottom: 30px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #EED58E;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card4 {
+        width: 400px;
+        height: 278px;
+        margin-left: 160px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #8ECAE6;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card-title {
+        margin-top: 20px;
+        margin-left: 250px;
+        font-style: normal;
+        font-weight: 550;
+        font-size: 35px;
+        line-height: 48px;
+        color: #646363;
+    }
+
+    .card-description {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 28px;
+        margin-left: 7px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+    .icon {
+        height: 100px;
+        width: 100px;
+        padding: 20px;
+        border-radius: 80px;
+        background-color: #FFB703;
+        margin-left: 140px;
+        margin-top: 30px;
+    }
+
+    /* Cost Esitmate Section Start */
+    .esitimate-cost-img {
+        margin-left: 200px;
+        margin-top: 50px;
+        padding-bottom: 30px;
+    }
+
+    .estimate-cost-content {
+        /* position: relative; */
+        background: url("../../../static/Localisation_App/img/Cost.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 30px;
+    }
+
+    .estimate-cost-title {
+        margin-top: 20px;
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 43px;
+        letter-spacing: 0.035em;
+        color: #023047;
+        text-align: center;
+    }
+
+    .estimate-cost-money-img {
+        background: url("../../../static/Localisation_App/img/Cost.png");
+    }
+
+    .estimate-cost-button {
+        width: 230px;
+        height: 45px;
+        background-color: #023047;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
+        border-radius: 18px;
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 33px;
+        line-height: 43px;
+        letter-spacing: 0.025em;
+        color: #FFFFFF;
+        margin-top: 20px;
+        margin-left: 350px;
+    }
+
+    /* Cost Esitmate Section Ends */
+
+}
+
+
+@media only screen and (max-device-width: 480px) {
+
+    /* sticky Button */
+
+.sticky-button {
+    height: 300px;
+    background-color: rgb(66, 177, 197);
+    width: 50px;
+    position: fixed;
+    top: 20%;
+    right: 0;
+    -webkit-transform: translateY(50%);
+    -ms-transform: translateY(50%);
+    transform: translateY(10%);
+    padding-top: 20px;
+} 
+
+    /* .sticky-button {
+        width: 80px;
+        height: 80px;
+        background-color: #669999;
+        position: relative;
+        margin: auto;
+        animation: square-to-circle 2.5s .5s infinite cubic-bezier(1, .015, .295, 1.225) alternate-reverse;
+        position: fixed;
+        top: 20%;
+        right: 0;
+        -webkit-transform: translateY(50%);
+        -ms-transform: translateY(50%);
+        transform: translateY(10%);
+        padding-top: 20px;
+    } */
+
+    .sticky-button a {
+        font-size: 30px;
+        writing-mode: vertical-rl;
+        white-space: nowrap;
+        transform: rotate(180deg);
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+
+
+    }
+
+    /* End Stcky Button */
+    /* About Us section */
+    .aboutUs {
+        padding-left: 100px;
+        padding-right: 100px;
+        padding-top: 30px;
+
+    }
+
+    .aboutUs-Title {
+        text-align: center;
+        color: #219EBC;
+        margin: 20px;
+        font-size: 55px;
+        font-weight: 700;
+    }
+
+    .aboutUs-para {
+        margin-top: 30px;
+        text-align: center;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 60px;
+        /* or 210% */
+        letter-spacing: 0.02em;
+        color: #6B6A6A;
+        mix-blend-mode: normal;
+        text-align: justify;
+    }
+
+    .aboutus-Button {
+        width: 300px;
+        height: 100px;
+        background: #ED875C;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 35px;
+        color: white;
+        padding-bottom: 5px;
+        margin-top: 20px;
+        margin-left: 340px;
+        margin-bottom: 100px;
+    }
+
+    .success-link {
+        margin-left: 250px;
+        height: 60px;
+        width: 300px;
+        background-color: #ED875C;
+        border-radius: 4px;
+        text-align: center;
+
+        font-size: 35px;
+        font-weight: 600;
+        padding-top: 5px;
+
+        box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+        border: none;
+    }
+
+    .success-link a {
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+    }
+
+    .aboutus-Button {
+        text-decoration: none;
+        color: white;
+    }
+
+    .aboutus-Button2 {
+        width: 300px;
+        height: 100px;
+        background: #ED875C;
+        border-radius: 8px;
+        border: none;
+        margin-left: 210px;
+        font-weight: 600;
+        font-size: 35px;
+        margin-top: 20px;
+    }
+
+    .aboutus-Button2 a {
+        text-decoration: none;
+        color: white;
+    }
+
+    /* About Us end */
+
+    /* .services-title {
+        font-size: 55px;
+        color: #EC9022;
+        margin-left: 35px;
+        margin-top: 0px;
+        font-weight: 600;
+        margin-bottom: 50px;
+    } */
+
+    /* News start */
+
+    .customNews {
+        height: 70px;
+        background-color: #F5AE59;
+    }
+
+    .newsclass {
+        height: 50px;
+        font-size: 39px !important;
+    }
+
+    .marqueeClass {
+        margin-top: 1px;
+    }
+
+    .news1 {
+        font-weight: 500;
+        color: #023047;
+        text-decoration: none;
+    }
+
+
+    /* News end */
+
+    /* Success Stories Section */
+    .success-stories {
+        padding-top: 30px;
+        /* padding-left: 200px; */
+        /* padding-right: 10px;  */
+        /* background: url("../../../static/Localisation_App/img/Capa.png"); */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .success-header {
+        text-align: center;
+        color: #ffffff;
+        margin-left: 220px;
+        border-radius: 40px;
+        padding: 20px 10px 70px 10px;
+        font-size: 45px;
+        font-weight: 400;
+        background-color: #023047;
+        height: 70px;
+        width: 500px;
+        /* 
+        font-style: normal;
+        font-weight: 600;
+        font-size: 60px;
+        line-height: 36px;
+        letter-spacing: 0.005em;
+        text-align: center;
+        color: #023047; */
+    }
+
+    @keyframes zoom-in-zoom-out {
+
+        /* 0% {
+            transform: scale(1.2, 1.2);
+          } */
+        100% {
+            transform: scale(1.2, 1.2);
+        }
+
+        /* 100% {
+            transform: scale(1, 1);
+          } */
+    }
+
+    .success-title {
+        color: rgb(15, 43, 70);
+        font-family: 'Heebo', sans-serif;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: -1px;
+        font-size: 50px;
+    }
+
+    .success-link {
+        margin-left: 250px;
+        height: 60px;
+        width: 300px;
+        background-color: #ED875C;
+        border-radius: 4px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 35px;
+        font-weight: 600;
+        padding-top: 5px;
+        color: rgb(255, 255, 255);
+        box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+        border: none;
+    }
+
+    .success-read-more {
+        font-size: 30px;
+        font-weight: 700;
+        margin-top: 30px;
+        text-align: center;
+        width: 220px;
+        height: 70px;
+        margin-left: 650px;
+    }
+
+    .card-text {
+        height: auto;
+        font-weight: 500;
+        font-size: 32px;
+        padding: 10px;
+        text-align: justify;
+    }
+
+    .card {
+        margin: 40px 0px 0px 60px;
+        border: none;
+        width: 800px;
+        height: auto;
+        padding-bottom: 10px;
+        box-shadow: 2px 2px 5px -1px rgba(142, 202, 230, 100%)
+    }
+
+    /* Success Stories Section Ends */
+    /* Counter Section Start */
+    .counter {
+        margin-left: 0px;
+    }
+
+    .card1 {
+        width: 600px;
+        height: 378px;
+        margin-left: 50px;
+        margin-bottom: 30px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #DE6881;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card2 {
+        width: 600px;
+        height: 378px;
+        margin-left: 50px;
+        margin-bottom: 30px;
+        background: #ffffff;
+        box-shadow: 3px 2px 5px 1px #ACDC7A;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card3 {
+        width: 600px;
+        height: 378px;
+        margin-left: 50px;
+        margin-bottom: 30px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #EED58E;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card4 {
+        width: 600px;
+        height: 378px;
+        margin-left: 50px;
+        background: #FFFFFF;
+        box-shadow: 3px 2px 5px 1px #8ECAE6;
+        border-radius: 22px;
+        padding-top: 30px;
+    }
+
+    .card-title {
+        margin-top: 20px;
+        margin-left: 250px;
+        font-style: normal;
+        font-weight: 550;
+        font-size: 32px;
+        line-height: 48px;
+        color: #646363;
+    }
+
+    .card-description {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 40px;
+        margin-left: 7px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+    .icon {
+        height: 150px;
+        width: 150px;
+        padding: 30px;
+        border-radius: 80px;
+        background-color: #FFB703;
+        margin-left: 210px;
+        margin-top: 30px;
+    }
+
+    /* Counter Section End */
+    /* Nav section */
+    .form-select {
+        margin-top: 10px;
+        margin-right: 10px;
+        width: 320px;
+        height: 100px;
+        font-size: 30px;
+        padding: 25px;
+    }
+
+    .items {
+        font-size: 62px;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 35px;
+        margin-top: 30px;
+        padding: 40px;
+        color: #646363;
+        text-shadow: 1px 2px 3px rgba(179, 179, 179, 0.46);
+    }
+
+    /* Navbar Start */
+    .quote {
+        height: 100px;
+        width: 400px;
+        background: #ECB471;
+        border-radius: 20px;
+        text-align: center;
+        padding: 18px;
+        font-size: 42px;
+        font-weight: 700;
+        color: #023047;
+        margin-left: 300px;
+        margin-bottom: 50px;
+    }
+
+    .quote:hover {
+        height: 40px;
+        width: 180px;
+        background: #ECB471;
+        border-radius: 10px;
+        text-align: center;
+        padding-top: 5px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #023047;
+    }
+
+    .customNav {
+        background: #219EBC;
+    }
+
+    /* Nav Section Ends */
+    /* Cost Esitmate Section Start */
+    .esitimate-cost-img {
+        margin-left: 200px;
+        margin-top: 50px;
+        padding-bottom: 30px;
+    }
+
+    .estimate-cost-content {
+        /* position: relative; */
+        background: url("../../../static/Localisation_App/img/Cost.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 30px;
+    }
+
+    .estimate-cost-title {
+        margin-top: 20px;
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 43px;
+        letter-spacing: 0.035em;
+        color: #023047;
+        text-align: center;
+    }
+
+    .estimate-cost-money-img {
+        background: url("../../../static/Localisation_App/img/Cost.png");
+    }
+
+    .estimate-cost-button {
+        width: 230px;
+        height: 45px;
+        background-color: #023047;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
+        border-radius: 18px;
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 33px;
+        line-height: 43px;
+        letter-spacing: 0.025em;
+        color: #FFFFFF;
+        margin-top: 20px;
+        margin-left: 350px;
+    }
+
+    /* Cost Esitmate Section Ends */
+    /* Footer Section Start */
+    .footer {
+        background-color: #023047;
+        color: white;
+        height: auto;
+    }
+
+    .footer-left {
+        padding: 20px 20px 0px 30px;
+        margin-right: 400px;
+        font-size: 40px;
+        text-align: justify;
+    }
+
+    .footer-left a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .footer-left h3 {
+        margin-left: 30px;
+    }
+
+    .footer-center {
+        padding: 20px 0px 20px 50px;
+        margin-right: 200px;
+    }
+
+    .footer-image-center {
+        width: 700px;
+    }
+
+    .footer-right {
+        padding: 20px 0px 0px 0px;
+        margin-left: 50px;
+        width: 80%;
+    }
+
+    .footer-right h5 {
+        font-size: 40px;
+    }
+
+    .footer-right h6 {
+        font-size: 32px;
+    }
+
+    .quick {
+        font-size: 45px;
+    }
+
+    .line {
+        margin-left: -40px;
+        width: 600px;
+    }
+
+    .copyright-section {
+        font-size: 27px;
+        margin-right: 50px;
+    }
+
+    .footer-gist-section {
+        height: 60px;
+        width: 100px;
+    }
+
+    .footer-logo-1 {
+        width: 170px;
+    }
+
+    .footer-logo-2 {
+        width: 90px;
+    }
+
+    .footer-logo-4 {
+        width: 180px;
+    }
+}

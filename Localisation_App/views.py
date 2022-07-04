@@ -1,53 +1,14 @@
-from .forms import ServiceForm, TTSservice
-from django.core.mail import send_mail, mail_admins
-# import requests
+
+from .forms import TTSservice
 from django.contrib import messages
-from django.http import HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from html.parser import HTMLParser
+from django.core.mail import send_mail, mail_admins
+from django.core.paginator import Paginator
 from multiprocessing import context
 from django.shortcuts import render, redirect
-from pip import main
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStrories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact
-from django.views.generic.list import ListView
-from html.parser import HTMLParser
+from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact
 import random
+import requests
 global str_num
-
-#from .models import Article
-# Create your views here.
-
-# def home(request):
-
-#     x=request.path_info
-#     print(x)
-#     y=x.replace("/", "")
-#     content = Article.objects.get(Article_Menu_ID=4)
-#     print("content is ")
-#     print(content)
-#     if request.method =="GET":
-#         print(request.method)
-
-#     return render(request, 'Localisation_App/home2.html' ,{'data': content})
-
-
-# def index(request):
-#     return render(request, 'Localisation_App/test.html')
-
-
-# class SuccessStoriesList(ListView):
-#     model = SuccessStories
-#     context_object_name = 'SuccessStoriesList'
-#     template_name= "xxxxxxxx.html"
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['SuccessStoriesList']=context['SuccessStoriesList'].filter(User=self.request.user)
-#         # context['tasks']=context['tasks'].filter(user=self.request.user)
-#
-#         return context
-
-Tools_Searched_Value = ""
-
 
 # Menu
 
@@ -68,40 +29,40 @@ def Test(request):
 
     return render(request, 'Localisation_App/test.html')
 
-
 # Home Page
+
 
 def Home(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ArticleData = Article.objects.all()
-    SuccessStoriesData = SuccessStories.objects.all()
-    Servicesdata = Services.objects.all()
-    NewsAndEventsData = NewsAndEvents.objects.all()
+    articleData = Article.objects.all()
+    successStoriesData = SuccessStories.objects.all()
+    servicesdata = Services.objects.all()
+    newsAndEventsData = NewsAndEvents.objects.all()
 
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
-        'ArticleData': ArticleData,
-        'SuccessStoriesData': SuccessStoriesData,
-        'NewsAndEventsData': NewsAndEventsData,
-        'Servicesdata': Servicesdata
+        'ArticleData': articleData,
+        'SuccessStoriesData': successStoriesData,
+        'NewsAndEventsData': newsAndEventsData,
+        'Servicesdata': servicesdata
     }
     return render(request, 'Localisation_App/home.html', context)
 
-
 # About Us Page
+
 
 def aboutus(request):
     print("hello")
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ArticleData = Article.objects.all().filter(Article_HeadingName="About Us")
-    print("TEst ", ArticleData)
+    articleData = Article.objects.all().filter(Article_HeadingName="About Us")
+    print("TEst ", articleData)
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
-        'ArticleData': ArticleData,
+        'ArticleData': articleData,
     }
     return render(request, 'Localisation_App/aboutus.html', context)
 
@@ -111,20 +72,20 @@ def aboutus(request):
 def toolsPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ToolsCategory_data = Tools_Category.objects.all()
-    Tools_Data = ToolsData.objects.all()
+    toolsCategory_data = Tools_Category.objects.all()
+    tools_Data = ToolsData.objects.all()
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
     count = ToolsData.objects.all().count()
-    page = Paginator(Tools_Data, 7)
+    page = Paginator(tools_Data, 7)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
-    count = Tools_Data.count()
+    count = tools_Data.count()
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
-        'toolsdata': Tools_Data,
+        'toolsdata': tools_Data,
         'tools_title': 'none',
-        'toolscategory': ToolsCategory_data,
+        'toolscategory': toolsCategory_data,
         "page": page,
         'satus_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
@@ -140,8 +101,8 @@ def tools(request):
     q = ToolsData.objects.none()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ToolsCategory_data = Tools_Category.objects.all()
-    Tools_Data = ToolsData.objects.all()
+    toolsCategory_data = Tools_Category.objects.all()
+    tools_Data = ToolsData.objects.all()
     count = ToolsData.objects.all().count()
 
     if request.method == "POST":
@@ -156,8 +117,8 @@ def tools(request):
             for n in checklist:
                 Tools_Category.objects.filter(
                     pk=int(n)).update(Tools_Cat_Status=True)
-            ToolsData_Checked = Tools_Category.objects.filter(id__in=checklist)
-            for n in ToolsData_Checked:
+            toolsData_Checked = Tools_Category.objects.filter(id__in=checklist)
+            for n in toolsData_Checked:
                 # print('hello',n.Tools_CategoryType)
                 category_name.append(n.Tools_CategoryType)
             # print("list",category_name)
@@ -180,7 +141,7 @@ def tools(request):
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'toolsdata': q,
                 'tools_title': 'none',
-                'toolscategory': ToolsCategory_data,
+                'toolscategory': toolsCategory_data,
                 "page": page,
                 'satus_All_Checked': None,
                 'Pagination_Type': 'Category_Post',
@@ -190,7 +151,7 @@ def tools(request):
             # return render(request,'Localisation_App/tools.html',context)
             return render(request, 'Localisation_App/tools.html', context)
         else:
-            page = Paginator(Tools_Data, 7)
+            page = Paginator(tools_Data, 7)
             Tools_Category.objects.all().update(Tools_Cat_Status=False)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -198,9 +159,9 @@ def tools(request):
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'toolsdata': Tools_Data,
+                'toolsdata': tools_Data,
                 'tools_title': 'none',
-                'toolscategory': ToolsCategory_data,
+                'toolscategory': toolsCategory_data,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
@@ -208,7 +169,7 @@ def tools(request):
             }
             print("inside 2")
             return render(request, 'Localisation_App/tools.html', context)
-    for p in ToolsCategory_data:
+    for p in toolsCategory_data:
         if p.Tools_Cat_Status == True:
             print("true")
             pagestatus = True
@@ -229,7 +190,7 @@ def tools(request):
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'toolsdata': q,
             'tools_title': 'none',
-            'toolscategory': ToolsCategory_data,
+            'toolscategory': toolsCategory_data,
             "page": page,
             'satus_All_Checked': None,
             'Pagination_Type': 'Category_Post',
@@ -237,16 +198,16 @@ def tools(request):
         }
 
     else:
-        page = Paginator(Tools_Data, 7)
+        page = Paginator(tools_Data, 7)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = Tools_Data.count()
+        count = tools_Data.count()
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'toolsdata': Tools_Data,
+            'toolsdata': tools_Data,
             'tools_title': 'none',
-            'toolscategory': ToolsCategory_data,
+            'toolscategory': toolsCategory_data,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
@@ -260,8 +221,8 @@ def toolsSearch(request, tools_title):
     print("titlenone", tools_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ToolsCategory_data = Tools_Category.objects.all()
-    Tools_Data = ToolsData.objects.all()
+    toolsCategory_data = Tools_Category.objects.all()
+    tools_Data = ToolsData.objects.all()
 
     if request.method == "POST":
         print("insideSearchMethod")
@@ -270,37 +231,37 @@ def toolsSearch(request, tools_title):
         print("toolstitile", tools_title1)
 
         if tools_title1 != '':
-            Tools_Data = ToolsData.objects.filter(
+            tools_Data = ToolsData.objects.filter(
                 ToolsData_HeadingName__icontains=tools_title1)
-            count = Tools_Data.count()
+            count = tools_Data.count()
             print("datatooldssds", count)
-            page = Paginator(Tools_Data, 7)
+            page = Paginator(tools_Data, 7)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'toolsdata': Tools_Data,
+                'toolsdata': tools_Data,
                 'tools_title': tools_title1,
-                'toolscategory': ToolsCategory_data,
+                'toolscategory': toolsCategory_data,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
         else:
-            page = Paginator(Tools_Data, 7)
+            page = Paginator(tools_Data, 7)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
-            count = Tools_Data.count()
+            count = tools_Data.count()
             print("None Selected")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'toolsdata': Tools_Data,
+                'toolsdata': tools_Data,
                 'tools_title': 'none',
-                'toolscategory': ToolsCategory_data,
+                'toolscategory': toolsCategory_data,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
@@ -308,36 +269,36 @@ def toolsSearch(request, tools_title):
             }
         return render(request, 'Localisation_App/tools.html', context)
     if tools_title != 'none':
-        Tools_Data1 = ToolsData.objects.filter(
+        tools_Data1 = ToolsData.objects.filter(
             ToolsData_HeadingName__icontains=tools_title)
-        page = Paginator(Tools_Data1, 7)
+        page = Paginator(tools_Data1, 7)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = Tools_Data1.count()
-        print("hereee", Tools_Data1)
+        count = tools_Data1.count()
+        print("hereee", tools_Data1)
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'toolsdata': Tools_Data1,
+            'toolsdata': tools_Data1,
             'tools_title': tools_title,
-            'toolscategory': ToolsCategory_data,
+            'toolscategory': toolsCategory_data,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
     else:
-        page = Paginator(Tools_Data, 7)
+        page = Paginator(tools_Data, 7)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = Tools_Data.count()
+        count = tools_Data.count()
         print("None Selected")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'toolsdata': Tools_Data,
+            'toolsdata': tools_Data,
             'tools_title': 'none',
-            'toolscategory': ToolsCategory_data,
+            'toolscategory': toolsCategory_data,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
@@ -346,25 +307,26 @@ def toolsSearch(request, tools_title):
 
     return render(request, 'Localisation_App/tools.html', context)
 
-
 # Resources Page
+
+
 def resourcesPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ResoucesCategory_data = Resources_Category.objects.all()
-    Resources_Data = ResourceData.objects.all()
+    resoucesCategory_data = Resources_Category.objects.all()
+    resources_Data = ResourceData.objects.all()
     Resources_Category.objects.all().update(Resources_Cat_Status=False)
     count = ResourceData.objects.all().count()
-    page = Paginator(Resources_Data, 7)
+    page = Paginator(resources_Data, 7)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
-    count = Resources_Data.count()
+    count = resources_Data.count()
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
-        'resoucesdata': Resources_Data,
+        'resoucesdata': resources_Data,
         'resource_title': 'none',
-        'resourcescategory': ResoucesCategory_data,
+        'resourcescategory': resoucesCategory_data,
         "page": page,
         'satus_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
@@ -380,8 +342,8 @@ def resources(request):
     q = ResourceData.objects.none()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ResoucesCategory_data = Resources_Category.objects.all()
-    Resources_Data = ResourceData.objects.all()
+    resoucesCategory_data = Resources_Category.objects.all()
+    resources_Data = ResourceData.objects.all()
     count = ResourceData.objects.all().count()
 
     if request.method == "POST":
@@ -396,9 +358,9 @@ def resources(request):
             for n in checklist:
                 Resources_Category.objects.filter(
                     pk=int(n)).update(Resources_Cat_Status=True)
-            ResourcesData_Checked = Resources_Category.objects.filter(
+            resourcesData_Checked = Resources_Category.objects.filter(
                 id__in=checklist)
-            for n in ResourcesData_Checked:
+            for n in resourcesData_Checked:
                 category_name.append(n.Resources_CategoryType)
             # print("list",category_name)
             # print("tuple",tuple(category_name))
@@ -420,7 +382,7 @@ def resources(request):
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'resoucesdata': q,
                 'resource_title': 'none',
-                'resourcescategory': ResoucesCategory_data,
+                'resourcescategory': resoucesCategory_data,
                 "page": page,
                 'satus_All_Checked': None,
                 'Pagination_Type': 'Category_Post',
@@ -430,17 +392,17 @@ def resources(request):
 
             return render(request, 'Localisation_App/resources.html', context)
         else:
-            page = Paginator(Resources_Data, 7)
+            page = Paginator(resources_Data, 7)
             Resources_Category.objects.all().update(Resources_Cat_Status=False)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
-            count = Resources_Data.count()
+            count = resources_Data.count()
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'resoucesdata': Resources_Data,
+                'resoucesdata': resources_Data,
                 'resource_title': 'none',
-                'resourcescategory': ResoucesCategory_data,
+                'resourcescategory': resoucesCategory_data,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
@@ -448,7 +410,7 @@ def resources(request):
             }
             print("inside 2")
             return render(request, 'Localisation_App/resources.html', context)
-    for p in ResoucesCategory_data:
+    for p in resoucesCategory_data:
         if p.Resources_Cat_Status == True:
             print("true")
             pagestatus = True
@@ -469,7 +431,7 @@ def resources(request):
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'resoucesdata': q,
             'resource_title': 'none',
-            'resourcescategory': ResoucesCategory_data,
+            'resourcescategory': resoucesCategory_data,
             "page": page,
             'satus_All_Checked': None,
             'Pagination_Type': 'Category_Post',
@@ -477,16 +439,16 @@ def resources(request):
         }
 
     else:
-        page = Paginator(Resources_Data, 7)
+        page = Paginator(resources_Data, 7)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = Resources_Data.count()
+        count = resources_Data.count()
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'resoucesdata': Resources_Data,
+            'resoucesdata': resources_Data,
             'resource_title': 'none',
-            'resourcescategory': ResoucesCategory_data,
+            'resourcescategory': resoucesCategory_data,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
@@ -500,8 +462,8 @@ def resourceSearch(request, resource_title):
     print("titlenone", resource_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    ResoucesCategory_data = Resources_Category.objects.all()
-    Resources_Data = ResourceData.objects.all()
+    resoucesCategory_data = Resources_Category.objects.all()
+    resources_Data = ResourceData.objects.all()
     count = ResourceData.objects.all().count()
 
     if request.method == "POST":
@@ -511,36 +473,36 @@ def resourceSearch(request, resource_title):
         print("resourcestitle", resource_title1)
 
         if resource_title1 != '':
-            Resource_Data = ResourceData.objects.filter(
+            resource_Data = ResourceData.objects.filter(
                 ResourceData_HeadingName__icontains=resource_title1)
-            count = Resource_Data.count()
+            count = resource_Data.count()
             print("dataresourcesdssds", count)
-            page = Paginator(Resource_Data, 7)
+            page = Paginator(resource_Data, 7)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'resoucesdata': Resource_Data,
+                'resoucesdata': resource_Data,
                 'resource_title': resource_title1,
-                'resourcescategory': ResoucesCategory_data,
+                'resourcescategory': resoucesCategory_data,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
         else:
-            page = Paginator(Resources_Data, 7)
+            page = Paginator(resources_Data, 7)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
-            count = Resources_Data.count()
+            count = resources_Data.count()
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'resoucesdata': Resources_Data,
+                'resoucesdata': resources_Data,
                 'resource_title': 'none',
-                'resourcescategory': ResoucesCategory_data,
+                'resourcescategory': resoucesCategory_data,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
@@ -548,35 +510,35 @@ def resourceSearch(request, resource_title):
             }
         return render(request, 'Localisation_App/resources.html', context)
     if resource_title != 'none':
-        Resource_Data1 = ResourceData.objects.filter(
+        resource_Data1 = ResourceData.objects.filter(
             ResourceData_HeadingName__icontains=resource_title)
-        page = Paginator(Resource_Data1, 7)
+        page = Paginator(resource_Data1, 7)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = Resource_Data1.count()
-        print("hereee", Resource_Data1)
+        count = resource_Data1.count()
+        print("hereee", resource_Data1)
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'resoucesdata': Resource_Data1,
+            'resoucesdata': resource_Data1,
             'resource_title': resource_title,
-            'resourcescategory': ResoucesCategory_data,
+            'resourcescategory': resoucesCategory_data,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
     else:
-        page = Paginator(Resources_Data, 7)
+        page = Paginator(resources_Data, 7)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = Resources_Data.count()
+        count = resources_Data.count()
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'resoucesdata': Resources_Data,
+            'resoucesdata': resources_Data,
             'resource_title': 'none',
-            'resourcescategory': ResoucesCategory_data,
+            'resourcescategory': resoucesCategory_data,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
@@ -585,25 +547,23 @@ def resourceSearch(request, resource_title):
 
     return render(request, 'Localisation_App/resources.html', context)
 
+
 # Successstory Page
-
-
 def successstoryPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    SuccessStrories_Category.objects.update(SuccessStrories_Cat_Status=False)
-    SuccessStrories_CategoryData = SuccessStrories_Category.objects.all()
-    SuccessStoriesData = SuccessStories.objects.all()
-    page = Paginator(SuccessStoriesData, 7)
-    # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
+    SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
+    successStories_CategoryData = SuccessStories_Category.objects.all()
+    successStoriesData = SuccessStories.objects.all()
+    page = Paginator(successStoriesData, 7)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
-    count = SuccessStoriesData.count()
+    count = successStoriesData.count()
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
-        'SuccessStoriesData': SuccessStoriesData,
-        'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+        'SuccessStoriesData': successStoriesData,
+        'SuccessStories_CategoryData': successStories_CategoryData,
         'story_title': 'none',
         "page": page,
         'satus_All_Checked': 'True',
@@ -623,8 +583,8 @@ def successstory(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     # SuccessStrories_Category.objects.update(SuccessStrories_Cat_Status=False)
-    SuccessStrories_CategoryData = SuccessStrories_Category.objects.all()
-    SuccessStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.all()
+    successStoriesData = SuccessStories.objects.all()
 
     if request.method == "POST":
         # print("allcheched",request.POST.get('all_checkbox'))
@@ -634,15 +594,15 @@ def successstory(request):
             # print("dumydata",q)
             checklist = request.POST.getlist('checkbox')
             # print(checklist)
-            SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
+            SuccessStories_Category.objects.all().update(SuccessStories_Cat_Status=False)
             for n in checklist:
-                SuccessStrories_Category.objects.filter(
-                    pk=int(n)).update(SuccessStrories_Cat_Status=True)
-            SuccessStoriesData_Checked = SuccessStrories_Category.objects.filter(
+                SuccessStories_Category.objects.filter(
+                    pk=int(n)).update(SuccessStories_Cat_Status=True)
+            successStoriesData_Checked = SuccessStories_Category.objects.filter(
                 id__in=checklist)
-            for n in SuccessStoriesData_Checked:
+            for n in successStoriesData_Checked:
                 # print('hello',n.SuccessStrories_CategoryType)
-                category_name.append(n.SuccessStrories_CategoryType)
+                category_name.append(n.SuccessStories_CategoryType)
             # print("list",category_name)
             # print("tuple",tuple(category_name))
             to_fetch = tuple(category_name)
@@ -650,7 +610,7 @@ def successstory(request):
             for c in to_fetch:
                 # print(c)
                 q = q | SuccessStories.objects.filter(
-                    SuccessStories_category__SuccessStrories_CategoryType__contains=c)
+                    SuccessStories_category__SuccessStories_CategoryType__contains=c)
             # print("all data",q)
             count = q.count()
             print("hey", q)
@@ -664,7 +624,7 @@ def successstory(request):
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'SuccessStoriesData': q,
-                'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+                'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
                 'story_title': 'none',
                 'Pagination_Type': 'Category_Post',
@@ -675,16 +635,16 @@ def successstory(request):
             # return render(request,'Localisation_App/successstory.html',context)
 
         else:
-            page = Paginator(SuccessStoriesData, 7)
-            SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
+            page = Paginator(successStoriesData, 7)
+            SuccessStories_Category.objects.all().update(SuccessStories_Cat_Status=False)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
-            count = SuccessStoriesData.count()
+            count = successStoriesData.count()
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'SuccessStoriesData': SuccessStoriesData,
-                'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+                'SuccessStoriesData': successStoriesData,
+                'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
                 'story_title': 'none',
                 'satus_All_Checked': 'True',
@@ -693,15 +653,15 @@ def successstory(request):
             }
             print("inside 2")
 
-    for p in SuccessStrories_CategoryData:
-        if p.SuccessStrories_Cat_Status == True:
+    for p in successStories_CategoryData:
+        if p.SuccessStories_Cat_Status == True:
             print("true")
             pagestatus = True
-            category_name.append(p.SuccessStrories_CategoryType)
+            category_name.append(p.SuccessStories_CategoryType)
     to_fetch = tuple(category_name)
     for c in to_fetch:
         q = q | SuccessStories.objects.filter(
-            SuccessStories_category__SuccessStrories_CategoryType__contains=c)
+            SuccessStories_category__SuccessStories_CategoryType__contains=c)
     print(q)
 
     if pagestatus == True:
@@ -715,7 +675,7 @@ def successstory(request):
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'SuccessStoriesData': q,
             'story_title': 'none',
-            'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+            'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'Pagination_Type': 'Category_Post',
             'satus_All_Checked': None,
@@ -723,17 +683,17 @@ def successstory(request):
         }
 
     else:
-        page = Paginator(SuccessStoriesData, 7)
+        page = Paginator(successStoriesData, 7)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = SuccessStoriesData.count()
+        count = successStoriesData.count()
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'SuccessStoriesData': SuccessStoriesData,
+            'SuccessStoriesData': successStoriesData,
             'story_title': 'none',
-            'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+            'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
@@ -748,8 +708,8 @@ def successstorySearch(request, story_title):
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    SuccessStrories_CategoryData = SuccessStrories_Category.objects.all()
-    SuccessStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.all()
+    successStoriesData = SuccessStories.objects.all()
 
     if request.method == "POST":
         print("insideSearchMethod")
@@ -758,11 +718,11 @@ def successstorySearch(request, story_title):
         print("strory_title1", strory_title1)
 
         if strory_title1 != '':
-            SuccessStoriesData = SuccessStories.objects.filter(
+            successStoriesData = SuccessStories.objects.filter(
                 SuccessStories_TitleName__icontains=strory_title1)
-            count = SuccessStoriesData.count()
+            count = successStoriesData.count()
             print("dataStoriesdssds", count)
-            page = Paginator(SuccessStoriesData, 7)
+            page = Paginator(successStoriesData, 7)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -770,24 +730,24 @@ def successstorySearch(request, story_title):
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'story_title': strory_title1,
-                'SuccessStoriesData': SuccessStoriesData,
-                'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+                'SuccessStoriesData': successStoriesData,
+                'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
         else:
-            page = Paginator(SuccessStoriesData, 7)
+            page = Paginator(successStoriesData, 7)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
-            count = SuccessStoriesData.count()
+            count = successStoriesData.count()
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'SuccessStoriesData': SuccessStoriesData,
+                'SuccessStoriesData': successStoriesData,
                 'story_title': 'none',
-                'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+                'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
                 'satus_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
@@ -807,23 +767,23 @@ def successstorySearch(request, story_title):
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'SuccessStoriesData': Stories_Data1,
             'story_title': story_title,
-            'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+            'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
     else:
-        page = Paginator(SuccessStoriesData, 7)
+        page = Paginator(successStoriesData, 7)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = SuccessStoriesData.count()
+        count = successStoriesData.count()
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
-            'SuccessStoriesData': SuccessStoriesData,
+            'SuccessStoriesData': successStoriesData,
             'story_title': 'none',
-            'SuccessStrories_CategoryData': SuccessStrories_CategoryData,
+            'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'satus_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
@@ -833,84 +793,30 @@ def successstorySearch(request, story_title):
     return render(request, 'Localisation_App/successstory.html', context)
 
 
-# def successstory(request):
-#     checklist1=[]
-#     TopMenuItemsdata=TopMenuItems.objects.all()
-#     SuccessStrories_CategoryData=SuccessStrories_Category.objects.all()
-#     SuccessStoriesData=SuccessStories.objects.all()
-#     print("helloooooo",type(SuccessStoriesData))
-#     page=Paginator(SuccessStoriesData, 7)
-#     page_list=request.GET.get('page')
-#     page=page.get_page(page_list)
-#     if request.method=="POST":
-#         category_name=[]
-#         q=SuccessStories.objects.filter(id=10000000)
-#         print("dumydata",q)
-#         checklist=request.POST.getlist('checkbox')
-#         print(checklist)
-#         SuccessStoriesData_Checked=SuccessStrories_Category.objects.filter(id__in=checklist)
-#         for n in SuccessStoriesData_Checked:
-#             print('hello',n.SuccessStrories_CategoryType)
-#             category_name.append(n.SuccessStrories_CategoryType)
-#         print("list",category_name)
-#         print("tuple",tuple(category_name))
-#         to_fetch=tuple(category_name)
-#         for c in to_fetch:
-#             print(c)
-#             q = q | SuccessStories.objects.filter(SuccessStories_category__SuccessStrories_CategoryType__contains=c)
-#         print("all data",q)
-#         page=Paginator(q, 7)
-#         page_list=request.GET.get('page')
-#         print("pagenumber",page_list)
-#         page=page.get_page(page_list)
-#         context={
-#             'topmenus':TopMenuItemsdata,
-#             'SuccessStoriesData':q,
-#             'SuccessStrories_CategoryData':SuccessStrories_CategoryData,
-#             "page":page,
-#             "fetcheddata":'fetcheddata',
-#             'satus':'True',
-#             'checklist':checklist
-#         }
-#         return render(request,'Localisation_App/successstory.html',context)
-#     context={
-#             'topmenus':TopMenuItemsdata,
-#             'SuccessStoriesData':SuccessStoriesData,
-#             'SuccessStrories_CategoryData':SuccessStrories_CategoryData,
-#             "page":page,
-#             "fetcheddata":'notfetcheddata',
-#             'satus':None,
-#             'checklist':checklist1
-#         }
-
-#     return render(request,'Localisation_App/successstory.html',context)
-
-
 # Services Page
-
 def services(request):
-    TTS_Form = TTSservice()
+    tTS_Form = TTSservice()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    Servicesdata = Services.objects.all()
+    servicesdata = Services.objects.all()
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
-        'Servicesdata': Servicesdata,
-        'TTS_Form': TTS_Form,
+        'Servicesdata': servicesdata,
+        'TTS_Form': tTS_Form,
     }
     return render(request, 'Localisation_App/services.html', context)
 
 
 def ServicesDemoPage(request):
-    TTS_Form = TTSservice()
+    tTS_Form = TTSservice()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
         "service": "srvTTS",
-        'TTS_Form': TTS_Form
+        'TTS_Form': tTS_Form
     }
     return render(request, 'Localisation_App/ServicesDemoPage.html', context)
 
@@ -956,21 +862,21 @@ def srvOnscreenKeyboard(request):
 def srvTTS(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    TTS_Form = TTSservice()
+    tTS_Form = TTSservice()
     if request.method == "POST":
         Details = TTSservice(request.POST)
         print("InsidePostMethod")
         if Details.is_valid():
             print('form is valid')
-            Language = request.POST.get("Select_Language_Pair")
-            Gender = request.POST.get("Gender")
-            InputText = request.POST.get("InputText")
-            print("Language", Language)
-            print("Gender", Gender)
-            print("InputText", InputText)
+            language = request.POST.get("Select_Language_Pair")
+            gender = request.POST.get("Gender")
+            inputText = request.POST.get("InputText")
+            print("Language", language)
+            print("Gender", gender)
+            print("InputText", inputText)
 
             url = 'http://localhost:8000/tts'
-            payload = {'text': InputText, 'gender': Gender, 'lang': Language}
+            payload = {'text': inputText, 'gender': gender, 'lang': language}
             r = requests.post(url, data=payload)
             print('response', r)
             if r.status_code == 200:
@@ -981,7 +887,7 @@ def srvTTS(request):
                     'Status': data['status'],
                     'outspeech_filepath': data['outspeech_filepath'][0],
                     "service": "srvTTS",
-                    "TTS_Form": TTS_Form,
+                    "TTS_Form": tTS_Form,
                     "data": "srvTTS",
                     'topmenus': TopMenuItemsdata,
                     'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -991,7 +897,7 @@ def srvTTS(request):
 
     context = {
         "service": "srvTTS",
-        "TTS_Form": TTS_Form,
+        "TTS_Form": tTS_Form,
         "data": "srvTTS",
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1023,7 +929,6 @@ def srvTransliteration(request):
 
 
 # Faqs Page
-
 def faqs(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1051,14 +956,14 @@ def faqsSearch(request, faq_title):
         print("faqtitle", faq_title1)
 
         if faq_title1 != '':
-            FAQs_Data = FAQs.objects.filter(
+            fAQs_Data = FAQs.objects.filter(
                 FAQs_Question__icontains=faq_title1)
-            count = FAQs_Data.count()
+            count = fAQs_Data.count()
             print("faqcount", count)
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'data': FAQs_Data,
+                'data': fAQs_Data,
                 'faq_title': faq_title1,
                 'count': count
             }
@@ -1077,21 +982,6 @@ def faqsSearch(request, faq_title):
     return render(request, 'Localisation_App/faqs.html', context)
 
 
-# SuccessStrories
-
-def SuccessStoriesList(request):
-    # SuccessStoriesdata = SuccessStories.objects.all()
-    # page=Paginator(SuccessStoriesdata, 7)
-    # page_list=request.GET.get('page')
-    # page=page.get_page(page_list)
-    # context={
-    #         "page":page,
-    #         "SuccessStoriesdata":SuccessStoriesdata
-    #         }
-
-    return render(request, 'xxxxx.html', context)
-
-
 # Terms And Conditions
 def termsandcondition(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1107,8 +997,9 @@ def termsandcondition(request):
     }
     return render(request, 'Localisation_App/termsandconditions.html', context)
 
-
 # accessibility statement
+
+
 def accessibilityStatement(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1174,8 +1065,9 @@ def sitemap(request):
     }
     return render(request, 'Localisation_App/sitemap.html', context)
 
-
 # Help Page
+
+
 def helpData(request, id):
     print("id : ", id)
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1212,58 +1104,6 @@ def help(request):
     return render(request, 'Localisation_App/help.html', context)
 
 
-# Tools
-
-# def ToolsDataList(request):
-#     ToolsData1 = ToolsData.objects.all().filter(ToolsData_HeadingName="C-DAC GIST Data Converter")
-#     data={
-#         "ToolsData":ToolsData1
-#     }
-#     return render(request,'Localisation_App/test1.html',data)
-
-# def ToolsDataList(request):
-#     ToolsData1 = ToolsData.objects.all()
-#     page=Paginator(ToolsData1, 7)
-#     page_list=request.GET.get('page')
-#     page=page.get_page(page_list)
-#     context={
-#             "page":page,
-#              "ToolsData":ToolsData1
-#             }
-#     return render(request,'Localisation_App/test1.html',context)
-
-
-# Resources
-# def ResourcessDataList(request):
-#     ResourceData1 = ResourceData.objects.all()
-#     print("Resourcedata",ResourceData1)
-#     page=Paginator(ResourceData1, 7)
-#     page_list=request.GET.get('page')
-#     page=page.get_page(page_list)
-#     context={
-#             "page":page,
-#             "ResourceData":ResourceData1
-#             }
-#     return render(request,'Localisation_App/resourceData.html',context)
-
-
-# test
-
-# def index(request):
-#     return render(request, 'Localisation_App/index.html')
-
-# def TestRequest(request):
-#     Data = Article.objects.all();
-#     context={
-#         "Data": Data
-#     }
-#     return render(request, 'Localisation_App/home.html',context)
-
-
-def Keyboard(request):
-    return render(request, 'Localisation_App/keyboard.html')
-
-
 def contactus(request):
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1290,29 +1130,23 @@ def submit(request, img):
         contactNumber = request.POST.get("phone-number")
         option = request.POST.get("option")
         comment = request.POST.get("comment")
-        if comment[0] != " ":
-            print("condition for comment not starting with space",
-                  comment[0] != " ")
-            if img == captcha:
-                print(name, email, contactNumber, option, comment)
-                ins = Contact(name=name, email=email,
-                              phone=contactNumber, option=option, comment=comment)
-                ins.save()
-                res = send_mail(option, option+" Recieved",
-                                "tanvip@cdac.in", [email, 'sshivam@cdac.in'])
-                print("reponse form email", res)
-                messages.add_message(
-                    request, messages.SUCCESS, option+' submitted successfully')
-                print(messages)
-                return redirect('Localisation_App:contactus')
-                #  return HttpResponse("form submitted successfully")
-            else:
-                messages.add_message(
-                    request, messages.ERROR, 'Captcha not matching')
-                return redirect('Localisation_App:contactus')
+        print(name, email, contactNumber, option, comment)
+        ins = Contact(name=name, email=email, phone=contactNumber,
+                      option=option, comment=comment)
+        ins.save()
+        if img == captcha:
+
+            res = send_mail("feedback", "Feedback Recieved",
+                            "tanvip@cdac.in", [email])
+            print("reponse form email", res)
+            messages.add_message(request, messages.SUCCESS,
+                                 'feedback submitted successfully')
+            print(messages)
+            return redirect('Localisation_App:contactus')
+    #    return HttpResponse("form submitted successfully")
         else:
             messages.add_message(request, messages.ERROR,
-                                 'comment must not start with space')
+                                 'feeback submission failed')
             return redirect('Localisation_App:contactus')
     else:
         messages.add_message(request, messages.ERROR, 'server error')

@@ -1,0 +1,684 @@
+
+/* Navbar Start */
+.quote{
+    height:40px;
+    width:180px;
+    background: #ECB471;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    color:#023047;
+    
+}
+
+.quote:hover{
+    height:40px;
+    width:180px;
+    background: #ECB471;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    color:#023047;
+}
+
+.customNav {
+    background: #219EBC;
+}
+.items{
+    font-size: 22px;
+    font-weight: 500;
+    text-decoration:none;
+    margin-right:25px;
+    color:#646363;
+    text-shadow: 1px 2px 3px rgba(179,179,179,0.46);
+  
+}
+.items:hover{
+    color:#219EBC;
+}
+
+/* Navbar Ends */
+
+
+/* Carousel Start */
+
+.carousel-inner-text {
+    background: url("../img/service5.jpg");
+    background-size: cover;
+    height: 700px;
+}
+
+.carousel-inner-text-2 {
+    background: url("../img/Services11.jpg");
+    background-size: cover;
+    height: 700px;
+}
+
+
+.carousel-inner-text-3 {
+    background: url("../img/Cost4.jpg");
+    background-size: cover;
+    height: 700px;
+}
+
+ .carousel-title {
+    /* text-align: center; */
+    /* padding-left: 200px; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 39px;
+    text-align: left;
+    /* padding-top: 300px; */
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+.carousel-inner-text >  .carousel-title {
+    padding-left: 200px;
+    padding-top: 250px;
+}
+.carousel-inner-text-2 >  .carousel-title {
+    padding-left: 200px;
+    padding-top: 250px;
+}
+.carousel-inner-text-3 >  .carousel-title {
+    padding-left: 200px;
+    padding-top: 250px;
+}
+
+
+/* 
+
+.carousel-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 39px;
+    text-align: left;
+    padding-top: 300px;
+    letter-spacing: -0.015em;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+} */
+
+.carousel-subtitle-1 {
+    /* font-family: 'Montserrat'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 64px;
+    text-align: left;
+    padding-left: 200px;
+    /* or 52% */
+    letter-spacing: -0.015em;
+    color: #ED875C;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+.carousel-subtitle-2 {
+    /* font-family: 'Montserrat'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 64px;
+    text-align: left;
+    padding-left: 200px;
+    /* or 52% */
+    letter-spacing: -0.015em;
+    color: #ED875C;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+.carousel-subtitle-3 {
+    /* font-family: 'Montserrat'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 64px;
+    text-align: left;
+    padding-left: 200px;
+    /* or 52% */
+    letter-spacing: -0.015em;
+    color: #ED875C;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-caption-1 {
+    font-family: 'Mukta';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 0px;
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 20px;
+    /* identical to box height, or 150% */
+    letter-spacing: 0.005em;
+    color: #000000;
+}
+
+.carousel-caption-2 {
+    font-family: 'Mukta';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 0px;
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 15px;
+    /* identical to box height, or 150% */
+    letter-spacing: 0.005em;
+    color: #000000;
+}
+
+.carousel-caption-3 {
+    font-family: 'Mukta';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 0px;
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 20px;
+    /* identical to box height, or 150% */
+    letter-spacing: 0.005em;
+    color: #000000;
+}
+
+/* Carousel Ends */
+
+/* News start */
+
+.customNews {
+    
+    height: 40px;
+    background-color: #F5AE59;
+}
+
+.newsclass {
+    height: 50px;
+    font-size: 25px !important;
+}
+
+.marqueeClass {
+    margin-top: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.news1 {
+    font-weight: 500;
+    color: #023047;
+    text-decoration: none;
+}
+
+/* News end */
+
+
+/* About Us start */
+.testting{
+    background: url('../img/AboutUs3.png');
+    background-size: cover;
+}
+.aboutUs{
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+}
+.aboutUs-Title {
+    text-align: center;
+    color: #219EBC;
+    margin: 20px;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.aboutUs-para {
+    margin-top: 30px;
+    text-align: justify;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 40px;
+    /* or 210% */
+    letter-spacing: -0.02em;
+    color: #6B6A6A;
+    mix-blend-mode: normal;
+    padding:20px ;
+}
+
+.aboutus-Button {
+    width: 140px;
+    height: 49px;
+    left: 768px;
+    top: 702px;
+    background: #ED875C;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+}
+
+.services-title{
+    font-size: 35px;
+    color:#EC9022;
+    margin-left: 550px;
+    font-weight: 600;
+}
+
+/* About Us end */
+
+
+
+/* Counter Section Start */
+.counter {
+    margin-left: 300px;
+}
+
+.card1 {
+    width: 254px;
+    height: 178px;
+    margin-left: 50px;
+    background: #ffffff;
+    box-shadow: 3px 2px 5px 1px #DE6881;
+    border-radius: 22px;
+}
+
+.card2 {
+    width: 254px;
+    height: 178px;
+    margin-left: 50px;
+    background: #ffffff;
+    box-shadow: 3px 2px 5px 1px #ACDC7A;
+    border-radius: 22px;
+}
+
+
+.card3 {
+    width: 254px;
+    height: 178px;
+    margin-left: 60px;
+    background: #FFFFFF;
+    box-shadow: 3px 2px 5px 1px #EED58E;
+    border-radius: 22px;
+}
+
+
+.card4 {
+    width: 254px;
+    height: 178px;
+    margin-left: 60px;
+    background: #FFFFFF;
+    box-shadow: 3px 2px 5px 1px #8ECAE6;
+    border-radius: 22px;
+
+}
+
+.card-title {
+    margin-top: 5px;
+   text-align: center;
+    font-style: normal;
+    font-weight: 550;
+    font-size: 25px;
+    line-height: 48px;
+    color: #646363;
+}
+
+.card-description {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: #4E4C4C;
+}
+
+.icon {
+    height: 70px;
+    width: 70px;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #FFB703;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+
+/* Counter Section End */
+
+/* links start */
+
+.linksContainer {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #EAEAEA;
+
+
+}
+
+
+
+
+/* links end */
+
+/* Vision start */
+
+
+.vision {
+    width: 100%;
+    height: 330px;
+    background-color: #023047;
+    background-image: url("../img/vision-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.vision-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 100px;
+    letter-spacing: -0.015em;
+    color: #F5AE59;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.vision-para {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+
+}
+
+/* vision end */
+
+/* Success Stories Section starts*/
+.serives-row {
+    margin: 20px;
+}
+
+.test {
+    max-width: 100%;
+    height: auto;
+}
+
+.card {
+
+    margin-top: 40px;
+    border: none;
+    width: 500px;
+    height: auto;
+    box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%)
+}
+
+.card-text {
+    height: auto;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 10px;
+    text-align: justify;
+}
+
+.success-title {
+    color: rgb(15, 43, 70);
+    font-family: 'Heebo', sans-serif;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 30px;
+}
+
+.success-link {
+    margin-left: 130px;
+    height: 40px;
+    width: 200px;
+    background-color: #ED875C;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+    border: none;
+}
+
+.success-read-more {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: right;
+    padding-right: 70px;
+    margin-top: 30px;
+}
+
+.card-header:hover {
+    animation: zoom-in-zoom-out 2s ease;
+}
+
+/* .card:hover {
+      animation: zoom-in-zoom-out 2s ease;
+    } */
+
+    /* Success Stories Section */
+.success-stories {
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+    background: url("../../../static/Localisation_App/img/Capa3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.success-header {
+
+    text-align: center;
+    color: #023047;
+    margin: 20px;
+    font-size: 35px;
+    font-weight: 700;
+    /* 
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 36px;
+    letter-spacing: 0.005em;
+    text-align: center;
+    color: #023047; */
+}
+
+@keyframes zoom-in-zoom-out {
+    /* 0% {
+        transform: scale(1.2, 1.2);
+      } */
+
+    100% {
+        transform: scale(1.2, 1.2);
+    }
+
+    /* 100% {
+        transform: scale(1, 1);
+      } */
+}
+
+
+/* Success Stories Section Ends */
+
+/* Cost Esitmate Section Start */
+.esitimate-cost-img {
+    margin-left: 200px;
+    margin-top: 50px;
+}
+
+.estimate-cost-content {
+    /* position: relative; */
+    background: url("../../../static/Localisation_App/img/Cost.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.estimate-cost-title {
+    margin-top: 150px;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 43px;
+    letter-spacing: 0.035em;
+    color: #023047;
+    text-align: center;
+}
+
+
+.estimate-cost-money-img {
+    background: url("../../../static/Localisation_App/img/Cost.png");
+}
+
+.estimate-cost-button {
+    width: 230px;
+    height: 55px;
+    background-color: #023047;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
+    border-radius: 18px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 43px;
+    letter-spacing: 0.025em;
+    color: #FFFFFF;
+    margin-top: 20px;
+    margin-left: 350px;
+}
+
+/* Cost Esitmate Section Ends */
+
+.bhashni{
+    background: url('../img/BhashaniSection1.png');
+    height:1200px;
+    background-size: cover;
+}
+
+.bhashni-new{
+    background: url('../img/BhashaniSection.png');
+    height:1200px;
+    background-size: cover;
+}
+
+.bhashni-new-1{
+    background: url('../img/BhashaniSection5.png');
+    height:1200px;
+    background-size: cover;
+}
+
+/* Footer Section Start */
+
+.footer {
+    background-color: #023047;
+    color: white;
+    height: auto;
+    padding:20px;
+}
+
+.footer-left {
+    
+    /* border-right:2px solid #ffffffb5; */
+    padding-left: 200px;
+    /* background-color: red; */
+}
+.footer-left h3{
+ 
+    margin-left: 30px;
+}
+
+
+.footer-center {
+    /* border-right:2px solid #ffffffb5; */
+    padding-top: 30px;
+    padding-left: 140px;
+    /* background-color: rgb(8, 8, 103); */
+}
+
+.footer-right {
+    margin-left: 40px;
+    width:300px;
+    /* background-color: rgb(1, 118, 50); */
+}
+.copyright-section {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.footer-gist-section {
+    height: 100px;
+    width: 200px;
+}
+
+.footer-logo-1{
+    margin-left:20px;
+    width:110px;
+}
+
+.footer-logo-2{
+    margin-left:20px;
+    width:190px;
+}
+
+.footer-logo-3{
+    margin-left:20px;
+    width:130px;
+}
+
+.footer-logo-4{
+    margin-left:20px;
+    width:220px;
+}
+
+/* Footer Section Ends*/
+
+
+
+/* laptop */
+@media screen 
+  and (min-device-width: 1025px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+}
+
+/* Tablet Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+   
+}
+/* mobile */
+@media screen 
+  and (min-device-width: 480px) 
+  and (max-device-width: 767px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
+   
+
+
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    
+    
+}
