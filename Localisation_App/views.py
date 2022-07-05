@@ -1264,3 +1264,12 @@ def Register_user(request):
 def login_user(request):
     return render(request, 'Localisation_App/register.html', context)
     
+def goTranslate(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
+    context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+        "service": "goTranslate"
+    }
+    return render(request, 'Localisation_App/ServicesDemoPage.html', context)

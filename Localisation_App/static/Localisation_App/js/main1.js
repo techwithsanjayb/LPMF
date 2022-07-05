@@ -2,7 +2,7 @@ console.log("main hits")
 
 
 function disableReadMore(className){
-  console.log(document.querySelector(`.${className}`).ariaExpanded)
+  console.log(document.querySelector(`.${className}`).aria-expanded)
   if(document.querySelector(`.${className}`).ariaExpanded=="true"){
     if(className !== "read-more-btn1" && document.querySelector('.read-more-btn1').ariaExpanded=="false"){
       console.log("button1")

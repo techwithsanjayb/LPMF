@@ -13,18 +13,19 @@
   border: none;
   width: 1500px;
   height: auto;
-  box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%);
+  /* box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%); */
 }
 
 
 .contact-us-icon  {
-    font-size: 1.6em;
-    width: 1.8em;
-    text-align: center;
-    line-height: 1.6em;
-    background: #666;
-    color: #fff;
-    border-radius: 50%; /* or 50% width & line-height */
+  font-size: 1.2em;
+  width: 1.6em;
+  height: 1.6em;
+  text-align: center;
+  line-height: 1.6em;
+  background: rgb(241, 162, 58);
+  color: #fff;
+  border-radius: 50%; /* or 50% width & line-height */
   }
 
 .contact-us-canvas{
