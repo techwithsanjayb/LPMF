@@ -2,7 +2,7 @@ console.log("main hits")
 
 
 function disableReadMore(className){
-  console.log(document.querySelector(`.${className}`).aria-expanded)
+  console.log(document.querySelector(`.${className}`).attributes['aria-expanded'].nodeValue)
   if(document.querySelector(`.${className}`).ariaExpanded=="true"){
     if(className !== "read-more-btn1" && document.querySelector('.read-more-btn1').ariaExpanded=="false"){
       console.log("button1")
@@ -14,11 +14,11 @@ function disableReadMore(className){
     if(className !== "read-more-btn3" && document.querySelector('.read-more-btn3').ariaExpanded=="false"){
       document.querySelector('.read-more-btn3').style.display = "block";
     }
-    if(className !== "read-more-btn11" && document.querySelector('.read-more-btn11').ariaExpanded=="false"){
-      document.querySelector('.read-more-btn11').style.display = "block";
+    if(className !== "read-more-btn4" && document.querySelector('.read-more-btn4').ariaExpanded=="false"){
+      document.querySelector('.read-more-btn4').style.display = "block";
     }
-    if(className !== "read-more-btn12" && document.querySelector('.read-more-btn12').ariaExpanded=="false"){
-      document.querySelector('.read-more-btn12').style.display = "block";
+    if(className !== "read-more-btn5" && document.querySelector('.read-more-btn5').ariaExpanded=="false"){
+      document.querySelector('.read-more-btn5').style.display = "block";
     }
     document.querySelector(`.${className}`).style.display = "none";
     
