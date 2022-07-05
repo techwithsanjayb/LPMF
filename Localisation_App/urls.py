@@ -10,9 +10,11 @@ urlpatterns = [
     path('aboutus/', views.aboutus, name='aboutus'),
     path('toolsPage/', views.toolsPage, name='toolsPage'),
     path('tools/', views.tools, name='tools'),
+    path('toolsReset/', views.toolsReset, name='toolsReset'),
     path('toolsSearch/<tools_title>', views.toolsSearch, name='toolsSearch'),
     path('resourcesPage/', views.resourcesPage, name='resourcesPage'),
     path('resources/', views.resources, name='resources'),
+    path('resourcesReset/', views.resourcesReset, name='resourcesReset'),
     path('resourceSearch/<resource_title>',
          views.resourceSearch, name='resourceSearch'),
     path('services/', views.services, name='services'),
@@ -20,12 +22,11 @@ urlpatterns = [
     path('successstory', views.successstory, name='successstory'),
     path('successstorySearch/<story_title>',
          views.successstorySearch, name='successstorySearch'),
+    path('successstoryReset/', views.successstoryReset, name='successstoryReset'),
     path('submit/', views.submit, name='submit'),
     path('faqs/', views.faqs, name='faqs'),
     path('faqsSearch/<faq_title>', views.faqsSearch, name='faqsSearch'),
     path('contactus/', views.contactus, name='contactus'),
-    path('register/', views.faqs, name='register'),
-    path('login/', views.faqs, name='login'),
     path('base/', views.topmenu, name='base'),
     path('websitepolicy/', views.websitepolicy, name='websitepolicies'),
     path('websitepolicy/<int:id>', views.websitepolicydata,
@@ -47,6 +48,11 @@ urlpatterns = [
     path('srvTTS/', views.srvTTS, name='srvTTS'),
     path('srvTransliteration/', views.srvTransliteration,
          name='srvTransliteration'),
+    
+    
+    path('register/', views.Register_user, name="register"),
+    path('login_user/', views.login_user, name="login"),
+#     path('logout_user/', views.logout_user, name="logout"),
 
 
 ]
