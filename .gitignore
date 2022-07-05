@@ -6,5 +6,7 @@ ToolsCode/*.*
 **/ToolsCode/*.*
 *.zip
 **/media/**
-/venv
+**/venv
+venv/*.*
+**/venv/*.*
 
