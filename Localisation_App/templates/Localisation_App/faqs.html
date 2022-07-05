@@ -12,28 +12,36 @@
             <h4 class="faq-Title">Frequently Asked Questions</h4>
         </div>
 
-        <div class="container-fluid faq-main">
-            <form action={% url 'Localisation_App:faqsSearch' faq_title %}  method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% if faq_title == 'none' %}
-                <input
-                class="form-control me-2"
-                type="text"
-                name="faq_title"
-                placeholder="Search"
-                aria-label="Search"
-              />{% else %}
-              <input
-                class="form-control me-2"
-                type="text"
-                name="faq_title"
-                value={{ faq_title }}
-                placeholder="Search"
-                aria-label="Search"
-              />{% endif %}
-              <input type="submit" value="Search"/>
-              </form>
-
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-6">
+                    <form action={% url 'Localisation_App:faqsSearch' faq_title %}  method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if faq_title == 'none' %}
+                        <input
+                        class="form-control "
+                        type="text"
+                        name="faq_title"
+                        placeholder="Search"
+                        aria-label="Search"
+                      />{% else %}
+                      <input
+                        class="form-control "
+                        type="text"
+                        name="faq_title"
+                        value={{ faq_title }}
+                        placeholder="Search"
+                        aria-label="Search"
+                      />{% endif %}
+                      
+        
+                </div>
+                <div class="col-6">
+                    <input type="submit" value="Search"/>
+                      </form>
+                </div>
+            </div>
+           
         
         <div class="row">
             <div class="accordion" id="accordionExample">
