@@ -7,6 +7,7 @@
 
   <div style="margin-left:500px"><a href="{% url 'Localisation_App:srvTTS' %}">srvTTS</a>--------------------<a
       href="{% url 'Localisation_App:srvTransliteration' %}">srvTransliteration</a></div>
+      <a href="{% url 'Localisation_App:goTranslate' %}">GoTranslate</a></div>
 
   {% if service == "srvTTS" %}
   <div style="max-width:800px; max-height:600px; margin-left:300px;margin-top:50px;margin-bottom:50px;background-color:rgb(228 186 84 / 90%)">
@@ -37,7 +38,13 @@
     <button type="submit" class="btn btn-primary">Save changes</button>
   </form>
 
+ 
   </div>
+  {% elif service == "goTranslate" %}
+   <div>
+    {% include 'Localisation_App/gotranslate.html'%}
+   </div>
+
   {% endif %}
 </div>
 

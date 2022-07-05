@@ -47,7 +47,8 @@ urlpatterns = [
     path('srvTTS/', views.srvTTS, name='srvTTS'),
     path('srvTransliteration/', views.srvTransliteration,
          name='srvTransliteration'),
-
+    path('goTranslate/', views.goTranslate,
+         name='goTranslate'),
 
 ]
 

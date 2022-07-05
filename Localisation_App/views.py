@@ -1151,3 +1151,13 @@ def submit(request, img):
     else:
         messages.add_message(request, messages.ERROR, 'server error')
         return redirect('Localisation_App:contactus')
+
+def goTranslate(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
+    context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+        "service": "goTranslate"
+    }
+    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
