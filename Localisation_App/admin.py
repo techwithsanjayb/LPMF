@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User
+from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration
 # Register your models here.
 
 
@@ -185,6 +185,11 @@ class AdminContact(admin.ModelAdmin):
     search_fields = ('name', 'email', 'option')
     ordering = ('name',)
     list_per_page: int = 10
+
+
+@admin.register(UserRegistration)
+class AdminUserRegistration(admin.ModelAdmin):
+    list_display = ('userregistration_user_id', 'userregistration_first_name')
 
 
 # SANJAY BHARGAVA ADDED BELOW LINES

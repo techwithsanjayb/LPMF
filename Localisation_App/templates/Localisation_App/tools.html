@@ -47,13 +47,14 @@
     
         </form>
 
+         <!-- {{ count }} -->
     <!-- {{ count }} -->
 
         <h3 style="margin-top:-20px;">Categories</h3>
         
         <form action={% url 'Localisation_App:tools' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {% if satus_All_Checked == 'True' %}
+          {% comment %} {% if satus_All_Checked == 'True' %}
           <div class="success-list">
           <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked"
             checked="checked" />
@@ -66,7 +67,7 @@
 
           <label class="tools-sidebar-item-text" for="vehicle1">All</label><br />
           </div>
-          {% endif %}
+          {% endif %} {% endcomment %}
           {% if satus_All_Checked == 'True' %}
         <ul>
           {% for categories in toolscategory %}
@@ -116,8 +117,10 @@
   {% endif %}
         <button class='btn btn-primary filter-button' type="submit" value="Fetch">Filter</button>
       </form>
-
-
+      <form action={% url 'Localisation_App:toolsReset' %} method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
+      </form>
 
       </div>
     </div>

@@ -1,5 +1,7 @@
+from pyexpat import model
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.core.validators import RegexValidator
 # Create your models here.
 
 '''
@@ -339,3 +341,47 @@ class CarouselData(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+'''
+    AUTHOR NAME      : Shweta Patil
+    CREATED DATE     : 05-07-2022
+    MODEL NAME       : Registration And login
+'''
+
+
+# USER_REGISTRATION TABLES MODEL
+
+
+class UserRegistration(models.Model):
+    userregistration_user_id = models.AutoField(primary_key=True)
+    userregistration_first_name = models.CharField(max_length=60)
+    userregistration_middle_name = models.CharField(max_length=60)
+    userregistration_last_name = models.CharField(max_length=60)
+    userregistration_username = models.CharField(max_length=60,blank=True, null=True)
+    userregistration_email_field = models.EmailField(
+        unique=True, max_length=60)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    userregistration_phone_number = models.IntegerField(validators=[phone_regex], max_length=17 ) # Validators should be a list
+    userregistration_address = models.CharField(max_length=200,blank=True, null=True)
+    userregistration_password = models.CharField(max_length=30)
+    userregistration_confirm_password = models.CharField(max_length=30)
+    userregistration_active_status = models.BooleanField(default=False)
+    CHOICES = [('Individual', 'Individual'),
+               ('Organization', 'Organization'),
+                ('DomainExpert', 'DomainExpert')]
+    registration_User_Type =models.CharField(max_length=50, choices=CHOICES, default='Individual')
+    userregistration_registration_date = models.DateTimeField(
+        auto_now_add=True, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "User Registration"
+
+    def __str__(self):
+        return self.userregistration_first_name + " " + self.userregistration_last_name
+    
+    
+    
+    
+    
