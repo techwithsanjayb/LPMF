@@ -3,7 +3,11 @@ body{
     /* box-sizing: border-box;
     background: rgb(0 100 0 /0.1) !important; */
 }
-
+.test{
+    -webkit-box-shadow: 3px 4px 18px -3px rgba(156, 156, 156, 1);
+    -moz-box-shadow: 3px 4px 18px -3px rgba(156, 156, 156, 1);
+    box-shadow: 3px 4px 18px -3px rgba(156, 156, 156, 1);
+}
 .success-card-image{
     display: block;
     width: 100%;
@@ -80,16 +84,31 @@ body{
 }
 
 .success-story-card-title {
-    font-size: 24px;
+    margin-top: 20px;
+    font-size: 30px;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
-    color:#676464;
+    color:#333333;
+    text-align: center;
+}
+
+.success-story-cdac-card-title {
+    height: auto;
+    width:260px;
+    background-color: #F9DB90;
+    border-radius: 30px;
+    font-size: 25px;
+    font-weight: 600;
+    padding:4px;
+    text-align: center;
+    margin-left: 200px;
 }
 
 .success-story-card-description {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 400;
     font-family: 'Inter', sans-serif;
+    text-align: center;
 }
 
 .success-story-link {

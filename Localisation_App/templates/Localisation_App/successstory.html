@@ -91,7 +91,7 @@
           {% csrf_token %}
           <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
         </form>
-
+        <p>Records Fetched : {{ count }}</p>
 
       </div>
     </div>  
@@ -161,6 +161,11 @@
               </button> -->
             </div>
             <div class="success-story-card-title">{{ stories.SuccessStories_TitleName }}</div>
+            <div class="success-story-card-description">
+              {{ stories.SuccessStories_Description|safe|slice:":200" }}
+            </div>
+            <hr style="margin-left: 170px;">
+            <div class="success-story-cdac-card-title">CDAC Contribution</div>
             <div class="success-story-card-description">
               {{ stories.SuccessStories_Description|safe|slice:":200" }}
             </div>
