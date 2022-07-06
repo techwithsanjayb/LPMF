@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-3h!7#b#*w)xr0)r_3#^=7$fmaepm40dd%0$7k5&-i)h(wp%0cy
 DEBUG = True
 
 ALLOWED_HOSTS = []
-#SANJAYB
+# SANJAYB
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -161,6 +161,10 @@ STATIC_URL = '/static/'
 STATIC_DIR = BASE_DIR / 'static'
 STATIC_ROOT = BASE_DIR / 'static'
 #STATICFILES_DIRS = BASE_DIR / 'static'
+
+
+LOGIN_REDIRECT_URL = 'Localisation_App:home'
+LOGIN_URL = 'Localisation_App:login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

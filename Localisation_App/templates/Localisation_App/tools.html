@@ -17,6 +17,7 @@
   <div class="row tools-box">
     <div class="col-sm-12 col-lg-3">
       <div class="tools-sidebar-section">
+ 
         <form action={% url 'Localisation_App:toolsSearch' tools_title %}  method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="row p-3">
@@ -78,10 +79,10 @@
             name="checkbox"
             value="{{ categories.pk }}"
             onclick=" "
-          />
-          <label class="tools-sidebar-item-text" for="vehicle1"
+          >{{ categories.Tools_CategoryType }}</input></br>
+          {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
             >{{ categories.Tools_CategoryType }}</label
-          ><br />
+          ><br /> {% endcomment %}
           {% endfor %}  
         </ul>
         {% else %}
@@ -95,10 +96,10 @@
         name="checkbox"
         value="{{ categories.pk }}"
         checked="checked"
-      />
-      <label class="tools-sidebar-item-text" for="vehicle1"
+      >{{ categories.Tools_CategoryType }}</input></br>
+      {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
         >{{ categories.Tools_CategoryType }}</label
-      ><br />
+      ><br /> {% endcomment %}
       {% else %}
       <input
       class="tools-sidebar-item"
@@ -107,10 +108,10 @@
       name="checkbox"
       value="{{ categories.pk }}"
       onclick=" "
-    />
-    <label class="tools-sidebar-item-text" for="vehicle1"
+    >{{ categories.Tools_CategoryType }}</input></br>
+    {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
       >{{ categories.Tools_CategoryType }}</label
-    ><br />
+    ><br /> {% endcomment %}
     {% endif %}
     {% endfor %}
   </ul>
@@ -121,7 +122,7 @@
         {% csrf_token %}
         <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
       </form>
-
+      <p>Records Fetched : {{ count }}</p>
       </div>
     </div>
 
