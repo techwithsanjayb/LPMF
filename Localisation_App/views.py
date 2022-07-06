@@ -1,13 +1,13 @@
 
-from .forms import TTSservice,RegisterForm,UserLoginForm
+from .forms import TTSservice, RegisterForm, UserLoginForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
 from multiprocessing import context
-from django.contrib.auth import login ,authenticate ,logout ,  update_session_auth_hash
-from django.contrib.auth.forms import UserChangeForm , AuthenticationForm , PasswordChangeForm , SetPasswordForm
+from django.contrib.auth import login, authenticate, logout,  update_session_auth_hash
+from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.shortcuts import render, redirect
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact,UserRegistration
+from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration
 import random
 import requests
 global str_num
@@ -310,8 +310,6 @@ def toolsSearch(request, tools_title):
     return render(request, 'Localisation_App/tools.html', context)
 
 
-
-
 def toolsReset(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -325,19 +323,17 @@ def toolsReset(request):
     count = tools_Data.count()
     if request.method == "POST":
         context = {
-        'topmenus': TopMenuItemsdata,
-        'FooterMenuItemsdata': FooterMenuItemsdata,
-        'toolsdata': tools_Data,
-        'tools_title': 'none',
-        'toolscategory': toolsCategory_data,
-        "page": page,
-        'satus_All_Checked': 'True',
-        'Pagination_Type': 'All_Data',
-        'count': count
+            'topmenus': TopMenuItemsdata,
+            'FooterMenuItemsdata': FooterMenuItemsdata,
+            'toolsdata': tools_Data,
+            'tools_title': 'none',
+            'toolscategory': toolsCategory_data,
+            "page": page,
+            'satus_All_Checked': 'True',
+            'Pagination_Type': 'All_Data',
+            'count': count
         }
         return render(request, 'Localisation_App/tools.html', context)
-    
-
 
 
 # Resources Page
@@ -605,10 +601,6 @@ def resourcesReset(request):
             'count': count
         }
         return render(request, 'Localisation_App/resources.html', context)
-    
-
-
-
 
 
 # Successstory Page
@@ -880,7 +872,6 @@ def successstoryReset(request):
         }
         print("outside")
         return render(request, 'Localisation_App/successstory.html', context)
-    
 
 
 # Services Page
@@ -1243,65 +1234,63 @@ def submit(request, img):
         return redirect('Localisation_App:contactus')
 
 
-
 def Register_user(request):
-    form  = RegisterForm()
+    form = RegisterForm()
     context = {
         'form': form
-        }
+    }
     if request.method == 'POST':
-        form  = RegisterForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             print("Form Data")
-            UserRegistration.objects.create(userregistration_first_name = form.cleaned_data.get('first_name') ,userregistration_middle_name = form.cleaned_data.get('middle_name') ,userregistration_last_name = form.cleaned_data.get('last_name'),userregistration_username = form.cleaned_data.get('username') ,userregistration_email_field = form.cleaned_data.get('email'),userregistration_phone_number = form.cleaned_data.get('phone_number') ,userregistration_address = form.cleaned_data.get('address'),userregistration_password = form.cleaned_data.get('password1'),userregistration_confirm_password = form.cleaned_data.get('password2'),userregistration_active_status = form.cleaned_data.get('check'),registration_User_Type = form.cleaned_data.get('User_Type'))
-            messages.success(request, 'Account was created for ' + form.cleaned_data.get('first_name'))
+            UserRegistration.objects.create(userregistration_first_name=form.cleaned_data.get('first_name'), userregistration_middle_name=form.cleaned_data.get('middle_name'), userregistration_last_name=form.cleaned_data.get('last_name'), userregistration_username=form.cleaned_data.get('username'), userregistration_email_field=form.cleaned_data.get(
+                'email'), userregistration_phone_number=form.cleaned_data.get('phone_number'), userregistration_address=form.cleaned_data.get('address'), userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'), registration_User_Type=form.cleaned_data.get('User_Type'))
+            messages.success(request, 'Account was created for ' +
+                             form.cleaned_data.get('first_name'))
             return redirect('/')
         else:
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {
                 'form': form
-                }
-            return render(request, 'Localisation_App/register.html', context) 
+            }
+            return render(request, 'Localisation_App/register.html', context)
     return render(request, 'Localisation_App/register.html', context)
-    
-    
+
+
 def login_user(request):
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            print( "if form is valid")
+            print("if form is valid")
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('/')
             else:
                 return redirect('')
-            
+
         else:
             messages.error(request, 'Error Processing Your Request')
-            context={
-                'form' : UserLoginForm()
+            context = {
+                'form': UserLoginForm()
             }
-            
-            print( "else")
+
+            print("else")
             return render(request, 'Localisation_App/login.html', context)
     else:
-        context={
-                'form' : UserLoginForm()
-            }
+        context = {
+            'form': UserLoginForm()
+        }
         return render(request, 'Localisation_App/login.html', context)
+
 
 def logout_user(request):
     logout(request)
     return redirect('/')
-
-
-
-
 
 
 def goTranslate(request):

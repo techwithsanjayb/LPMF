@@ -3,47 +3,49 @@
 <!--carousel start-->
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12" style="background-color: #F1F2F3;">
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+  <div class="row">
+    <div class="col-12" style="background-color: #f1f2f3">
+      <div
+        id="carouselExampleDark"
+        class="carousel carousel-dark slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="4000">
+            <div class="carousel-inner-text">
+              <h3 class="carousel-title">Localisation in</h3>
+              <h3 class="carousel-subtitle-1">e-Governance</h3>
 
-                    <div class="carousel-item active" data-bs-interval="4000">
-                        <div class="carousel-inner-text">
+              <p class="carousel-caption-1">
+                भारतीय भाषाओं में उपकरण और प्रौद्योगिकी के लिए निरंतर प्रयासरत
+              </p>
+            </div>
+          </div>
 
-                            <h3 class="carousel-title">Localisation in</h3>
-                            <h3 class="carousel-subtitle-1">e-Governance</h3>
+          <div class="carousel-item" data-bs-interval="4000">
+            <div class="carousel-inner-text-2">
+              <!-- <div class="text-center">Localisation in</div> -->
+              <h3 class="carousel-title">Bhashini</h3>
+              <h3 class="carousel-subtitle-2">
+                One Platform, Multiple Crowdsourcing
+              </h3>
 
-                            <p class="carousel-caption-1">
-                                भारतीय भाषाओं में उपकरण और प्रौद्योगिकी के लिए निरंतर प्रयासरत
-                            </p>
-                        </div>
-                    </div>
+              <p class="carousel-caption-2">
+                भाषा की बाधाओं को पार करके सबके डिजिटल सशक्तिकरण की ओर
+              </p>
+            </div>
+          </div>
 
-                    <div class="carousel-item" data-bs-interval="4000">
-                        <div class="carousel-inner-text-2">
-                            <!-- <div class="text-center">Localisation in</div> -->
-                            <h3 class="carousel-title">Bhashini</h3>
-                            <h3 class="carousel-subtitle-2">One Platform, Multiple Crowdsourcing</h3>
+          <div class="carousel-item" data-bs-interval="4000">
+            <div class="carousel-inner-text-3">
+              <!-- <div class="text-center">Localisation in</div> -->
+              <h3 class="carousel-title">Translate Your Website</h3>
+              <h3 class="carousel-subtitle-3">Estimate Quote</h3>
 
-                            <p class="carousel-caption-2">
-                                भाषा की बाधाओं को पार करके सबके डिजिटल सशक्तिकरण की ओर
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-item" data-bs-interval="4000">
-                        <div class="carousel-inner-text-3">
-                            <!-- <div class="text-center">Localisation in</div> -->
-                            <h3 class="carousel-title">Translate Your Website</h3>
-                            <h3 class="carousel-subtitle-3">Estimate Quote</h3>
-
-                            <p class="carousel-caption-3">
-                                आपकी वेबसाइट आपकी भाषा में
-                            </p>
-                        </div>
-                    </div>
-                    <!-- <div class="carousel-item" data-bs-interval="4000">
+              <p class="carousel-caption-3">आपकी वेबसाइट आपकी भाषा में</p>
+            </div>
+          </div>
+          <!-- <div class="carousel-item" data-bs-interval="4000">
                 <div class="carousel-inner-text">
                   <div class="text-center">Some Text</div>
                   <p class="text-center">
@@ -59,193 +61,205 @@
                   </p>
                 </div>
               </div> -->
-                </div>
-            </div>
         </div>
-
-
+      </div>
     </div>
+  </div>
 </div>
-
 
 <!--carousel end -->
 <!--News start-->
 
 <nav class="customNews">
+  <div class="container-fluid">
     <div class="container-fluid">
-        <div class="container-fluid">
-            <div class="row newsclass">
-                <marquee class="marqueeClass" Scrollamount=10 onmouseover="this.stop()" onmouseout="this.start()">
-                    <span style="color: grey"></span> {% for news in NewsAndEventsData %}
-                    <a class="news1" href={{ news.NewsAndEvents_Link }} target="_blank">{{ forloop.counter }} . {{ news.NewsAndEvents_HeadingName }}</a>&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
-                </marquee>
-            </div>
-        </div>
+      <div class="row newsclass">
+        <marquee
+          class="marqueeClass"
+          Scrollamount="10"
+          onmouseover="this.stop()"
+          onmouseout="this.start()"
+        >
+          <span style="color: grey"></span> {% for news in NewsAndEventsData %}
+          <a class="news1" href="{{news.NewsAndEvents_Link }}" target="_blank"
+            >{{ forloop.counter }} . {{ news.NewsAndEvents_HeadingName }}</a
+          >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+        </marquee>
+      </div>
     </div>
+  </div>
 </nav>
 
 <!--News end-->
 
 <!--About Us start-->
 <div class="container-fluid testting">
-    <div class="col-12" data-aos="fade-down" data-aos-duration="1000">
-        <h4 class="aboutUs-Title">{{ ArticleData.0.Article_HeadingName }}</h4>
+  <div class="col-12" data-aos="fade-down" data-aos-duration="1000">
+    <h4 class="aboutUs-Title">{{ ArticleData.0.Article_HeadingName }}</h4>
+  </div>
+  <div class="row">
+    <div
+      class="col-sm-12 col-lg-6"
+      data-aos="fade-down"
+      data-aos-duration="1200"
+    >
+      {% if ArticleData.0.Article_Image != NUll %}
+      <img
+        class="d-block w-100"
+        src="/media/{{ ArticleData.0.Article_Image }}"
+        alt="..."
+      />
+      {% endif %}
     </div>
+    <div
+      class="col-sm-12 col-lg-6 p-3"
+      data-aos="fade-down"
+      data-aos-duration="1200"
+    >
+      <div class="aboutUs-para">
+        {{ ArticleData.0.Article_Description|safe|slice:":643" }}
+      </div>
+      <button class="aboutus-Button">
+        <a href="{% url 'Localisation_App:aboutus' %}">Read More</a>
+      </button>
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <div class="services-title">Our Services</div>
     <div class="row">
-        <div class="col-sm-12 col-lg-6" data-aos="fade-down" data-aos-duration="1200">
-
-            {% if ArticleData.0.Article_Image != NUll %}
-            <img class="d-block w-100" src="/media/{{ ArticleData.0.Article_Image }}" alt="..." /> {% endif %}
+      <div
+        class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card1"
+        data-aos="fade-down"
+        data-aos-duration="1000"
+      >
+        <div class="icon">
+          <img
+            src="{% static './Localisation_App/img/Vector.png' %}"
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
-        <div class="col-sm-12 col-lg-6 p-3" data-aos="fade-down" data-aos-duration="1200">
-            <div class="aboutUs-para">
-                {{ ArticleData.0.Article_Description|safe|slice:":643" }}
-            </div>
-            <button class="aboutus-Button"> <a href="{% url 'Localisation_App:aboutus' %}">Read More</a></button>
+        <p class="card-description mt-2">{{ Servicesdata.0.Services_Name }}</p>
+      </div>
+      <div
+        class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card2"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+      >
+        <div class="icon">
+          <img
+            src="{% static './Localisation_App/img/Downloads.png' %}"
+            class="d-block w-100"
+            alt="..."
+          />
         </div>
+        <p class="card-description mt-2">{{ Servicesdata.1.Services_Name }}</p>
+      </div>
+      <div
+        class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card3"
+        data-aos="fade-down"
+        data-aos-duration="2000"
+      >
+        <div class="icon">
+          <img
+            src="{% static './Localisation_App/img/Portals.png' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <p class="card-description mt-2">{{ Servicesdata.2.Services_Name }}</p>
+      </div>
+      <div
+        class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card4"
+        data-aos="fade-down"
+        data-aos-duration="2500"
+      >
+        <div class="icon">
+          <img
+            src="{% static './Localisation_App/img/Clients.png' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+        <p class="card-description mt-2">{{ Servicesdata.3.Services_Name }}</p>
+      </div>
+      <button class="aboutus-Button2">
+        <a href="{% url 'Localisation_App:services' %}">Read More</a>
+      </button>
     </div>
-
-
-    <div class="container my-3">
-        <div class="services-title">
-            Our Services
-        </div>
-        <div class="row">
-            <div class="col col-xs-12 col-sm-12 col-md-12  col-lg-3 card1" data-aos="fade-down" data-aos-duration="1000">
-                <div class="icon">
-                    <img src="{% static './Localisation_App/img/Vector.png' %}" class="d-block w-100" alt="..." />
-                </div>
-                <p class="card-description mt-2">{{ Servicesdata.0.Services_Name }}</p>
-            </div>
-            <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card2" data-aos="fade-down" data-aos-duration="1500">
-                <div class="icon">
-                    <img src="{% static './Localisation_App/img/Downloads.png' %}" class="d-block w-100" alt="..." />
-                </div>
-                <p class="card-description mt-2">
-                    {{ Servicesdata.1.Services_Name }}</p>
-            </div>
-            <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card3" data-aos="fade-down" data-aos-duration="2000">
-                <div class="icon">
-                    <img src="{% static './Localisation_App/img/Portals.png' %}" class="d-block w-100" alt="..." />
-                </div>
-                <p class="card-description mt-2">{{ Servicesdata.2.Services_Name }}</p>
-            </div>
-            <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card4" data-aos="fade-down" data-aos-duration="2500">
-                <div class="icon">
-                    <img src="{% static './Localisation_App/img/Clients.png' %}" class="d-block w-100" alt="..." />
-                </div>
-                <p class="card-description mt-2">{{ Servicesdata.3.Services_Name }}</p>
-            </div>
-            <button class="aboutus-Button2"> <a href="{% url 'Localisation_App:services' %}">Read More</a></button>
-        </div>
-    </div>
+  </div>
 </div>
-
-
 
 <!--About Us end-->
 
-
 <!--Vision start-->
 
-<div style="width:100%">
-    <div class="vision">
-        <h3 class="vision-title" data-aos="zoom-in" data-aos-duration="1000">{{ ArticleData.3.Article_HeadingName }}</h3>
-        <div class="vision-para" data-aos="zoom-in" data-aos-duration="1200">{{ ArticleData.3.Article_Description|safe }}
-        </div>
-
+<div style="width: 100%">
+  <div class="vision">
+    <h3 class="vision-title" data-aos="zoom-in" data-aos-duration="1000">
+      {{ ArticleData.3.Article_HeadingName }}
+    </h3>
+    <div class="vision-para" data-aos="zoom-in" data-aos-duration="1200">
+      {{ ArticleData.3.Article_Description|safe }}
     </div>
+  </div>
 </div>
 
 <!--Vision end-->
 
-
-
 <!-- Success Stories Start -->
 
 <div class="container-fluid success-stories">
-    <div>
-        <h4 class="success-header">SUCCESS STORIES</h4>
-    </div>
-    <div class="row">
-        {% for stories in SuccessStoriesData|slice:":3" %}
-        <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card" data-aos="fade-down" data-aos-duration="1000">
-                <h5 class="card-header">
-                    <img class="test" style="padding:50px" src="/media/{{ stories.SuccessStories_Upload_Image_1 }}" />
-                </h5>
-                <div class="card-body">
-                    <h1 class="success-title"> {{ stories.SuccessStories_TitleName }}</h1>
-                    <div class="card-text">
-                        {{ stories.SuccessStories_Description|safe }}
-                    </div>
-                    {% if stories.SuccessStories_Link != '' %}
-                    <div class="success-link">
-                        <a  href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a>   
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            
+  <div>
+    <h4 class="success-header">Success Stories</h4>
+  </div>
+  <div class="row">
+    {% for stories in SuccessStoriesData|slice:":3" %}
+    <div class="col-sm-12 col-md-12 col-lg-4">
+      <div class="card" data-aos="fade-down" data-aos-duration="1000">
+        <h5 class="card-header">
+          <img
+            class="test"
+            style="padding: 50px"
+            src="/media/{{ stories.SuccessStories_Upload_Image_1 }}"
+          />
+        </h5>
+        <div class="card-body">
+          <h1 class="success-title">{{ stories.SuccessStories_TitleName }}</h1>
+          <div class="card-text">
+            {{ stories.SuccessStories_Description|safe }}
+          </div>
+          {% if stories.SuccessStories_Link != '' %}
+          <div class="success-link">
+            <a href="{{ stories.SuccessStories_Link }}" target="_blank"
+              >Visit Website</a
+            >
+          </div>
+          {% endif %}
         </div>
-        {% endfor %}
-       
-<!-- 
-        <button class="aboutus-Button"> <a href="{% url 'Localisation_App:successstoryPage' %}">Read More</a></button> -->
-
+      </div>
     </div>
-    <div class="row">
-        {% for stories in SuccessStoriesData|slice:":3" %}
-        <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card" data-aos="fade-down" data-aos-duration="1000">
-                <h5 class="card-header">
-                    <img class="test" style="padding:50px" src="/media/{{ stories.SuccessStories_Upload_Image_1 }}" />
-                </h5>
-                <div class="card-body">
-                    <h1 class="success-title"> {{ stories.SuccessStories_TitleName }}</h1>
-                    <div class="card-text">
-                        {{ stories.SuccessStories_Description|safe }}
-                    </div>
-                    {% if stories.SuccessStories_Link != '' %}
-                    <div class="success-link">
-                        <a  href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a>   
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-            
-        </div>
-        {% endfor %}
-       
-        
-        <button class="aboutus-Button "> <a href="{% url 'Localisation_App:successstoryPage' %}">Read More</a></button>
+    {% endfor %}
 
-    </div>
-
-
-
-
-
-
-
+    <button class="aboutus-Button">
+      <a href="{% url 'Localisation_App:successstoryPage' %}">Read More</a>
+    </button>
+  </div>
 </div>
-
 
 <!--Mission start-->
 
-
 <div class="vision">
-    <h3 class="vision-title">{{ ArticleData.2.Article_HeadingName }}</h3>
-    <div class="vision-para">
-        {{ ArticleData.2.Article_Description|safe }}
-    </div>
-    {% comment %}
-    <p class="vision-para">
-        and System Integrators by offering Translation services
-    </p>
-    <p class="vision-para">and tools in regional languages.</p> {% endcomment %}
+  <h3 class="vision-title">{{ ArticleData.2.Article_HeadingName }}</h3>
+  <div class="vision-para">{{ ArticleData.2.Article_Description|safe }}</div>
+  {% comment %}
+  <p class="vision-para">
+    and System Integrators by offering Translation services
+  </p>
+  <p class="vision-para">and tools in regional languages.</p>
+  {% endcomment %}
 </div>
-
 
 <!--mission end-->
 
@@ -256,29 +270,32 @@
   </div>
 </div> -->
 
-
 <!-- Bhasni Section Ends -->
 
 <!-- Estimate Cost Section Start -->
 
 <div class="container-fluid p-3">
-    <div class="row">
+  <div class="row">
+    <div class="col-lg-6">
+      <img
+        src="/media/{{ ArticleData.1.Article_Image }}"
+        class="esitimate-cost-img"
+        alt="..."
+      />
+    </div>
 
-        <div class="col-lg-6">
-            <img src="/media/{{ ArticleData.1.Article_Image }}" class="esitimate-cost-img" alt="..." />
-        </div>
-
-        <div class="col-lg-6 estimate-cost-content">
-            <h1 class="estimate-cost-title">{{ ArticleData.1.Article_HeadingName }}</h1>
-            <!-- <div class="estimate-cost-money-img">
+    <div class="col-lg-6 estimate-cost-content">
+      <h1 class="estimate-cost-title">
+        {{ ArticleData.1.Article_HeadingName }}
+      </h1>
+      <!-- <div class="estimate-cost-money-img">
           <img src="{% static './Localisation_App/img/cost.png' %}" class="test" alt="..." />
         </div> -->
-            <div class="estimate-cost-button">
-                <a href="/Localisation_App/templates/Localisation_App/costestimation.html">Calculate</a>
-            </div>
-        </div>
-
+      <div class="estimate-cost-button">
+        <a href="{% url 'Localisation_App:contactus' %}">Calculate</a>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Esitmate Cost Sectio End -->
