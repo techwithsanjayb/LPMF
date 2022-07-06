@@ -103,8 +103,10 @@ class SuccessStories(models.Model):
 
     SuccessStories_category = models.ForeignKey(
         SuccessStories_Category, on_delete=models.CASCADE, null=True, blank=True)
+        
     SuccessStories_Cdac_Contribution = models.CharField(
         max_length=500, null=True, blank=True)
+
 
     class Meta:
         verbose_name_plural = "Success Stories"

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-3h!7#b#*w)xr0)r_3#^=7$fmaepm40dd%0$7k5&-i)h(wp%0cy
 DEBUG = True
 
 ALLOWED_HOSTS = []
-#SANJAYB
+# SANJAYB
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'localisation_db',
         'USER': 'root',
-        'PASSWORD': 'l0c@lm@r!@',
+        'PASSWORD': 'd@t@b@se',
         'HOST': '10.208.10.193',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
         'OPTIONS': {
