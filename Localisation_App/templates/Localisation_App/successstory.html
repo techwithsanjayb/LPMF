@@ -64,9 +64,9 @@
 
             {% for category in SuccessStories_CategoryData %}
            
-            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}">{{ category.SuccessStories_CategoryType }}</input></br>
+            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}" >{{ category.SuccessStories_CategoryType }}</input></br>
 
-            {% comment %} <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> {% endcomment %}
+            <!-- <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> -->
             {% endfor %}
           </ul>
           {% else %}
@@ -74,13 +74,13 @@
             {% for category in SuccessStories_CategoryData %}
             {% if category.SuccessStories_Cat_Status %}
             <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}"
-              checked="checked">{{ category.SuccessStories_CategoryType }}</input></br>
+              checked="checked" > {{ category.SuccessStories_CategoryType }}</input></br>
 
-            {% comment %} <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> {% endcomment %}
+            <!-- <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> -->
             {% else %}
-            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}">{{ category.SuccessStories_CategoryType }}</input></br>
+            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}">{{ category.SuccessStories_CategoryType }} </input></br>
 
-            {% comment %} <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> {% endcomment %}
+            <!-- <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> -->
             {% endif %}
             {% endfor %}
           </ul>
@@ -161,18 +161,14 @@
               </button> -->
             </div>
             <div class="success-story-card-title">{{ stories.SuccessStories_TitleName }}</div>
-            {% comment %} <div class="success-story-card-description">
-              {{ stories.SuccessStories_Description|safe|slice:":200" }}
-<<<<<<< HEAD
-            </div> {% endcomment %}
-=======
-            </div>
-            <hr class="success-line">
+            <!-- <div class="success-story-card-description">
+              {{ stories.SuccessStories_Description|safe|slice:":400" }}
+            </div> -->
+            <!-- <hr class="success-line"> -->
             <div class="success-story-cdac-card-title">CDAC Contribution</div>
-            <div class="success-story-card-description">
-              {{ stories.SuccessStories_Description|safe|slice:":200" }}
+            <div class="success-story-card-contribution">
+              {{ stories.SuccessStories_Cdac_Contribution }}
             </div>
->>>>>>> 42584c34e86ca5a46badf48b6e0a8a5d60d1ff6d
             <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a></div>
           </div>
         </div>
