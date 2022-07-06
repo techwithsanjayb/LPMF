@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'localisation_db',
         'USER': 'root',
-        'PASSWORD': 'l0c@lm@r!@',
+        'PASSWORD': 'd@t@b@se',
         'HOST': '10.208.10.193',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
         'OPTIONS': {
