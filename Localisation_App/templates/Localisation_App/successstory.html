@@ -91,7 +91,7 @@
           {% csrf_token %}
           <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
         </form>
-
+        <p>Records Fetched : {{ count }}</p>
 
       </div>
     </div>  
@@ -163,7 +163,16 @@
             <div class="success-story-card-title">{{ stories.SuccessStories_TitleName }}</div>
             {% comment %} <div class="success-story-card-description">
               {{ stories.SuccessStories_Description|safe|slice:":200" }}
+<<<<<<< HEAD
             </div> {% endcomment %}
+=======
+            </div>
+            <hr class="success-line">
+            <div class="success-story-cdac-card-title">CDAC Contribution</div>
+            <div class="success-story-card-description">
+              {{ stories.SuccessStories_Description|safe|slice:":200" }}
+            </div>
+>>>>>>> 42584c34e86ca5a46badf48b6e0a8a5d60d1ff6d
             <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a></div>
           </div>
         </div>
@@ -222,7 +231,7 @@
     
         {% elif Pagination_Type == 'Searched_Post' %}
         <div class="container">
-          <div class="row">
+          <div class="row" style="width: 500px;">
             <div class="col-md-12 offset-md-3">
               <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
               <nav aria-label="...">
@@ -268,7 +277,7 @@
       {% elif Pagination_Type == 'Category_Post' %}
      
         <div class="container">
-          <div class="row">
+          <div class="row" style="width: 500px;">
             <div class="col-md-12 offset-md-3">
               <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
               <nav aria-label="...">
