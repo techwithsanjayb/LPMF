@@ -79,10 +79,10 @@
             name="checkbox"
             value="{{ categories.pk }}"
             onclick=" "
-          />
-          <label class="tools-sidebar-item-text" for="vehicle1"
+          >{{ categories.Tools_CategoryType }}</input></br>
+          {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
             >{{ categories.Tools_CategoryType }}</label
-          ><br />
+          ><br /> {% endcomment %}
           {% endfor %}  
         </ul>
         {% else %}
@@ -96,10 +96,10 @@
         name="checkbox"
         value="{{ categories.pk }}"
         checked="checked"
-      />
-      <label class="tools-sidebar-item-text" for="vehicle1"
+      >{{ categories.Tools_CategoryType }}</input></br>
+      {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
         >{{ categories.Tools_CategoryType }}</label
-      ><br />
+      ><br /> {% endcomment %}
       {% else %}
       <input
       class="tools-sidebar-item"
@@ -108,10 +108,10 @@
       name="checkbox"
       value="{{ categories.pk }}"
       onclick=" "
-    />
-    <label class="tools-sidebar-item-text" for="vehicle1"
+    >{{ categories.Tools_CategoryType }}</input></br>
+    {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
       >{{ categories.Tools_CategoryType }}</label
-    ><br />
+    ><br /> {% endcomment %}
     {% endif %}
     {% endfor %}
   </ul>

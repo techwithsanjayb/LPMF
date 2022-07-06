@@ -35,7 +35,7 @@
         
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {% if satus_All_Checked == 'True' %}
+          {% comment %} {% if satus_All_Checked == 'True' %}
           <div class="success-list">
           <input class="sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked"
             checked="checked" />
@@ -48,7 +48,7 @@
 
           <label class="sidebar-item-text" for="vehicle1">All</label><br />
           </div>
-          {% endif %}
+          {% endif %} {% endcomment %}
           {% if satus_All_Checked == 'True' %}
         <ul>
           {% for categories in toolscategory %}
@@ -59,10 +59,10 @@
             name="checkbox"
             value="{{ categories.pk }}"
             onclick=" "
-          />
-          <label class="tools-sidebar-item-text" for="vehicle1"
+          >{{ categories.Tools_CategoryType }}</input></br>
+          {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
             >{{ categories.Tools_CategoryType }}</label
-          ><br />
+          ><br /> {% endcomment %}
           {% endfor %}  
         </ul>
         {% else %}
@@ -76,10 +76,10 @@
         name="checkbox"
         value="{{ categories.pk }}"
         checked="checked"
-      />
-      <label class="tools-sidebar-item-text" for="vehicle1"
+      >{{ categories.Tools_CategoryType }}</input></br>
+      {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
         >{{ categories.Tools_CategoryType }}</label
-      ><br />
+      ><br /> {% endcomment %}
       {% else %}
       <input
       class="tools-sidebar-item"
@@ -88,15 +88,19 @@
       name="checkbox"
       value="{{ categories.pk }}"
       onclick=" "
-    />
-    <label class="tools-sidebar-item-text" for="vehicle1"
+    >{{ categories.Tools_CategoryType }}</input></br>
+    {% comment %} <label class="tools-sidebar-item-text" for="vehicle1"
       >{{ categories.Tools_CategoryType }}</label
-    ><br />
+    ><br /> {% endcomment %}
     {% endif %}
     {% endfor %}
   </ul>
   {% endif %}
         <button class='btn btn-primary' type="submit" value="Fetch">Fetch</button>
+      </form>
+      <form action={% url 'Localisation_App:toolsReset' %} method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
       </form>
 
 

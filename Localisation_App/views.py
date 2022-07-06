@@ -1,9 +1,11 @@
 
-from .forms import TTSservice,RegisterForm
+from .forms import TTSservice,RegisterForm,UserLoginForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
 from multiprocessing import context
+from django.contrib.auth import login ,authenticate ,logout ,  update_session_auth_hash
+from django.contrib.auth.forms import UserChangeForm , AuthenticationForm , PasswordChangeForm , SetPasswordForm
 from django.shortcuts import render, redirect
 from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact,UserRegistration
 import random
@@ -76,7 +78,7 @@ def toolsPage(request):
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
     toolsCategory_data = Tools_Category.objects.all()
     count = ToolsData.objects.all().count()
-    page = Paginator(tools_Data, 7)
+    page = Paginator(tools_Data, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = tools_Data.count()
@@ -131,7 +133,7 @@ def tools(request):
                     ToolsData_CategoryType__Tools_CategoryType__contains=c)
             # print("all data",q)
             count = q.count()
-            page = Paginator(q, 7)
+            page = Paginator(q, 8)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -151,7 +153,7 @@ def tools(request):
             # return render(request,'Localisation_App/tools.html',context)
             return render(request, 'Localisation_App/tools.html', context)
         else:
-            page = Paginator(tools_Data, 7)
+            page = Paginator(tools_Data, 8)
             Tools_Category.objects.all().update(Tools_Cat_Status=False)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -181,7 +183,7 @@ def tools(request):
     print(q)
 
     if pagestatus == True:
-        page = Paginator(q, 7)
+        page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = q.count()
@@ -198,7 +200,7 @@ def tools(request):
         }
 
     else:
-        page = Paginator(tools_Data, 7)
+        page = Paginator(tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = tools_Data.count()
@@ -235,7 +237,7 @@ def toolsSearch(request, tools_title):
                 ToolsData_HeadingName__icontains=tools_title1)
             count = tools_Data.count()
             print("datatooldssds", count)
-            page = Paginator(tools_Data, 7)
+            page = Paginator(tools_Data, 8)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -251,7 +253,7 @@ def toolsSearch(request, tools_title):
                 'count': count
             }
         else:
-            page = Paginator(tools_Data, 7)
+            page = Paginator(tools_Data, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
             count = tools_Data.count()
@@ -271,7 +273,7 @@ def toolsSearch(request, tools_title):
     if tools_title != 'none':
         tools_Data1 = ToolsData.objects.filter(
             ToolsData_HeadingName__icontains=tools_title)
-        page = Paginator(tools_Data1, 7)
+        page = Paginator(tools_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = tools_Data1.count()
@@ -288,7 +290,7 @@ def toolsSearch(request, tools_title):
             'count': count
         }
     else:
-        page = Paginator(tools_Data, 7)
+        page = Paginator(tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = tools_Data.count()
@@ -317,7 +319,7 @@ def toolsReset(request):
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
     toolsCategory_data = Tools_Category.objects.all()
     count = ToolsData.objects.all().count()
-    page = Paginator(tools_Data, 7)
+    page = Paginator(tools_Data, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = tools_Data.count()
@@ -348,7 +350,7 @@ def resourcesPage(request):
     resources_Data = ResourceData.objects.all()
     Resources_Category.objects.all().update(Resources_Cat_Status=False)
     count = ResourceData.objects.all().count()
-    page = Paginator(resources_Data, 7)
+    page = Paginator(resources_Data, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = resources_Data.count()
@@ -403,7 +405,7 @@ def resources(request):
                     ResourceData_CategoryType__Resources_CategoryType__contains=c)
             # print("all data",q)
             count = q.count()
-            page = Paginator(q, 7)
+            page = Paginator(q, 8)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -423,7 +425,7 @@ def resources(request):
 
             return render(request, 'Localisation_App/resources.html', context)
         else:
-            page = Paginator(resources_Data, 7)
+            page = Paginator(resources_Data, 8)
             Resources_Category.objects.all().update(Resources_Cat_Status=False)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -453,7 +455,7 @@ def resources(request):
     print(q)
 
     if pagestatus == True:
-        page = Paginator(q, 7)
+        page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = q.count()
@@ -470,7 +472,7 @@ def resources(request):
         }
 
     else:
-        page = Paginator(resources_Data, 7)
+        page = Paginator(resources_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = resources_Data.count()
@@ -508,7 +510,7 @@ def resourceSearch(request, resource_title):
                 ResourceData_HeadingName__icontains=resource_title1)
             count = resource_Data.count()
             print("dataresourcesdssds", count)
-            page = Paginator(resource_Data, 7)
+            page = Paginator(resource_Data, 8)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -524,7 +526,7 @@ def resourceSearch(request, resource_title):
                 'count': count
             }
         else:
-            page = Paginator(resources_Data, 7)
+            page = Paginator(resources_Data, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
             count = resources_Data.count()
@@ -543,7 +545,7 @@ def resourceSearch(request, resource_title):
     if resource_title != 'none':
         resource_Data1 = ResourceData.objects.filter(
             ResourceData_HeadingName__icontains=resource_title)
-        page = Paginator(resource_Data1, 7)
+        page = Paginator(resource_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = resource_Data1.count()
@@ -560,7 +562,7 @@ def resourceSearch(request, resource_title):
             'count': count
         }
     else:
-        page = Paginator(resources_Data, 7)
+        page = Paginator(resources_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = resources_Data.count()
@@ -586,7 +588,7 @@ def resourcesReset(request):
     Resources_Category.objects.all().update(Resources_Cat_Status=False)
     resoucesCategory_data = Resources_Category.objects.all()
     count = ResourceData.objects.all().count()
-    page = Paginator(resources_Data, 7)
+    page = Paginator(resources_Data, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = resources_Data.count()
@@ -616,7 +618,7 @@ def successstoryPage(request):
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
     successStories_CategoryData = SuccessStories_Category.objects.all()
     successStoriesData = SuccessStories.objects.all()
-    page = Paginator(successStoriesData, 7)
+    page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = successStoriesData.count()
@@ -675,7 +677,7 @@ def successstory(request):
             # print("all data",q)
             count = q.count()
             print("hey", q)
-            page = Paginator(q, 7)
+            page = Paginator(q, 8)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -696,7 +698,7 @@ def successstory(request):
             # return render(request,'Localisation_App/successstory.html',context)
 
         else:
-            page = Paginator(successStoriesData, 7)
+            page = Paginator(successStoriesData, 8)
             SuccessStories_Category.objects.all().update(SuccessStories_Cat_Status=False)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -726,7 +728,7 @@ def successstory(request):
     print(q)
 
     if pagestatus == True:
-        page = Paginator(q, 7)
+        page = Paginator(q, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -744,7 +746,7 @@ def successstory(request):
         }
 
     else:
-        page = Paginator(successStoriesData, 7)
+        page = Paginator(successStoriesData, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -783,7 +785,7 @@ def successstorySearch(request, story_title):
                 SuccessStories_TitleName__icontains=strory_title1)
             count = successStoriesData.count()
             print("dataStoriesdssds", count)
-            page = Paginator(successStoriesData, 7)
+            page = Paginator(successStoriesData, 8)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -799,7 +801,7 @@ def successstorySearch(request, story_title):
                 'count': count
             }
         else:
-            page = Paginator(successStoriesData, 7)
+            page = Paginator(successStoriesData, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
             count = successStoriesData.count()
@@ -818,7 +820,7 @@ def successstorySearch(request, story_title):
     if story_title != 'none':
         Stories_Data1 = SuccessStories.objects.filter(
             SuccessStories_TitleName__icontains=story_title)
-        page = Paginator(Stories_Data1, 7)
+        page = Paginator(Stories_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = Stories_Data1.count()
@@ -835,7 +837,7 @@ def successstorySearch(request, story_title):
             'count': count
         }
     else:
-        page = Paginator(successStoriesData, 7)
+        page = Paginator(successStoriesData, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
         count = successStoriesData.count()
@@ -860,7 +862,7 @@ def successstoryReset(request):
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
     successStories_CategoryData = SuccessStories_Category.objects.all()
     successStoriesData = SuccessStories.objects.all()
-    page = Paginator(successStoriesData, 7)
+    page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = successStoriesData.count()
@@ -1244,26 +1246,64 @@ def submit(request, img):
 
 def Register_user(request):
     form  = RegisterForm()
-    context = {'form': form}
+    context = {
+        'form': form
+        }
     if request.method == 'POST':
         form  = RegisterForm(request.POST)
         if form.is_valid():
-            # form.save()
+            form.save()
             print("Form Data")
-            # UserRegistration.objects.create(userregistration_first_name = form.cleaned_data.get('first_name') ,userregistration_middle_name = form.cleaned_data.get('middle_name') ,userregistration_last_name = form.cleaned_data.get('last_name'),userregistration_username = form.cleaned_data.get('username') ,userregistration_email_field = form.cleaned_data.get('email'),userregistration_phone_number = form.cleaned_data.get('phone_number') ,userregistration_address = form.cleaned_data.get('address'),userregistration_password = form.cleaned_data.get('password1'),userregistration_confirm_password = form.cleaned_data.get('password2'),userregistration_active_status = form.cleaned_data.get('check'),registration_User_Type = form.cleaned_data.get('User_Type'))
+            UserRegistration.objects.create(userregistration_first_name = form.cleaned_data.get('first_name') ,userregistration_middle_name = form.cleaned_data.get('middle_name') ,userregistration_last_name = form.cleaned_data.get('last_name'),userregistration_username = form.cleaned_data.get('username') ,userregistration_email_field = form.cleaned_data.get('email'),userregistration_phone_number = form.cleaned_data.get('phone_number') ,userregistration_address = form.cleaned_data.get('address'),userregistration_password = form.cleaned_data.get('password1'),userregistration_confirm_password = form.cleaned_data.get('password2'),userregistration_active_status = form.cleaned_data.get('check'),registration_User_Type = form.cleaned_data.get('User_Type'))
             messages.success(request, 'Account was created for ' + form.cleaned_data.get('first_name'))
-            # return redirect('Localisation_App:home')
+            return redirect('/')
         else:
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
-            context = {'form': form}
+            context = {
+                'form': form
+                }
             return render(request, 'Localisation_App/register.html', context) 
     return render(request, 'Localisation_App/register.html', context)
     
     
 def login_user(request):
-    return render(request, 'Localisation_App/register.html', context)
-    
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            print( "if form is valid")
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            else:
+                return redirect('')
+            
+        else:
+            messages.error(request, 'Error Processing Your Request')
+            context={
+                'form' : UserLoginForm()
+            }
+            
+            print( "else")
+            return render(request, 'Localisation_App/login.html', context)
+    else:
+        context={
+                'form' : UserLoginForm()
+            }
+        return render(request, 'Localisation_App/login.html', context)
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')
+
+
+
+
+
+
 def goTranslate(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()

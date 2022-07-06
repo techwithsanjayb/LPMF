@@ -162,6 +162,10 @@ STATIC_DIR = BASE_DIR / 'static'
 STATIC_ROOT = BASE_DIR / 'static'
 #STATICFILES_DIRS = BASE_DIR / 'static'
 
+
+LOGIN_REDIRECT_URL = 'Localisation_App:home'
+LOGIN_URL = 'Localisation_App:login'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

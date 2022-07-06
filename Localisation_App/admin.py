@@ -189,7 +189,7 @@ class AdminContact(admin.ModelAdmin):
 
 @admin.register(UserRegistration)
 class AdminUserRegistration(admin.ModelAdmin):
-    list_display = ('userregistration_user_id', 'userregistration_first_name')
+    list_display = ('userregistration_user_id',)
 
 
 # SANJAY BHARGAVA ADDED BELOW LINES

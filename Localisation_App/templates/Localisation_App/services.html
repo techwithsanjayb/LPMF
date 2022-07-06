@@ -5,71 +5,52 @@
 {% block services %}
 
 <!--Content starts here-->
-<div class="container-fluid accordion" id="accordionExample">
+<div class="container-fluid accordion" id="accordionExample" >
   <div class="text-center p-3">
     <input type="text" class="text-center rounded-5 sevices-heading" value="Services" />
   </div>
-  <p class="text-center fs-5">
+  {% comment %} <p class="text-center fs-5">
     C-DAC GIST has vast NLP resources and is pioneer in Indian Language
     computing. These are being now offered as web-service.
-  </p>
+  </p> {% endcomment %}
 
   
-  <div class="row">
+  <div class="row back-image" style="background-image: url('{% static './Localisation_App/img/Vector-4.png'%}')">
+    <div class="col-lg-7 fs-4 px-4">
+      C-DAC GIST has vast NLP resources and is pioneer in Indian Language
+      computing. These are being now offered as web-service.
+    </div>
     {% for service in Servicesdata %}
-    <div class="col-4 ">
+    <div class="col-lg-6 " >
       <div class="row p-5 d-flex justify-content-center">
-        <div class="card rounded-5 service-card1">
-          <div class="p-4">
+        <div class="card rounded-5 service-card1" style="padding:0">
+          <div class="card-body">
             <div class="text-center">
               <h5 class="text-muted pb-3 pt-2">
                 <strong>{{ service.Services_Name }}caro_{{ service.pk }}</strong>
               </h5>
             </div>
-            <img class="card-img pb-2" src="{% static './Localisation_App/img/services-page.jpg' %}" width="auto"
+            <div class="row">
+              <div class="col-3 first-section">
+              <img class="card-img pb-2" src="{% static './Localisation_App/img/services-page.jpg' %}" width="auto"
               height="auto" />
-            <div class="service-text">
-              <span>{{ service.Services_Description|safe|slice:":100" }}</span>
-              <span
-              id="collapse{{forloop.counter}}"
-              class="accordion-collapse collapse"
-              aria-labelledby="heading{{forloop.counter}}"
-              data-bs-parent="#accordionExample">
-              {{ service.Services_Description|safe|slice:"100:" }}
-              <a
-                  class="read-less-btn{{forloop.counter}}"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapse{{forloop.counter}}"
-                  onclick="disableReadMore('read-more-btn{{forloop.counter}}')"
-                >
-                  read less...
-                </a>
-            </span>
+              </div>
+              <div class="col-9 second-section">
+              <span>{{ service.Services_Description}}</span>
+              </div>
             </div>
-            <a 
-            class="read-more-btn{{forloop.counter}}"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse{{forloop.counter}}"
-              onclick="disableReadMore('read-more-btn{{forloop.counter}}')"
-              style="display:block">
-              read more ...
-            </a>
-            <!-- <script src="{% static 'Localisation_App/js/main1.js' %}"></script> -->
-          </div>
-        </div>
-        <div class="text-center pt-4">
-          <button  class="rounded-4 services-button">
-            <a href="{% url 'Localisation_App:ServicesDemoPage' %}">Click</a>
+                        </div>
+          <button class="btn btn-primary services-button">
+            <a href="{% url 'Localisation_App:ServicesDemoPage' %}" class="text-white text-decoration-none fs-4">Click Here</a>
           </button>
         </div>
-       
       </div>
     </div>
     {% if forloop.last %}
    
   </div>
   {% else %}
-  {% if forloop.counter|divisibleby:"3" %}
+  {% if forloop.counter|divisibleby:"2" %}
   <div></div>
   {% endif %}
   {% endif %}
