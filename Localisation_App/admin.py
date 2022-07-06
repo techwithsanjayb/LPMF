@@ -13,7 +13,7 @@ class AdminSuccessStories_Category(admin.ModelAdmin):
     search_fields = ('SuccessStories_CategoryType',
                      'SuccessStories_Cat_Status')
     ordering = ('SuccessStories_CategoryType',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(SuccessStories)
@@ -39,7 +39,7 @@ class AdminArticle(admin.ModelAdmin):
     search_fields = ('Article_HeadingName',
                      'Article_Description', 'Article_MenuId')
     ordering = ('Article_HeadingName',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(ResourceData)
@@ -52,7 +52,7 @@ class AdminResourceData(admin.ModelAdmin):
     search_fields = ('ResourceData_HeadingName',
                      'ResourceData_Description', 'ResourceData_CategoryType')
     ordering = ('ResourceData_HeadingName',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(ToolsData)
@@ -65,7 +65,7 @@ class AdminToolsData(admin.ModelAdmin):
     ordering = ('ToolsData_HeadingName',)
 
 
-list_per_page: int = 10
+list_per_page: int = 20
 
 
 @admin.register(FAQs)
@@ -76,7 +76,7 @@ class AdminFAQs(admin.ModelAdmin):
     search_fields = ('FAQs_Question', 'FAQs_Answer')
     ordering = ('FAQs_Question',)
 
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(Footer_Links_Info)
@@ -89,7 +89,7 @@ class AdminFooter_Links_Info(admin.ModelAdmin):
     search_fields = ('Footer_Links_Info_SubTitle',
                      'Footer_Links_Info_MainTitle')
     ordering = ('Footer_Links_Info_SubTitle',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(Services)
@@ -99,7 +99,7 @@ class AdminServices(admin.ModelAdmin):
     list_filter = ('Services_Name',)
     search_fields = ('Services_Name', 'Services_Description')
     ordering = ('Services_Name',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(TopMenuItems)
@@ -109,7 +109,7 @@ class AdminTopMenuItems(admin.ModelAdmin):
     list_filter = ('TopMenuItems_Name',)
     search_fields = ('TopMenuItems_Name',)
     ordering = ('id',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(Resources_Category)
@@ -120,7 +120,7 @@ class AdminResources_Category(admin.ModelAdmin):
     list_filter = ('Resources_CategoryType', 'Resources_Cat_Status')
     search_fields = ('Resources_CategoryType', 'Resources_Cat_Status')
     ordering = ('Resources_CategoryType',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(Tools_Category)
@@ -130,7 +130,7 @@ class AdminTools_Category(admin.ModelAdmin):
     list_filter = ('Tools_CategoryType', 'Tools_Cat_Status')
     search_fields = ('Tools_CategoryType', 'Tools_Cat_Status')
     ordering = ('Tools_CategoryType',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(FAQs_Category)
@@ -140,7 +140,7 @@ class AdminFAQs_Category(admin.ModelAdmin):
     list_filter = ('FAQs_CategoryType',)
     search_fields = ('FAQs_CategoryType',)
     ordering = ('FAQs_CategoryType',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(NewsAndEvents)
@@ -152,7 +152,7 @@ class AdminNewsAndEvents(admin.ModelAdmin):
     list_filter = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link')
     search_fields = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link')
     ordering = ('NewsAndEvents_HeadingName',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(Footer_Links)
@@ -165,7 +165,7 @@ class AdminFooter_Links(admin.ModelAdmin):
     search_fields = ('Footer_Links_Title', 'Footer_Links_Content')
 
     ordering = ('Footer_Links_Title',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(Tools_Searched_Title)
@@ -175,7 +175,7 @@ class AdminTools_Searched_Title(admin.ModelAdmin):
     list_filter = ('Tools_Searched_Title_Name',)
     search_fields = ('Tools_Searched_Title_Name',)
     ordering = ('Tools_Searched_Title_Name',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(Contact)
@@ -185,7 +185,7 @@ class AdminContact(admin.ModelAdmin):
     list_filter = ('name', 'email', 'option')
     search_fields = ('name', 'email', 'option')
     ordering = ('name',)
-    list_per_page: int = 10
+    list_per_page: int = 20
 
 
 @admin.register(UserRegistration)
