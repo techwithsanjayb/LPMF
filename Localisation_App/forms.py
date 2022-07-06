@@ -10,7 +10,7 @@ from django import forms
     MODEL NAME       : Registration And login
 '''
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm , AuthenticationForm , PasswordChangeForm , SetPasswordForm,UsernameField
 from django.core.validators import RegexValidator
 
 
@@ -163,3 +163,28 @@ class RegisterForm(UserCreationForm):
         fields = [
         'first_name', 'middle_name', 'last_name', 'email', 'username', 'phone_number', 'password1', 'password2', 'check',
         ]
+
+
+
+class UserLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+
+    username = UsernameField(
+        required=True,
+        widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Username'
+            }
+    ))
+    
+    password = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Password',
+            
+        }
+     ))

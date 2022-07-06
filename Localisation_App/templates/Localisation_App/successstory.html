@@ -64,9 +64,9 @@
 
             {% for category in SuccessStories_CategoryData %}
            
-            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}" />
+            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}">{{ category.SuccessStories_CategoryType }}</input></br>
 
-            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br />
+            {% comment %} <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> {% endcomment %}
             {% endfor %}
           </ul>
           {% else %}
@@ -74,13 +74,13 @@
             {% for category in SuccessStories_CategoryData %}
             {% if category.SuccessStories_Cat_Status %}
             <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}"
-              checked="checked" />
+              checked="checked">{{ category.SuccessStories_CategoryType }}</input></br>
 
-            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br />
+            {% comment %} <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> {% endcomment %}
             {% else %}
-            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}" />
+            <input class="sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ category.pk }}">{{ category.SuccessStories_CategoryType }}</input></br>
 
-            <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br />
+            {% comment %} <label class="sidebar-item-text" for="vehicle1">{{ category.SuccessStories_CategoryType }}</label><br /> {% endcomment %}
             {% endif %}
             {% endfor %}
           </ul>
@@ -161,9 +161,9 @@
               </button> -->
             </div>
             <div class="success-story-card-title">{{ stories.SuccessStories_TitleName }}</div>
-            <div class="success-story-card-description">
+            {% comment %} <div class="success-story-card-description">
               {{ stories.SuccessStories_Description|safe|slice:":200" }}
-            </div>
+            </div> {% endcomment %}
             <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a></div>
           </div>
         </div>
