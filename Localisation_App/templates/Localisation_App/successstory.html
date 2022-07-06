@@ -164,7 +164,7 @@
             <div class="success-story-card-description">
               {{ stories.SuccessStories_Description|safe|slice:":200" }}
             </div>
-            <hr style="margin-left: 170px;">
+            <hr class="success-line">
             <div class="success-story-cdac-card-title">CDAC Contribution</div>
             <div class="success-story-card-description">
               {{ stories.SuccessStories_Description|safe|slice:":200" }}
@@ -227,7 +227,7 @@
     
         {% elif Pagination_Type == 'Searched_Post' %}
         <div class="container">
-          <div class="row">
+          <div class="row" style="width: 500px;">
             <div class="col-md-12 offset-md-3">
               <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
               <nav aria-label="...">
@@ -273,7 +273,7 @@
       {% elif Pagination_Type == 'Category_Post' %}
      
         <div class="container">
-          <div class="row">
+          <div class="row" style="width: 500px;">
             <div class="col-md-12 offset-md-3">
               <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
               <nav aria-label="...">
