@@ -6,7 +6,7 @@ from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceDa
 @admin.register(SuccessStories_Category)
 class AdminSuccessStories_Category(admin.ModelAdmin):
     list_display = ('SuccessStories_CategoryType',
-                    'SuccessStories_Cat_Status',)
+                    'SuccessStories_Cat_Status')
     list_display_links = ('SuccessStories_CategoryType',
                           'SuccessStories_Cat_Status')
     list_filter = ('SuccessStories_CategoryType', 'SuccessStories_Cat_Status')
@@ -19,14 +19,15 @@ class AdminSuccessStories_Category(admin.ModelAdmin):
 @admin.register(SuccessStories)
 class AdminStories(admin.ModelAdmin):
     list_display = ('SuccessStories_TitleName',
-                    'SuccessStories_PublishedStatus', 'SuccessStories_category')
+                    'SuccessStories_PublishedStatus', 'SuccessStories_category', 'SuccessStories_Link')
     list_display_links = ('SuccessStories_TitleName',
-                          'SuccessStories_PublishedStatus', 'SuccessStories_category')
-    list_filter = ('SuccessStories_PublishedStatus', 'SuccessStories_category')
+                          'SuccessStories_PublishedStatus', 'SuccessStories_category', 'SuccessStories_Link')
+    list_filter = ('SuccessStories_PublishedStatus',
+                   'SuccessStories_category', 'SuccessStories_Link')
     search_fields = ('SuccessStories_TitleName',
-                     'SuccessStories_Description', 'SuccessStories_category')
+                     'SuccessStories_Description', 'SuccessStories_category', 'SuccessStories_Link')
     ordering = ('SuccessStories_TitleName',)
-    list_per_page: int = 10
+    list_per_page: int = 20
     save_on_top = True
 
 
