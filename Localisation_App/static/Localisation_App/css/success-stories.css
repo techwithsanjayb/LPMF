@@ -87,24 +87,27 @@ body {
 }
 
 .success-story-card-title {
+  background-color: #ecb471;
+  padding:0px 20px 0px 20px;
+  border-radius:10px;
   margin-top: 20px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
   font-family: "Inter", sans-serif;
   color: #333333;
-  text-align: center;
+  text-align: left;
 }
 
 .success-story-cdac-card-title {
-  height: auto;
+  /* height: auto;
   width: 260px;
   background-color: #f9db90;
-  border-radius: 30px;
+  border-radius: 30px; */
   font-size: 25px;
   font-weight: 600;
   padding: 4px;
   text-align: center;
-  margin-left: 200px;
+  /* margin-left: 200px; */
 }
 
 .success-story-card-description {
@@ -173,15 +176,15 @@ input[type="checkbox"] {
 } */
 @media only screen and (max-device-width: 1640px) {
   .success-story-cdac-card-title {
-    height: auto;
-    width: 260px;
+    /* height: auto;
+    width: 150px;
     background-color: #f9db90;
-    border-radius: 30px;
-    font-size: 25px;
+    border-radius: 10px; */
+    font-size: 15px;
     font-weight: 600;
     padding: 4px;
-    text-align: center;
-    margin-left: 120px;
+    text-align: left;
+    /* margin-left: 120px; */
   }
   .success-story-card-description {
     font-size: 18px;
@@ -202,8 +205,8 @@ input[type="checkbox"] {
     font-size: 25px;
     font-weight: 600;
     padding: 4px;
-    text-align: center;
-    margin-left: 200px;
+    /* text-align: center; */
+    /* margin-left: 200px; */
   }
 
   .success-story-card-description {
@@ -227,7 +230,7 @@ input[type="checkbox"] {
     font-weight: 600;
     padding: 4px;
     text-align: center;
-    margin-left: 200px;
+    /* margin-left: 200px; */
   }
 
   .success-story-card-description {

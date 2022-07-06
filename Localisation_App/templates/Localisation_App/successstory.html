@@ -165,11 +165,11 @@
               {{ stories.SuccessStories_Description|safe|slice:":400" }}
             </div> -->
             <!-- <hr class="success-line"> -->
-            <div class="success-story-cdac-card-title">CDAC Contribution</div>
+            <!-- <div class="success-story-cdac-card-title">CDAC Contribution</div> -->
             <div class="success-story-card-contribution">
               {{ stories.SuccessStories_Cdac_Contribution }}
             </div>
-            <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a></div>
+            <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website <i class="fa fa-link" aria-hidden="true"></i></a></div>
           </div>
         </div>
         {% if forloop.last %}

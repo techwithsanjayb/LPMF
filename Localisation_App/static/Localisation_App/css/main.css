@@ -1,5 +1,95 @@
 /* For Default Screen Size */
-
+/* CARDS */
+.navbar-nav>.active>a {
+    color: #ED875C;
+}
+/* .cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    margin: 20px;
+    padding: 20px;
+    width: 450px;
+    min-height: 200px;
+    display: grid;
+    grid-template-rows: 20px 50px 1fr 50px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+  }
+  
+  .card:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+  }
+  
+  .card__link,
+  .card__exit,
+  .card__icon {
+    position: relative;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .card__link::after {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    content: "";
+    width: 0%;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.5s;
+  }
+  
+  .card__link:hover::after {
+    width: 100%;
+  }
+  
+  .card__exit {
+    grid-row: 1/2;
+    justify-self: end;
+  }
+  
+  .card__icon {
+    grid-row: 2/3;
+    font-size: 30px;
+  }
+  
+  .card__title {
+    grid-row: 3/4;
+    font-weight: 400;
+    color: #ffffff;
+  }
+  
+  .card__apply {
+    grid-row: 4/5;
+    align-self: center;
+  } */
+  
+  /* CARD BACKGROUNDS */
+/*   
+  .card-1 {
+    background: radial-gradient(#1fe4f5, #3fbafe);
+  }
+  
+  .card-2 {
+    background: radial-gradient(#fbc1cc, #fa99b2);
+  }
+  
+  .card-3 {
+    background: radial-gradient(#76b2fe, #b69efe);
+  }
+  
+  .card-4 {
+    background: radial-gradient(#60efbc, #58d5c9);
+  }
+  
+  .card-5 {
+    background: radial-gradient(#f588d8, #c0a3e5);
+  } */
 /* sticky Button */
 /* 
 .sticky-button {
@@ -17,18 +107,18 @@
 } */
 
 .sticky-button {
-    width: 80px;
+    width: 60px;
     height: 130px;
-    background-color: #669999;
+    background-color: darksalmon;
     position: relative;
     position: fixed;
-    top: 20%;
+    top: 30%;
     right: 0;
     -webkit-transform: translateY(50%);
     -ms-transform: translateY(50%);
     transform: translateY(10%);
 
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 0px;
 }
 
 .sticky-button:hover{
@@ -114,7 +204,7 @@
 }
 
 .items:hover {
-    color: #219EBC;
+    color: #ED875C;
 }
 
 
@@ -369,10 +459,11 @@
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 20px;
+    margin-left: 800px;
     font-weight: 600;
     font-size: 20px;
     margin-top: 20px;
+    margin-bottom: 100px;
 }
 
 .aboutus-Button2 {
@@ -381,7 +472,7 @@
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 570px;
+    /* margin-left: 570px; */
     font-weight: 600;
     font-size: 20px;
     margin-top: 20px;
@@ -517,7 +608,7 @@
 
 .vision {
     width: 100%;
-    height: 330px;
+    height: 258px;
     background-color: #023047;
     background-image: url("../img/vision-background.png");
     background-size: cover;
@@ -545,7 +636,7 @@
     line-height: 42px;
     letter-spacing: 0.03em;
     color: #FFFFFF;
-    margin: 0px 460px 0px 460px;
+    margin: 0px 300px 0px 300px;
 }
 
 
@@ -564,6 +655,7 @@
 }
 
 .card {
+    height: 800px;
     margin-top: 40px;
     border: none;
     box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%)
@@ -586,17 +678,17 @@
 }
 
 .success-link {
-    margin-left: 130px;
-    height: 40px;
+    margin-left: 10px;
+    /* height: 40px;
     width: 200px;
-    background-color: #ED875C;
+    background-color: #ED875C; */
     border-radius: 4px;
     text-align: center;
     text-decoration: none;
     font-size: 22px;
     font-weight: 600;
-    color: rgb(255, 255, 255);
-    box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+    color:black;
+    /* box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1); */
     border: none;
 
 }
@@ -605,7 +697,7 @@
     text-decoration: none;
     font-size: 22px;
     font-weight: 600;
-    color: rgb(255, 255, 255);
+    color: black;
 }
 
 .success-btn {
@@ -894,14 +986,15 @@
     .aboutus-Button {
         width: 140px;
         height: 49px;
-        left: 768px;
-        top: 702px;
+        /* left: 768px;
+        top: 702px; */
         background: #ED875C;
         border-radius: 8px;
         border: none;
         font-weight: 600;
         font-size: 20px;
-        color: white;
+        color: white; 
+        margin-bottom: 10px;
     }
 
     .aboutus-Button2 {
@@ -910,7 +1003,7 @@
         background: #ED875C;
         border-radius: 8px;
         border: none;
-        margin-left: 570px;
+        margin-right: 1000px;
         font-weight: 600;
         font-size: 20px;
         margin-top: 20px;
@@ -1122,9 +1215,10 @@
     }
 
     .card {
+        height:700px;
         margin-top: 40px;
         border: none;
-        height: auto;
+        /* height: auto; */
         box-shadow: 2px 2px 5px -1px rgba(142, 202, 230, 100%)
     }
 
