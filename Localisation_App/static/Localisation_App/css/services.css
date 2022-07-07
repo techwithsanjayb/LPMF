@@ -1,10 +1,5 @@
 /* Services Section */
 
-.text{
-    color: blue;
-    background-color: aqua;
-}
-
 .sevices-heading{
     background-color: #023047;
     color:white;
@@ -17,72 +12,22 @@
 }
 
 .service-card1{
-    background-color:#f6d8b3 !important;
-    width:30rem                !important;
+    background-color:#dff1f1 !important;
+    width:40rem                !important;
     min-height:20rem               !important;
     height: auto                !important;
-    /* background-image: url('../img/services-page.jpg'); */
 }
 
 .service-card1:hover{
     transform: scale(1.05);
 }
 
-.service-card4{
-    background-color:#f7dbcf  !important;
-    width:30rem                !important;
-    min-height:20rem               !important;
-}
-.service-card2:hover{
-    transform: scale(1.05);
-}
-
-.service-card3{
-    background-color: #a5b6e1 !important;
-    width:30rem                !important;
-    min-height:20rem               !important;
-}
-
-.service-card3:hover{
-    transform: scale(1.05);
-}
-
-.service-card4{
-    background-color: #b9afd1 !important;
-    width:30rem                !important;
-    min-height:20rem               !important;
-    height: auto               !important;
-}
-
-.service-card4:hover{
-    transform: scale(1.05);
-}
-
-.service-card5{
-    background-color: #96c1a7 !important;
-    width:30rem                !important;
-    min-height:20rem               !important;
-}
-
-.service-card5:hover{
-    transform: scale(1.05);
-}
-
-.service-card6{ 
-    background-color: #eac9d7 !important;
-    width:30rem                !important;
-    min-height:20rem               !important;
-}
-
-.service-card6:hover{
-    transform: scale(1.05);
-}
 .services-button{
-    background-color: #023047;
-    color:white;
-    width:100px; 
-    height:50px;  
-    letter-spacing: 1px;
+    width:100%;
+    height:60px;
+    display: block;
+    border-radius:0% 0% 30px 30px;
+    background-color:#077fa9;
     border:none;
 }
 .services-button a{
@@ -90,88 +35,23 @@
     color:white;
 }
 .services-button:hover{
-    transform: scale(1.05);
     background-color:#054f74;
     color: white;
 }
 
-hr{
-    width:50%;
-}
+@media screen and (max-width: 350px) {
+    .first-section {
+      width: 100%;
+    }
+  
+    .second-section {
+      width: 100%;
+    }
+  }
 
-.service-text{
-    font-size:16px;
-    font-weight: 500;
-    text-align: justify;
-}
-
-.read-less-btn1 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047; 
-}
-
-.read-less-btn2 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047; 
-}
-
-.read-less-btn3 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047; 
-}
-
-.read-less-btn4 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047; 
-}
-
-.read-less-btn5 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047; 
-}
-
-.read-more-btn1 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047;
-}
-
-.read-more-btn2 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047;
-}
-
-.read-more-btn3 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047;
-}
-
-.read-more-btn4 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047;
-}
-
-.read-more-btn5 {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 600;
-    color: #023047;
-}
+  .back-image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
+  }
 /* end Services Section */
