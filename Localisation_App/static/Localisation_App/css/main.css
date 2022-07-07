@@ -1,3 +1,8 @@
+/* *{
+       box-sizing: border-box;
+    background: rgb(0 100 0 /0.1) !important; 
+} */
+
 /* For Default Screen Size */
 /* CARDS */
 .navbar-nav>.active>a {
@@ -109,7 +114,7 @@
 .sticky-button {
     width: 60px;
     height: 130px;
-    background-color: darksalmon;
+    background-color: #3d55aa;
     position: relative;
     position: fixed;
     top: 30%;
@@ -120,7 +125,9 @@
 
     padding: 20px 20px 20px 0px;
 }
-
+.sticky-button a{
+    font-weight: 600;
+}
 .sticky-button:hover{
     animation: square-to-circle 2.5s .5s infinite cubic-bezier(1, .015, .295, 1.225) alternate-reverse;
 }
@@ -395,7 +402,7 @@
 .testting {
     background: url('../img/AboutUs3.png');
     background-size: cover;
-    /* margin-bottom: 20px; */
+    margin-bottom: -15px;
 }
 
 .aboutUs {
@@ -459,11 +466,11 @@
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 800px;
+    margin-left: 700px;
     font-weight: 600;
     font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 100px;
+    margin-top: -5px;
+    margin-bottom: 20px;
 }
 
 .aboutus-Button2 {
@@ -472,7 +479,7 @@
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    /* margin-left: 570px; */
+    margin-left: 1170px;
     font-weight: 600;
     font-size: 20px;
     margin-top: 20px;
@@ -490,10 +497,11 @@
 
 .services-title {
     font-size: 35px;
+    font-weight: 700;
     color: #EC9022;
     margin-left: 550px;
     margin-top: 50px;
-    font-weight: 600;
+    /* font-weight: 600; */
     margin-bottom: 50px;
 }
 
@@ -617,12 +625,12 @@
 
 .vision-title {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
     font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
+    font-size: 35px;
+    font-weight: 700;
     line-height: 100px;
-    letter-spacing: -0.015em;
+    /* letter-spacing: -0.015em; */
     color: #F5AE59;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -655,7 +663,7 @@
 }
 
 .card {
-    height: 800px;
+    height: 500px;
     margin-top: 40px;
     border: none;
     box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%)
@@ -678,6 +686,7 @@
 }
 
 .success-link {
+    margin-top: 10px;
     margin-left: 10px;
     /* height: 40px;
     width: 200px;
@@ -749,11 +758,11 @@
 /* Success Stories Section */
 
 .success-stories {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-left: 150px;
     padding-right: 150px;
     background: url("../../../static/Localisation_App/img/Capa3.png");
-    background-size: cover;
+    background-size:cover;
     background-repeat: no-repeat;
 }
 
@@ -1022,10 +1031,11 @@
 
     .services-title {
         font-size: 35px;
+        font-weight: 700;
         color: #EC9022;
         margin-left: 520px;
         margin-top: 50px;
-        font-weight: 600;
+        /* font-weight: 600; */
         margin-bottom: 50px;
     }
 

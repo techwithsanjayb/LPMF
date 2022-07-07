@@ -8,7 +8,22 @@
 /* .main-container{
   min-height: 60vh;
 } */
-
+.main-container{
+  min-height: 60vh;
+  background-image: url('../img/linksbackgound.png');
+  background-size: cover;
+}
+.sitemap-heading{
+  background-color: #023047;
+  color:white;
+  width: auto;
+  height: 50px;
+  font-family: 'Heebo', sans-serif;;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding:0px 10px 0px 10px;
+}
 .sitemap-main-title {
   color: #000000;
   letter-spacing: -0.005em;

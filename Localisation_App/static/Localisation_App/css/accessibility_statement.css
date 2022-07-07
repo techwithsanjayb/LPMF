@@ -5,6 +5,25 @@
   background-repeat: no-repeat;
   height: 2100px;
 } */
+.access-content{
+  background-color: #F2F2F2;
+  margin-top: 9px;
+  padding: 10px;
+  height:400px;
+  font-size: 20px;
+}
+.access-heading{
+  background-color: #023047;
+  color:white;
+  width: auto;
+  height: 50px;
+  font-family: 'Heebo', sans-serif;;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding:0px 10px 0px 10px;
+}
+
 .main-container{
   min-height: 60vh;
 }

@@ -5,7 +5,7 @@
 {% block services %}
 
 <!--Content starts here-->
-<div class="container-fluid accordion" id="accordionExample" >
+<div class="container-fluid">
   <div class="text-center p-3">
     <input type="text" class="text-center rounded-5 sevices-heading" value="Services" />
   </div>
@@ -51,7 +51,7 @@
   </div>
   {% else %}
   {% if forloop.counter|divisibleby:"2" %}
-  <div></div>
+ 
   {% endif %}
   {% endif %}
   {% endfor %}
@@ -63,9 +63,7 @@
 
 
 
-
-
-
+</div>
 
 
 
@@ -78,7 +76,7 @@
 {% comment %} {% extends 'Localisation_App/base.html' %} {% load static %} {% block services %}
 
 <!--Content starts here-->
-<div class="container-fluid accordion" id="accordionExample">
+<div class="container-fluid ">
   <div class="text-center p-3">
     <input
       type="button"
@@ -219,6 +217,8 @@
  {% comment %} Translitration Modal ends here  {% endcomment %}
 
 </div>
+
+
 
   <script src="https://gisttransserver.in/js/CDAC-Typing.min.js"></script>
 <script src="{% static 'Localisation_App/js/main1.js' %}"></script>
