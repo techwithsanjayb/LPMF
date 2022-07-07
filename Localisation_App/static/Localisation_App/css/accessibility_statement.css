@@ -25,6 +25,13 @@
 
 .main-container{
   min-height: 60vh;
+  
+}
+
+.access-main{
+  background: url("../../../static/Localisation_App/img/WebSiteBgImg.png");
+  background-size: 100%;
+  height: auto;
 }
 
 .as-main-title {

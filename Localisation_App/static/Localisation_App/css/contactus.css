@@ -37,3 +37,10 @@
 .card{
   height: auto   !important;
 }
+
+.contact-main{
+  background: url("../../../static/Localisation_App/img/WebSiteBgImg.png");
+  background-size: 100%;
+  height: auto;
+
+}
