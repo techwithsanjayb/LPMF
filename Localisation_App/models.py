@@ -66,6 +66,9 @@ class Article(models.Model):
 class SuccessStories_Category(models.Model):
     SuccessStories_CategoryType = models.CharField(max_length=100)
     SuccessStories_Cat_Status = models.BooleanField(default=False)
+    
+    CHOICES1 = [(1, 1),(2, 2),(3, 3),(4, 4), (5, 5),(6, 6), (7, 7),(8, 8)]
+    SuccessStories_Cat_Priority=models.IntegerField(max_length = 10,choices=CHOICES1,null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Success Stories Category"

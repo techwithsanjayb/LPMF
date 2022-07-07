@@ -41,6 +41,12 @@ body {
   margin: 5px;
 }
 
+.filter-button{
+    margin-left: 15px;
+    width: 100px;
+}
+
+
 .sidebar-item-text {
   font-family: "Inter", sans-serif;
   color: #403f3f;
