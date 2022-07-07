@@ -4,15 +4,17 @@ body {
 
 .category-tool-title {
     margin-top: -20px;
-    font-size: 20px;
-    background-color: #5dc0d8;
-    width: 200px;
+    font-size: 23px;
+    background-color: #219EBC;
+    width: 280px;
     height: 40px;
-    padding-top: 6px;
+    padding-top: 3px;
     margin-left: 30px;
     padding-left: 7px;
     border-radius: 10px;
     font-weight: 600;
+    color:#ffffff;
+    margin-bottom: 10px;
 }
 
 .tools-box {
@@ -130,8 +132,8 @@ input[type="checkbox"] {
     margin-left: 110px;
 }
 .filter-button{
-    margin-left: 8px;
-    width: 130px;
+    margin-left: 1px;
+    width: 120px;
 }
 
 
