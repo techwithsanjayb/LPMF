@@ -106,6 +106,9 @@ class SuccessStories(models.Model):
         
     SuccessStories_Cdac_Contribution = models.CharField(
         max_length=500, null=True, blank=True)
+    
+    CHOICES1 = [(1, 1),(2, 2),(3, 3),(4, 4), (5, 5),(6, 6), (7, 7),(8, 8),(9, 9),(10, 10)]
+    SuccessStories_Priority=models.IntegerField(max_length = 10,choices=CHOICES1,null=True, blank=True)
 
 
     class Meta:

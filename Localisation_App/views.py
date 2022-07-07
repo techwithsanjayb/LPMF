@@ -89,7 +89,7 @@ def toolsPage(request):
         'tools_title': 'none',
         'toolscategory': toolsCategory_data,
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
     }
@@ -145,7 +145,7 @@ def tools(request):
                 'tools_title': 'none',
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': None,
+                'status_All_Checked': None,
                 'Pagination_Type': 'Category_Post',
                 'count': count
             }
@@ -165,7 +165,7 @@ def tools(request):
                 'tools_title': 'none',
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
                 'count': count
             }
@@ -194,7 +194,7 @@ def tools(request):
             'tools_title': 'none',
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': None,
+            'status_All_Checked': None,
             'Pagination_Type': 'Category_Post',
             'count': count
         }
@@ -211,7 +211,7 @@ def tools(request):
             'tools_title': 'none',
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
@@ -248,7 +248,7 @@ def toolsSearch(request, tools_title):
                 'tools_title': tools_title1,
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -265,7 +265,7 @@ def toolsSearch(request, tools_title):
                 'tools_title': 'none',
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -285,7 +285,7 @@ def toolsSearch(request, tools_title):
             'tools_title': tools_title,
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -302,7 +302,7 @@ def toolsSearch(request, tools_title):
             'tools_title': 'none',
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -331,7 +331,7 @@ def toolsReset(request):
         'tools_title': 'none',
         'toolscategory': toolsCategory_data,
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
         }
@@ -361,7 +361,7 @@ def resourcesPage(request):
         'resource_title': 'none',
         'resourcescategory': resoucesCategory_data,
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
     }
@@ -417,7 +417,7 @@ def resources(request):
                 'resource_title': 'none',
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': None,
+                'status_All_Checked': None,
                 'Pagination_Type': 'Category_Post',
                 'count': count
             }
@@ -437,7 +437,7 @@ def resources(request):
                 'resource_title': 'none',
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
                 'count': count
             }
@@ -466,7 +466,7 @@ def resources(request):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': None,
+            'status_All_Checked': None,
             'Pagination_Type': 'Category_Post',
             'count': count
         }
@@ -483,7 +483,7 @@ def resources(request):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
@@ -521,7 +521,7 @@ def resourceSearch(request, resource_title):
                 'resource_title': resource_title1,
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -537,7 +537,7 @@ def resourceSearch(request, resource_title):
                 'resource_title': 'none',
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -557,7 +557,7 @@ def resourceSearch(request, resource_title):
             'resource_title': resource_title,
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -573,7 +573,7 @@ def resourceSearch(request, resource_title):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -600,7 +600,7 @@ def resourcesReset(request):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
@@ -617,7 +617,7 @@ def successstoryPage(request):
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
     successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStoriesData = SuccessStories.objects.order_by('SuccessStories_Priority')
     page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
@@ -629,7 +629,7 @@ def successstoryPage(request):
         'SuccessStories_CategoryData': successStories_CategoryData,
         'story_title': 'none',
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
     }
@@ -691,7 +691,7 @@ def successstory(request):
                 "page": page,
                 'story_title': 'none',
                 'Pagination_Type': 'Category_Post',
-                'satus_All_Checked': None,
+                'status_All_Checked': None,
                 'count': count
             }
             print("inside 1")
@@ -710,7 +710,7 @@ def successstory(request):
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
                 'story_title': 'none',
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
                 'count': count
             }
@@ -741,7 +741,7 @@ def successstory(request):
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'Pagination_Type': 'Category_Post',
-            'satus_All_Checked': None,
+            'status_All_Checked': None,
             'count': count
         }
 
@@ -758,7 +758,7 @@ def successstory(request):
             'story_title': 'none',
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
@@ -796,7 +796,7 @@ def successstorySearch(request, story_title):
                 'SuccessStoriesData': successStoriesData,
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -812,7 +812,7 @@ def successstorySearch(request, story_title):
                 'story_title': 'none',
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -832,7 +832,7 @@ def successstorySearch(request, story_title):
             'story_title': story_title,
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -848,7 +848,7 @@ def successstorySearch(request, story_title):
             'story_title': 'none',
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -874,7 +874,7 @@ def successstoryReset(request):
             'SuccessStories_CategoryData': successStories_CategoryData,
             'story_title': 'none',
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }

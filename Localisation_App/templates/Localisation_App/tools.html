@@ -55,7 +55,7 @@
         
         <form action={% url 'Localisation_App:tools' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {% comment %} {% if satus_All_Checked == 'True' %}
+          {% comment %} {% if status_All_Checked == 'True' %}
           <div class="success-list">
           <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked"
             checked="checked" />
@@ -69,7 +69,7 @@
           <label class="tools-sidebar-item-text" for="vehicle1">All</label><br />
           </div>
           {% endif %} {% endcomment %}
-          {% if satus_All_Checked == 'True' %}
+          {% if status_All_Checked == 'True' %}
         <ul>
           {% for categories in toolscategory %}
           <input
