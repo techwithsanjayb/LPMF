@@ -2,6 +2,14 @@
 
 
 <div class="container-fluid">
+  <input
+      type="button"
+      class="contact-us-heading text-center px-5 rounded-5"
+      value="Contact Us"
+      disabled
+    />
+  <div class="text-center ">
+    
  {% if messages %}
     {% for message in messages %}
       <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
@@ -19,13 +27,7 @@
         
       
 
-  <div class="text-center pt-3">
-    <input
-      type="text"
-      class="contact-us-heading text-center rounded-5"
-      value="Contact Us"
-      disabled
-    />
+
   </div>
     {% comment %} <div class="row d-flex justify-content-center py-4">
       <div class="col-lg-6 col-sm-6 d-flex justify-content-center">

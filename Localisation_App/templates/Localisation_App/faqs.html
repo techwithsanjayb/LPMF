@@ -6,15 +6,21 @@
 
     <!-- faq heading section -->
 
-    <div class="container-fluid faq-main p-3">
+    <div class="container-fluid faq-main ">
 
-        <div class="col-12">
+        <!-- <div class="col-12">
             <h4 class="faq-Title">Frequently Asked Questions</h4>
-        </div>
+        </div> -->
+        <input
+        type="button"
+        class="text-center rounded-5 px-5 faq-page-header"
+        value="FAQ's"
+        disabled 
+      />
 
-        <div class="container-fluid">
-            <div class="row d-flex justify-content-center">
-                <div class="col-6">
+        <div class="container-fluid m-2">
+            <div class="row w-50 faq-search">
+                <div class="col-10">
                    <form action={% url 'Localisation_App:faqsSearch' faq_title %}  method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% if faq_title == 'none' %}
@@ -36,8 +42,8 @@
                       
         
                 </div>
-                <div class="col-6">
-                    <input type="submit" value="Search"/>
+                <div class="col-2">
+                    <input class="btn btn-primary" type="submit" value="Search" style="background-color: #219EBC;border-color:#219EBC;width:200px;font-size: 18px;"/>
                       </form>
                 </div>
             </div>

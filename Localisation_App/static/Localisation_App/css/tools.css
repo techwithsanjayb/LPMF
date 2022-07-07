@@ -109,14 +109,14 @@ input[type="checkbox"] {
 .tools-page-header {
     background-color: #023047;
     color: #feffff;
-    width: 300px;
+    width: auto;
     height: 50px;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-left: 800px;
+    margin-left: 850px;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .tools-paginate {
