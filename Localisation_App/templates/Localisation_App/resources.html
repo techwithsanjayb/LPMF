@@ -111,47 +111,6 @@
         <div class="row">
           <div class="col-sm-12 col-lg-4">
 
-    <div class="col-9">
-      <div class="row ">
-        {% for data in page.object_list %}
-        <div class="col-sm-12 col-lg-12 ">
-          <div class="tools-main-card-section">
-           
-            <div class="row">
-              <div class="col-sm-12 col-lg-4">
-             
-                <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
-                <div class="tools-size">
-                  File Size : {{ data.ResourceData_fileSize}}
-                </div>
-
-
-                     {% if data.ResourceData_UploadSupportDocument != '' %} 
-                <a style= "text-decoration: none;color:white" href= "/media/{{data.ResourceData_UploadSupportDocument}}" download>
-                   <div class= "tools-section-button" >Document</div> 
-                  </a> 
-                {% endif %} 
-
-                {% if data.ResourceData_UploadResourceCode != '' %} 
-                <a style= "text-decoration: none;color:white" href= "/media/{{data.ResourceData_UploadResourceCode}}" download>
-                   <div class= "tools-section-button" >Download</div> 
-                  </a> 
-                {% endif %} 
-              </div>
-              
-             
-              <div class="col-sm-12 col-lg-8">
-                <div class="Heading">
-                <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
-                </div>
-                <hr/>
-                <div class="Discription">
-                <p>
-                  {{ data.ResourceData_Description|safe }}
-                </p>
-              </div>
-                <div class="Updated_Date">Last Updated Date : {{data.ResourceData_LastUpdatedDate|date:"M d, Y"}}</div>
-              </div>
             <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
             <div class="tools-size">
               File Size : {{ data.ResourceData_fileSize}}
@@ -175,11 +134,16 @@
 
 
           <div class="col-sm-12 col-lg-8">
-            <h2>{{ data.ResourceData_HeadingName }}</h2>
+            <div class="Heading">
+            <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
+          </div>
+          <hr/>
+            <div class="Discription">
             <p>
               {{ data.ResourceData_Description|safe }}
             </p>
-            Last Updated Date : {{data.ResourceData_LastUpdatedDate|date:"M d, Y"}}
+            </div>
+            <div class="Updated_Date">Last Updated Date : {{data.ResourceData_LastUpdatedDate|date:"M d, Y"}}</div>
           </div>
         </div>
       </div>
