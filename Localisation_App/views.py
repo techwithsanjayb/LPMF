@@ -608,7 +608,7 @@ def successstoryPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
     successStoriesData = SuccessStories.objects.order_by('SuccessStories_Priority')
     page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
@@ -638,8 +638,8 @@ def successstory(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     # SuccessStrories_Category.objects.update(SuccessStrories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
 
     if request.method == "POST":
         # print("allcheched",request.POST.get('all_checkbox'))
@@ -665,7 +665,7 @@ def successstory(request):
             for c in to_fetch:
                 # print(c)
                 q = q | SuccessStories.objects.filter(
-                    SuccessStories_category__SuccessStories_CategoryType__contains=c)
+                    SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
             # print("all data",q)
             count = q.count()
             print("hey", q)
@@ -716,7 +716,7 @@ def successstory(request):
     to_fetch = tuple(category_name)
     for c in to_fetch:
         q = q | SuccessStories.objects.filter(
-            SuccessStories_category__SuccessStories_CategoryType__contains=c)
+            SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
     print(q)
 
     if pagestatus == True:
@@ -763,8 +763,8 @@ def successstorySearch(request, story_title):
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
 
     if request.method == "POST":
         print("insideSearchMethod")
@@ -774,7 +774,7 @@ def successstorySearch(request, story_title):
 
         if strory_title1 != '':
             successStoriesData = SuccessStories.objects.filter(
-                SuccessStories_TitleName__icontains=strory_title1)
+                SuccessStories_TitleName__icontains=strory_title1).order_by('SuccessStories_Priority')
             count = successStoriesData.count()
             print("dataStoriesdssds", count)
             page = Paginator(successStoriesData, 8)
@@ -811,7 +811,7 @@ def successstorySearch(request, story_title):
         return render(request, 'Localisation_App/successstory.html', context)
     if story_title != 'none':
         Stories_Data1 = SuccessStories.objects.filter(
-            SuccessStories_TitleName__icontains=story_title)
+            SuccessStories_TitleName__icontains=story_title).order_by('SuccessStories_Priority')
         page = Paginator(Stories_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -852,8 +852,8 @@ def successstoryReset(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
     page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)

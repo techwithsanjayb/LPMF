@@ -7,12 +7,12 @@
 
 <div class="container-fluid success-box p-3">
   <div class="row p-3">
-    <div class="col-lg-3">
+    <div class="col-sm-12 col-lg-3">
       <div class="success-sidebar">
 
         <form action={% url 'Localisation_App:successstorySearch' story_title %}  method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <div class="row">
+          <div class="row p-3">
             <div class="col-8">
               {% if story_title == 'none' %}
               <input
@@ -85,7 +85,7 @@
             {% endfor %}
           </ul>
           {% endif %}
-          <button class='btn btn-primary' type="submit" value="Fetch">Filter</button>
+          <button class='btn btn-primary filter-button' type="submit" value="Fetch">Filter</button>
         </form>
         <form action={% url 'Localisation_App:successstoryReset' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
@@ -96,7 +96,7 @@
       </div>
     </div>  
     
-    <div class="col-lg-9">
+    <div class="col-9">
     
       <input class="text-center rounded-5 success-header-1 p-3 my-3"  value="Success Stories"
       disabled ></input>

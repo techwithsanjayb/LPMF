@@ -128,11 +128,28 @@ input[type="checkbox"] {
     height: 200px;
     margin-left: 110px;
 }
-
-.filter-button {
-    margin-left: 38px;
-    width: 100px;
+.filter-button{
+    margin-left: 8px;
+    width: 130px;
 }
+
+
+
+.tools_Fetched_Record_Text{
+    margin-left:25px; 
+    color:rgb(190, 68, 20);
+    font-size:20px;
+    font-weight:900px; 
+    letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
 
 /* laptop */
 @media screen and (min-device-width: 1025px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {

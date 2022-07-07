@@ -116,13 +116,21 @@
     {% endfor %}
   </ul>
   {% endif %}
+  <div class="row">
+    <div class="col-6">
         <button class='btn btn-primary filter-button' type="submit" value="Fetch">Filter</button>
       </form>
+    </div>
+    <div class="col-6">
       <form action={% url 'Localisation_App:toolsReset' %} method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
       </form>
-      <p>Records Fetched : {{ count }}</p>
+    </div>
+      <hr/>
+      <p class="tools_Fetched_Record_Text">Records Fetched : {{ count }}</p>
+
+    </div>
       </div>
     </div>
 
@@ -153,12 +161,6 @@
                    <div class= "tools-section-button" >Download </div> 
                   </a> 
                 {% endif %} 
-  
-
-
-
-
-
               </div>
               
              
