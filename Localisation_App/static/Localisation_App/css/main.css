@@ -134,7 +134,7 @@
 @keyframes square-to-circle {
     0%  {
       border-radius:0 0 0 0;
-      background:;
+      background:0.1px;
       transform:rotate(45deg);
     }
     25%  {
@@ -325,7 +325,6 @@
 }
 
 .carousel-caption-1 {
-    font-family: 'Mukta';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -339,7 +338,6 @@
 }
 
 .carousel-caption-2 {
-    font-family: 'Mukta';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -353,7 +351,6 @@
 }
 
 .carousel-caption-3 {
-    font-family: 'Mukta';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -439,7 +436,6 @@
     color: white;
     width: 200px;
     height: 50px;
-    font-family: 'Heebo', sans-serif;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -454,7 +450,7 @@
     line-height: 40px;
     padding-right: 20px;
     /* or 210% */
-    letter-spacing: -0.02em;
+    letter-spacing: 0.5px;
     color: #6B6A6A;
     mix-blend-mode: normal;
 
@@ -637,7 +633,6 @@
 
 .vision-para {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 25px;
@@ -678,7 +673,6 @@
 
 .success-title {
     color: rgb(15, 43, 70);
-    font-family: 'Heebo', sans-serif;
     text-align: center;
     font-weight: 700;
     letter-spacing: -1px;
@@ -836,7 +830,6 @@
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
     border-radius: 18px;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 33px;
     line-height: 43px;
@@ -1118,7 +1111,6 @@
 
     .vision-title {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 28px;
@@ -1130,7 +1122,6 @@
 
     .vision-para {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 22px;
@@ -1183,7 +1174,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -1266,8 +1256,7 @@
         background-color: #023047;
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
-        text-align: center;
-        font-family: 'Montserrat', sans-serif;
+        text-align: center; 
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
@@ -1507,7 +1496,6 @@
 
     .vision-title {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 42px;
@@ -1520,7 +1508,6 @@
 
     .vision-para {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 25px;
@@ -1574,7 +1561,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -1657,7 +1643,6 @@
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
@@ -1790,7 +1775,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -1961,7 +1945,6 @@
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
@@ -2193,7 +2176,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -2412,7 +2394,6 @@
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
