@@ -5,10 +5,10 @@ from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
 from multiprocessing import context
-from django.contrib.auth import login ,authenticate ,logout ,  update_session_auth_hash
-from django.contrib.auth.forms import UserChangeForm , AuthenticationForm , PasswordChangeForm , SetPasswordForm
+from django.contrib.auth import login, authenticate, logout,  update_session_auth_hash
+from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.shortcuts import render, redirect
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact,UserRegistration
+from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration
 import random
 import requests
 from django.core.validators import URLValidator
@@ -93,7 +93,7 @@ def toolsPage(request):
         'tools_title': 'none',
         'toolscategory': toolsCategory_data,
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
     }
@@ -149,7 +149,7 @@ def tools(request):
                 'tools_title': 'none',
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': None,
+                'status_All_Checked': None,
                 'Pagination_Type': 'Category_Post',
                 'count': count
             }
@@ -169,7 +169,7 @@ def tools(request):
                 'tools_title': 'none',
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
                 'count': count
             }
@@ -198,7 +198,7 @@ def tools(request):
             'tools_title': 'none',
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': None,
+            'status_All_Checked': None,
             'Pagination_Type': 'Category_Post',
             'count': count
         }
@@ -215,7 +215,7 @@ def tools(request):
             'tools_title': 'none',
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
@@ -252,7 +252,7 @@ def toolsSearch(request, tools_title):
                 'tools_title': tools_title1,
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -269,7 +269,7 @@ def toolsSearch(request, tools_title):
                 'tools_title': 'none',
                 'toolscategory': toolsCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -289,7 +289,7 @@ def toolsSearch(request, tools_title):
             'tools_title': tools_title,
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -306,14 +306,12 @@ def toolsSearch(request, tools_title):
             'tools_title': 'none',
             'toolscategory': toolsCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
 
     return render(request, 'Localisation_App/tools.html', context)
-
-
 
 
 def toolsReset(request):
@@ -335,13 +333,11 @@ def toolsReset(request):
         'tools_title': 'none',
         'toolscategory': toolsCategory_data,
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
         }
         return render(request, 'Localisation_App/tools.html', context)
-    
-
 
 
 # Resources Page
@@ -365,7 +361,7 @@ def resourcesPage(request):
         'resource_title': 'none',
         'resourcescategory': resoucesCategory_data,
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
     }
@@ -421,7 +417,7 @@ def resources(request):
                 'resource_title': 'none',
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': None,
+                'status_All_Checked': None,
                 'Pagination_Type': 'Category_Post',
                 'count': count
             }
@@ -441,7 +437,7 @@ def resources(request):
                 'resource_title': 'none',
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
                 'count': count
             }
@@ -470,7 +466,7 @@ def resources(request):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': None,
+            'status_All_Checked': None,
             'Pagination_Type': 'Category_Post',
             'count': count
         }
@@ -487,7 +483,7 @@ def resources(request):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
@@ -525,7 +521,7 @@ def resourceSearch(request, resource_title):
                 'resource_title': resource_title1,
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -541,7 +537,7 @@ def resourceSearch(request, resource_title):
                 'resource_title': 'none',
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -561,7 +557,7 @@ def resourceSearch(request, resource_title):
             'resource_title': resource_title,
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -577,7 +573,7 @@ def resourceSearch(request, resource_title):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -604,15 +600,11 @@ def resourcesReset(request):
             'resource_title': 'none',
             'resourcescategory': resoucesCategory_data,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
         return render(request, 'Localisation_App/resources.html', context)
-    
-
-
-
 
 
 # Successstory Page
@@ -620,8 +612,8 @@ def successstoryPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.order_by('SuccessStories_Priority')
     page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
@@ -633,7 +625,7 @@ def successstoryPage(request):
         'SuccessStories_CategoryData': successStories_CategoryData,
         'story_title': 'none',
         "page": page,
-        'satus_All_Checked': 'True',
+        'status_All_Checked': 'True',
         'Pagination_Type': 'All_Data',
         'count': count
     }
@@ -650,8 +642,8 @@ def successstory(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     # SuccessStrories_Category.objects.update(SuccessStrories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
 
     if request.method == "POST":
         # print("allcheched",request.POST.get('all_checkbox'))
@@ -677,7 +669,7 @@ def successstory(request):
             for c in to_fetch:
                 # print(c)
                 q = q | SuccessStories.objects.filter(
-                    SuccessStories_category__SuccessStories_CategoryType__contains=c)
+                    SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
             # print("all data",q)
             count = q.count()
             print("hey", q)
@@ -695,7 +687,7 @@ def successstory(request):
                 "page": page,
                 'story_title': 'none',
                 'Pagination_Type': 'Category_Post',
-                'satus_All_Checked': None,
+                'status_All_Checked': None,
                 'count': count
             }
             print("inside 1")
@@ -714,7 +706,7 @@ def successstory(request):
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
                 'story_title': 'none',
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'All_Data',
                 'count': count
             }
@@ -728,7 +720,7 @@ def successstory(request):
     to_fetch = tuple(category_name)
     for c in to_fetch:
         q = q | SuccessStories.objects.filter(
-            SuccessStories_category__SuccessStories_CategoryType__contains=c)
+            SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
     print(q)
 
     if pagestatus == True:
@@ -745,7 +737,7 @@ def successstory(request):
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'Pagination_Type': 'Category_Post',
-            'satus_All_Checked': None,
+            'status_All_Checked': None,
             'count': count
         }
 
@@ -762,7 +754,7 @@ def successstory(request):
             'story_title': 'none',
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
@@ -775,8 +767,8 @@ def successstorySearch(request, story_title):
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
 
     if request.method == "POST":
         print("insideSearchMethod")
@@ -786,7 +778,7 @@ def successstorySearch(request, story_title):
 
         if strory_title1 != '':
             successStoriesData = SuccessStories.objects.filter(
-                SuccessStories_TitleName__icontains=strory_title1)
+                SuccessStories_TitleName__icontains=strory_title1).order_by('SuccessStories_Priority')
             count = successStoriesData.count()
             print("dataStoriesdssds", count)
             page = Paginator(successStoriesData, 8)
@@ -800,7 +792,7 @@ def successstorySearch(request, story_title):
                 'SuccessStoriesData': successStoriesData,
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
@@ -816,14 +808,14 @@ def successstorySearch(request, story_title):
                 'story_title': 'none',
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
-                'satus_All_Checked': 'True',
+                'status_All_Checked': 'True',
                 'Pagination_Type': 'Searched_Post',
                 'count': count
             }
         return render(request, 'Localisation_App/successstory.html', context)
     if story_title != 'none':
         Stories_Data1 = SuccessStories.objects.filter(
-            SuccessStories_TitleName__icontains=story_title)
+            SuccessStories_TitleName__icontains=story_title).order_by('SuccessStories_Priority')
         page = Paginator(Stories_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -836,7 +828,7 @@ def successstorySearch(request, story_title):
             'story_title': story_title,
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -852,7 +844,7 @@ def successstorySearch(request, story_title):
             'story_title': 'none',
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'Searched_Post',
             'count': count
         }
@@ -864,8 +856,8 @@ def successstoryReset(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
     page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
@@ -878,13 +870,12 @@ def successstoryReset(request):
             'SuccessStories_CategoryData': successStories_CategoryData,
             'story_title': 'none',
             "page": page,
-            'satus_All_Checked': 'True',
+            'status_All_Checked': 'True',
             'Pagination_Type': 'All_Data',
             'count': count
         }
         print("outside")
         return render(request, 'Localisation_App/successstory.html', context)
-    
 
 
 # Services Page
@@ -1247,65 +1238,63 @@ def submit(request, img):
         return redirect('Localisation_App:contactus')
 
 
-
 def Register_user(request):
-    form  = RegisterForm()
+    form = RegisterForm()
     context = {
         'form': form
-        }
+    }
     if request.method == 'POST':
-        form  = RegisterForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             print("Form Data")
-            UserRegistration.objects.create(userregistration_first_name = form.cleaned_data.get('first_name') ,userregistration_middle_name = form.cleaned_data.get('middle_name') ,userregistration_last_name = form.cleaned_data.get('last_name'),userregistration_username = form.cleaned_data.get('username') ,userregistration_email_field = form.cleaned_data.get('email'),userregistration_phone_number = form.cleaned_data.get('phone_number') ,userregistration_address = form.cleaned_data.get('address'),userregistration_password = form.cleaned_data.get('password1'),userregistration_confirm_password = form.cleaned_data.get('password2'),userregistration_active_status = form.cleaned_data.get('check'),registration_User_Type = form.cleaned_data.get('User_Type'))
-            messages.success(request, 'Account was created for ' + form.cleaned_data.get('first_name'))
+            UserRegistration.objects.create(userregistration_first_name=form.cleaned_data.get('first_name'), userregistration_middle_name=form.cleaned_data.get('middle_name'), userregistration_last_name=form.cleaned_data.get('last_name'), userregistration_username=form.cleaned_data.get('username'), userregistration_email_field=form.cleaned_data.get(
+                'email'), userregistration_phone_number=form.cleaned_data.get('phone_number'), userregistration_address=form.cleaned_data.get('address'), userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'), registration_User_Type=form.cleaned_data.get('User_Type'))
+            messages.success(request, 'Account was created for ' +
+                             form.cleaned_data.get('first_name'))
             return redirect('/')
         else:
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {
                 'form': form
-                }
-            return render(request, 'Localisation_App/register.html', context) 
+            }
+            return render(request, 'Localisation_App/register.html', context)
     return render(request, 'Localisation_App/register.html', context)
-    
-    
+
+
 def login_user(request):
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            print( "if form is valid")
+            print("if form is valid")
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('/')
             else:
                 return redirect('')
-            
+
         else:
             messages.error(request, 'Error Processing Your Request')
-            context={
-                'form' : UserLoginForm()
+            context = {
+                'form': UserLoginForm()
             }
-            
-            print( "else")
+
+            print("else")
             return render(request, 'Localisation_App/login.html', context)
     else:
-        context={
-                'form' : UserLoginForm()
-            }
+        context = {
+            'form': UserLoginForm()
+        }
         return render(request, 'Localisation_App/login.html', context)
+
 
 def logout_user(request):
     logout(request)
     return redirect('/')
-
-
-
-
 
 
 def goTranslate(request):

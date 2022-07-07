@@ -5,15 +5,21 @@
 {% block successstory %}
 <link href="{% static 'Localisation_App/css/success-stories.css' %}" rel="stylesheet" />
 
-<div class="container-fluid success-box p-3">
+<div class="container-fluid success-box">
+  <input
+  type="button"
+  class="text-center rounded-5 px-5 my-3 success-header-1"
+  value="Success Stories"
+  disabled 
+/>
   <div class="row p-3">
-    <div class="col-lg-3">
+    <div class="col-sm-12 col-lg-3">
       <div class="success-sidebar">
 
         <form action={% url 'Localisation_App:successstorySearch' story_title %}  method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <div class="row">
-            <div class="col-8">
+          <div class="row p-3">
+            <div class="col-6">
               {% if story_title == 'none' %}
               <input
               class="form-control me-2"
@@ -31,15 +37,15 @@
               aria-label="Search"
             />{% endif %}
             </div>
-            <div class="col-4">
-              <input class="btn btn-primary" type="submit" value="Search"/>
+            <div class="col-6">
+              <input class="btn btn-primary" type="submit" style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Search"/>
             </div>
             <hr style="margin-top: 20px;">
           </div>
 
         </form>
       
-        <h3  style="margin-top:-20px;">Categories</h3>
+        <div class="category-success-title">Categories</div>
         
         <!-- Success Stories Count :{{ count }} -->
         <form action={% url 'Localisation_App:successstory' %} method="POST" enctype="multipart/form-data">
@@ -59,7 +65,7 @@
           <label class="sidebar-item-text" for="vehicle1">All</label><br />
           </div>
           {% endif %} {% endcomment %}
-          {% if satus_All_Checked == 'True' %}
+          {% if status_All_Checked == 'True' %}
           <ul class="success-list">
 
             {% for category in SuccessStories_CategoryData %}
@@ -85,21 +91,29 @@
             {% endfor %}
           </ul>
           {% endif %}
-          <button class='btn btn-primary' type="submit" value="Fetch">Filter</button>
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5">
+          <button class='btn btn-primary filter-button' type="submit" style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Fetch">Filter</button>
         </form>
+        </div>
+        <div class="col-2">
         <form action={% url 'Localisation_App:successstoryReset' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
+          <button class='btn btn-primary filter-button' type="submit" style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Fetch">Reset</button>
         </form>
-        <p>Records Fetched : {{ count }}</p>
-
+        </div>
+        <hr style="width:320px;margin-left:18px;">
+        <div class="col-4"></div>
+        <p class="tools_Fetched_Record_Text">Records Fetched : {{ count }}</p>
+    </div>
       </div>
     </div>  
     
-    <div class="col-lg-9">
-    
-      <input class="text-center rounded-5 success-header-1 p-3 my-3"  value="Success Stories"
-      disabled ></input>
+    <div class="col-9">
+     
+<!--     
+      <input class="text-center rounded-5 success-header-1 px-5 my-3"  value="Success Stories" disabled /> -->
       <!-- <div class="success-subheading">
        Caption
       </div> -->
@@ -165,11 +179,11 @@
               {{ stories.SuccessStories_Description|safe|slice:":400" }}
             </div> -->
             <!-- <hr class="success-line"> -->
-            <div class="success-story-cdac-card-title">CDAC Contribution</div>
+            {% comment %} <div class="success-story-cdac-card-title">CDAC Contribution</div> {% endcomment %}
             <div class="success-story-card-contribution">
               {{ stories.SuccessStories_Cdac_Contribution }}
             </div>
-            <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website</a></div>
+            <div class="success-story-link warning-1"><a href={{ stories.SuccessStories_Link }} target="_blank">Visit Website <i class="fa fa-link" aria-hidden="true"></i></a></div>
           </div>
         </div>
         {% if forloop.last %}

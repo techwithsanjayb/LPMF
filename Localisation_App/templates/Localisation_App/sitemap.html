@@ -3,17 +3,26 @@
 {% load static %}
 
 {% block sitemap %}
-<title>Sitemap</title>
+
 <link
   href="{% static 'Localisation_App/css/sitemap.css' %}"
   rel="stylesheet"
 />
+<div class="site-main">
 
 <div class="container main-container">
-  <h4 class="sitemap-main-title">{{ content.Footer_Links_Title }}</h4>
+  <div class="text-center p-3">
+    <input
+      type="button"
+      class="text-center rounded-5 px-5 sitemap-heading"
+      value="{{ content.Footer_Links_Title }}"
+      disabled
+    />
+  </div>
+  <!-- <h4 class="sitemap-main-title">{{ content.Footer_Links_Title }}</h4> -->
   
    <div> {{ content.Footer_Links_Content|safe }}</div>
-
+</div>
   
 </div>
 {% endblock %}

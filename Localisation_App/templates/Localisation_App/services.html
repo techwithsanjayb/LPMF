@@ -5,7 +5,7 @@
 {% block services %}
 
 <!--Content starts here-->
-<div class="container-fluid accordion" id="accordionExample" >
+<div class="container-fluid">
   <div class="text-center p-3">
     <input type="text" class="text-center rounded-5 sevices-heading" value="Services" disabled />
   </div>
@@ -14,47 +14,56 @@
     computing. These are being now offered as web-service.
   </p> {% endcomment %}
 
+ 
   
   <div class="row back-image" style="background-image: url('{% static './Localisation_App/img/Vector-4.png'%}')">
-    <div class="col-lg-7 fs-4 px-4">
+    
+    <!-- <div class="col-lg-3 fs-4 px-4">
+      C-DAC GIST has vast NLP resources and is pioneer in Indian Language
+      computing. These are being now offered as web-service.
+    </div> -->
+    <div class="col-lg-8 fs-4 px-4">
       C-DAC GIST has vast NLP resources and is pioneer in Indian Language
       computing. These are being now offered as web-service.
     </div>
-    {% for service in Servicesdata %}
-    <div class="col-lg-6 " >
-      <div class="row p-5 d-flex justify-content-center">
-        <div class="card rounded-5 service-card1" style="padding:0">
-          <div class="card-body">
-            <div class="text-center">
-              <h5 class="text-muted pb-3 pt-2">
-                <strong>{{ service.Services_Name }}caro_{{ service.pk }}</strong>
-              </h5>
-            </div>
-            <div class="row">
-              <div class="col-3 first-section">
-              <img class="card-img pb-2" src="{% static './Localisation_App/img/services-page.jpg' %}" width="auto"
-              height="auto" />
+    <div class="row">
+      {% for service in Servicesdata %}
+      <div class="col-lg-4 " >
+        <div class="row p-5 d-flex justify-content-center">
+          <div class="card rounded-5 service-card1" style="padding:0">
+            <div class="card-body">
+              <div class="text-center">
+                <h5 class="text-muted pb-3 pt-2">
+                  <strong>{{ service.Services_Name }}caro_{{ service.pk }}</strong>
+                </h5>
               </div>
-              <div class="col-9 second-section">
-              <span>{{ service.Services_Description}}</span>
+              <div class="row">
+                <div class="col-3 first-section">
+                <img class="card-img pb-2" src="{% static './Localisation_App/img/services-page.jpg' %}" width="auto"
+                height="auto" />
+                </div>
+                <div class="col-9 second-section">
+                <span>{{ service.Services_Description}}</span>
+                </div>
               </div>
-            </div>
-                        </div>
-          <button class="btn btn-primary services-button">
-            <a href="{% url 'Localisation_App:ServicesDemoPage' %}" class="text-white text-decoration-none fs-4">Click Here</a>
-          </button>
+                          </div>
+            <button class="btn btn-primary services-button">
+              <a href="{% url 'Localisation_App:ServicesDemoPage' %}" class="text-white text-decoration-none fs-4">Click Here</a>
+            </button>
+          </div>
         </div>
       </div>
+      {% if forloop.last %}
+     
     </div>
-    {% if forloop.last %}
+    {% else %}
+    {% if forloop.counter|divisibleby:"2" %}
    
-  </div>
-  {% else %}
-  {% if forloop.counter|divisibleby:"2" %}
-  <div></div>
-  {% endif %}
-  {% endif %}
-  {% endfor %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    </div>
+   
 
   
  
@@ -63,9 +72,7 @@
 
 
 
-
-
-
+</div>
 
 
 
@@ -78,7 +85,8 @@
 {% comment %} {% extends 'Localisation_App/base.html' %} {% load static %} {% block services %}
 
 <!--Content starts here-->
-<div class="container-fluid accordion" id="accordionExample">
+<d
+iv class="container-fluid ">
   <div class="text-center p-3">
     <input
       type="button"
@@ -219,6 +227,8 @@
  {% comment %} Translitration Modal ends here  {% endcomment %}
 
 </div>
+
+
 
   <script src="https://gisttransserver.in/js/CDAC-Typing.min.js"></script>
 <script src="{% static 'Localisation_App/js/main1.js' %}"></script>

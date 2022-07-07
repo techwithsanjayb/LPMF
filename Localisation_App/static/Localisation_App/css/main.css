@@ -1,5 +1,100 @@
-/* For Default Screen Size */
+/* *{
+       box-sizing: border-box;
+    background: rgb(0 100 0 /0.1) !important; 
+} */
 
+/* For Default Screen Size */
+/* CARDS */
+.navbar-nav>.active>a {
+    color: #ED875C;
+}
+/* .cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    margin: 20px;
+    padding: 20px;
+    width: 450px;
+    min-height: 200px;
+    display: grid;
+    grid-template-rows: 20px 50px 1fr 50px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+  }
+  
+  .card:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+  }
+  
+  .card__link,
+  .card__exit,
+  .card__icon {
+    position: relative;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .card__link::after {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    content: "";
+    width: 0%;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.5s;
+  }
+  
+  .card__link:hover::after {
+    width: 100%;
+  }
+  
+  .card__exit {
+    grid-row: 1/2;
+    justify-self: end;
+  }
+  
+  .card__icon {
+    grid-row: 2/3;
+    font-size: 30px;
+  }
+  
+  .card__title {
+    grid-row: 3/4;
+    font-weight: 400;
+    color: #ffffff;
+  }
+  
+  .card__apply {
+    grid-row: 4/5;
+    align-self: center;
+  } */
+  
+  /* CARD BACKGROUNDS */
+/*   
+  .card-1 {
+    background: radial-gradient(#1fe4f5, #3fbafe);
+  }
+  
+  .card-2 {
+    background: radial-gradient(#fbc1cc, #fa99b2);
+  }
+  
+  .card-3 {
+    background: radial-gradient(#76b2fe, #b69efe);
+  }
+  
+  .card-4 {
+    background: radial-gradient(#60efbc, #58d5c9);
+  }
+  
+  .card-5 {
+    background: radial-gradient(#f588d8, #c0a3e5);
+  } */
 /* sticky Button */
 /* 
 .sticky-button {
@@ -17,27 +112,29 @@
 } */
 
 .sticky-button {
-    width: 80px;
+    width: 60px;
     height: 130px;
-    background-color: #669999;
+    background-color: #3d55aa;
     position: relative;
     position: fixed;
-    top: 20%;
+    top: 30%;
     right: 0;
     -webkit-transform: translateY(50%);
     -ms-transform: translateY(50%);
     transform: translateY(10%);
 
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 0px;
 }
-
+.sticky-button a{
+    font-weight: 600;
+}
 .sticky-button:hover{
     animation: square-to-circle 2.5s .5s infinite cubic-bezier(1, .015, .295, 1.225) alternate-reverse;
 }
 @keyframes square-to-circle {
     0%  {
       border-radius:0 0 0 0;
-      background:;
+      background:0.1px;
       transform:rotate(45deg);
     }
     25%  {
@@ -114,7 +211,7 @@
 }
 
 .items:hover {
-    color: #219EBC;
+    color: #ED875C;
 }
 
 
@@ -228,7 +325,6 @@
 }
 
 .carousel-caption-1 {
-    font-family: 'Mukta';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -242,7 +338,6 @@
 }
 
 .carousel-caption-2 {
-    font-family: 'Mukta';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -256,7 +351,6 @@
 }
 
 .carousel-caption-3 {
-    font-family: 'Mukta';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -305,7 +399,7 @@
 .testting {
     background: url('../img/AboutUs3.png');
     background-size: cover;
-    /* margin-bottom: 20px; */
+    margin-bottom: -15px;
 }
 
 .aboutUs {
@@ -342,7 +436,6 @@
     color: white;
     width: 200px;
     height: 50px;
-    font-family: 'Heebo', sans-serif;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -357,7 +450,7 @@
     line-height: 40px;
     padding-right: 20px;
     /* or 210% */
-    letter-spacing: -0.02em;
+    letter-spacing: 0.5px;
     color: #6B6A6A;
     mix-blend-mode: normal;
 
@@ -369,10 +462,11 @@
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 20px;
+    margin-left: 700px;
     font-weight: 600;
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: -5px;
+    margin-bottom: 20px;
 }
 
 .aboutus-Button2 {
@@ -381,7 +475,7 @@
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 570px;
+    margin-left: 1170px;
     font-weight: 600;
     font-size: 20px;
     margin-top: 20px;
@@ -399,10 +493,11 @@
 
 .services-title {
     font-size: 35px;
+    font-weight: 700;
     color: #EC9022;
     margin-left: 550px;
     margin-top: 50px;
-    font-weight: 600;
+    /* font-weight: 600; */
     margin-bottom: 50px;
 }
 
@@ -517,7 +612,7 @@
 
 .vision {
     width: 100%;
-    height: 330px;
+    height: 258px;
     background-color: #023047;
     background-image: url("../img/vision-background.png");
     background-size: cover;
@@ -526,26 +621,25 @@
 
 .vision-title {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
     font-style: normal;
-    font-weight: 600;
-    font-size: 40px;
+    font-size: 35px;
+    font-weight: 700;
     line-height: 100px;
-    letter-spacing: -0.015em;
+    /* letter-spacing: -0.015em; */
     color: #F5AE59;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .vision-para {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 25px;
     line-height: 42px;
     letter-spacing: 0.03em;
     color: #FFFFFF;
-    margin: 0px 460px 0px 460px;
+    margin: 0px 300px 0px 300px;
 }
 
 
@@ -564,6 +658,7 @@
 }
 
 .card {
+    height: 500px;
     margin-top: 40px;
     border: none;
     box-shadow: 4px 4px 5px -1px rgba(142, 202, 230, 100%)
@@ -578,7 +673,6 @@
 
 .success-title {
     color: rgb(15, 43, 70);
-    font-family: 'Heebo', sans-serif;
     text-align: center;
     font-weight: 700;
     letter-spacing: -1px;
@@ -586,17 +680,18 @@
 }
 
 .success-link {
-    margin-left: 130px;
-    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    /* height: 40px;
     width: 200px;
-    background-color: #ED875C;
+    background-color: #ED875C; */
     border-radius: 4px;
     text-align: center;
     text-decoration: none;
     font-size: 22px;
     font-weight: 600;
-    color: rgb(255, 255, 255);
-    box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1);
+    color:black;
+    /* box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1); */
     border: none;
 
 }
@@ -605,7 +700,7 @@
     text-decoration: none;
     font-size: 22px;
     font-weight: 600;
-    color: rgb(255, 255, 255);
+    color: black;
 }
 
 .success-btn {
@@ -657,11 +752,11 @@
 /* Success Stories Section */
 
 .success-stories {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-left: 150px;
     padding-right: 150px;
     background: url("../../../static/Localisation_App/img/Capa3.png");
-    background-size: cover;
+    background-size:cover;
     background-repeat: no-repeat;
 }
 
@@ -735,7 +830,6 @@
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
     border-radius: 18px;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 33px;
     line-height: 43px;
@@ -894,14 +988,15 @@
     .aboutus-Button {
         width: 140px;
         height: 49px;
-        left: 768px;
-        top: 702px;
+        /* left: 768px;
+        top: 702px; */
         background: #ED875C;
         border-radius: 8px;
         border: none;
         font-weight: 600;
         font-size: 20px;
-        color: white;
+        color: white; 
+        margin-bottom: 10px;
     }
 
     .aboutus-Button2 {
@@ -910,7 +1005,7 @@
         background: #ED875C;
         border-radius: 8px;
         border: none;
-        margin-left: 570px;
+        margin-right: 1000px;
         font-weight: 600;
         font-size: 20px;
         margin-top: 20px;
@@ -929,10 +1024,11 @@
 
     .services-title {
         font-size: 35px;
+        font-weight: 700;
         color: #EC9022;
         margin-left: 520px;
         margin-top: 50px;
-        font-weight: 600;
+        /* font-weight: 600; */
         margin-bottom: 50px;
     }
 
@@ -1015,7 +1111,6 @@
 
     .vision-title {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 28px;
@@ -1027,7 +1122,6 @@
 
     .vision-para {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 22px;
@@ -1080,7 +1174,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -1122,9 +1215,10 @@
     }
 
     .card {
+        height:700px;
         margin-top: 40px;
         border: none;
-        height: auto;
+        /* height: auto; */
         box-shadow: 2px 2px 5px -1px rgba(142, 202, 230, 100%)
     }
 
@@ -1162,8 +1256,7 @@
         background-color: #023047;
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
-        text-align: center;
-        font-family: 'Montserrat', sans-serif;
+        text-align: center; 
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
@@ -1403,7 +1496,6 @@
 
     .vision-title {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 42px;
@@ -1416,7 +1508,6 @@
 
     .vision-para {
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 25px;
@@ -1470,7 +1561,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -1553,7 +1643,6 @@
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
@@ -1686,7 +1775,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -1857,7 +1945,6 @@
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
@@ -2089,7 +2176,6 @@
 
     .success-title {
         color: rgb(15, 43, 70);
-        font-family: 'Heebo', sans-serif;
         text-align: center;
         font-weight: 700;
         letter-spacing: -1px;
@@ -2308,7 +2394,6 @@
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
         text-align: center;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;

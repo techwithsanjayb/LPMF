@@ -2,23 +2,30 @@
 
 <title>Help</title>
 <link href="{% static 'Localisation_App/css/help.css' %}" rel="stylesheet" />
-
-<div class="container-fluid">
-  <h4 class="help-main-title">Help</h4>
+<div class="help-main">
+<div class="container-fluid main-container">
+  <div class="text-center p-3">
+    <input
+      type="button"
+      class="text-center rounded-5 px-5 help-heading"
+      value="Help"
+      disabled
+    />
+  </div>
   <div class="row main">
-    <div class="col-3 first-section">
+    <div class="col-3 first-section" >
       <nav class="help-navigation">
         <ul>
           
           {% for f_sub_data in footer_sub_data %}
           <li class="nav-item">
-            <a href="{% url 'Localisation_App:helpData' f_sub_data.id %}">{{f_sub_data.Footer_Links_Info_SubTitle}}</a>
+            <a  href="{% url 'Localisation_App:helpData' f_sub_data.id %}">{{f_sub_data.Footer_Links_Info_SubTitle}}</a>
           </li>
           {% endfor %}
         </ul>
       </nav>
     </div>
-    <div class="col-8 second-section">
+    <div class="col-8 second-section"  style="background-color: #F2F2F2;">
       <!-- Sections of this Portal start from here -->
 
       
@@ -26,9 +33,9 @@
 
       {% if content %}
       <div id="sec1">
-        <h4 class="help-title">{{ content.Footer_Links_Info_SubTitle }}</h4>
+        <h4 class="help-title" >{{ content.Footer_Links_Info_SubTitle }}</h4>
 
-        <div> {{ content.Footer_Links_Info_SubContent|safe }}</div>
+        <div style="font-size: 20px;" > {{ content.Footer_Links_Info_SubContent|safe }}</div>
       </div>
       {% else %}
       <h1>No data found!</h1>
@@ -37,5 +44,6 @@
       <!-- Software to open zip files ends here -->
     </div>
   </div>
+</div>
 </div>
 {% endblock%}

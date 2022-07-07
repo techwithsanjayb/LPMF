@@ -1,13 +1,22 @@
 {% extends 'Localisation_App/base.html' %} {% load static %} {% block websitepolicies %}
 
+<div class="Web-main">
 <title>Website Policies</title>
 <link
   href="{% static 'Localisation_App/css/websitepolicies.css' %}"
   rel="stylesheet"
 />
 
-<div class="container-fluid">
-  <h4 class="web-main-title">Website Policies</h4>
+<div class="container-fluid main-container">
+  <!-- <h4 class="web-main-title">Website Policies</h4> -->
+  <div class="text-center p-3">
+    <input
+      type="button"
+      class="text-center rounded-5 px-5 webpolicies-heading"
+      value="Website Policies"
+      disabled
+    />
+  </div>
 
   <div class="row main">
     <div class="col-2 first-section">
@@ -24,6 +33,7 @@
               >{{f_sub_data.Footer_Links_Info_SubTitle}}</a
             >
           </li>
+          
           {% endfor %}
         </ul>
       </nav>
@@ -152,4 +162,7 @@
     tag1.setAttribute("style", "color:yellow");
   }
 </script>
-{% endcomment %} {% endblock %}
+{% endcomment %} 
+</div>
+
+{% endblock %}

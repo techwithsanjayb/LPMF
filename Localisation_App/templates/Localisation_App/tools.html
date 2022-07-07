@@ -10,7 +10,7 @@
   </div> -->
   <input
   type="button"
-  class="text-center rounded-5 tools-page-header"
+  class="text-center rounded-5 px-5 tools-page-header"
   value="Tools"
   disabled 
 />
@@ -21,7 +21,7 @@
         <form action={% url 'Localisation_App:toolsSearch' tools_title %}  method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="row p-3">
-            <div class="col-8">
+            <div class="col-6">
               {% if tools_title == 'none' %}
               <input
               class="form-control me-2"
@@ -39,9 +39,9 @@
               aria-label="Search"
             />{% endif %}
             </div>
-            <div class="col-4">
+            <div class="col-6">
               
-        <input class="btn btn-primary" type="submit" value="Search"/>
+        <input class="btn btn-primary" type="submit" style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Search"/>
             </div>
             <hr style="margin-top: 20px;">
           </div>
@@ -51,11 +51,11 @@
          <!-- {{ count }} -->
     <!-- {{ count }} -->
 
-        <h3 style="margin-top:-20px;">Categories</h3>
+        <div class="category-tool-title">Categories</div>
         
         <form action={% url 'Localisation_App:tools' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {% comment %} {% if satus_All_Checked == 'True' %}
+          {% comment %} {% if status_All_Checked == 'True' %}
           <div class="success-list">
           <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked"
             checked="checked" />
@@ -69,7 +69,7 @@
           <label class="tools-sidebar-item-text" for="vehicle1">All</label><br />
           </div>
           {% endif %} {% endcomment %}
-          {% if satus_All_Checked == 'True' %}
+          {% if status_All_Checked == 'True' %}
         <ul>
           {% for categories in toolscategory %}
           <input
@@ -116,13 +116,24 @@
     {% endfor %}
   </ul>
   {% endif %}
-        <button class='btn btn-primary filter-button' type="submit" value="Fetch">Filter</button>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Filter</button>
       </form>
+    </div>
+    <div class="col-2">
       <form action={% url 'Localisation_App:toolsReset' %} method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <button class='btn btn-primary filter-button' type="submit" value="Fetch">Reset</button>
+        <button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Reset</button>
       </form>
-      <p>Records Fetched : {{ count }}</p>
+    
+    </div>
+    <hr style="width:350px;margin-left:18px;">
+    <div class="col-4"></div>
+      <p class="tools_Fetched_Record_Text">Records Fetched : {{ count }}</p>
+
+    </div>
       </div>
     </div>
 
@@ -144,31 +155,31 @@
 
                 {% if data.ToolsData_UploadSupportDocument != '' %} 
                 <a style= "text-decoration: none;color:white" href= "/media/{{data.ToolsData_UploadSupportDocument}}" download>
-                   <div class= "tools-section-button" >Download </div > 
+                   <div class= "tools-section-button" >Document</div > 
                   </a> 
                 {% endif %} 
 
                 {% if data.ToolsData_UploadToolCode != '' %} 
                 <a style= "text-decoration: none;color:white" href= "/media/{{data.ToolsData_UploadToolCode}}" download>
-                   <div class= "tools-section-button" >Download </div> 
+                   <div class= "tools-section-button" >Download</div> 
                   </a> 
                 {% endif %} 
-  
-
-
-
-
-
               </div>
               
              
               <div class="col-sm-12 col-lg-8">
-                <h2>{{ data.ToolsData_HeadingName }}</h2>
+                <div class="Heading">
+                <h3 style="color: #023047;">{{ data.ToolsData_HeadingName }}</h3>
+              </div>
+                <hr/>
+                <div class="Discription">
                 <p>
                   {{ data.ToolsData_Description|safe }}
                 </p>
-                Last Updated Date : {{data.ToolsData_LastUpdatedDate|date:"M d, Y"}}
               </div>
+               <div class="Updated_Date">Last Updated Date : {{data.ToolsData_LastUpdatedDate|date:"M d, Y"}}</div> 
+              </div>
+              
             </div>
           </div>
         </div>
