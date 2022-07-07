@@ -1,12 +1,15 @@
 .contact-us-heading{
-  background-color: #023047 !important;
-  color:white;
+  background-color: #023047;
+  color: #feffff;
   width: auto;
   height: 50px;
-  font-family: 'Heebo', sans-serif;;
+  font-family: 'Heebo', sans-serif;
   font-size: 30px;
   font-weight: 600;
   letter-spacing: 1px;
+  margin-left: 850px;
+  margin-bottom: 20px;
+  margin-top: 15px;
 }
 .contact-us-card {
   margin-top: 40px;
