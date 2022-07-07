@@ -1,0 +1,18 @@
+<form action={% url 'Localisation_App:srvTTS' %} method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h5>TTS</h5>
+    <div>
+      <div class="form-control">{{TTS_Form.Select_Language_Pair}}</div><br />
+      <div class="form-control">{{TTS_Form.Gender}}</div><br />
+      <div class="form-control">{{TTS_Form.InputText}}</div><br />
+
+      {% if Status == "success" %}
+      <audio controls style="margin-top:20px; margin-left:240px;">
+        <source src={{outspeech_filepath}} type="audio/ogg">
+      </audio>
+      {% endif %}<br />
+      <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+ 
+      <button type="submit" class="btn btn-primary" style="margin-left:350px; margin-bottom:20px">submit</button>
+    </div>
+  </form>

@@ -155,25 +155,31 @@
 
                 {% if data.ToolsData_UploadSupportDocument != '' %} 
                 <a style= "text-decoration: none;color:white" href= "/media/{{data.ToolsData_UploadSupportDocument}}" download>
-                   <div class= "tools-section-button" >Download </div > 
+                   <div class= "tools-section-button" >Document</div > 
                   </a> 
                 {% endif %} 
 
                 {% if data.ToolsData_UploadToolCode != '' %} 
                 <a style= "text-decoration: none;color:white" href= "/media/{{data.ToolsData_UploadToolCode}}" download>
-                   <div class= "tools-section-button" >Download </div> 
+                   <div class= "tools-section-button" >Download</div> 
                   </a> 
                 {% endif %} 
               </div>
               
              
               <div class="col-sm-12 col-lg-8">
-                <h2>{{ data.ToolsData_HeadingName }}</h2>
+                <div class="Heading">
+                <h3 style="color: #023047;">{{ data.ToolsData_HeadingName }}</h3>
+              </div>
+                <hr/>
+                <div class="Discription">
                 <p>
                   {{ data.ToolsData_Description|safe }}
                 </p>
-                Last Updated Date : {{data.ToolsData_LastUpdatedDate|date:"M d, Y"}}
               </div>
+               <div class="Updated_Date">Last Updated Date : {{data.ToolsData_LastUpdatedDate|date:"M d, Y"}}</div> 
+              </div>
+              
             </div>
           </div>
         </div>

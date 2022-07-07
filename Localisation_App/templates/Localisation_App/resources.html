@@ -134,11 +134,16 @@
 
 
           <div class="col-sm-12 col-lg-8">
-            <h2>{{ data.ResourceData_HeadingName }}</h2>
+            <div class="Heading">
+            <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
+          </div>
+          <hr/>
+            <div class="Discription">
             <p>
               {{ data.ResourceData_Description|safe }}
             </p>
-            Last Updated Date : {{data.ResourceData_LastUpdatedDate|date:"M d, Y"}}
+            </div>
+            <div class="Updated_Date">Last Updated Date : {{data.ResourceData_LastUpdatedDate|date:"M d, Y"}}</div>
           </div>
         </div>
       </div>
