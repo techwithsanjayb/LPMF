@@ -34,3 +34,7 @@
 .contact-us-canvas{
   background-color: #666;
 }
+
+.card{
+  height:auto !important;
+}
