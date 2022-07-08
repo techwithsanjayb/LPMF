@@ -1331,7 +1331,6 @@ def goTranslate(request):
     return render(request, 'Localisation_App/ServicesDemoPage.html', context)
 
 
-<<<<<<< HEAD
 def dashboard(request):
     category_name = []
     countOfStroriesWithCategory=[]
@@ -1362,7 +1361,6 @@ def dashboard(request):
         'count_Of_Strories_PerCategory':countOfStroriesWithCategory
     }
     return render(request,'Localisation_App/Dashboard.html',context)
-=======
 # Translation Quote
 def translation_quote(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1397,12 +1395,7 @@ def translation_quote(request):
             context['error_message'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
             
-    
-    
-        
-        
-    
+
     
     
     return render(request, "Localisation_App/translation_quote.html", context)
->>>>>>> c83d18894cb4139da8cf983ff0794cbf9229dc82
