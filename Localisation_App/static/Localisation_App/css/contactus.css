@@ -3,7 +3,6 @@
   color: #feffff;
   width: auto;
   height: 50px;
-  font-family: 'Heebo', sans-serif;
   font-size: 30px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -36,5 +35,12 @@
 }
 
 .card{
-  height:auto !important;
+  height: auto   !important;
+}
+
+.contact-main{
+  background: url("../../../static/Localisation_App/img/WebSiteBgImg.png");
+  background-size: 100%;
+  height: auto;
+
 }

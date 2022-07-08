@@ -1,0 +1,16 @@
+/*prefix : t_quote */
+
+.t_quote-heading {
+    background-color: #023047;
+    color:white;
+    width: 330px;
+    height: 50px;
+    font-family: 'Heebo', sans-serif;;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.t_quote-card {
+  height: 300px;
+}

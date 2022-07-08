@@ -74,7 +74,11 @@
   <div class="container-fluid">
     <div class="container-fluid">
       <div class="row newsclass">
-        <marquee
+        <div class="col-1" style="height:40px;margin-left:-20px;background-color: #ED875C;padding:5px 0px 2px 10px">
+          <h5>News & Events</h5>
+        </div>
+        <div class="col-11">
+          <marquee
           class="marqueeClass"
           Scrollamount="10"
           onmouseover="this.stop()"
@@ -85,6 +89,8 @@
             >{{ forloop.counter }} . {{ news.NewsAndEvents_HeadingName }}</a
           >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
         </marquee>
+        </div>
+        
       </div>
     </div>
   </div>

@@ -59,6 +59,8 @@ urlpatterns = [
 
     path('goTranslate/', views.goTranslate,
          name='goTranslate'),
+    path('translation-quote/', views.translation_quote,
+         name='translation_quote'),
 
 ]
 

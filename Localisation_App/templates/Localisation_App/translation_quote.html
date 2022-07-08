@@ -1,8 +1,54 @@
-{% extends 'Localisation_App/base.html' %}
-{% load static %}
-
+{% extends 'Localisation_App/base.html' %} 
+{% load static %} 
 {% block translation_quote %}
 
+<link
+  href="{% static 'Localisation_App/css/translation_quote.css' %}"
+  rel="stylesheet"
+/>
+<div class="m-3">
+<div class="container">
+  <div class="text-center p-3">
+    <input type="text" class="text-center rounded-5 t_quote-heading" value="Translation Quote" disabled />
+  </div>
+  <div class="card">
+    <div class="card-body t_quote-card">
+      <h3>Count estimated words for a webpage</h3>
+    <form action="{% url 'Localisation_App:translation_quote' %}" method="POST">
+      {% csrf_token %}
+      <div class="row g-3 align-items-center">
+        <div class="col-1">
+          <label class="col-form-label fw-semibold">Enter URL</label>
+        </div>
+        <div class="col-8">
+          <input
+          type="text"
+          class="form-control"
+          name="url"
+          placeholder="Enter URL for the webpage"
+          />
+        </div>
+        <div class="col-3">
+          <button type="submit" class="btn btn-primary">Count Words</button>
+        </div>
+      </div>
+    </form>
+    {% comment %} <hr> {% endcomment %}
 
+    {% comment %} Words Count {% endcomment %}
+    {% if total_words %}
+    <h5 class="text-primary">Estimated Words on http://sdns are  {{total_words}}</h5>
+    {% endif %} 
+
+    {% comment %} Error Message {% endcomment %}
+    {% if error_message %}
+    <h5 class="text-danger">{{error_message}}</h5>
+    {% endif %}
+  </div>
+</div>
+    
+    
+  </div>
+</div>
 
 {% endblock %}
