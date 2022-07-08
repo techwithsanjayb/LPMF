@@ -1,339 +1,340 @@
 <title>Document</title>
-    <link
-      href="https://gisttransserver.in/assets/vendor/aos/aos.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://gisttransserver.in/assets/vendor/bootstrap/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://gisttransserver.in/assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://gisttransserver.in/assets/vendor/glightbox/css/glightbox.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://gisttransserver.in/assets/vendor/remixicon/remixicon.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://gisttransserver.in/assets/vendor/swiper/swiper-bundle.min.css"
-      rel="stylesheet"
-    />
-    <!-- Main CSS File -->
-    {% comment %} <link
-      href="https://gisttransserver.in/assets/css/style.min.css"
-      rel="stylesheet"
-    /> {% endcomment %}
+<link
+  href="https://gisttransserver.in/assets/vendor/aos/aos.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://gisttransserver.in/assets/vendor/bootstrap/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://gisttransserver.in/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://gisttransserver.in/assets/vendor/glightbox/css/glightbox.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://gisttransserver.in/assets/vendor/remixicon/remixicon.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://gisttransserver.in/assets/vendor/swiper/swiper-bundle.min.css"
+  rel="stylesheet"
+/>
+<!-- Main CSS File -->
+{% comment %}
+<link
+  href="https://gisttransserver.in/assets/css/style.min.css"
+  rel="stylesheet"
+/>
+{% endcomment %}
 
-    <script src="https://gisttransserver.in/js/jquery.min.js"></script>
-    <script src="https://gisttransserver.in/js/CDAC-Typing.min.js"></script>
-    <div class="container">
-      <div class="row justify-content-md-center bg-light shadow-sm my-3 pt-3">
+<script src="https://gisttransserver.in/js/jquery.min.js"></script>
+<script src="https://gisttransserver.in/js/CDAC-Typing.min.js"></script>
+
+<div class="container card mb-4">
+  
+  <div class="card-body">
+    <h5 class="card-title text-dark">Transliteration Service</h5>
+    <div class="row justify-content-md-center bg-light shadow-sm my-3 pt-3">
+      <div
+        class="col-lg-1"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title=""
+        data-bs-original-title="Select Inscript Keyboard for typing"
+      >
+        Keyboard
+      </div>
+      <div class="col-lg-4">
         <div
-          class="col-lg-1"
+          class="form-check form-check-inline"
           data-bs-toggle="tooltip"
           data-bs-placement="top"
           title=""
-          data-bs-original-title="Select Inscript Keyboard for typing"
+          data-bs-original-title="Select this option for Inscript typing"
         >
-          Keyboard
+          <input
+            class="form-check-input"
+            type="radio"
+            id="inscript"
+            name="layout"
+            onclick="setTypingLayout('inscript')"
+          />
+          <label class="form-check-label" for="inlineRadio1">Inscript</label>
         </div>
-        <div class="col-lg-4">
-          <div
-            class="form-check form-check-inline"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title=""
-            data-bs-original-title="Select this option for Inscript typing"
+        <div
+          class="form-check form-check-inline"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title=""
+          data-bs-original-title="Select this option for phonetic typing"
+        >
+          <input
+            class="form-check-input"
+            type="radio"
+            id="transliteration"
+            name="layout"
+            onclick="setTypingLayout('transliteration')"
+          />
+          <label class="form-check-label" for="inlineRadio2"
+            >Transliteration</label
           >
-            <input
-              class="form-check-input"
-              type="radio"
-              id="inscript"
-              name="layout"
-              onclick="setTypingLayout('inscript')"
-            />
-            <label class="form-check-label" for="inlineRadio1">Inscript</label>
-          </div>
-          <div
-            class="form-check form-check-inline"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title=""
-            data-bs-original-title="Select this option for phonetic typing"
-          >
-            <input
-              class="form-check-input"
-              type="radio"
-              id="transliteration"
-              name="layout"
-              onclick="setTypingLayout('transliteration')"
-            />
-            <label class="form-check-label" for="inlineRadio2"
-              >Transliteration</label
-            >
-          </div>
-        </div>
-        <div
-          class="col col-lg-6 pb-2"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title=""
-          data-bs-original-title="Select Language for typing"
-        >
-          <select id="language" class="form-select">
-            <option value="en_in">English</option>
-            <option value="hi_in" selected="selected" alt="Type in Hindi">
-              Hindi
-            </option>
-            <option value="as_in" alt="Type in Assamese">Assamese</option>
-            <option value="bn_in" alt="Type in Bengali">Bengali</option>
-            <option value="gj_in" alt="Type in Gujarati">Gujarati</option>
-            <option value="kn_in" alt="Type in Kannada">Kannada</option>
-            <option value="ml_in" alt="Type in Malayalam">Malayalam</option>
-            <option value="mr_in" alt="Type in Marathi">Marathi</option>
-            <option value="or_in" alt="Type in Oriya">Odia</option>
-            <option value="pn_in" alt="Type in Panjabi">Punjabi</option>
-            <option value="tm_in" alt="Type in Tamil">Tamil</option>
-            <option value="tl_in" alt="Type in Telugu">Telugu</option>
-            <option value="ur_in" alt="Type in Odia">Urdu</option>
-          </select>
-        </div>
-        <div
-          class="col-lg-1"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title=""
-          data-bs-original-title="Open keyboard for inscript typing"
-        >
-          <div class="one sixth">
-            <a href="#" id="kbdIcon"
-              ><img
-                width="56px"
-                src="https://gisttransserver.in/js/images/KbdIcon.ico"
-                alt="GIST : onscreen Floating keyboard"
-            /></a>
-          </div>
         </div>
       </div>
-      <div class="row gy-4">
-        <ul class="nav nav-tabs nav-pills" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link active"
-              id="Indian-language"
-              data-bs-toggle="tab"
-              data-bs-target="#Indian-language-tab"
-              type="button"
-              role="tab"
-              aria-controls="Indian-language"
-              aria-selected="true"
-            >
-              Transliteration Name
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link"
-              id="translate-address"
-              data-bs-toggle="tab"
-              data-bs-target="#translate-Address-tab"
-              type="button"
-              role="tab"
-              aria-controls="translate-address"
-              aria-selected="false"
-            >
-              Transliteration Address
-            </button>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div
-            class="tab-pane fade show active"
-            id="Indian-language-tab"
-            role="tabpanel"
-            aria-labelledby="Indian-language"
-          >
-            <form action="#" method="post">
-              <div class="row gy-4">
-                <div class="col-md-12">
-                  <label for="nameInput" class="form-label"
-                    >(On each keypress)</label
-                  >
-                  <textarea
-                    name="txtInputSpace1"
-                    dir="ltr"
-                    id="nameInput"
-                    autocomplete="off"
-                    class="form-control"
-                    rows="6"
-                    placeholder="(Eg: bharat)"
-                    required=""
-                  ></textarea>
-                </div>
-                <div class="col-md-6">
-                  <label for="nameSource" class="form-label">(On Tab)</label>
-                  <input
-                    dir="auto"
-                    type="text"
-                    id="nameSource"
-                    name="applicantName"
-                    class="form-control keyboardDemo keyboardInput"
-                    value="bharat"
-                    required=""
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label for="nameTarget" class="form-label">(On Tab)</label>
-                  <input
-                    dir="auto"
-                    type="text"
-                    class="form-control"
-                    id="nameTarget"
-                    name="applicantName_v1"
-                    autocomplete="off"
-                    placeholder="Result"
-                    required=""
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="translate-Address-tab"
-            role="tabpanel"
-            aria-labelledby="translate-address"
-          >
-            <form method="post">
-              <div class="row gy-4">
-                <div class="col-md-12">
-                  <label for="addressInput" class="form-label">(On Tab)</label>
-                  <textarea
-                    class="form-control position-relative"
-                    dir="auto"
-                    name="txtInputSpace2"
-                    rows="6"
-                    id="addressInput"
-                    placeholder="(Eg: Near Taj Hotel)"
-                    autocomplete="off"
-                    required=""
-                  ></textarea>
-                </div>
-                <div class="col-md-6">
-                  <label for="addressSource" class="form-label">(On Tab)</label>
-                  <input
-                    dir="auto"
-                    class="form-control keyboardDemo keyboardInput"
-                    type="text"
-                    id="addressSource"
-                    name="applicantSurname"
-                    value=" Near Taj Hotel"
-                    required=""
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label for="addressTarget" class="form-label">(On Tab)</label>
-                  <input
-                    dir="auto"
-                    type="text"
-                    class="form-control"
-                    id="addressTarget"
-                    name="applicantSurname_v1"
-                    autocomplete="off"
-                    placeholder="Result"
-                    required=""
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
+      <div
+        class="col col-lg-6 pb-2"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title=""
+        data-bs-original-title="Select Language for typing"
+      >
+        <select id="language" class="form-select">
+          <option value="en_in" selected>English</option>
+          <option value="hindi" alt="Type in Hindi" selected>Hindi</option>
+          <option value="as_in" alt="Type in Assamese">Assamese</option>
+          <option value="bn_in" alt="Type in Bengali">Bengali</option>
+          <option value="gj_in" alt="Type in Gujarati">Gujarati</option>
+          <option value="kn_in" alt="Type in Kannada">Kannada</option>
+          <option value="ml_in" alt="Type in Malayalam">Malayalam</option>
+          <option value="mr_in" alt="Type in Marathi">Marathi</option>
+          <option value="or_in" alt="Type in Oriya">Odia</option>
+          <option value="pn_in" alt="Type in Panjabi">Punjabi</option>
+          <option value="tm_in" alt="Type in Tamil">Tamil</option>
+          <option value="tl_in" alt="Type in Telugu">Telugu</option>
+          <option value="ur_in" alt="Type in Odia">Urdu</option>
+        </select>
+      </div>
+      <div
+        class="col-lg-1"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title=""
+        data-bs-original-title="Open keyboard for inscript typing"
+      >
+        <div class="one sixth">
+          <a href="#" id="kbdIcon"
+            ><img
+              width="56px"
+              src="https://gisttransserver.in/js/images/KbdIcon.ico"
+              alt="GIST : onscreen Floating keyboard"
+          /></a>
         </div>
       </div>
     </div>
+    <div class="row gy-4">
+      <ul class="nav nav-tabs nav-pills" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="Indian-language"
+            data-bs-toggle="tab"
+            data-bs-target="#Indian-language-tab"
+            type="button"
+            role="tab"
+            aria-controls="Indian-language"
+            aria-selected="true"
+          >
+            Transliteration Name
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="translate-address"
+            data-bs-toggle="tab"
+            data-bs-target="#translate-Address-tab"
+            type="button"
+            role="tab"
+            aria-controls="translate-address"
+            aria-selected="false"
+          >
+            Transliteration Address
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="Indian-language-tab"
+          role="tabpanel"
+          aria-labelledby="Indian-language"
+        >
+          <form action="#" method="post">
+            <div class="row gy-4">
+              <div class="col-md-12">
+                <label for="nameInput" class="form-label"
+                  >(On each keypress)</label
+                >
+                <textarea
+                  name="txtInputSpace1"
+                  dir="ltr"
+                  id="nameInput"
+                  autocomplete="off"
+                  class="form-control"
+                  rows="6"
+                  placeholder="(Eg: bharat)"
+                  required=""
+                  style="font-family: gist_hindi_font"
+                ></textarea>
+              </div>
+              <div class="col-md-6">
+                <label for="nameSource" class="form-label">(On Tab)</label>
+                <input
+                  dir="auto"
+                  type="text"
+                  id="nameSource"
+                  name="applicantName"
+                  class="form-control keyboardDemo keyboardInput"
+                  value="bharat"
+                  required=""
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="nameTarget" class="form-label">(On Tab)</label>
+                <input
+                  dir="auto"
+                  type="text"
+                  class="form-control"
+                  id="nameTarget"
+                  name="applicantName_v1"
+                  autocomplete="off"
+                  placeholder="Result"
+                  required=""
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="translate-Address-tab"
+          role="tabpanel"
+          aria-labelledby="translate-address"
+        >
+          <form method="post">
+            <div class="row gy-4">
+              <div class="col-md-12">
+                <label for="addressInput" class="form-label">(On Tab)</label>
+                <textarea
+                  class="form-control position-relative"
+                  dir="auto"
+                  name="txtInputSpace2"
+                  rows="6"
+                  id="addressInput"
+                  placeholder="(Eg: Near Taj Hotel)"
+                  autocomplete="off"
+                  required=""
+                ></textarea>
+              </div>
+              <div class="col-md-6">
+                <label for="addressSource" class="form-label">(On Tab)</label>
+                <input
+                  dir="auto"
+                  class="form-control keyboardDemo keyboardInput"
+                  type="text"
+                  id="addressSource"
+                  name="applicantSurname"
+                  value=" Near Taj Hotel"
+                  required=""
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="addressTarget" class="form-label">(On Tab)</label>
+                <input
+                  dir="auto"
+                  type="text"
+                  class="form-control"
+                  id="addressTarget"
+                  name="applicantSurname_v1"
+                  autocomplete="off"
+                  placeholder="Result"
+                  required=""
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script src="https://gisttransserver.in/assets/vendor/aos/aos.js"></script>
-    <script src="https://gisttransserver.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://gisttransserver.in/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="https://gisttransserver.in/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="https://gisttransserver.in/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="https://gisttransserver.in/assets/js/accessibility.min.js"></script>
-    <!-- Template Main JS File -->
-    <script src="https://gisttransserver.in/assets/js/main.js"></script>
-    <!-- tooltip js-->
-    <script>
-      var tooltipTriggerList = [].slice.call(
-        document.querySelectorAll('[data-bs-toggle="tooltip"]')
-      );
-      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-      });
-    </script>
+<script src="https://gisttransserver.in/assets/vendor/aos/aos.js"></script>
+<script src="https://gisttransserver.in/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://gisttransserver.in/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="https://gisttransserver.in/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="https://gisttransserver.in/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="https://gisttransserver.in/assets/js/accessibility.min.js"></script>
+<!-- Template Main JS File -->
+<script src="https://gisttransserver.in/assets/js/main.js"></script>
+<!-- tooltip js-->
+<script>
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+</script>
 
-    <script>
-      $(document).ready(function () {
-        console.log("dfbigdfbi");
-        var locale = null;
-        var cookies = document.cookie.split(";");
-        $(cookies).each(function (i, cookie) {
-          if (cookie.indexOf("LanguageLocale=") != -1) {
-            locale = cookie.split("=")[1];
-            setLanguage(locale);
-            $("#language").val(locale);
-          }
-        });
-        if (locale == null) {
-          locale = $("#language").find("option:selected").val();
-          setLanguage(locale);
-          setCookie(locale);
-        }
-        $("#language").on("change", function () {
-          locale = this.value;
-          setLanguage(locale);
-          setCookie(locale);
-        });
+<script>
+  $(document).ready(function () {
+    console.log("dfbigdfbi");
+    var locale = null;
+    var cookies = document.cookie.split(";");
+    $(cookies).each(function (i, cookie) {
+      if (cookie.indexOf("LanguageLocale=") != -1) {
+        locale = cookie.split("=")[1];
+        setLanguage(locale);
+        $("#language").val(locale);
+      }
+    });
+    if (locale == null) {
+      locale = $("#language").find("option:selected").val();
+      setLanguage(locale);
+      setCookie(locale);
+    }
+    $("#language").on("change", function () {
+      locale = this.value;
+      setLanguage(locale);
+      setCookie(locale);
+    });
 
-        $("#kbdIcon").on("click", function () {
-          openKeyboard(
-            $("#language").find("option:selected").text().toLowerCase()
-          );
-        });
-        function setCookie(langLocale) {
-          /*Setting Cookie*/
-          var today = new Date();
-          var expire = new Date();
-          expire.setTime(today.getTime() + 3600000 * 24 * 7);
-          document.cookie =
-            "LanguageLocale=" +
-            langLocale +
-            "; expires=" +
-            expire.toUTCString();
-          /*Setting Cookie*/
-        }
+    $("#kbdIcon").on("click", function () {
+      openKeyboard($("#language").find("option:selected").text().toLowerCase());
+    });
+    function setCookie(langLocale) {
+      /*Setting Cookie*/
+      var today = new Date();
+      var expire = new Date();
+      expire.setTime(today.getTime() + 3600000 * 24 * 7);
+      document.cookie =
+        "LanguageLocale=" + langLocale + "; expires=" + expire.toUTCString();
+      /*Setting Cookie*/
+    }
 
-        enableTyping(new Array("nameInput"), null, "NAME", locale, false);
-        enableTyping(new Array("addressInput"), null, "ADDRESS", locale, false);
-        enableTyping(
-          new Array("nameSource"),
-          new Array("nameTarget"),
-          "NAME",
-          locale,
-          false
-        );
-        enableTyping(
-          new Array("addressSource"),
-          new Array("addressTarget"),
-          "ADDRESS",
-          locale,
-          false
-        );
-      });
+    enableTyping(new Array("nameInput"), null, "NAME", locale, false);
+    enableTyping(new Array("addressInput"), null, "ADDRESS", locale, false);
+    enableTyping(
+      new Array("nameSource"),
+      new Array("nameTarget"),
+      "NAME",
+      locale,
+      false
+    );
+    enableTyping(
+      new Array("addressSource"),
+      new Array("addressTarget"),
+      "ADDRESS",
+      locale,
+      false
+    );
+  });
 
-      window.onload = function () {
-        document.getElementById("nameInput").focus();
-      };
-    </script>
+  window.onload = function () {
+    document.getElementById("nameInput").focus();
+  };
+</script>

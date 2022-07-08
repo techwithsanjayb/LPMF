@@ -8,6 +8,7 @@
 .navbar-nav>.active>a {
     color: #ED875C;
 }
+
 /* .cards {
     display: flex;
     flex-wrap: wrap;
@@ -73,8 +74,8 @@
     grid-row: 4/5;
     align-self: center;
   } */
-  
-  /* CARD BACKGROUNDS */
+
+/* CARD BACKGROUNDS */
 /*   
   .card-1 {
     background: radial-gradient(#1fe4f5, #3fbafe);
@@ -111,6 +112,127 @@
     padding-top: 20px;
 } */
 
+/* success Story New Section Start*/
+.succ-header {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 600;
+    padding-top:10px;
+}
+
+.succ-subheader {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.succ-img {
+    height: 200px;
+    width: 200px;
+}
+
+.succ-desc {
+    padding-top: 20px;
+    height: auto;
+    background-color: #FFF3D4;
+    -webkit-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+-moz-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+    border-radius: 10px;
+}
+.succ-desc2 {
+    padding-top: 20px;
+    height: auto;
+    background-color: #C9E6ED;
+    -webkit-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+-moz-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+    border-radius: 10px;
+}
+
+.succ-desc3 {
+    padding-top: 20px;
+    height: auto;
+    background-color: #FBE2E6;
+    -webkit-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+-moz-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+    border-radius: 10px;
+}
+
+.succ-desc h2 {
+    color: #023047;
+    text-align: center;
+    font-weight: 600;
+}
+
+.succ-desc2 h2 {
+    color: #023047;
+    text-align: center;
+    font-weight: 600;
+}
+.succ-desc3 h2 {
+    color: #023047;
+    text-align: center;
+    font-weight: 600;
+}
+.succ-desc p {
+    color: #023047;
+    text-align: center;
+
+}
+.succ-desc2 p {
+    color: #023047;
+    text-align: center;
+
+}
+.succ-desc3 p {
+    color: #023047;
+    text-align:justify;
+    font-weight:500;
+    font-size: 18px;
+}
+.succ-link{
+display: flex;
+flex-direction:column;
+align-items: flex-end;
+
+   
+}
+/* .succ-desc:hover {
+    animation: zoom-in-zoom-out 1s ease-in-out;
+    -webkit-box-shadow: 0px 4px 60px -27px rgba(148, 148, 148, 1);
+    -moz-box-shadow: 0px 4px 60px -27px rgba(148, 148, 148, 1);
+    box-shadow: 0px 4px 60px -27px rgba(148, 148, 148, 1);
+    
+} */
+.succ-main-card{
+    margin-left: 6rem !important;
+}
+
+@keyframes zoom-in-zoom-out {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    /* 25%{
+        transform: scale(1.2,1.2);
+    } */
+    50% {
+        transform: scale(1.5, 1.5);
+    }
+
+    /* 75% {
+        transform: scale(1.2,1.2);
+    } */
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+/* success Story New Section End */
+
 .sticky-button {
     width: 60px;
     height: 130px;
@@ -125,39 +247,47 @@
 
     padding: 20px 20px 20px 0px;
 }
-.sticky-button a{
+
+.sticky-button a {
     font-weight: 600;
 }
-.sticky-button:hover{
+
+.sticky-button:hover {
     animation: square-to-circle 2.5s .5s infinite cubic-bezier(1, .015, .295, 1.225) alternate-reverse;
 }
+
 @keyframes square-to-circle {
-    0%  {
-      border-radius:0 0 0 0;
-      background:0.1px;
-      transform:rotate(45deg);
+    0% {
+        border-radius: 0 0 0 0;
+        background: 0.1px;
+        transform: rotate(45deg);
     }
-    25%  {
-      border-radius:60% 0 60% 0;
-      background:darksalmon;
-      transform:rotate(135deg);
+
+    25% {
+        border-radius: 60% 0 60% 0;
+        background: darksalmon;
+        transform: rotate(135deg);
     }
-    50%  {
-      border-radius:80% 80% 0 0;
-      background:indianred;
-      transform:rotate(180deg);
+
+    50% {
+        border-radius: 80% 80% 0 0;
+        background: indianred;
+        transform: rotate(180deg);
     }
-    75%  { 
-      border-radius:80% 80% 80% 0;
-      background:lightcoral;
-      transform:rotate(315deg);
+
+    75% {
+        border-radius: 80% 80% 80% 0;
+        background: lightcoral;
+        transform: rotate(315deg);
     }
-    100% {  
-      border-radius:50%;
-      background:darksalmon;
-      transform:rotate(404deg);
+
+    100% {
+        border-radius: 50%;
+        background: darksalmon;
+        transform: rotate(404deg);
     }
-  }
+}
+
 .sticky-button a {
     writing-mode: vertical-rl;
     white-space: wrap;
@@ -690,7 +820,7 @@
     text-decoration: none;
     font-size: 22px;
     font-weight: 600;
-    color:black;
+    color: black;
     /* box-shadow: 4px 4px 6px -1px rgba(92, 92, 92, 1); */
     border: none;
 
@@ -756,7 +886,7 @@
     padding-left: 150px;
     padding-right: 150px;
     background: url("../../../static/Localisation_App/img/Capa3.png");
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -996,7 +1126,7 @@
         border: none;
         font-weight: 600;
         font-size: 20px;
-        color: white; 
+        color: white;
         margin-bottom: 10px;
     }
 
@@ -1216,7 +1346,7 @@
     }
 
     .card {
-        height:700px;
+        height: 700px;
         margin-top: 40px;
         border: none;
         /* height: auto; */
@@ -1257,7 +1387,7 @@
         background-color: #023047;
         box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
         border-radius: 18px;
-        text-align: center; 
+        text-align: center;
         font-weight: 700;
         font-size: 33px;
         line-height: 43px;
@@ -1964,18 +2094,18 @@
 
     /* sticky Button */
 
-.sticky-button {
-    height: 300px;
-    background-color: rgb(66, 177, 197);
-    width: 50px;
-    position: fixed;
-    top: 20%;
-    right: 0;
-    -webkit-transform: translateY(50%);
-    -ms-transform: translateY(50%);
-    transform: translateY(10%);
-    padding-top: 20px;
-} 
+    .sticky-button {
+        height: 300px;
+        background-color: rgb(66, 177, 197);
+        width: 50px;
+        position: fixed;
+        top: 20%;
+        right: 0;
+        -webkit-transform: translateY(50%);
+        -ms-transform: translateY(50%);
+        transform: translateY(10%);
+        padding-top: 20px;
+    }
 
     /* .sticky-button {
         width: 80px;

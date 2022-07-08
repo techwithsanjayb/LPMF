@@ -1,5 +1,6 @@
 
-from .forms import TTSservice, RegisterForm, UserLoginForm
+import re
+from .forms import TTSservice,RegisterForm,UserLoginForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
@@ -10,8 +11,11 @@ from django.shortcuts import render, redirect
 from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration
 import random
 import requests
-global str_num
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+from .word_count import crawl_data
 
+global str_num
 # Menu
 
 
@@ -1327,6 +1331,7 @@ def goTranslate(request):
     return render(request, 'Localisation_App/ServicesDemoPage.html', context)
 
 
+<<<<<<< HEAD
 def dashboard(request):
     category_name = []
     countOfStroriesWithCategory=[]
@@ -1357,3 +1362,47 @@ def dashboard(request):
         'count_Of_Strories_PerCategory':countOfStroriesWithCategory
     }
     return render(request,'Localisation_App/Dashboard.html',context)
+=======
+# Translation Quote
+def translation_quote(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
+    
+    context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+    }
+    
+    if request.method == 'POST':
+        url = request.POST.get('url')
+        
+        validate = URLValidator()
+        try:
+            validate(url)
+            crawled_data = crawl_data(url)
+            data = crawled_data
+            if data["status"]:
+                status,total_words, unique_words = data.values()
+
+                print("total_words = ", total_words)
+                print("unique_words = ", unique_words)
+                
+                context['total_words'] = total_words
+            else:
+                print(data["message"])
+                context['error_message'] = data['message']
+            
+            return render(request, "Localisation_App/translation_quote.html", context)
+        except ValidationError as e:
+            context['error_message'] = e.message
+            return render(request, "Localisation_App/translation_quote.html", context)
+            
+    
+    
+        
+        
+    
+    
+    
+    return render(request, "Localisation_App/translation_quote.html", context)
+>>>>>>> c83d18894cb4139da8cf983ff0794cbf9229dc82
