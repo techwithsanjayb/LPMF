@@ -117,12 +117,14 @@
     font-size: 40px;
     text-align: center;
     font-weight: 600;
+    padding-top:10px;
 }
 
 .succ-subheader {
     font-size: 28px;
     text-align: center;
     font-weight: 500;
+    margin-bottom: 40px;
 }
 
 .succ-img {
@@ -133,22 +135,80 @@
 .succ-desc {
     padding-top: 20px;
     height: auto;
-    background-color: #D9EFF4;
+    background-color: #FFF3D4;
+    -webkit-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+-moz-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+    border-radius: 10px;
+}
+.succ-desc2 {
+    padding-top: 20px;
+    height: auto;
+    background-color: #C9E6ED;
+    -webkit-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+-moz-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
     border-radius: 10px;
 }
 
-.succ-desc h3 {
+.succ-desc3 {
+    padding-top: 20px;
+    height: auto;
+    background-color: #FBE2E6;
+    -webkit-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+-moz-box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+box-shadow: 3px 3px 33px -8px rgba(212,212,212,1);
+    border-radius: 10px;
+}
+
+.succ-desc h2 {
     color: #023047;
     text-align: center;
     font-weight: 600;
 }
 
-.succ-desc:hover {
+.succ-desc2 h2 {
+    color: #023047;
+    text-align: center;
+    font-weight: 600;
+}
+.succ-desc3 h2 {
+    color: #023047;
+    text-align: center;
+    font-weight: 600;
+}
+.succ-desc p {
+    color: #023047;
+    text-align: center;
+
+}
+.succ-desc2 p {
+    color: #023047;
+    text-align: center;
+
+}
+.succ-desc3 p {
+    color: #023047;
+    text-align:justify;
+    font-weight:500;
+    font-size: 18px;
+}
+.succ-link{
+display: flex;
+flex-direction:column;
+align-items: flex-end;
+
+   
+}
+/* .succ-desc:hover {
     animation: zoom-in-zoom-out 1s ease-in-out;
     -webkit-box-shadow: 0px 4px 60px -27px rgba(148, 148, 148, 1);
     -moz-box-shadow: 0px 4px 60px -27px rgba(148, 148, 148, 1);
     box-shadow: 0px 4px 60px -27px rgba(148, 148, 148, 1);
-    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    
+} */
+.succ-main-card{
+    margin-left: 6rem !important;
 }
 
 @keyframes zoom-in-zoom-out {
