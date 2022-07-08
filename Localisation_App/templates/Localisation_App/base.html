@@ -1,5 +1,6 @@
 <!DOCTYPE html />
 {% load static %}
+
 <html>
 
 <head>
@@ -101,28 +102,28 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
+          <li class="nav-item {% if request.path == '/home/' %}active{% endif %}">
             <a class="items " aria-current="page" href="{% url 'Localisation_App:Home' %}"  >{{ topmenus.0 }}</a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item {% if request.path == '/aboutus/' %}active{% endif %}">
             <a class="items" href="{% url 'Localisation_App:aboutus' %}">{{ topmenus.1 }}</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/services/' %}active{% endif %}">
             <a class="items" href="{% url 'Localisation_App:services' %}">{{ topmenus.2 }}</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/toolsPage/' %}active{% endif %}">
             <a class="items" href="{% url 'Localisation_App:toolsPage' %}">{{ topmenus.3 }}</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/resourcesPage/' %}active{% endif %}">
             <a class="items" href="{% url 'Localisation_App:resourcesPage' %}">{{ topmenus.10 }}</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/successstoryPage/' %}active{% endif %}">
             <a class="items" href="{% url 'Localisation_App:successstoryPage' %}">{{ topmenus.4 }}</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/faqs/' %}active{% endif %}">
             <a class="items" href="{% url 'Localisation_App:faqs' %}">{{ topmenus.5 }}</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/contactus/' %}active{% endif %}">
             <a class="items" href="{% url 'Localisation_App:contactus' %}">{{ topmenus.6 }}</a>
           </li>
           <!-- <li class="nav-item">
@@ -315,7 +316,7 @@
   </div>
 
   <!-- Footer Section End -->
-  <script>
+  {% comment %} <script>
     $(document).ready(function () {
       console.log("hello")
         $('ul.navbar-nav > li')
@@ -326,7 +327,7 @@
             console.log("last test")
         });
     });
-</script>  
+</script>   {% endcomment %}
 <script>
   $('#maindiv').width($('#div1').width());
 </script>
