@@ -15,6 +15,7 @@
     width:40rem                !important;
     min-height:20rem               !important;
     height: auto                !important;
+    transition: all .3s ease-out;
 }
 
 .service-card1:hover{
@@ -37,6 +38,19 @@
     background-color:#054f74;
     color: white;
 }
+.service-card-heading {
+  color: #06405e;
+}
+
+.service-main-description {
+  padding-left: 5rem;
+  font-size: 1.6rem;
+  color: rgb(7, 53, 105);
+}
+
+.second-section {
+  text-align: justify;
+}
 
 @media screen and (max-width: 350px) {
     .first-section {
@@ -45,12 +59,13 @@
   
     .second-section {
       width: 100%;
+      text-align: justify;
     }
   }
 
-  .back-image{
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover
-  }
+.back-image{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover
+}
 /* end Services Section */
