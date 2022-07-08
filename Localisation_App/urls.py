@@ -60,6 +60,8 @@ urlpatterns = [
     path('goTranslate/', views.goTranslate,
          name='goTranslate'),
 
+
+    path('dashboard',views.dashboard,name="dashboard")
 ]
 
 if settings.DEBUG:
