@@ -19,8 +19,8 @@ urlpatterns = [
     path('resourceSearch/<resource_title>',
          views.resourceSearch, name='resourceSearch'),
     path('services/', views.services, name='services'),
-    path('successstoryPage', views.successstoryPage, name='successstoryPage'),
-    path('successstory', views.successstory, name='successstory'),
+    path('successstoryPage/', views.successstoryPage, name='successstoryPage'),
+    path('successstory/', views.successstory, name='successstory'),
     path('successstorySearch/<story_title>',
          views.successstorySearch, name='successstorySearch'),
     path('successstoryReset/', views.successstoryReset, name='successstoryReset'),
@@ -62,6 +62,8 @@ urlpatterns = [
     path('translation-quote/', views.translation_quote,
          name='translation_quote'),
 
+
+    path('dashboard',views.dashboard,name="dashboard")
 ]
 
 if settings.DEBUG:

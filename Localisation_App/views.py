@@ -87,17 +87,21 @@ def toolsPage(request):
     page = page.get_page(page_list)
     count = tools_Data.count()
     context = {
-        'topmenus': TopMenuItemsdata,
-        'FooterMenuItemsdata': FooterMenuItemsdata,
-        'toolsdata': tools_Data,
-        'tools_title': 'none',
-        'toolscategory': toolsCategory_data,
-        "page": page,
-        'status_All_Checked': 'True',
-        'Pagination_Type': 'All_Data',
-        'count': count
-    }
-    return render(request, 'Localisation_App/tools.html', context)
+            'topmenus': TopMenuItemsdata,
+            'FooterMenuItemsdata': FooterMenuItemsdata,
+            'toolsdata': tools_Data,
+            'tools_title': 'none',
+            'toolscategory': toolsCategory_data,
+            "page": page,
+            'status_All_Checked': 'True',
+            'Pagination_Type': 'All_Data',
+            'count': count,
+            'form': UserLoginForm()
+        }
+    if request.user.is_authenticated:
+        return render(request, 'Localisation_App/tools.html', context)
+    else:
+        return render(request, 'Localisation_App/login.html',context)
 
 
 def tools(request):
@@ -1239,8 +1243,12 @@ def submit(request, img):
 
 
 def Register_user(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
     form = RegisterForm()
     context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
         'form': form
     }
     if request.method == 'POST':
@@ -1257,6 +1265,8 @@ def Register_user(request):
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {
+                 'topmenus': TopMenuItemsdata,
+                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'form': form
             }
             return render(request, 'Localisation_App/register.html', context)
@@ -1264,6 +1274,8 @@ def Register_user(request):
 
 
 def login_user(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -1280,6 +1292,8 @@ def login_user(request):
         else:
             messages.error(request, 'Error Processing Your Request')
             context = {
+                'topmenus': TopMenuItemsdata,
+                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'form': UserLoginForm()
             }
 
@@ -1287,14 +1301,23 @@ def login_user(request):
             return render(request, 'Localisation_App/login.html', context)
     else:
         context = {
+            'topmenus': TopMenuItemsdata,
+            'FooterMenuItemsdata': FooterMenuItemsdata,
             'form': UserLoginForm()
         }
         return render(request, 'Localisation_App/login.html', context)
 
 
 def logout_user(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
+    context = {
+            'topmenus': TopMenuItemsdata,
+            'FooterMenuItemsdata': FooterMenuItemsdata,
+            
+        }
     logout(request)
-    return redirect('/')
+    return render(request, 'Localisation_App/logout.html',context)
 
 
 def goTranslate(request):
@@ -1308,6 +1331,36 @@ def goTranslate(request):
     return render(request, 'Localisation_App/ServicesDemoPage.html', context)
 
 
+def dashboard(request):
+    category_name = []
+    countOfStroriesWithCategory=[]
+    successStories_CategoryData = SuccessStories_Category.objects.all()
+    successStoriesData = SuccessStories.objects.all()
+    for n in successStories_CategoryData:
+        category_name.append(n.SuccessStories_CategoryType)
+    # print("data111",list(category_name))
+    # successStoriesData_AdvancedFeatures = SuccessStories.objects.filter(SuccessStories_category__icontains='Advanced Features').count()
+    # successStoriesData_AdvancedFeatures = SuccessStories.objects.filter(SuccessStories_category__icontains='Advanced Features').count()
+    
+    
+    for n in successStories_CategoryData:
+        count= SuccessStories.objects.filter(SuccessStories_category__SuccessStories_CategoryType = n.SuccessStories_CategoryType).count()
+        countOfStroriesWithCategory.append(count)
+   
+    print('datatata',category_name) 
+    print('datatata',countOfStroriesWithCategory)       
+                
+            #  SuccessStories.objects.filter(
+            #         SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
+            # # print("all data",q)   
+            
+    # print("data22",successStoriesData_AdvancedFeatures)
+    context={
+        'name':'Success Strories Dataset',
+        'successStories_CategoryData':category_name,
+        'count_Of_Strories_PerCategory':countOfStroriesWithCategory
+    }
+    return render(request,'Localisation_App/Dashboard.html',context)
 # Translation Quote
 def translation_quote(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1342,11 +1395,7 @@ def translation_quote(request):
             context['error_message'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
             
-    
-    
-        
-        
-    
+
     
     
     return render(request, "Localisation_App/translation_quote.html", context)

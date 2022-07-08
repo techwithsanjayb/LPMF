@@ -1,0 +1,49 @@
+<html>
+
+<head>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <div style="color: rgb(9, 51, 67);"></div>
+
+</body>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx,{
+     
+        type: 'bar',
+
+        data: {
+        labels: {{successStories_CategoryData|safe}},
+        datasets: [{
+            label: 'Success Stories Dataset',
+            backgroundColor: 'rgb(242, 184, 48)',
+            maxBarThickness:20,
+            hoverBackgroundColor:'rgb(9, 51, 67)',
+            borderColor: 'rgb(242, 184, 48)',
+            data: {{count_Of_Strories_PerCategory|safe}},
+        }]
+    },
+
+
+    options: {
+
+        indexAxis: 'y',
+    }
+
+
+    });
+  </script>
+
+
+
+
+
+</html>
