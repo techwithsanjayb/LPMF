@@ -216,44 +216,54 @@
 <!--Vision end-->
 
 <!-- Success Stories Start -->
-
-<div class="container-fluid success-stories">
-  <div>
-    <h4 class="success-header">Success Stories</h4>
+<div class="container-fluid">
+  <div class="succ-header">
+    Success Stories
   </div>
-  <div class="row">
-    {% for stories in SuccessStoriesData|slice:":3" %}
-    <div class="col-sm-12 col-md-12 col-lg-4">
-      <div class="card" data-aos="fade-down" data-aos-duration="1000">
-        <h5 class="card-header">
-          <img
-            class="test"
-            style="padding: 50px"
-            src="/media/{{ stories.SuccessStories_Upload_Image_1 }}"
-          />
-        </h5>
-        <div class="card-body">
-          <h1 class="success-title">{{ stories.SuccessStories_TitleName }}</h1>
-          <!-- <div class="card-text">
-            {{ stories.SuccessStories_Description|safe }}
-          </div> -->
-          {% if stories.SuccessStories_Link != '' %}
-          <div class="success-link">
-            <a href="{{ stories.SuccessStories_Link }}" target="_blank"
-              >Visit Website</a
-            >
-          </div>
-          {% endif %}
-        </div>
+  <div class="succ-subheader">
+    Know all our successfull Integration of locaisation services and tools over different portals. 
+  </div>
+  <div class="row px-5">
+  <div class="col-sm-12 col-lg-6 d-flex justify-content-center">
+    <img class="img-fluid" src="{% static './Localisation_App/img/Success-33.jpg' %}" alt="">
+  </div>
+  <div class="col-sm-12 col-lg-6">
+
+    <div class="row m-2 py-2 succ-main-card">
+      <div class="col-4"> 
+        <img src="{% static './Localisation_App/img/Localization Deployment.png' %}" class="succ-img  img-fluid" alt="">
+      </div>
+      <div class="col-6 succ-desc mt-2"> 
+        <h3>Localisation Deployment</h3>
+        <p>All our proof of concept of intregration of various services over different portals..</p>
       </div>
     </div>
-    {% endfor %}
 
-    <button class="aboutus-Button">
-      <a href="{% url 'Localisation_App:successstoryPage' %}">Read More</a>
-    </button>
+    <div class="row m-2 py-2 succ-main-card">
+      <div class="col-6 succ-desc mt-2"> 
+        <h3>Proof Of Concept</h3>
+        <p>All our proof of concept of intregration of various services over different portals..</p>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-4">
+        <img src="{% static './Localisation_App/img/Proof of Concept.png' %}" class="succ-img img-fluid" alt="">
+      </div>
+    </div>
+
+    <div class="row m-2 py-2 succ-main-card">
+      <div class="col-4">
+        <img src="{% static './Localisation_App/img/Portals Translated.png' %}" class="succ-img  img-fluid" alt="">
+      </div>
+      <div class="col-6 succ-desc mt-2">
+        <h3>Service Deployment</h3>
+        <p>All our proof of concept of intregration of various services over different portals..</p>
+      </div>
+    </div>
+
   </div>
 </div>
+</div>
+
 
 <!--Mission start-->
 
