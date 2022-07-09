@@ -2,6 +2,7 @@ from dataclasses import fields
 from logging import PlaceHolder
 from tkinter import Widget
 from django import forms
+from django.core import validators
 
 
 '''
@@ -188,3 +189,10 @@ class UserLoginForm(AuthenticationForm):
             
         }
      ))
+    
+    
+class TranslationQuoteForm(forms.Form):
+    url = forms.URLField(validators=[validators.MaxLengthValidator(200)])
+    
+    languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'),('urdu', 'Urdu')]
+    language = forms.ChoiceField(validators=[validators.MaxLengthValidator(20)], required=True, help_text='Select Language', choices=languages)

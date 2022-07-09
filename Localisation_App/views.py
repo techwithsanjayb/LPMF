@@ -1,6 +1,6 @@
 
 import re
-from .forms import TTSservice,RegisterForm,UserLoginForm
+from .forms import TTSservice,RegisterForm, TranslationQuoteForm,UserLoginForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
@@ -1361,6 +1361,8 @@ def dashboard(request):
         'count_Of_Strories_PerCategory':countOfStroriesWithCategory
     }
     return render(request,'Localisation_App/Dashboard.html',context)
+
+
 # Translation Quote
 def translation_quote(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1370,32 +1372,54 @@ def translation_quote(request):
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
     }
+
+    """ 
+    OLD CODE STARTS HERE 
+    """
     
+    # if request.method == 'POST':
+    #     url = request.POST.get('url')
+        
+    #     validate = URLValidator()
+    #     try:
+    #         validate(url)
+    #         crawled_data = crawl_data(url)
+    #         data = crawled_data
+    #         if data["status"]:
+    #             status,total_words, unique_words = data.values()
+
+    #             print("total_words = ", total_words)
+    #             print("unique_words = ", unique_words)
+                
+    #             context['total_words'] = total_words
+    #         else:
+    #             print(data["message"])
+    #             context['error_message'] = data['message']
+            
+    #         return render(request, "Localisation_App/translation_quote.html", context)
+    #     except ValidationError as e:
+    #         context['error_message'] = e.message
+    #         return render(request, "Localisation_App/translation_quote.html", context)
+            
+    # return render(request, "Localisation_App/translation_quote.html", context)
+
+    """ 
+    OLD CODE ENDS HERE
+    
+    """
+    
+    form = TranslationQuoteForm()
+    context['form'] = form
     if request.method == 'POST':
         url = request.POST.get('url')
         
-        validate = URLValidator()
-        try:
-            validate(url)
-            crawled_data = crawl_data(url)
-            data = crawled_data
-            if data["status"]:
-                status,total_words, unique_words = data.values()
-
-                print("total_words = ", total_words)
-                print("unique_words = ", unique_words)
-                
-                context['total_words'] = total_words
-            else:
-                print(data["message"])
-                context['error_message'] = data['message']
+        form = TranslationQuoteForm(request.POST)
+        
+        if form.is_valid():
+            print("validation success")
+            print(form.cleaned_data['url'])
             
-            return render(request, "Localisation_App/translation_quote.html", context)
-        except ValidationError as e:
-            context['error_message'] = e.message
-            return render(request, "Localisation_App/translation_quote.html", context)
-            
-
-    
+        return render(request, 'Localisation_App/translation_quote.html', context)
     
     return render(request, "Localisation_App/translation_quote.html", context)
+    

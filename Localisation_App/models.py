@@ -395,3 +395,17 @@ class UserRegistration(models.Model):
 
     def __str__(self):
         return self.userregistration_first_name + " " + self.userregistration_last_name
+
+
+# translation quote
+
+class TranslationQuote(models.Model):
+    url = models.URLField(max_length=200)
+    language = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = "Translation Quote"
+        ordering = ['url']
+
+    def __str__(self):
+        return self.url
