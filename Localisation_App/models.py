@@ -395,3 +395,13 @@ class UserRegistration(models.Model):
 
     def __str__(self):
         return self.userregistration_first_name + " " + self.userregistration_last_name
+
+
+
+class GuidelinceForIndianGovWebsite(models.Model):
+    name = models.CharField(max_length=100)
+    percentage = models.IntegerField()
+    class Meta:
+        verbose_name_plural = "Guidelince For Indian Gov Website"
+    def __str__(self):
+        return self.name 

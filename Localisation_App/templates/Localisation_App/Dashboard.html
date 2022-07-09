@@ -7,15 +7,60 @@
 </head>
 
 <body>
-    <div>
-        <canvas id="myChart"></canvas>
-    </div>
-    <div style="color: rgb(9, 51, 67);"></div>
+    <!-- <div class="container">
+        <div class="row" style="margin-top: 100px;">
+            <div class="col-md-12" style="float: left; max-width: 1000px; max-height: 1000px;">
+                <canvas style="height: 500px;" id="Stories"></canvas>
+            </div>
+        </div>
+        <div class="row">
+           
+            <div class="col-md-4" style="float: left; max-width: 900px; max-height: 900px; margin-left: 20px; margin-right: 20px;">
+                <canvas style="height: 500px;" id="Tools"></canvas>
+            </div>
+            
+            <div class="col-md-4" style="float: left; max-width: 900px; max-height: 900px; margin-left: 20px; margin-right: 20px;">
+                <canvas style="height: 500px;" id="Resources"></canvas>
+            </div>
+           
+        </div>
+        <!-- <div class="row" style="margin-top: 100px;">
+            
+            <div class="col-6" style="max-width: 900px; max-height: 900px; margin-left: 500px; margin-right: 500px;">
+                <canvas style="height: 500px;" id="User"></canvas>
+            </div>
+            
+        </div> -->
+
+        <!-- <div class="row" style="margin-top: 100px;">
+            
+        </div>
+    </div> --> -->
+   
+        <!-- <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    <div style="max-width: 900px; max-height: 900px; margin-left: 500px; margin-right: 500px;">
+        <canvas style="height: 500px;" id="Guidelines"></canvas>
+    </div> -->
+
+
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+<div >
+    <canvas style="height:100%;" id="toolshit"></canvas>
+</div>
 
 </body>
 
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('Stories').getContext('2d');
     var myChart = new Chart(ctx,{
      
         type: 'bar',
@@ -24,26 +69,209 @@
         labels: {{successStories_CategoryData|safe}},
         datasets: [{
             label: 'Success Stories Dataset',
-            backgroundColor: 'rgb(242, 184, 48)',
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+            ],
             maxBarThickness:20,
             hoverBackgroundColor:'rgb(9, 51, 67)',
             borderColor: 'rgb(242, 184, 48)',
-            data: {{count_Of_Strories_PerCategory|safe}},
+            data: {{count_Of_Stories_PerCategory|safe}},
         }]
     },
 
 
     options: {
 
-        indexAxis: 'y',
+        
     }
 
 
     });
-  </script>
+</script>
+<script>
+
+
+    var ctx = document.getElementById('Tools').getContext('2d');
+    var myChart = new Chart(ctx,{
+     
+        type: 'bar',
+
+        data: {
+        labels: {{tools_CategoryData|safe}},
+        datasets: [{
+            label: 'Tools Dataset',
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+        ],
+            maxBarThickness:20,
+            hoverBackgroundColor:'rgb(9, 51, 67)',
+            borderColor: 'rgb(242, 184, 48)',
+            data: {{count_Of_Tools_PerCategory|safe}},
+        }]
+    },
+
+
+    options: {
+
+       
+    }
+
+
+    });
+
+ 
+</script>
+
+<script>
+
+
+    var ctx = document.getElementById('Resources').getContext('2d');
+    var myChart = new Chart(ctx,{
+     
+        type: 'bar',
+
+        data: {
+        labels: {{resources_CategoryData|safe}},
+        datasets: [{
+            label: 'Resources Dataset',
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+        ],
+            maxBarThickness:20,
+            hoverBackgroundColor:'rgb(9, 51, 67)',
+            borderColor: 'rgb(242, 184, 48)',
+            data: {{count_Of_Resources_PerCategory|safe}},
+        }]
+    },
+
+
+    options: {
+
+      
+    }
+
+
+    });
+
+ 
+</script>
+
+
+<script>
+
+
+    var ctx = document.getElementById('User').getContext('2d');
+    var myChart = new Chart(ctx,{
+     
+        type: 'doughnut',
+
+        data: {
+        labels: {{user_CategoryData|safe}},
+        datasets: [{
+            label: 'User Dataset',
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4,
+            data: {{count_Of_User_PerCategory|safe}},
+        }]
+    },
+
+
+    options: {
+
+      
+    }
+
+
+    });
+
+ 
+</script>
 
 
 
 
+<script>
+
+
+    var ctx = document.getElementById('Guidelines').getContext('2d');
+    var myChart = new Chart(ctx,{
+     
+        type: 'bar',
+
+        data: {
+        labels: {{guidelinesType|safe}},
+        datasets: [{
+            label: 'Guidelines for Indian Govt Websites',
+            backgroundColor:'rgb(255, 205, 86)',
+            maxBarThickness:20,
+            hoverBackgroundColor:'rgb(9, 51, 67)',
+            borderColor: 'rgb(242, 184, 48)',
+            data: {{guidelinesCount_Per_Type|safe}},
+        }]
+    },
+
+
+    options: {
+
+      
+    }
+
+
+    });
+
+ 
+</script>
+
+
+
+
+
+<script>
+
+
+    var ctx = document.getElementById('toolshit').getContext('2d');
+    var myChart = new Chart(ctx,{
+     
+        type: 'bar',
+
+        data: {
+        labels: {{toolshit_name|safe}},
+        datasets: [{
+            label: 'Tools hit',
+            backgroundColor:'rgb(255, 205, 86)',
+            maxBarThickness:40,
+            hoverBackgroundColor:'rgb(9, 51, 67)',
+            borderColor: 'rgb(242, 184, 48)',
+            data: {{toolsHitCount|safe}},
+        }]
+    },
+
+
+    options: {
+
+        // indexAxis: 'y',
+    },
+
+
+    });
+
+ 
+</script>
 
 </html>
