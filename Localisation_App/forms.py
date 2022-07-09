@@ -192,7 +192,12 @@ class UserLoginForm(AuthenticationForm):
     
     
 class TranslationQuoteForm(forms.Form):
-    url = forms.URLField(validators=[validators.MaxLengthValidator(200)])
+    url = forms.URLField(validators=[validators.MaxLengthValidator(200), validators.URLValidator()], required=True)
     
     languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'),('urdu', 'Urdu')]
     language = forms.ChoiceField(validators=[validators.MaxLengthValidator(20)], required=True, help_text='Select Language', choices=languages)
+    
+    types = [('medical', 'Medical'), ('transport', 'Transport')]
+    website_type = forms.ChoiceField(validators=[validators.MaxLengthValidator(30)], required=True, choices=types)
+    
+    delivery_date = forms.DateField(required=True)

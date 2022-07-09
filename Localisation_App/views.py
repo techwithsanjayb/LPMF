@@ -1410,14 +1410,23 @@ def translation_quote(request):
     
     form = TranslationQuoteForm()
     context['form'] = form
+    
     if request.method == 'POST':
         url = request.POST.get('url')
+        language = request.POST.get('language')
+        website_type = request.POST.get('website_type')
+        delivery_date = request.POST.get('delivery_date')
         
         form = TranslationQuoteForm(request.POST)
         
+        context['form'] = form
+        print("dsnghufdygiu")
         if form.is_valid():
             print("validation success")
             print(form.cleaned_data['url'])
+            print(form.cleaned_data['language'])
+            print(form.cleaned_data['website_type'])
+            print(form.cleaned_data['delivery_date'])
             
         return render(request, 'Localisation_App/translation_quote.html', context)
     

@@ -21,10 +21,7 @@
   <div class="card">
     <div class="card-body t_quote-card">
 
-      <form
-        action="{% url 'Localisation_App:translation_quote' %}"
-        method="POST"
-      >
+      <form action="{% url 'Localisation_App:translation_quote' %}" method="POST" >
         {% csrf_token %}
         <div class="mb-3">
         <label for="inputPassword5" class="form-label">URL</label>
@@ -34,6 +31,15 @@
         <label for="inputPassword5" class="form-label">Language</label>
         {{form.language}} 
         </div>      
+        <div class="mb-3">
+        <label for="inputPassword5" class="form-label">Website Type</label>
+        {{form.website_type}} 
+        </div>      
+        <div class="mb-3">
+        <label for="inputPassword5" class="form-label">delivery Date</label>
+        {{form.delivery_date}} 
+        </div>   
+        <input type="submit" value="Submit">  
       </form>
       {% if total_words %}
       <h5 class="text-primary">
