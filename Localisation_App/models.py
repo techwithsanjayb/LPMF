@@ -395,3 +395,27 @@ class UserRegistration(models.Model):
 
     def __str__(self):
         return self.userregistration_first_name + " " + self.userregistration_last_name
+
+
+# translation quote
+
+class TranslationQuote(models.Model):
+    url = models.URLField(max_length=200)
+    language = models.CharField(max_length=200)
+    website_type = models.CharField(max_length=200, null=True)
+    delivery_date = models.DateField(max_length=200, null=True)
+
+    class Meta:
+        verbose_name_plural = "Translation Quote"
+        ordering = ['url']
+
+    def __str__(self):
+        return self.url
+
+class GuidelinceForIndianGovWebsite(models.Model):
+    name = models.CharField(max_length=100)
+    percentage = models.IntegerField()
+    class Meta:
+        verbose_name_plural = "Guidelince For Indian Gov Website"
+    def __str__(self):
+        return self.name 

@@ -340,11 +340,19 @@ align-items: flex-end;
     text-shadow: 1px 2px 3px rgba(179, 179, 179, 0.46);
 }
 
+
 .items:hover {
     color: #ED875C;
 }
 
+.item-button {
+    color: #023047;
+    text-decoration: none;
+}
 
+.item-button:hover{
+    color: rgb(39, 101, 182);
+}
 /* Navbar Ends */
 
 
