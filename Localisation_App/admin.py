@@ -1,5 +1,9 @@
 from django.contrib import admin
+<<<<<<< HEAD
 from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, TranslationQuote, User, UserRegistration
+=======
+from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration,GuidelinceForIndianGovWebsite
+>>>>>>> ab3049bfed98002c129f958906d2e83de6ee7582
 # Register your models here.
 
 
@@ -198,6 +202,11 @@ class AdminUserRegistration(admin.ModelAdmin):
         return False
 
 admin.site.register(TranslationQuote)
+
+@admin.register(GuidelinceForIndianGovWebsite)
+class AdminGuidelinceForIndianGovWebsite(admin.ModelAdmin):
+    list_display = ('name','percentage')
+
 
 # SANJAY BHARGAVA ADDED BELOW LINES
 admin.site.site_header = "Localisation Administration"

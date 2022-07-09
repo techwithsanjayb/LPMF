@@ -8,12 +8,13 @@ from multiprocessing import context
 from django.contrib.auth import login, authenticate, logout,  update_session_auth_hash
 from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.shortcuts import render, redirect
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration
+from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration,GuidelinceForIndianGovWebsite
 import random
 import requests
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from .word_count import crawl_data
+import json
 
 global str_num
 # Menu
@@ -1332,33 +1333,122 @@ def goTranslate(request):
 
 
 def dashboard(request):
-    category_name = []
-    countOfStroriesWithCategory=[]
+    SuccessStoriescategory_name = []
+    countOfStoriesWithCategory=[]
     successStories_CategoryData = SuccessStories_Category.objects.all()
-    successStoriesData = SuccessStories.objects.all()
+
+    toolscategory_name = []
+    countOfToolsWithCategory=[]
+    toolsCategory_data = Tools_Category.objects.all()
+
+
+    resourcescategory_name = []
+    countOfResourcesWithCategory=[]
+    resourcesCategory_data = Resources_Category.objects.all()
+
+
+    userType=[]
+    userType_Duplicate=[]
+    userCount_Per_Type=[]
+    userRegistration_Data=UserRegistration.objects.all()
+
+
+    guidelinesType=[]
+    guidelines_Duplicate=[]
+    guidelinesCount_Per_Type=[]
+    guidelines_data=GuidelinceForIndianGovWebsite.objects.all()
+
+
+    toolsName=[]
+    id=[]
+    # toolsName_Duplicate=[]
+    toolsName_hitCount_Per_Name=[]
+    tools_data=ToolsData.objects.all()
+    toolscat_data= Tools_Category.objects.all()
+
+
     for n in successStories_CategoryData:
-        category_name.append(n.SuccessStories_CategoryType)
-    # print("data111",list(category_name))
-    # successStoriesData_AdvancedFeatures = SuccessStories.objects.filter(SuccessStories_category__icontains='Advanced Features').count()
-    # successStoriesData_AdvancedFeatures = SuccessStories.objects.filter(SuccessStories_category__icontains='Advanced Features').count()
-    
-    
+        SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
     for n in successStories_CategoryData:
         count= SuccessStories.objects.filter(SuccessStories_category__SuccessStories_CategoryType = n.SuccessStories_CategoryType).count()
-        countOfStroriesWithCategory.append(count)
+        countOfStoriesWithCategory.append(count)
    
-    print('datatata',category_name) 
-    print('datatata',countOfStroriesWithCategory)       
-                
-            #  SuccessStories.objects.filter(
-            #         SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
-            # # print("all data",q)   
-            
-    # print("data22",successStoriesData_AdvancedFeatures)
+    for n in toolsCategory_data:
+        toolscategory_name.append(n.Tools_CategoryType)
+    for n in toolsCategory_data:
+        count= ToolsData.objects.filter(ToolsData_CategoryType__Tools_CategoryType = n.Tools_CategoryType).count()
+        countOfToolsWithCategory.append(count)
+
+
+    for n in resourcesCategory_data:
+        resourcescategory_name.append(n.Resources_CategoryType)
+    for n in resourcesCategory_data:
+        count= ResourceData.objects.filter(ResourceData_CategoryType__Resources_CategoryType = n.Resources_CategoryType).count()
+        countOfResourcesWithCategory.append(count)
+     
+
+    for n in userRegistration_Data:
+        userType_Duplicate.append(n.registration_User_Type)
+    data_unique=set(userType_Duplicate)
+    userType=list(data_unique)
+    for n in userType:
+        count= UserRegistration.objects.filter(registration_User_Type = n).count()
+        userCount_Per_Type.append(count)
+     
+
+
+    for n in guidelines_data:
+        guidelines_Duplicate.append(n.name)
+    data_unique=set(guidelines_Duplicate)
+    guidelinesType=list(data_unique)
+    for n in guidelinesType:
+        # print(n)
+        data= GuidelinceForIndianGovWebsite.objects.values('percentage').filter().get(name = n)
+        print(data["percentage"])
+        guidelinesCount_Per_Type.append(data["percentage"])
+
+
+    for n in tools_data:
+        
+        id.append(n.id)
+    print(id)
+    for n in id:
+        # print(n)
+        data= ToolsData.objects.values('ToolsData_DownloadCounter').get(id = n)
+        # print(data)
+        print(data["ToolsData_DownloadCounter"])
+        toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
+    
+    for n in id:
+        datname=ToolsData.objects.values('ToolsData_HeadingName').get(id = n)
+        toolsName.append(datname["ToolsData_HeadingName"])
+        print(datname["ToolsData_HeadingName"])
+
+    # # print("cat",toolsName) 
+    # # print("data",toolsName_hitCount_Per_Name)
+
+
     context={
         'name':'Success Strories Dataset',
-        'successStories_CategoryData':category_name,
-        'count_Of_Strories_PerCategory':countOfStroriesWithCategory
+        'successStories_CategoryData':SuccessStoriescategory_name,
+        'count_Of_Stories_PerCategory':countOfStoriesWithCategory,
+
+        'tools_CategoryData':toolscategory_name,
+        'count_Of_Tools_PerCategory':countOfToolsWithCategory,
+
+        'resources_CategoryData':resourcescategory_name,
+        'count_Of_Resources_PerCategory':countOfResourcesWithCategory,
+
+        'user_CategoryData':userType,
+        'count_Of_User_PerCategory':userCount_Per_Type,
+
+
+        'guidelinesType':guidelinesType,
+        'guidelinesCount_Per_Type':guidelinesCount_Per_Type,
+
+
+        'toolshit_name':toolsName,
+        'toolsHitCount':toolsName_hitCount_Per_Name
     }
     return render(request,'Localisation_App/Dashboard.html',context)
 
