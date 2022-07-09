@@ -403,7 +403,7 @@ class TranslationQuote(models.Model):
     url = models.URLField(max_length=200)
     language = models.CharField(max_length=200)
     website_type = models.CharField(max_length=200, null=True)
-    delivery_date = models.DateField(max_length=200, auto_now=True, blank=True, null=True)
+    delivery_date = models.DateField(max_length=200, null=True)
 
     class Meta:
         verbose_name_plural = "Translation Quote"

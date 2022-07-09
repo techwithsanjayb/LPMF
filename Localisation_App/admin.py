@@ -1,9 +1,5 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, TranslationQuote, User, UserRegistration
-=======
-from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration,GuidelinceForIndianGovWebsite
->>>>>>> ab3049bfed98002c129f958906d2e83de6ee7582
+from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration,GuidelinceForIndianGovWebsite, TranslationQuote
 # Register your models here.
 
 
