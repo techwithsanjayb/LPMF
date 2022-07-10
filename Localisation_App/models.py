@@ -412,10 +412,13 @@ class TranslationQuote(models.Model):
     def __str__(self):
         return self.url
 
+
 class GuidelinceForIndianGovWebsite(models.Model):
     name = models.CharField(max_length=100)
     percentage = models.IntegerField()
+
     class Meta:
         verbose_name_plural = "Guidelince For Indian Gov Website"
+
     def __str__(self):
-        return self.name 
+        return self.name

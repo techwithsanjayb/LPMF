@@ -76,8 +76,8 @@
             onmouseover="this.stop()"
             onmouseout="this.start()"
           >
-            <span style="color: grey"></span> {% for news in NewsAndEventsData
-            %}
+            <span style="color: grey"></span>
+            {% for news in NewsAndEventsData%}
             <a class="news1" href="{{news.NewsAndEvents_Link }}" target="_blank"
               >{{ forloop.counter }} . {{ news.NewsAndEvents_HeadingName }}</a
             >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}

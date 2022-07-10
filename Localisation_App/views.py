@@ -1,6 +1,6 @@
 
 import re
-from .forms import TTSservice,RegisterForm, TranslationQuoteForm,UserLoginForm
+from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
@@ -8,7 +8,7 @@ from multiprocessing import context
 from django.contrib.auth import login, authenticate, logout,  update_session_auth_hash
 from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.shortcuts import render, redirect
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration,GuidelinceForIndianGovWebsite
+from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration, GuidelinceForIndianGovWebsite
 import random
 import requests
 from django.core.validators import URLValidator
@@ -88,21 +88,21 @@ def toolsPage(request):
     page = page.get_page(page_list)
     count = tools_Data.count()
     context = {
-            'topmenus': TopMenuItemsdata,
-            'FooterMenuItemsdata': FooterMenuItemsdata,
-            'toolsdata': tools_Data,
-            'tools_title': 'none',
-            'toolscategory': toolsCategory_data,
-            "page": page,
-            'status_All_Checked': 'True',
-            'Pagination_Type': 'All_Data',
-            'count': count,
-            'form': UserLoginForm()
-        }
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+        'toolsdata': tools_Data,
+        'tools_title': 'none',
+        'toolscategory': toolsCategory_data,
+        "page": page,
+        'status_All_Checked': 'True',
+        'Pagination_Type': 'All_Data',
+        'count': count,
+        'form': UserLoginForm()
+    }
     if request.user.is_authenticated:
         return render(request, 'Localisation_App/tools.html', context)
     else:
-        return render(request, 'Localisation_App/login.html',context)
+        return render(request, 'Localisation_App/login.html', context)
 
 
 def tools(request):
@@ -332,15 +332,15 @@ def toolsReset(request):
     count = tools_Data.count()
     if request.method == "POST":
         context = {
-        'topmenus': TopMenuItemsdata,
-        'FooterMenuItemsdata': FooterMenuItemsdata,
-        'toolsdata': tools_Data,
-        'tools_title': 'none',
-        'toolscategory': toolsCategory_data,
-        "page": page,
-        'status_All_Checked': 'True',
-        'Pagination_Type': 'All_Data',
-        'count': count
+            'topmenus': TopMenuItemsdata,
+            'FooterMenuItemsdata': FooterMenuItemsdata,
+            'toolsdata': tools_Data,
+            'tools_title': 'none',
+            'toolscategory': toolsCategory_data,
+            "page": page,
+            'status_All_Checked': 'True',
+            'Pagination_Type': 'All_Data',
+            'count': count
         }
         return render(request, 'Localisation_App/tools.html', context)
 
@@ -617,8 +617,10 @@ def successstoryPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
-    successStoriesData = SuccessStories.objects.order_by('SuccessStories_Priority')
+    successStories_CategoryData = SuccessStories_Category.objects.order_by(
+        'SuccessStories_Cat_Priority')
+    successStoriesData = SuccessStories.objects.order_by(
+        'SuccessStories_Priority')
     page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
@@ -647,7 +649,8 @@ def successstory(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     # SuccessStrories_Category.objects.update(SuccessStrories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStories_CategoryData = SuccessStories_Category.objects.order_by(
+        'SuccessStories_Cat_Priority')
     successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
 
     if request.method == "POST":
@@ -674,7 +677,7 @@ def successstory(request):
             for c in to_fetch:
                 # print(c)
                 q = q | SuccessStories.objects.filter(
-                    SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
+                    SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority', 'SuccessStories_Priority')
             # print("all data",q)
             count = q.count()
             print("hey", q)
@@ -725,7 +728,7 @@ def successstory(request):
     to_fetch = tuple(category_name)
     for c in to_fetch:
         q = q | SuccessStories.objects.filter(
-            SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority','SuccessStories_Priority')
+            SuccessStories_category__SuccessStories_CategoryType__contains=c).order_by('SuccessStories_category__SuccessStories_Cat_Priority', 'SuccessStories_Priority')
     print(q)
 
     if pagestatus == True:
@@ -772,7 +775,8 @@ def successstorySearch(request, story_title):
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStories_CategoryData = SuccessStories_Category.objects.order_by(
+        'SuccessStories_Cat_Priority')
     successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
 
     if request.method == "POST":
@@ -861,7 +865,8 @@ def successstoryReset(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
-    successStories_CategoryData = SuccessStories_Category.objects.order_by('SuccessStories_Cat_Priority')
+    successStories_CategoryData = SuccessStories_Category.objects.order_by(
+        'SuccessStories_Cat_Priority')
     successStoriesData = SuccessStories.objects.all().order_by('SuccessStories_Priority')
     page = Paginator(successStoriesData, 8)
     page_list = request.GET.get('page')
@@ -1266,8 +1271,8 @@ def Register_user(request):
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {
-                 'topmenus': TopMenuItemsdata,
-                 'FooterMenuItemsdata': FooterMenuItemsdata,
+                'topmenus': TopMenuItemsdata,
+                'FooterMenuItemsdata': FooterMenuItemsdata,
                 'form': form
             }
             return render(request, 'Localisation_App/register.html', context)
@@ -1294,7 +1299,7 @@ def login_user(request):
             messages.error(request, 'Error Processing Your Request')
             context = {
                 'topmenus': TopMenuItemsdata,
-                 'FooterMenuItemsdata': FooterMenuItemsdata,
+                'FooterMenuItemsdata': FooterMenuItemsdata,
                 'form': UserLoginForm()
             }
 
@@ -1313,12 +1318,12 @@ def logout_user(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     context = {
-            'topmenus': TopMenuItemsdata,
-            'FooterMenuItemsdata': FooterMenuItemsdata,
-            
-        }
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+
+    }
     logout(request)
-    return render(request, 'Localisation_App/logout.html',context)
+    return render(request, 'Localisation_App/logout.html', context)
 
 
 def goTranslate(request):
@@ -1334,130 +1339,124 @@ def goTranslate(request):
 
 def dashboard(request):
     SuccessStoriescategory_name = []
-    countOfStoriesWithCategory=[]
+    countOfStoriesWithCategory = []
     successStories_CategoryData = SuccessStories_Category.objects.all()
 
     toolscategory_name = []
-    countOfToolsWithCategory=[]
+    countOfToolsWithCategory = []
     toolsCategory_data = Tools_Category.objects.all()
 
-
     resourcescategory_name = []
-    countOfResourcesWithCategory=[]
+    countOfResourcesWithCategory = []
     resourcesCategory_data = Resources_Category.objects.all()
 
+    userType = []
+    userType_Duplicate = []
+    userCount_Per_Type = []
+    userRegistration_Data = UserRegistration.objects.all()
 
-    userType=[]
-    userType_Duplicate=[]
-    userCount_Per_Type=[]
-    userRegistration_Data=UserRegistration.objects.all()
+    guidelinesType = []
+    guidelines_Duplicate = []
+    guidelinesCount_Per_Type = []
+    guidelines_data = GuidelinceForIndianGovWebsite.objects.all()
 
-
-    guidelinesType=[]
-    guidelines_Duplicate=[]
-    guidelinesCount_Per_Type=[]
-    guidelines_data=GuidelinceForIndianGovWebsite.objects.all()
-
-
-    toolsName=[]
-    id=[]
+    toolsName = []
+    id = []
     # toolsName_Duplicate=[]
-    toolsName_hitCount_Per_Name=[]
-    tools_data=ToolsData.objects.all()
-    toolscat_data= Tools_Category.objects.all()
-
+    toolsName_hitCount_Per_Name = []
+    tools_data = ToolsData.objects.all()
+    toolscat_data = Tools_Category.objects.all()
 
     for n in successStories_CategoryData:
         SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
     for n in successStories_CategoryData:
-        count= SuccessStories.objects.filter(SuccessStories_category__SuccessStories_CategoryType = n.SuccessStories_CategoryType).count()
+        count = SuccessStories.objects.filter(
+            SuccessStories_category__SuccessStories_CategoryType=n.SuccessStories_CategoryType).count()
         countOfStoriesWithCategory.append(count)
-   
+
     for n in toolsCategory_data:
         toolscategory_name.append(n.Tools_CategoryType)
     for n in toolsCategory_data:
-        count= ToolsData.objects.filter(ToolsData_CategoryType__Tools_CategoryType = n.Tools_CategoryType).count()
+        count = ToolsData.objects.filter(
+            ToolsData_CategoryType__Tools_CategoryType=n.Tools_CategoryType).count()
         countOfToolsWithCategory.append(count)
-
 
     for n in resourcesCategory_data:
         resourcescategory_name.append(n.Resources_CategoryType)
     for n in resourcesCategory_data:
-        count= ResourceData.objects.filter(ResourceData_CategoryType__Resources_CategoryType = n.Resources_CategoryType).count()
+        count = ResourceData.objects.filter(
+            ResourceData_CategoryType__Resources_CategoryType=n.Resources_CategoryType).count()
         countOfResourcesWithCategory.append(count)
-     
 
     for n in userRegistration_Data:
         userType_Duplicate.append(n.registration_User_Type)
-    data_unique=set(userType_Duplicate)
-    userType=list(data_unique)
+    data_unique = set(userType_Duplicate)
+    userType = list(data_unique)
     for n in userType:
-        count= UserRegistration.objects.filter(registration_User_Type = n).count()
+        count = UserRegistration.objects.filter(
+            registration_User_Type=n).count()
         userCount_Per_Type.append(count)
-     
-
 
     for n in guidelines_data:
         guidelines_Duplicate.append(n.name)
-    data_unique=set(guidelines_Duplicate)
-    guidelinesType=list(data_unique)
+    data_unique = set(guidelines_Duplicate)
+    guidelinesType = list(data_unique)
     for n in guidelinesType:
         # print(n)
-        data= GuidelinceForIndianGovWebsite.objects.values('percentage').filter().get(name = n)
+        data = GuidelinceForIndianGovWebsite.objects.values(
+            'percentage').filter().get(name=n)
         print(data["percentage"])
         guidelinesCount_Per_Type.append(data["percentage"])
 
-
     for n in tools_data:
-        
+
         id.append(n.id)
     print(id)
     for n in id:
         # print(n)
-        data= ToolsData.objects.values('ToolsData_DownloadCounter').get(id = n)
+        data = ToolsData.objects.values('ToolsData_DownloadCounter').get(id=n)
         # print(data)
         print(data["ToolsData_DownloadCounter"])
         toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
-    
+
     for n in id:
-        datname=ToolsData.objects.values('ToolsData_HeadingName').get(id = n)
+        datname = ToolsData.objects.values('ToolsData_HeadingName').get(id=n)
         toolsName.append(datname["ToolsData_HeadingName"])
         print(datname["ToolsData_HeadingName"])
 
-    # # print("cat",toolsName) 
+    # # print("cat",toolsName)
     # # print("data",toolsName_hitCount_Per_Name)
 
+    context = {
+        'name': 'Success Strories Dataset',
+        'successStories_CategoryData': SuccessStoriescategory_name,
+        'count_Of_Stories_PerCategory': countOfStoriesWithCategory,
 
-    context={
-        'name':'Success Strories Dataset',
-        'successStories_CategoryData':SuccessStoriescategory_name,
-        'count_Of_Stories_PerCategory':countOfStoriesWithCategory,
+        'tools_CategoryData': toolscategory_name,
+        'count_Of_Tools_PerCategory': countOfToolsWithCategory,
 
-        'tools_CategoryData':toolscategory_name,
-        'count_Of_Tools_PerCategory':countOfToolsWithCategory,
+        'resources_CategoryData': resourcescategory_name,
+        'count_Of_Resources_PerCategory': countOfResourcesWithCategory,
 
-        'resources_CategoryData':resourcescategory_name,
-        'count_Of_Resources_PerCategory':countOfResourcesWithCategory,
-
-        'user_CategoryData':userType,
-        'count_Of_User_PerCategory':userCount_Per_Type,
-
-
-        'guidelinesType':guidelinesType,
-        'guidelinesCount_Per_Type':guidelinesCount_Per_Type,
+        'user_CategoryData': userType,
+        'count_Of_User_PerCategory': userCount_Per_Type,
 
 
-        'toolshit_name':toolsName,
-        'toolsHitCount':toolsName_hitCount_Per_Name
+        'guidelinesType': guidelinesType,
+        'guidelinesCount_Per_Type': guidelinesCount_Per_Type,
+
+
+        'toolshit_name': toolsName,
+        'toolsHitCount': toolsName_hitCount_Per_Name
     }
-    return render(request,'Localisation_App/Dashboard.html',context)
+    return render(request, 'Localisation_App/Dashboard.html', context)
 
 
 # Translation Quote
 def translation_quote(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    
+
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1466,10 +1465,10 @@ def translation_quote(request):
     """ 
     OLD CODE STARTS HERE 
     """
-    
+
     # if request.method == 'POST':
     #     url = request.POST.get('url')
-        
+
     #     validate = URLValidator()
     #     try:
     #         validate(url)
@@ -1480,35 +1479,35 @@ def translation_quote(request):
 
     #             print("total_words = ", total_words)
     #             print("unique_words = ", unique_words)
-                
+
     #             context['total_words'] = total_words
     #         else:
     #             print(data["message"])
     #             context['error_message'] = data['message']
-            
+
     #         return render(request, "Localisation_App/translation_quote.html", context)
     #     except ValidationError as e:
     #         context['error_message'] = e.message
     #         return render(request, "Localisation_App/translation_quote.html", context)
-            
+
     # return render(request, "Localisation_App/translation_quote.html", context)
 
     """ 
     OLD CODE ENDS HERE
     
     """
-    
+
     form = TranslationQuoteForm()
     context['form'] = form
-    
+
     if request.method == 'POST':
         url = request.POST.get('url')
         language = request.POST.get('language')
         website_type = request.POST.get('website_type')
         delivery_date = request.POST.get('delivery_date')
-        
+
         form = TranslationQuoteForm(request.POST)
-        
+
         context['form'] = form
         print("dsnghufdygiu")
         if form.is_valid():
@@ -1517,8 +1516,122 @@ def translation_quote(request):
             print(form.cleaned_data['language'])
             print(form.cleaned_data['website_type'])
             print(form.cleaned_data['delivery_date'])
-            
+
         return render(request, 'Localisation_App/translation_quote.html', context)
-    
+
     return render(request, "Localisation_App/translation_quote.html", context)
-    
+
+
+def dashboard2(request):
+    SuccessStoriescategory_name = []
+    countOfStoriesWithCategory = []
+    successStories_CategoryData = SuccessStories_Category.objects.all()
+
+    toolscategory_name = []
+    countOfToolsWithCategory = []
+    toolsCategory_data = Tools_Category.objects.all()
+
+    resourcescategory_name = []
+    countOfResourcesWithCategory = []
+    resourcesCategory_data = Resources_Category.objects.all()
+
+    userType = []
+    userType_Duplicate = []
+    userCount_Per_Type = []
+    userRegistration_Data = UserRegistration.objects.all()
+
+    guidelinesType = []
+    guidelines_Duplicate = []
+    guidelinesCount_Per_Type = []
+    guidelines_data = GuidelinceForIndianGovWebsite.objects.all()
+
+    toolsName = []
+    id = []
+    # toolsName_Duplicate=[]
+    toolsName_hitCount_Per_Name = []
+    tools_data = ToolsData.objects.all()
+    toolscat_data = Tools_Category.objects.all()
+
+    for n in successStories_CategoryData:
+        SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
+    for n in successStories_CategoryData:
+        count = SuccessStories.objects.filter(
+            SuccessStories_category__SuccessStories_CategoryType=n.SuccessStories_CategoryType).count()
+        countOfStoriesWithCategory.append(count)
+
+    for n in toolsCategory_data:
+        toolscategory_name.append(n.Tools_CategoryType)
+    for n in toolsCategory_data:
+        count = ToolsData.objects.filter(
+            ToolsData_CategoryType__Tools_CategoryType=n.Tools_CategoryType).count()
+        countOfToolsWithCategory.append(count)
+
+    for n in resourcesCategory_data:
+        resourcescategory_name.append(n.Resources_CategoryType)
+    for n in resourcesCategory_data:
+        count = ResourceData.objects.filter(
+            ResourceData_CategoryType__Resources_CategoryType=n.Resources_CategoryType).count()
+        countOfResourcesWithCategory.append(count)
+
+    for n in userRegistration_Data:
+        userType_Duplicate.append(n.registration_User_Type)
+    data_unique = set(userType_Duplicate)
+    userType = list(data_unique)
+    for n in userType:
+        count = UserRegistration.objects.filter(
+            registration_User_Type=n).count()
+        userCount_Per_Type.append(count)
+
+    for n in guidelines_data:
+        guidelines_Duplicate.append(n.name)
+    data_unique = set(guidelines_Duplicate)
+    guidelinesType = list(data_unique)
+    for n in guidelinesType:
+        # print(n)
+        data = GuidelinceForIndianGovWebsite.objects.values(
+            'percentage').filter().get(name=n)
+        print(data["percentage"])
+        guidelinesCount_Per_Type.append(data["percentage"])
+
+    for n in tools_data:
+
+        id.append(n.id)
+    print(id)
+    for n in id:
+        # print(n)
+        data = ToolsData.objects.values('ToolsData_DownloadCounter').get(id=n)
+        # print(data)
+        print(data["ToolsData_DownloadCounter"])
+        toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
+
+    for n in id:
+        datname = ToolsData.objects.values('ToolsData_HeadingName').get(id=n)
+        toolsName.append(datname["ToolsData_HeadingName"])
+        print(datname["ToolsData_HeadingName"])
+
+    # # print("cat",toolsName)
+    # # print("data",toolsName_hitCount_Per_Name)
+
+    context = {
+        'name': 'Success Strories Dataset',
+        'successStories_CategoryData': SuccessStoriescategory_name,
+        'count_Of_Stories_PerCategory': countOfStoriesWithCategory,
+
+        'tools_CategoryData': toolscategory_name,
+        'count_Of_Tools_PerCategory': countOfToolsWithCategory,
+
+        'resources_CategoryData': resourcescategory_name,
+        'count_Of_Resources_PerCategory': countOfResourcesWithCategory,
+
+        'user_CategoryData': userType,
+        'count_Of_User_PerCategory': userCount_Per_Type,
+
+
+        'guidelinesType': guidelinesType,
+        'guidelinesCount_Per_Type': guidelinesCount_Per_Type,
+
+
+        'toolshit_name': toolsName,
+        'toolsHitCount': toolsName_hitCount_Per_Name
+    }
+    return render(request, 'Localisation_App/dashboard2.html', context)
