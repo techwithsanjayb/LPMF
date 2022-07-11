@@ -1,0 +1,129 @@
+{% extends 'Localisation_App/base.html' %}
+
+{% load static %}
+
+{% block machine_translation %}
+<div class="container card">
+    <form>
+    <h5 class="card-title text-dark">Machine Translation</h5>
+    <div class="card-body">
+        <div class="pb-3">
+            <h6>Select a newline separated English text file</h6>
+        <input type="file" name="file" id="inputfile" name="inputfile" onchange="showSelectedFile()" >
+        </div>
+        <div class="pb-2">
+            <h6>Input(loaded file or copy-paste content)</h6>
+            <textarea name="input" id="inputlong" placeholder="Enter Input Text" rows="4" class="form-control" required></textarea>
+        </div>
+        <div class="pb-2">
+           <button type="submit" class="btn btn-primary btn-regular" style="width:100px">Submit</button>
+        </div>
+        <div class="pb-2">
+        <textarea name="output" id="output" rows="4" class="form-control" required disabled></textarea>
+        </div>
+        <div>
+        <input id="download" type="button" name="download" value="download" onclick="downloadCSV();">
+        </div>
+    </div>
+   </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="TEXT/JAVASCRIPT" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
+
+
+
+
+<script>
+    $(document).ready(()=>{
+        console.log("in ready function");
+        $("button").click((e)=>{
+            if($('#inputlong').val() != ""){
+            e.preventDefault();
+            let array = $('#inputlong').val().split('\n')
+            console.log("input is ",array)
+            const url = "https://gistlangserver.in/api/service/GetNLPTranslation";
+            for(let i=0; i<array.length; i++){
+            let data = {
+                inputSentence: array[i],
+                tLocale : "hin"
+            }
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                
+                success: function (response) {
+                   console.log(response)
+                   $('#output').append(`${response.response}\n`)
+                },
+                error: function (err) {
+                   //Do Something to handle error
+                   console.log("error in calling ",err);
+                   alert("Currently service is not working...!!!")
+                },
+             });
+            }
+        }
+        else{
+            alert("please fill input")
+        }
+        })
+    })    
+</script>
+
+<script>
+    function showSelectedFile(){
+        //selectedfile.value= document.getElementById("inputfile").value; 
+    }
+    document.getElementById('inputfile')
+    .addEventListener('change', function() {
+    var fr=new FileReader();
+    fr.onload=function(){
+    //    document.getElementById('output')
+    //            .textContent=fr.result;
+    // document.getElementById('inputlong').innerText=fr.result;
+    document.getElementById('inputlong').innerHTML=fr.result;
+    
+    }
+    console.log (fr);
+    fr.readAsText(this.files[0]);
+    });
+    
+    
+    
+    function downloadCSV(filename, text) {
+    var text = document.getElementById("output").innerHTML;
+  
+    var filename = "Output.txt";
+    
+    
+    var pom = document.createElement('a');
+        pom.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(text));
+        pom.setAttribute('download', filename);
+        
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else 
+    {
+    pom.click();
+    }
+    
+   
+  }
+
+
+    
+    
+
+    </script>
+
+{% endblock %}
