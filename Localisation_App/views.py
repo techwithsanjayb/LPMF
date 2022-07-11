@@ -1338,6 +1338,8 @@ def goTranslate(request):
 
 
 def dashboard(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStoriescategory_name = []
     countOfStoriesWithCategory = []
     successStories_CategoryData = SuccessStories_Category.objects.all()
@@ -1362,10 +1364,15 @@ def dashboard(request):
 
     toolsName = []
     id = []
-    # toolsName_Duplicate=[]
     toolsName_hitCount_Per_Name = []
     tools_data = ToolsData.objects.all()
-    toolscat_data = Tools_Category.objects.all()
+    
+    resourcesName = []
+    id_resources = []
+    resourcesName_hitCount_Per_Name = []
+    resources_data = ResourceData.objects.all()
+    
+    
 
     for n in successStories_CategoryData:
         SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
@@ -1374,6 +1381,7 @@ def dashboard(request):
             SuccessStories_category__SuccessStories_CategoryType=n.SuccessStories_CategoryType).count()
         countOfStoriesWithCategory.append(count)
 
+
     for n in toolsCategory_data:
         toolscategory_name.append(n.Tools_CategoryType)
     for n in toolsCategory_data:
@@ -1381,12 +1389,14 @@ def dashboard(request):
             ToolsData_CategoryType__Tools_CategoryType=n.Tools_CategoryType).count()
         countOfToolsWithCategory.append(count)
 
+
     for n in resourcesCategory_data:
         resourcescategory_name.append(n.Resources_CategoryType)
     for n in resourcesCategory_data:
         count = ResourceData.objects.filter(
             ResourceData_CategoryType__Resources_CategoryType=n.Resources_CategoryType).count()
         countOfResourcesWithCategory.append(count)
+
 
     for n in userRegistration_Data:
         userType_Duplicate.append(n.registration_User_Type)
@@ -1397,6 +1407,7 @@ def dashboard(request):
             registration_User_Type=n).count()
         userCount_Per_Type.append(count)
 
+
     for n in guidelines_data:
         guidelines_Duplicate.append(n.name)
     data_unique = set(guidelines_Duplicate)
@@ -1405,29 +1416,47 @@ def dashboard(request):
         # print(n)
         data = GuidelinceForIndianGovWebsite.objects.values(
             'percentage').filter().get(name=n)
-        print(data["percentage"])
+       
         guidelinesCount_Per_Type.append(data["percentage"])
 
-    for n in tools_data:
 
+    for n in tools_data:
         id.append(n.id)
-    print(id)
+   
     for n in id:
         # print(n)
         data = ToolsData.objects.values('ToolsData_DownloadCounter').get(id=n)
         # print(data)
-        print(data["ToolsData_DownloadCounter"])
+       
         toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
-
     for n in id:
         datname = ToolsData.objects.values('ToolsData_HeadingName').get(id=n)
         toolsName.append(datname["ToolsData_HeadingName"])
-        print(datname["ToolsData_HeadingName"])
+       
 
     # # print("cat",toolsName)
     # # print("data",toolsName_hitCount_Per_Name)
+    
+    
+    for n in resources_data:
+        id_resources.append(n.id)
+    for n in id_resources:
+        # print(n)
+        data = ResourceData.objects.values('ResourceData_DownloadCounter').get(id=n)
+        # print(data)
+        resourcesName_hitCount_Per_Name.append(data["ResourceData_DownloadCounter"])
+    for n in id_resources:
+        datname = ResourceData.objects.values('ResourceData_HeadingName').get(id=n)
+        resourcesName.append(datname["ResourceData_HeadingName"])
+       
+    
+    print("cat",resourcesName)
+    print("data",resourcesName_hitCount_Per_Name)
+    
 
     context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
         'name': 'Success Strories Dataset',
         'successStories_CategoryData': SuccessStoriescategory_name,
         'count_Of_Stories_PerCategory': countOfStoriesWithCategory,
@@ -1447,7 +1476,11 @@ def dashboard(request):
 
 
         'toolshit_name': toolsName,
-        'toolsHitCount': toolsName_hitCount_Per_Name
+        'toolsHitCount': toolsName_hitCount_Per_Name,
+        
+        'resourcesshit_name': resourcesName,
+        'resourcesHitCount': resourcesName_hitCount_Per_Name
+        
     }
     return render(request, 'Localisation_App/Dashboard.html', context)
 
@@ -1547,11 +1580,11 @@ def dashboard2(request):
 
     toolsName = []
     id = []
-    # toolsName_Duplicate=[]
     toolsName_hitCount_Per_Name = []
     tools_data = ToolsData.objects.all()
-    toolscat_data = Tools_Category.objects.all()
-
+    
+    
+   
     for n in successStories_CategoryData:
         SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
     for n in successStories_CategoryData:
@@ -1594,7 +1627,6 @@ def dashboard2(request):
         guidelinesCount_Per_Type.append(data["percentage"])
 
     for n in tools_data:
-
         id.append(n.id)
     print(id)
     for n in id:
@@ -1611,6 +1643,8 @@ def dashboard2(request):
 
     # # print("cat",toolsName)
     # # print("data",toolsName_hitCount_Per_Name)
+    
+    
 
     context = {
         'name': 'Success Strories Dataset',
@@ -1632,6 +1666,9 @@ def dashboard2(request):
 
 
         'toolshit_name': toolsName,
-        'toolsHitCount': toolsName_hitCount_Per_Name
+        'toolsHitCount': toolsName_hitCount_Per_Name,
+        
+        
+        
     }
     return render(request, 'Localisation_App/dashboard2.html', context)

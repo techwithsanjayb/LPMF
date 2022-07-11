@@ -1,3 +1,4 @@
+{% extends 'Localisation_App/base.html' %} {% load static %}{% block dashboard %}
 <html>
   <head>
     <link
@@ -14,66 +15,101 @@
 
     <!--TOOLS CATEGORY DATASETS SECTION-->
     <div class="row" style="margin-top: 50px">
-      <div class="col-sm-2">
+      <!-- <div class="col-sm-2">
         <div class="card">
           <div class="card-body">
-            <canvas style="height: 7500px" id="Tools"></canvas>
+            <canvas style="height: 100%" id="Tools"></canvas>
           </div>
         </div>
         <h3>TOOLS Category Datasets</h3>
-      </div>
-
+      </div> -->
+      <div class="col-1"></div>
       <!--GUIDELINES DATASETS SECTION-->
       <div class="col-sm-4">
         <div class="card">
           <div class="card-body">
             <canvas style="height: 100%" id="Guidelines"></canvas>
           </div>
+          <hr/>
+          <h3>GIGW Guidelines</h3>
         </div>
-        <h3>GIGW Guidelines</h3>
+        
       </div>
 
-      <!--RESOURCES DATASETS SECTION  --->
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <canvas style="height: 100%" id="Resources"></canvas>
-          </div>
-        </div>
-        <h3>RESOURCES Dataset</h3>
-      </div>
-
-      <!--USER DATASETS SECTION --->
-      <div class="col-sm-2">
-        <div class="card">
-          <div class="card-body">
-            <canvas style="height: 100%" id="User"></canvas>
-          </div>
-        </div>
-        <h3>User Datasets</h3>
-      </div>
-    </div>
-
-    <div class="row">
-      <!--TOOLS DOWNLOAD WITH NAME DATASETS SECTION -->
-      <div class="col-sm-8">
-        <div class="card">
-          <div class="card-body">
-            <canvas style="height: 800px" id="toolshit"></canvas>
-          </div>
-          <h3>Tools Download Datasets</h3>
-        </div>
-      </div>
-
-      <!--SUCCESS STORIES DATASET SECTION --->
+      <!--RESOURCES DATASETS SECTION  -->
       <div class="col-sm-4">
         <div class="card">
           <div class="card-body">
             <canvas style="height: 100%" id="Stories"></canvas>
           </div>
+          <hr/>
+          <h3>Success Stories Category Datasets</h3>
         </div>
-        <h3>Success Stories Category Datasets</h3>
       </div>
+
+      <!--USER DATASETS SECTION -->
+      <div class="col-sm-2">
+        <div class="card">
+          <div class="card-body">
+            <canvas style="height: 100%" id="User"></canvas>
+          </div>
+          <hr/>
+          <h3>User Datasets</h3>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+
+    <div class="row">
+      <!--TOOLS DOWNLOAD WITH NAME DATASETS SECTION -->
+      <div class="col-1"></div>
+      <div class="col-sm-7">
+        <div class="card">
+          <div class="card-body">
+            <canvas style="height: 100%" id="toolshit"></canvas>
+          </div>
+          <hr/>
+          <h3>Tools Download Datasets</h3>
+        </div>
+      </div>
+
+      <!--SUCCESS STORIES DATASET SECTION -->
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <canvas style="height: 100%" id="Tools"></canvas>
+          </div>
+          <hr/>
+          <h3>Tools Dataset</h3>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+
+
+    <div class="row">
+      <!--TOOLS DOWNLOAD WITH NAME DATASETS SECTION -->
+      <div class="col-1"></div>
+      <div class="col-sm-7">
+        <div class="card">
+          <div class="card-body">
+            <canvas style="height: 100%" id="resourceshit"></canvas>
+          </div>
+          <hr/>
+          <h3>Resources Download Datasets</h3>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <canvas style="height: 100%" id="Resources"></canvas>
+          </div>
+          <hr/>
+          <h3>Resources Dataset</h3>
+        </div>
+      </div>
+      <div class="col-1"></div>
     </div>
   </body>
 
@@ -110,7 +146,43 @@
     });
   </script>
 
-  <!--SUCCESS STORIES DATASET SCRIPT SECTION--->
+
+
+  
+  <!--RESOURCES DOWNLOAD WITH NAME SCRIPT SECTION  -->
+  <script>
+    var ctx = document.getElementById('resourceshit').getContext('2d');
+    var myChart = new Chart(ctx,{
+        type: 'bar',
+        data:
+        {
+            labels: {{resourcesshit_name|safe}},
+            datasets: [{
+            label: 'Tools hit',
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+              ],
+            maxBarThickness:40,
+            hoverBackgroundColor:'rgb(9, 51, 67)',
+            borderColor: 'rgb(242, 184, 48)',
+            data: {{resourcesHitCount|safe}},}]
+        },
+        options:
+        {
+          indexAxis: 'y',
+       },
+  });
+</script>
+
+  <!--SUCCESS STORIES DATASET SCRIPT SECTION-->
   <script>
     var ctx = document.getElementById('Stories').getContext('2d');
     var myChart = new Chart(ctx,{
@@ -157,7 +229,7 @@
             'rgb(54, 162, 235)',
             'rgb(255, 205, 86)',
         ],
-            maxBarThickness:20,
+            maxBarThickness:10,
             hoverBackgroundColor:'rgb(9, 51, 67)',
             borderColor: 'rgb(242, 184, 48)',
             data: {{count_Of_Tools_PerCategory|safe}},
@@ -169,12 +241,12 @@
     });
   </script>
 
-  <!--RESOURCES DATASETS SCRIPT SECTION  --->
+  <!--RESOURCES DATASETS SCRIPT SECTION  -->
   <script>
     var ctx = document.getElementById('Resources').getContext('2d');
     var myChart = new Chart(ctx,{
 
-        type: 'bar',
+        type: 'doughnut',
 
         data: {
         labels: {{resources_CategoryData|safe}},
@@ -185,7 +257,7 @@
             'rgb(54, 162, 235)',
             'rgb(255, 205, 86)',
         ],
-            maxBarThickness:20,
+            maxBarThickness:10,
             hoverBackgroundColor:'rgb(9, 51, 67)',
             borderColor: 'rgb(242, 184, 48)',
             data: {{count_Of_Resources_PerCategory|safe}},
@@ -196,7 +268,7 @@
     });
   </script>
 
-  <!--USER DATASETS SCRIPT SECTION --->
+  <!--USER DATASETS SCRIPT SECTION -->
   <script>
     var ctx = document.getElementById('User').getContext('2d');
     var myChart = new Chart(ctx,{
@@ -248,3 +320,5 @@
     });
   </script>
 </html>
+
+{% endblock %}
