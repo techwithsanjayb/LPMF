@@ -1685,3 +1685,7 @@ def dashboard2(request):
         
     }
     return render(request, 'Localisation_App/dashboard2.html', context)
+
+
+def machine_translation(request):
+    return render(request,'Localisation_App/machine_translation.html')
