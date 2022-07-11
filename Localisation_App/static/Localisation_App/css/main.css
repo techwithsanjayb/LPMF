@@ -9,8 +9,25 @@
 
 .show-section{
     margin:20px 0px 20px 0px;
-    background-color: #EC9022;
+    background-color: #CEEAF0;
+    /* background-color: #e0e2ff; */
+    /* background-color: #E5E5E5; */
     padding: 50px;
+    background-image: url("../img/vision-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+   
+}
+.show-section-para{
+    color: #023047;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 42px;
+    letter-spacing: 0.03em;
+    margin-top: 50px;
+    /* margin: 0px 300px 0px 300px; */
 }
 /* Bhashini Section End*/
 .text{
@@ -41,6 +58,12 @@
     margin: 14px;
     border-radius: 0px 20px 0px 20px;
     position: relative;
+}
+.bhasha-card:hover{
+
+}
+@keyframes zoom-in {
+    
 }
 .bhasha-card img{
     height:90px;
@@ -997,6 +1020,10 @@
 
 }
 
+.footer-left >ul >li{
+    line-height: 30px;
+}
+
 .footer-left h3 {
     margin-left: 30px;
 }
@@ -1008,13 +1035,30 @@
 }
 
 .footer-right {
-    padding: 30px 30px 0px 70px;
+    padding: 30px 0px 0px 70px;
     width: 300px;
     /* background-color: rgb(1, 118, 50); */
 }
 
+.footer-right a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-right a:hover {
+    color: rgb(23, 175, 235);
+
+}
+
+.footer-right h3 {
+    margin-left: 30px;
+}
+.footer-right >ul >li{
+    line-height: 30px;
+}
+
 .copyright-section {
-    margin-top: 30px;
+    margin-top: 0px;
     text-align: center;
     font-size: 18px;
     margin-right: 30px;
