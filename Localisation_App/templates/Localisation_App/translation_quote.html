@@ -9,7 +9,7 @@
 />
 {% comment %} ends css {% endcomment %}
 
-<div class="container">
+<div class="container mb-3">
   <div class="text-center p-3">
     <input
       type="text"
@@ -18,40 +18,48 @@
       disabled
     />
   </div>
-  <div class="card">
+  <div class="card px-5 pt-3">
     <div class="card-body t_quote-card">
-
       <form action="{% url 'Localisation_App:translation_quote' %}" method="POST" >
         {% csrf_token %}
-        <div class="mb-3">
-        <label for="inputPassword5" class="form-label">URL</label>
-        {{form.url}}
+        <div class="row mt-3">
+          <div class="col-2 px-5 pt-2 fw-semibold">
+            <label for="inputPassword5" class="form-label">URL</label>
         </div>
-        <div class="mb-3">
-        <label for="inputPassword5" class="form-label">Language</label>
-        {{form.language}} 
-        </div>      
-        <div class="mb-3">
-        <label for="inputPassword5" class="form-label">Website Type</label>
-        {{form.website_type}} 
-        </div>      
-        <div class="mb-3">
-        <label for="inputPassword5" class="form-label">delivery Date</label>
-        {{form.delivery_date}} 
-        </div>   
-        <input type="submit" value="Submit">  
-      </form>
-      {% if total_words %}
-      <h5 class="text-primary">
-        Estimated Words : {{total_words}}
-      </h5>
-      {% endif %} 
-       {% if error_message %}
-      <h5 class="text-danger">{{error_message}}</h5>
-      {% endif %}
+            <div class="col-8"> {{form.url}}</div>
+          </div>
+          <div class="row mt-3">
+          <div class="col-2 px-5 pt-2 fw-semibold">
+            <label class="form-label">Language</label>
+            </div>
+            <div class="col-3"> {{form.language}}</div> 
+          {% comment %} </div>      
+          <div class="row mt-3"> {% endcomment %}
+          <div class="col-2 px-5 pt-2 fw-semibold">
+            <label class="form-label">Website Type</label>
+          </div>
+            <div class="col-3"> {{form.website_type}}</div> 
+          </div>      
+          <div class="row mt-3">
+          <div class="col-2 px-5 pt-2 fw-semibold">
+            <label class="form-label">delivery Date</label>
+          </div>   
+            <div class="col-3"> {{form.delivery_date}}</div> 
+        </div>
+          <div class="row mt-3">
+            <div class="col-2"></div>
+              <div class=" col-8 d-flex flex-row-reverse">
+                <input class='btn btn-primary' type="submit" value="Submit">  
+              </div>
+        </div>
+        {% ifequal status 'success'  %}<h5 class="text-primary text-center fw-semibold">{{message}}</h5>{% endifequal %}
+        {% ifequal status 'error'  %}<h5 class="text-danger text-center  fw-semibold">{{message}}</h5>{% endifequal %}
+        </form>
+
+
+
     </div>
   </div>
-</div>
 </div> 
 
 
