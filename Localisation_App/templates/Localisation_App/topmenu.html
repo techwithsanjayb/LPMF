@@ -1,0 +1,57 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-light sticky-top"
+    style="background-color:#FFFFFF !important;box-shadow: 0px 0.5px 13px 1px rgb(230, 228, 228);">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-5" href="#"> <img src="{% static './Localisation_App/img/llogo.png' %}"
+          class="d-block w-100" alt="..." /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+            <a class="items " aria-current="page" href="{% url 'Localisation_App:Home' %}"  >{{ topmenus.0 }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/aboutus/' %}active{% endif %}">
+            <a class="items" href="{% url 'Localisation_App:aboutus' %}">{{ topmenus.1 }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/services/' %}active{% endif %}">
+            <a class="items" href="{% url 'Localisation_App:services' %}">{{ topmenus.2 }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/toolsPage/' %}active{% endif %}">
+            <a class="items" href="{% url 'Localisation_App:toolsPage' %}">{{ topmenus.3 }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/resourcesPage/' %}active{% endif %}">
+            <a class="items" href="{% url 'Localisation_App:resourcesPage' %}">{{ topmenus.10 }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/successstoryPage/' %}active{% endif %}">
+            <a class="items" href="{% url 'Localisation_App:successstoryPage' %}">{{ topmenus.4 }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/faqs/' %}active{% endif %}">
+            <a class="items" href="{% url 'Localisation_App:faqs' %}">{{ topmenus.5 }}</a>
+          </li>
+          <li class="nav-item {% if request.path == '/contactus/' %}active{% endif %}">
+            <a class="items" href="{% url 'Localisation_App:contactus' %}">{{ topmenus.6 }}</a>
+          </li>
+          {% if not user.is_authenticated %}
+           <li class="nav-item">
+            <a class="items" href="{% url 'Localisation_App:register' %}"> {{ topmenus.7 }} </a>
+          </li>
+          <li class="nav-item">
+            <a class="items" href="{% url 'Localisation_App:login' %}">{{ topmenus.8 }}</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="items" href="{% url 'Localisation_App:logout' %}">{{ topmenus.11 }}</a>
+          </li>
+          {% endif %}
+        </ul>
+        <div class="nav-item animate__animated animate__pulse animate__infinite">
+          <div class="quote"><a class="item-button" href="{% url 'Localisation_App:translation_quote' %}">{{ topmenus.9 }}</a></div>
+        </div>
+
+      </div>
+    </div>
+  </nav>

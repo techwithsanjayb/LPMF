@@ -19,8 +19,8 @@ urlpatterns = [
     path('resourceSearch/<resource_title>',
          views.resourceSearch, name='resourceSearch'),
     path('services/', views.services, name='services'),
-    path('successstoryPage', views.successstoryPage, name='successstoryPage'),
-    path('successstory', views.successstory, name='successstory'),
+    path('successstoryPage/', views.successstoryPage, name='successstoryPage'),
+    path('successstory/', views.successstory, name='successstory'),
     path('successstorySearch/<story_title>',
          views.successstorySearch, name='successstorySearch'),
     path('successstoryReset/', views.successstoryReset, name='successstoryReset'),
@@ -49,18 +49,20 @@ urlpatterns = [
     path('srvTTS/', views.srvTTS, name='srvTTS'),
     path('srvTransliteration/', views.srvTransliteration,
          name='srvTransliteration'),
-    
-    
+
+
     path('register/', views.Register_user, name="register"),
-   path('login/', views.login_user, name='login'),
-   path('logout/', views.logout_user, name='logout'),
-#     path('logout_user/', views.logout_user, name="logout"),
-#   path('register/', views.Register_user, name="register"),
+    path('login/', views.login_user, name='login'),
+    path('logout/', views.logout_user, name='logout'),
+    #     path('logout_user/', views.logout_user, name="logout"),
+    #   path('register/', views.Register_user, name="register"),
 
     path('goTranslate/', views.goTranslate,
          name='goTranslate'),
     path('translation-quote/', views.translation_quote,
          name='translation_quote'),
+    path('dashboard2', views.dashboard2, name="dashboard2"),
+    path('dashboard', views.dashboard, name="dashboard"),
 
 ]
 

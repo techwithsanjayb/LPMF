@@ -45,22 +45,6 @@
               <p class="carousel-caption-3">आपकी वेबसाइट आपकी भाषा में</p>
             </div>
           </div>
-          <!-- <div class="carousel-item" data-bs-interval="4000">
-                <div class="carousel-inner-text">
-                  <div class="text-center">Some Text</div>
-                  <p class="text-center">
-                    Some representative placeholder content for the first slide.
-                  </p>
-                </div>
-              </div>
-              <div class="carousel-item" data-bs-interval="4000">
-                <div class="carousel-inner-text">
-                  <div class="text-center">Some Text</div>
-                  <p class="text-center">
-                    Some representative placeholder content for the first slide.
-                  </p>
-                </div>
-              </div> -->
         </div>
       </div>
     </div>
@@ -74,23 +58,31 @@
   <div class="container-fluid">
     <div class="container-fluid">
       <div class="row newsclass">
-        <div class="col-1" style="height:40px;margin-left:-20px;background-color: #ED875C;padding:5px 0px 2px 10px">
+        <div
+          class="col-1"
+          style="
+            height: 40px;
+            margin-left: -20px;
+            background-color: #ed875c;
+            padding: 5px 0px 2px 10px;
+          "
+        >
           <h5>News & Events</h5>
         </div>
         <div class="col-11">
           <marquee
-          class="marqueeClass"
-          Scrollamount="10"
-          onmouseover="this.stop()"
-          onmouseout="this.start()"
-        >
-          <span style="color: grey"></span> {% for news in NewsAndEventsData %}
-          <a class="news1" href="{{news.NewsAndEvents_Link }}" target="_blank"
-            >{{ forloop.counter }} . {{ news.NewsAndEvents_HeadingName }}</a
-          >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
-        </marquee>
+            class="marqueeClass"
+            Scrollamount="10"
+            onmouseover="this.stop()"
+            onmouseout="this.start()"
+          >
+            <span style="color: grey"></span>
+            {% for news in NewsAndEventsData%}
+            <a class="news1" href="{{news.NewsAndEvents_Link }}" target="_blank"
+              >{{ forloop.counter }} . {{ news.NewsAndEvents_HeadingName }}</a
+            >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+          </marquee>
         </div>
-        
       </div>
     </div>
   </div>
@@ -190,7 +182,7 @@
         </div>
         <p class="card-description mt-2">{{ Servicesdata.3.Services_Name }}</p>
       </div>
-      
+
       <button class="aboutus-Button2">
         <a href="{% url 'Localisation_App:services' %}">Read More</a>
       </button>
@@ -216,42 +208,101 @@
 <!--Vision end-->
 
 <!-- Success Stories Start -->
-
-<div class="container-fluid success-stories">
-  <div>
-    <h4 class="success-header">Success Stories</h4>
+<div class="container-fluid">
+  <div class="succ-header">
+    <span
+      ><img
+        class="img-fluid"
+        style="height: 60px; width: 60px; margin-top: -10px"
+        src="{% static './Localisation_App/img/Target.png' %}"
+        alt=""
+      />Success Stories</span
+    >
   </div>
-  <div class="row">
-    {% for stories in SuccessStoriesData|slice:":3" %}
-    <div class="col-sm-12 col-md-12 col-lg-4">
-      <div class="card" data-aos="fade-down" data-aos-duration="1000">
-        <h5 class="card-header">
+  <div class="succ-subheader">
+    Know all our successfull Integration of locaisation services and tools over
+    different portals.
+  </div>
+  <div class="row px-4">
+    <div class="col-sm-12 col-lg-6 d-flex justify-content-center">
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/Success-33.jpg' %}"
+        alt=""
+      />
+    </div>
+    <div class="col-sm-12 col-lg-6">
+      <div class="row mx-2 py-2 succ-main-card">
+        <div class="col-4">
           <img
-            class="test"
-            style="padding: 50px"
-            src="/media/{{ stories.SuccessStories_Upload_Image_1 }}"
+            src="{% static './Localisation_App/img/Localization Deployment.png' %}"
+            class="succ-img img-fluid"
+            alt=""
           />
-        </h5>
-        <div class="card-body">
-          <h1 class="success-title">{{ stories.SuccessStories_TitleName }}</h1>
-          <!-- <div class="card-text">
-            {{ stories.SuccessStories_Description|safe }}
-          </div> -->
-          {% if stories.SuccessStories_Link != '' %}
-          <div class="success-link">
-            <a href="{{ stories.SuccessStories_Link }}" target="_blank"
-              >Visit Website</a
-            >
+        </div>
+        <div class="col-7 succ-desc mt-2">
+          <h2>Localisation Deployment</h2>
+          <p>
+            All our proof of concept of intregration of various services over
+            different portals..
+          </p>
+          <!-- <div class="succ-link">Know More</div> -->
+          <div class="succ-link">
+            <i
+              class="fa fa-arrow-circle-right"
+              style="font-size: 36px; color: #023047"
+            ></i>
           </div>
-          {% endif %}
+        </div>
+      </div>
+
+      <div class="row m-2 py-2 succ-main-card">
+        <div class="col-7 succ-desc2 mt-2">
+          <h2>Proof Of Concept</h2>
+          <p>
+            All our proof of concept of intregration of various services over
+            different portals..
+          </p>
+          <div class="succ-link">
+            <i
+              class="fa fa-arrow-circle-right"
+              style="font-size: 36px; color: #023047"
+            ></i>
+          </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4">
+          <img
+            src="{% static './Localisation_App/img/Proof of Concept.png' %}"
+            class="succ-img img-fluid"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="row m-2 py-2 succ-main-card">
+        <div class="col-4">
+          <img
+            src="{% static './Localisation_App/img/Portals Translated.png' %}"
+            class="succ-img img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="col-7 succ-desc3 mt-2">
+          <h2>Service Deployment</h2>
+          <p>
+            All our proof of concept of intregration of various services over
+            different portals..
+          </p>
+          <div class="succ-link">
+            <i
+              class="fa fa-arrow-circle-right"
+              style="font-size: 36px; color: #023047"
+            ></i>
+          </div>
         </div>
       </div>
     </div>
-    {% endfor %}
-
-    <button class="aboutus-Button">
-      <a href="{% url 'Localisation_App:successstoryPage' %}">Read More</a>
-    </button>
   </div>
 </div>
 
@@ -299,7 +350,7 @@
           <img src="{% static './Localisation_App/img/cost.png' %}" class="test" alt="..." />
         </div> -->
       <div class="estimate-cost-button">
-        <a href="{% url 'Localisation_App:contactus' %}">Calculate</a>
+        <a href="{% url 'Localisation_App:translation_quote' %}">Calculate</a>
       </div>
     </div>
   </div>

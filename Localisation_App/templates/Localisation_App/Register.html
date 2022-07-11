@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block register %}
-<html>
-    <body>
 
         <div class="container">
+          
+          <div class="row" style="text-align:center"><h1>Register</h1></div><br/>
             <div class="row">
                 <div class="col-md-2">
                     </div>
@@ -69,7 +69,7 @@
                     {% endfor %}
                     {% endif %}
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-3">
                     <div class="form-group position-relative">
                     <label>Your Email <span class="text-danger">*</span></label>
                     {{form.email}}
@@ -179,7 +179,7 @@
                     <button class="btn btn-primary w-100" type="submit" >Register</button>
                     </div>
                     <div class="mx-auto">
-                    <p class="mb-0 mt-3"><small class="text-dark mr-2">Already have an account ?</small> <a href="{% url 'Localisation_App:login' %}" class="text-dark font-weight-bold">Sign in</a></p>
+                    <p class="mb-0 mt-3"><small class="text-dark mr-2">Already have an account ?</small> <a href="{% url 'Localisation_App:login' %}" class="text-dark font-weight-bold">Login</a></p>
                     </div>
                     </div>
                     </form>
@@ -187,6 +187,5 @@
                     <div class="col-md-2"></div>
         </div>
       </div>
-    </body>
-</html>
+   
 {% endblock %}

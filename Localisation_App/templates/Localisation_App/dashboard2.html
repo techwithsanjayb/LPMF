@@ -1,0 +1,245 @@
+{% comment %} {% extends 'Localisation_App/base.html' %} {% load static %} {% block dashboard %}
+
+<div class="row">
+    <!--TOOLS DOWNLOAD WITH NAME SECTION  STARTS-->
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <canvas style="height: 800px" id="toolshit"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--TOOLS DOWNLOAD WITH NAME SECTION  ENDS-->
+
+    <!--STORIES SECTION  STARTS--->
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <canvas style="height: 100%" id="Stories"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--STORIES SECTION  ENDS--->
+  </div>
+
+  <div class="row">
+    <!-- WITH NAME SECTION  STARTS-->
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <canvas style="height: 800px" id="Tools"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- WITH NAME SECTION  ENDS-->
+
+    <!--SECTION  STARTS--->
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <canvas style="height: 100%" id="Resources"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <canvas style="height: 100%" id="Guidelines"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- SECTION  ENDS--->
+
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <canvas style="height: 100%" id="User"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!--TOOLS DOWNLOAD SECTION SCRIPT STARTS -->
+<script>
+    var ctx = document.getElementById('toolshit').getContext('2d');
+    var myChart = new Chart(ctx,{
+        type: 'bar',
+        data:
+        {
+            labels: {{toolshit_name|safe}},
+            datasets: [{
+            label: 'Tools hit',
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)'
+              ],
+            maxBarThickness:40,
+            hoverBackgroundColor:'rgb(9, 51, 67)',
+            borderColor: 'rgb(242, 184, 48)',
+            data: {{toolsHitCount|safe}},}]
+        },
+        options:
+        {
+          indexAxis: 'y',
+       },
+  });
+</script>
+<!--TOOLS DOWNLOAD SECTION SCRIPT ENDS -->
+
+<!--STORIES DOWNLOAD SECTION SCRIPT STARTS -->
+<script>
+  var ctx = document.getElementById('Stories').getContext('2d');
+  var myChart = new Chart(ctx,{
+
+      type: 'bar',
+      data: {
+      labels: {{successStories_CategoryData|safe}},
+      datasets: [{
+          label: 'Success Stories Dataset',
+          backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+          ],
+          maxBarThickness:20,
+          hoverBackgroundColor:'rgb(9, 51, 67)',
+          borderColor: 'rgb(242, 184, 48)',
+          data: {{count_Of_Stories_PerCategory|safe}},
+      }]
+  },
+  options: {
+
+  }
+  });
+</script>
+
+<!--STORIES DOWNLOAD SECTION SCRIPT ENDS -->
+
+<script>
+
+
+  var ctx = document.getElementById('Tools').getContext('2d');
+  var myChart = new Chart(ctx,{
+
+      type: 'doughnut',
+
+      data: {
+      labels: {{tools_CategoryData|safe}},
+      datasets: [{
+          label: 'Tools Dataset',
+          backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+      ],
+          maxBarThickness:20,
+          hoverBackgroundColor:'rgb(9, 51, 67)',
+          borderColor: 'rgb(242, 184, 48)',
+          data: {{count_Of_Tools_PerCategory|safe}},
+      }]
+  },
+
+
+  options: {
+
+
+  }
+
+
+  });
+</script>
+
+<script>
+
+
+  var ctx = document.getElementById('Resources').getContext('2d');
+  var myChart = new Chart(ctx,{
+
+      type: 'bar',
+
+      data: {
+      labels: {{resources_CategoryData|safe}},
+      datasets: [{
+          label: 'Resources Dataset',
+          backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+      ],
+          maxBarThickness:20,
+          hoverBackgroundColor:'rgb(9, 51, 67)',
+          borderColor: 'rgb(242, 184, 48)',
+          data: {{count_Of_Resources_PerCategory|safe}},
+      }]
+  },
+  options: {
+  }
+  });
+</script>
+
+<script>
+  var ctx = document.getElementById('User').getContext('2d');
+  var myChart = new Chart(ctx,{
+
+      type: 'doughnut',
+
+      data: {
+      labels: {{user_CategoryData|safe}},
+      datasets: [{
+          label: 'User Dataset',
+          backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4,
+          data: {{count_Of_User_PerCategory|safe}},
+      }]
+  },
+  options: {
+  }
+  });
+</script>
+
+<script>
+  var ctx = document.getElementById('Guidelines').getContext('2d');
+  var myChart = new Chart(ctx,{
+
+      type: 'bar',
+
+      data: {
+      labels: {{guidelinesType|safe}},
+      datasets: [{
+          label: 'Guidelines for Indian Govt Websites',
+          backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+          ],
+          maxBarThickness:20,
+          hoverBackgroundColor:'rgb(9, 51, 67)',
+          borderColor: 'rgb(242, 184, 48)',
+          data: {{guidelinesCount_Per_Type|safe}},
+      }]
+  },
+  options: {
+  }
+  });
+</script>
+
+{% endblock %} {% endcomment %}
