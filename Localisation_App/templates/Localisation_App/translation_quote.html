@@ -52,9 +52,12 @@
                 <input class='btn btn-primary' type="submit" value="Submit">  
               </div>
         </div>
+        {% ifequal status 'success'  %}<h5 class="text-primary text-center fw-semibold">{{message}}</h5>{% endifequal %}
+        {% ifequal status 'error'  %}<h5 class="text-danger text-center  fw-semibold">{{message}}</h5>{% endifequal %}
         </form>
-        {% comment %} {% if status=='success' %}{{message}}{% endif %}
-        {% if status=='error' %}{{message}}{% endif %} {% endcomment %}
+
+
+
     </div>
   </div>
 </div> 

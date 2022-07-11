@@ -8,7 +8,7 @@ from multiprocessing import context
 from django.contrib.auth import login, authenticate, logout,  update_session_auth_hash
 from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.shortcuts import render, redirect
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, UserRegistration, GuidelinceForIndianGovWebsite
+from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, TranslationQuote, UserRegistration, GuidelinceForIndianGovWebsite
 import random
 import requests
 from django.core.validators import URLValidator
@@ -1550,6 +1550,8 @@ def translation_quote(request):
             print(form.cleaned_data['website_type'])
             print(form.cleaned_data['delivery_date'])
             
+            data = TranslationQuote(url=url,language=language,website_type=website_type,delivery_date=delivery_date)
+            data.save()
             context['status'] = 'success'
             context['message'] = "Form submitted successfully"
 
