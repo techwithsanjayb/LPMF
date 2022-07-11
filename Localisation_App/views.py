@@ -1549,8 +1549,19 @@ def translation_quote(request):
             print(form.cleaned_data['language'])
             print(form.cleaned_data['website_type'])
             print(form.cleaned_data['delivery_date'])
+            
+            context['status'] = 'success'
+            context['message'] = "Form submitted successfully"
 
-        return render(request, 'Localisation_App/translation_quote.html', context)
+            return render(request, 'Localisation_App/translation_quote.html', context)
+        else:
+            context['status'] = 'error'
+            context['message'] = "There was some issue "
+            
+            # messages.error(request, 'Error Processing Your Request')
+            
+            return render(request, 'Localisation_App/translation_quote.html', context)
+             
 
     return render(request, "Localisation_App/translation_quote.html", context)
 

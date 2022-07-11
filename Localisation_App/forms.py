@@ -1,6 +1,7 @@
 from dataclasses import fields
 from logging import PlaceHolder
 from tkinter import Widget
+from xml.dom import ValidationErr
 from django import forms
 from django.core import validators
 
@@ -11,7 +12,7 @@ from django.core import validators
     MODEL NAME       : Registration And login
 '''
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm , AuthenticationForm , PasswordChangeForm , SetPasswordForm,UsernameField
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm, UsernameField
 from django.core.validators import RegexValidator
 
 
@@ -62,7 +63,7 @@ class TTSservice(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
-    
+
     first_name = forms.CharField(
         max_length=60,
         required=True,
@@ -70,58 +71,50 @@ class RegisterForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'First Name'})
     )
-    
-    
+
     middle_name = forms.CharField(
         max_length=60,
         required=True,
         help_text='Enter Middle Name',
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Middle Name'})
-        )
-       
-    
-    
+    )
+
     last_name = forms.CharField(
         max_length=60,
         required=True,
         help_text='Enter Last Name',
-         widget=forms.TextInput(
+        widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Last Name'})
-        )
-    
-    
-    
+    )
+
     email = forms.EmailField(
         max_length=60,
         required=True,
         help_text='Enter Email Address',
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Email Address'})
-        )
-
+    )
 
     username = forms.CharField(
-            max_length=60,
-            required=True,
-            help_text='Enter Username',
-            widget=forms.TextInput(
+        max_length=60,
+        required=True,
+        help_text='Enter Username',
+        widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Username'})
-        )
-    
-    
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', 
+    )
+
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = forms.CharField(
         help_text='Enter Phone Number',
         validators=[phone_regex],
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Phone Number'})
-       
+
         # max_length=17,
-      ) # Validators should be a list
-    
-    
+    )  # Validators should be a list
+
     address = forms.CharField(
         max_length=200,
         required=True,
@@ -129,8 +122,7 @@ class RegisterForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Address'})
     )
-    
-    
+
     password1 = forms.CharField(
         max_length=30,
         help_text='Enter Password',
@@ -138,8 +130,7 @@ class RegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={'class': 'form-control', 'placeholder': 'Password'}),
     )
-    
-    
+
     password2 = forms.CharField(
         max_length=30,
         required=True,
@@ -147,24 +138,21 @@ class RegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={'class': 'form-control', 'placeholder': 'Password Again'}),
     )
-    
+
     CHOICES = [('Individual', 'Individual'),
                ('Organization', 'Organization'),
-                ('DomainExpert', 'DomainExpert')]
-    
-    User_Type = forms.ChoiceField(required=True,help_text='Select User Type', choices=CHOICES,
-                               widget=forms.Select(attrs={'class': 'form-control','placeholder': 'Select User Type'}))
-    
-    
+               ('DomainExpert', 'DomainExpert')]
+
+    User_Type = forms.ChoiceField(required=True, help_text='Select User Type', choices=CHOICES,
+                                  widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select User Type'}))
+
     check = forms.BooleanField(required=True)
-    
-    
+
     class Meta:
         model = User
         fields = [
-        'first_name', 'middle_name', 'last_name', 'email', 'username', 'phone_number', 'password1', 'password2', 'check',
+            'first_name', 'middle_name', 'last_name', 'email', 'username', 'phone_number', 'password1', 'password2', 'check',
         ]
-
 
 
 class UserLoginForm(AuthenticationForm):
@@ -174,30 +162,34 @@ class UserLoginForm(AuthenticationForm):
     username = UsernameField(
         required=True,
         widget=forms.TextInput(
-        attrs={
-            'class': 'form-control',
-            'placeholder': 'Username'
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Username'
             }
-    ))
-    
+        ))
+
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
-        attrs={
-            'class': 'form-control',
-            'placeholder': 'Password',
-            
-        }
-     ))
-    
-    
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Password',
+
+            }
+        ))
+
+
 class TranslationQuoteForm(forms.Form):
-    url = forms.URLField(validators=[validators.MaxLengthValidator(200), validators.URLValidator()], required=True)
-    
-    languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'),('urdu', 'Urdu')]
-    language = forms.ChoiceField(validators=[validators.MaxLengthValidator(20)], required=True, help_text='Select Language', choices=languages)
-    
+    url = forms.URLField(validators=[validators.MaxLengthValidator(200), validators.URLValidator(
+    )], required=True, widget=forms.URLInput(attrs={'class': 'form-control trans_url', 'placeholder': 'Enter Base URL'}))
+
+    languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'), ('urdu', 'Urdu')]
+    language = forms.ChoiceField(validators=[validators.MaxLengthValidator(20)], required=True, help_text='Select Language',
+                                 choices=languages, widget=forms.Select(attrs={'type': 'date', 'class': 'form-select trans_language'}),)
+
     types = [('medical', 'Medical'), ('transport', 'Transport')]
-    website_type = forms.ChoiceField(validators=[validators.MaxLengthValidator(30)], required=True, choices=types)
-    
-    delivery_date = forms.DateField(required=True)
+    website_type = forms.ChoiceField(validators=[validators.MaxLengthValidator(
+        30)], required=True, choices=types, widget=forms.Select(attrs={'type': 'date', 'class': 'form-select trans_type'}),)
+
+    delivery_date = forms.DateField(widget=forms.DateInput(
+        attrs={'type': 'date', 'class': 'form-control trans_date'}), required=True)
