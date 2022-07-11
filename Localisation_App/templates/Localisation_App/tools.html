@@ -47,7 +47,7 @@
 		<div class="col-9"  style="background-color:grey">
 			<div class="row "  > 
 				{% for data in page.object_list %}
-				<!-- {% comment %} {% if data.tools_PublishedStatus != 'Unpublished' %} {% endcomment %} -->
+				{% if data.ToolsData_PublishedStatus != 'Unpublished' %}
 				<div class="col-sm-12 col-lg-12 "  style="background-color:pink">
 					<div class="tools-main-card-section">
 						<div class="row">
@@ -70,8 +70,11 @@
 							</div>
 						</div>
 					</div>
-				</div> {% empty %} <img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" /> 
-				<!-- {% endif %} -->
+				</div> 
+				
+				{% endif %}
+				{% empty %}
+				<img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" /> 
 				{% endfor %}
 				<div class="section p-3"> {% if Pagination_Type == 'All_Data' %}
 					<div class="container">
