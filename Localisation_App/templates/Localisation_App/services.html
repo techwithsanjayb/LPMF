@@ -13,16 +13,13 @@
     C-DAC GIST has vast NLP resources and is pioneer in Indian Language
     computing. These are being now offered as web-service.
   </p> {% endcomment %}
-
- 
-  
-  <div class="row back-image" style="background-image: url('{% static './Localisation_App/img/Vector-4.png'%}')">
+  <div class="row back-image pt-3" style="background-image: url('{% static './Localisation_App/img/Vector-4.png'%}')">
     
     <!-- <div class="col-lg-3 fs-4 px-4">
       C-DAC GIST has vast NLP resources and is pioneer in Indian Language
       computing. These are being now offered as web-service.
     </div> -->
-    <div class="col-lg-8 fs-4 px-4">
+    <div class="col-lg-6 fw-semibold service-main-description">
       C-DAC GIST has vast NLP resources and is pioneer in Indian Language
       computing. These are being now offered as web-service.
     </div>
@@ -34,7 +31,7 @@
             <div class="card-body">
               <div class="text-center">
                 <h5 class="text-muted pb-3 pt-2">
-                  <strong>{{ service.Services_Name }}caro_{{ service.pk }}</strong>
+                  <strong class="service-card-heading">{{ service.Services_Name }}caro_{{ service.pk }}</strong>
                 </h5>
               </div>
               <div class="row">
@@ -227,8 +224,5 @@ iv class="container-fluid ">
  {% comment %} Translitration Modal ends here  {% endcomment %}
 
 </div>
-
-
-
-  <script src="https://gisttransserver.in/js/CDAC-Typing.min.js"></script>
+<script src="https://gisttransserver.in/js/CDAC-Typing.min.js"></script>
 <script src="{% static 'Localisation_App/js/main1.js' %}"></script>
