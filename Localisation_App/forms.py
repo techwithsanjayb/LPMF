@@ -181,13 +181,13 @@ class UserLoginForm(AuthenticationForm):
 
 class TranslationQuoteForm(forms.Form):
     url = forms.URLField(validators=[validators.MaxLengthValidator(200), validators.URLValidator(
-    )], required=True, widget=forms.URLInput(attrs={'class': 'form-control trans_url', 'placeholder': 'Enter Base URL'}))
+    )], required=True, widget=forms.URLInput(attrs={'class': 'form-control trans_url', 'placeholder': 'Enter URL'}))
 
-    languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'), ('urdu', 'Urdu')]
+    languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'), ('tamil', 'Tamil'), ('bengali', 'Bengali'), ('gujarati','Gujarati'),('telugu','Telugu')]
     language = forms.ChoiceField(validators=[validators.MaxLengthValidator(20)], required=True, help_text='Select Language',
                                  choices=languages, widget=forms.Select(attrs={'type': 'date', 'class': 'form-select trans_language'}),)
 
-    types = [('medical', 'Medical'), ('transport', 'Transport')]
+    types = [('transport', 'Transport'), ('medical', 'Medical'), ('travel', 'Travel and Tourism'), ('educational','Educational'),('ecommerce','E-Commerce')]
     website_type = forms.ChoiceField(validators=[validators.MaxLengthValidator(
         30)], required=True, choices=types, widget=forms.Select(attrs={'type': 'date', 'class': 'form-select trans_type'}),)
 

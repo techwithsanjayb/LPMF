@@ -1558,7 +1558,7 @@ def translation_quote(request):
             return render(request, 'Localisation_App/translation_quote.html', context)
         else:
             context['status'] = 'error'
-            context['message'] = "There was some issue "
+            context['message'] = "Invalid URL!"
             
             # messages.error(request, 'Error Processing Your Request')
             
