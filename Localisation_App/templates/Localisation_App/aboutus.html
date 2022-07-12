@@ -4,7 +4,7 @@
 
 {% block aboutus %}
 
-  <!--About Us start-->
+  <!--About Us start--> 
   <div class="container-fluid testting">
     <div class="col-12" data-aos="fade-down" data-aos-duration="1000">
       <!-- <h4 class="aboutUs-Title">{{ ArticleData.0.Article_HeadingName }}</h4> -->
@@ -20,7 +20,7 @@
       <div class="col-sm-12 col-lg-6" data-aos="fade-down" data-aos-duration="1200">
         <img src="/media/{{ ArticleData.0.Article_Image }}" class="d-block w-100" alt="..." />
       </div>
-      <div class="col-sm-12 col-lg-6 p-3" data-aos="fade-down" data-aos-duration="1200">
+      <div class="col-sm-12 col-lg-6 p-3 px-4" data-aos="fade-down" data-aos-duration="1200">
         <div class="aboutUs-section-para">
          {{ ArticleData.0.Article_Description|safe|slice:":1422" }}
         </div>
