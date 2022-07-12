@@ -1366,13 +1366,11 @@ def dashboard(request):
     id = []
     toolsName_hitCount_Per_Name = []
     tools_data = ToolsData.objects.all()
-    
+
     resourcesName = []
     id_resources = []
     resourcesName_hitCount_Per_Name = []
     resources_data = ResourceData.objects.all()
-    
-    
 
     for n in successStories_CategoryData:
         SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
@@ -1381,7 +1379,6 @@ def dashboard(request):
             SuccessStories_category__SuccessStories_CategoryType=n.SuccessStories_CategoryType).count()
         countOfStoriesWithCategory.append(count)
 
-
     for n in toolsCategory_data:
         toolscategory_name.append(n.Tools_CategoryType)
     for n in toolsCategory_data:
@@ -1389,14 +1386,12 @@ def dashboard(request):
             ToolsData_CategoryType__Tools_CategoryType=n.Tools_CategoryType).count()
         countOfToolsWithCategory.append(count)
 
-
     for n in resourcesCategory_data:
         resourcescategory_name.append(n.Resources_CategoryType)
     for n in resourcesCategory_data:
         count = ResourceData.objects.filter(
             ResourceData_CategoryType__Resources_CategoryType=n.Resources_CategoryType).count()
         countOfResourcesWithCategory.append(count)
-
 
     for n in userRegistration_Data:
         userType_Duplicate.append(n.registration_User_Type)
@@ -1407,7 +1402,6 @@ def dashboard(request):
             registration_User_Type=n).count()
         userCount_Per_Type.append(count)
 
-
     for n in guidelines_data:
         guidelines_Duplicate.append(n.name)
     data_unique = set(guidelines_Duplicate)
@@ -1416,43 +1410,41 @@ def dashboard(request):
         # print(n)
         data = GuidelinceForIndianGovWebsite.objects.values(
             'percentage').filter().get(name=n)
-       
-        guidelinesCount_Per_Type.append(data["percentage"])
 
+        guidelinesCount_Per_Type.append(data["percentage"])
 
     for n in tools_data:
         id.append(n.id)
-   
+
     for n in id:
         # print(n)
         data = ToolsData.objects.values('ToolsData_DownloadCounter').get(id=n)
         # print(data)
-       
+
         toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
     for n in id:
         datname = ToolsData.objects.values('ToolsData_HeadingName').get(id=n)
         toolsName.append(datname["ToolsData_HeadingName"])
-       
 
     # # print("cat",toolsName)
     # # print("data",toolsName_hitCount_Per_Name)
-    
-    
+
     for n in resources_data:
         id_resources.append(n.id)
     for n in id_resources:
         # print(n)
-        data = ResourceData.objects.values('ResourceData_DownloadCounter').get(id=n)
+        data = ResourceData.objects.values(
+            'ResourceData_DownloadCounter').get(id=n)
         # print(data)
-        resourcesName_hitCount_Per_Name.append(data["ResourceData_DownloadCounter"])
+        resourcesName_hitCount_Per_Name.append(
+            data["ResourceData_DownloadCounter"])
     for n in id_resources:
-        datname = ResourceData.objects.values('ResourceData_HeadingName').get(id=n)
+        datname = ResourceData.objects.values(
+            'ResourceData_HeadingName').get(id=n)
         resourcesName.append(datname["ResourceData_HeadingName"])
-       
-    
-    print("cat",resourcesName)
-    print("data",resourcesName_hitCount_Per_Name)
-    
+
+    print("cat", resourcesName)
+    print("data", resourcesName_hitCount_Per_Name)
 
     context = {
         'topmenus': TopMenuItemsdata,
@@ -1477,10 +1469,10 @@ def dashboard(request):
 
         'toolshit_name': toolsName,
         'toolsHitCount': toolsName_hitCount_Per_Name,
-        
+
         'resourcesshit_name': resourcesName,
         'resourcesHitCount': resourcesName_hitCount_Per_Name
-        
+
     }
     return render(request, 'Localisation_App/Dashboard.html', context)
 
@@ -1549,8 +1541,9 @@ def translation_quote(request):
             print(form.cleaned_data['language'])
             print(form.cleaned_data['website_type'])
             print(form.cleaned_data['delivery_date'])
-            
-            data = TranslationQuote(url=url,language=language,website_type=website_type,delivery_date=delivery_date)
+
+            data = TranslationQuote(
+                url=url, language=language, website_type=website_type, delivery_date=delivery_date)
             data.save()
             context['status'] = 'success'
             context['message'] = "Form submitted successfully"
@@ -1559,11 +1552,10 @@ def translation_quote(request):
         else:
             context['status'] = 'error'
             context['message'] = "Invalid URL!"
-            
+
             # messages.error(request, 'Error Processing Your Request')
-            
+
             return render(request, 'Localisation_App/translation_quote.html', context)
-             
 
     return render(request, "Localisation_App/translation_quote.html", context)
 
@@ -1595,9 +1587,7 @@ def dashboard2(request):
     id = []
     toolsName_hitCount_Per_Name = []
     tools_data = ToolsData.objects.all()
-    
-    
-   
+
     for n in successStories_CategoryData:
         SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
     for n in successStories_CategoryData:
@@ -1656,8 +1646,6 @@ def dashboard2(request):
 
     # # print("cat",toolsName)
     # # print("data",toolsName_hitCount_Per_Name)
-    
-    
 
     context = {
         'name': 'Success Strories Dataset',
@@ -1680,12 +1668,12 @@ def dashboard2(request):
 
         'toolshit_name': toolsName,
         'toolsHitCount': toolsName_hitCount_Per_Name,
-        
-        
-        
+
+
+
     }
     return render(request, 'Localisation_App/dashboard2.html', context)
 
 
 def machine_translation(request):
-    return render(request,'Localisation_App/machine_translation.html')
+    return render(request, 'Localisation_App/machine_translation.html')
