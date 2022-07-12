@@ -99,10 +99,8 @@ def toolsPage(request):
         'count': count,
         'form': UserLoginForm()
     }
-    if request.user.is_authenticated:
-        return render(request, 'Localisation_App/tools.html', context)
-    else:
-        return render(request, 'Localisation_App/login.html', context)
+    return render(request, 'Localisation_App/tools.html', context)
+    
 
 
 def tools(request):
