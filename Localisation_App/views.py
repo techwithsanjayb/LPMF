@@ -1297,7 +1297,13 @@ def login_user(request):
                 login(request, user)
                 return redirect('/')
             else:
-                return redirect('/')
+                messages.error(request, 'Error Processing Your Request,Wrong Username or password')
+                context = {
+                    'topmenus': TopMenuItemsdata,
+                    'FooterMenuItemsdata': FooterMenuItemsdata,
+                    'form': UserLoginForm()
+                }
+                return render(request, 'Localisation_App/login.html', context)
 
         else:
             messages.error(request, 'Error Processing Your Request')
@@ -1341,26 +1347,21 @@ def changePassword(request,token):
                 password1 = form.cleaned_data['password1']
                 password2 = form.cleaned_data['password2']
                 user_id = request.POST.get('user_id')
-            
-                if user_id is None:
-                    messages.success(request, 'User Not Found')
+                if password1 == password2 :
+                    if user_id is None:
+                        messages.success(request, 'User Not Found')
+                        return redirect('Localisation_App:forgetPassword')
+                    else:
+                        user_Register_obj=UserRegistration.objects.get(pk=user_id)
+                        user_Register_obj.userregistration_password = password1
+                        user_Register_obj.userregistration_confirm_password = password2
+                        user_Register_obj.save()
+                        print('Password Reset Successfully ')
+                        return redirect('Localisation_App:forgetPassword')
+                else:
                     return redirect('Localisation_App:forgetPassword')
-                
-                user_Register_obj=UserRegistration.objects.get(pk=user_id)
-                user_Register_obj.userregistration_password = password1
-                user_Register_obj.userregistration_confirm_password = password2
-                user_Register_obj.save()
-                
-                # Main_User_Object=User.objects.get(username = user_Register_obj.userregistration_username)
-                # Main_User_Object.set_password(password1)
-                # Main_User_Object.save()
-                # print("mainUser",Main_User_Object)
-                
-                
-                # print("updated User",UserRegistration.objects.get(pk=user_id))
-                print('Password Reset Successfully ')
+            else:
                 return redirect('Localisation_App:forgetPassword')
-        
         user_id=user_Profile_obj.pk
         context = {
             'form': form,
