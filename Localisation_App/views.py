@@ -1676,4 +1676,7 @@ def dashboard2(request):
 
 
 def machine_translation(request):
-    return render(request, 'Localisation_App/machine_translation.html')
+    return render(request,'Localisation_App/machine_translation.html')
+
+def name_matcher(request):
+    return render(request,'Localisation_App/name_matcher.html')
