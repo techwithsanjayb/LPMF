@@ -54,6 +54,8 @@ urlpatterns = [
     path('register/', views.Register_user, name="register"),
     path('login/', views.login_user, name='login'),
     path('logout/', views.logout_user, name='logout'),
+    path('forgetPassword/', views.forgetPassword, name='forgetPassword'),
+    path('changePassword/<token>/', views.changePassword, name='changePassword'),
     #     path('logout_user/', views.logout_user, name="logout"),
     #   path('register/', views.Register_user, name="register"),
 

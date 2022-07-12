@@ -396,6 +396,7 @@ class UserRegistration(models.Model):
         max_length=50, choices=CHOICES, default='Individual')
     userregistration_registration_date = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
+    userregistration_token = models.CharField(max_length=60,blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "User Registration"
