@@ -92,7 +92,7 @@ class SuccessStories(models.Model):
     SuccessStories_PublishedStatus = (
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     SuccessStories_PublishedStatus = models.CharField(
-        max_length=20, choices=SuccessStories_PublishedStatus, default="Unpublished")
+        max_length=20, choices=SuccessStories_PublishedStatus, default="published")
     SuccessStories_Upload_Image_1 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
@@ -163,6 +163,10 @@ class ToolsData(models.Model):
     ToolsData_LastUpdatedDate = models.DateTimeField(
         auto_now=True, blank=True, null=True)
     ToolsData_DownloadCounter = models.IntegerField()
+    Tools_PublishedStatus = (
+        ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
+    ToolsData_PublishedStatus = models.CharField(
+        max_length=20, choices=Tools_PublishedStatus, default="published")
 
     class Meta:
         verbose_name_plural = "Tools Data"
@@ -200,6 +204,10 @@ class ResourceData(models.Model):
     ResourceData_LastUpdatedDate = models.DateTimeField(
         auto_now=True, blank=True, null=True)
     ResourceData_DownloadCounter = models.IntegerField()
+    Resources_PublishedStatus = (
+        ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
+    ResourceData_PublishedStatus = models.CharField(
+        max_length=20, choices=Resources_PublishedStatus, default="published")
 
     class Meta:
         verbose_name_plural = "Resource Data"
