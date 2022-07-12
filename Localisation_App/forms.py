@@ -171,7 +171,7 @@ class UserLoginForm(AuthenticationForm):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control input-1',
                 'placeholder': 'Password',
 
             }
