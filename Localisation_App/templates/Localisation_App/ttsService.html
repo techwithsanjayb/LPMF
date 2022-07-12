@@ -1,3 +1,4 @@
+{% block title %}TTS Service{% endblock %}
 <form action={% url 'Localisation_App:srvTTS' %} method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <h5>TTS</h5>

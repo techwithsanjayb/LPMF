@@ -101,13 +101,8 @@ def toolsPage(request):
         'count': count,
         'form': UserLoginForm()
     }
-    if request.user.is_authenticated:
-        return render(request, 'Localisation_App/tools.html', context)
-    else:
-        return render(request, 'Localisation_App/login.html', context)
-   
-
-   
+    return render(request, 'Localisation_App/tools.html', context)
+    
 
 
 def tools(request):
@@ -1773,4 +1768,7 @@ def dashboard2(request):
 
 
 def machine_translation(request):
-    return render(request, 'Localisation_App/machine_translation.html')
+    return render(request,'Localisation_App/machine_translation.html')
+
+def name_matcher(request):
+    return render(request,'Localisation_App/name_matcher.html')

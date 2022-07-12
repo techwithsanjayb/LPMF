@@ -65,7 +65,8 @@ urlpatterns = [
          name='translation_quote'),
     path('dashboard2', views.dashboard2, name="dashboard2"),
     path('dashboard', views.dashboard, name="dashboard"),
-    path('machine-translation/', views.machine_translation, name="machine_translation")
+    path('machine-translation/', views.machine_translation, name="machine_translation"),
+    path('name-matcher/', views.name_matcher, name="name_matcher")
 ]
 
 if settings.DEBUG:

@@ -161,7 +161,7 @@ class UserLoginForm(forms.Form):
         required=True,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control input-1',
                 'placeholder': 'Username'
             }
         ))
@@ -170,7 +170,7 @@ class UserLoginForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control input-1',
                 'placeholder': 'Password',
 
             }
