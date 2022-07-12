@@ -1,0 +1,33 @@
+.login-form-main{
+    /* background-color: red; */
+    background-color:#E9F5F8;
+    width: auto;
+    height:500px;
+    border:3px solid #8FCEDD;
+    border-radius:20px;
+    padding: 40px;
+}
+.login-form{
+    /* background-color: green; */
+}
+
+.login-form label{
+    font-size: 25px;
+    font-weight: 500;
+    color:rgb(19, 19, 19);
+}
+.login-button{
+    margin-top: 20px;
+    height:40px;
+    width: 150px;
+    border-radius: 10px;
+    background-color: #0089ac;
+    text-align: center;
+    padding: 4px;
+    font-size: 20px;
+    color:white;
+}
+.input-1{
+    background-color: #0089ac;
+    width:200px;
+}
