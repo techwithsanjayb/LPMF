@@ -1,9 +1,9 @@
 {% extends 'Localisation_App/base.html' %} {% load static %} {% block tools %}
-<div class="container-fluid" style="background-color:red">
+<div class="container-fluid" >
 	<input type="button" class="text-center rounded-5 px-5 tools-page-header" value="Tools" disabled />
-	<div class="row tools-box"  style="background-color:yellow">
-		<div class="col-sm-12 col-lg-3"  style="background-color:green">
-			<div class="tools-sidebar-section"  style="background-color:pink">
+	<div class="row tools-box"  >
+		<div class="col-sm-12 col-lg-3"  >
+			<div class="tools-sidebar-section">
 				<form action={% url 'Localisation_App:toolsSearch' tools_title %} method="POST" enctype="multipart/form-data"> {% csrf_token %}
 					<div class="row p-3">
 						<div class="col-6"> {% if tools_title == 'none' %}
@@ -44,11 +44,11 @@
 			</div>
 		</div>
 
-		<div class="col-9"  style="background-color:grey">
+		<div class="col-9" >
 			<div class="row "  > 
 				{% for data in page.object_list %}
-				<!-- {% comment %} {% if data.tools_PublishedStatus != 'Unpublished' %} {% endcomment %} -->
-				<div class="col-sm-12 col-lg-12 "  style="background-color:pink">
+				{% if data.ToolsData_PublishedStatus != 'Unpublished' %}
+				<div class="col-sm-12 col-lg-12 "  >
 					<div class="tools-main-card-section">
 						<div class="row">
 							<div class="col-sm-12 col-lg-4"> <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
@@ -70,8 +70,11 @@
 							</div>
 						</div>
 					</div>
-				</div> {% empty %} <img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" /> 
-				<!-- {% endif %} -->
+				</div> 
+				
+				{% endif %}
+				{% empty %}
+				<img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" /> 
 				{% endfor %}
 				<div class="section p-3"> {% if Pagination_Type == 'All_Data' %}
 					<div class="container">
