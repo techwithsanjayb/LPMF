@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration
+from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration,GuidelinceForIndianGovWebsite, TranslationQuote
 # Register your models here.
 
 
@@ -189,13 +189,19 @@ class AdminContact(admin.ModelAdmin):
 
 @admin.register(UserRegistration)
 class AdminUserRegistration(admin.ModelAdmin):
-    list_display = ('userregistration_user_id',)
+    list_display = ('userregistration_username',)
     
     def has_add_permission(self, request):
         return False
     
     def has_change_permission(self, request, obj=None):
         return False
+
+admin.site.register(TranslationQuote)
+
+@admin.register(GuidelinceForIndianGovWebsite)
+class AdminGuidelinceForIndianGovWebsite(admin.ModelAdmin):
+    list_display = ('name','percentage')
 
 
 # SANJAY BHARGAVA ADDED BELOW LINES

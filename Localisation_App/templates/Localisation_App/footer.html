@@ -1,0 +1,86 @@
+{% load static %}
+
+<div class="sticky-button">
+  <img src="{% static './Localisation_App/img/gotranslate.jpg' %}" alt="..." style="height:40px;width:40px"/><span><a target="_blank" href="https://chrome.google.com/webstore/detail/gotranslate-web-localizer/lcmdfppjojeebpjblgmookbnfmbnjhhh?hl=en">GoTranslate Plugin</a> </span>
+  
+ </div>
+ <div class="sticky-button-2">
+  <img src="{% static './Localisation_App/img/gem.jpg' %}" alt="..." style="height:40px;width:40px"/><span><a target="_blank" href="https://gem.gov.in/">GEM Portal</a> </span>
+  
+ </div>
+ <div class="sticky-button-3">
+  <img src="{% static './Localisation_App/img/Shake.png' %}" alt="..." style="height:40px;width:40px"/><span><a target="_blank" href="https://chrome.google.com/webstore/detail/gotranslate-web-localizer/lcmdfppjojeebpjblgmookbnfmbnjhhh?hl=en">Empanelled Agencies</a> </span>
+  
+ </div>
+ 
+ <div class="footer">
+   <div class="row">
+     <div class="col-sm-12 col-lg-3  footer-left">
+       <h3 class="quick">Quick Links</h3>
+
+       <p>
+       <ul style="list-style: none;">
+         <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a
+             href="{% url 'Localisation_App:Home' %}">{{ topmenus.0 }}</a></li>
+         <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a
+             href="{% url 'Localisation_App:websitepolicies' %}">{{ FooterMenuItemsdata.0 }}</a>
+         </li>
+         <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a
+             href="{% url 'Localisation_App:termsandcondition' %}">{{ FooterMenuItemsdata.1 }}</a>
+         </li>
+         <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a
+             href="{% url 'Localisation_App:accessibilityStatement' %}">{{ FooterMenuItemsdata.2 }}</li>
+         <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a
+             href="{% url 'Localisation_App:sitemap' %}">{{ FooterMenuItemsdata.3 }}</a></li>
+         <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a
+             href="{% url 'Localisation_App:help' %}">{{ FooterMenuItemsdata.4 }}</a></li>
+       </ul>
+       </p>
+     </div>
+     <div class="col-sm-12 col-md-12 col-lg-6  footer-center">
+       <img src="{% static './Localisation_App/img/meity.png' %}" class="footer-image-center" alt="..." />
+       <hr class="line">
+       <div class="row footer-center1">
+
+         <div class="col-sm-12 col-md-3 col-lg-3 footer-logo-1"> <img
+             src="{% static './Localisation_App/img/Digital.png' %}" class="" alt="..." /></div>
+         <div class="col-sm-12 col-md-3 col-lg-3 footer-logo-4"> <img
+             src="{% static './Localisation_App/img/mygov.png' %}" class="" alt="..." /></div>
+         <div class="col-sm-12 col-md-3 col-lg-3 footer-logo-2"> <img
+             src="{% static './Localisation_App/img/tdil2.png' %}" class="img-1" alt="..." /></div>
+         <div class="col-sm-12 col-md-3 col-lg-3 footer-logo-3"> <img
+             src="{% static './Localisation_App/img/bhashini.png' %}" class="" alt="..." /></div>
+
+       </div>
+     </div>
+
+     <div class="col-lg-6 footer-right">
+      <h3 class="quick">IDN Links</h3>
+ 
+      <p>
+      <ul style="list-style: none;">
+        <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a target="_blank" href="https://www.cdac.in/">सीडैक.भारत</a></li>
+        <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a target="_blank" href="https://www.meity.gov.in/">एमईआईटीवाई.सरकार.भारत</a></li>
+        <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a target="_blank" href="https://www.india.gov.in/">इंडिया.सरकार.भारत</a></li>
+        <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a target="_blank" href="https://innovate.mygov.in/">इनोवेटइंडिया.मेरीसरकार.भारत</a></li>
+        <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a target="_blank" href="https://registry.in/">रजिस्ट्री.भारत</a></li>
+        <li><span> <img src="{% static './Localisation_App/img/bullet.png' %}" alt="..." /></span><a target="_blank" href="https://nixi.in/">निक्सी.भारत</a></li>
+
+      </ul>
+      </p>
+       <!-- <h5 class="designed">
+         Designed, Developed & Hosted by
+       </h5>
+       <h6>CDAC GIST Pune</h6> -->
+       <br>
+       <!-- <img src="{% static './Localisation_App/img/Group12.jpg' %}" class="footer-gist-section" alt="..." /> -->
+     </div>
+   </div>
+   <div class="copyright-section">
+    <h5 class="designed">
+      Designed, Developed & Hosted by <span style="font-weight: 700;"><a target="_blank" href="https://www.cdac.in/" style="text-decoration: none;color:white;"> CDAC GIST</a></span> Pune
+    </h5>
+ 
+     Copyright © 2022 LPMF. All Rights Reserved.
+   </div>
+ </div>

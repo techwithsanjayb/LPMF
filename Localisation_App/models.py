@@ -92,7 +92,7 @@ class SuccessStories(models.Model):
     SuccessStories_PublishedStatus = (
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     SuccessStories_PublishedStatus = models.CharField(
-        max_length=20, choices=SuccessStories_PublishedStatus, default="Unpublished")
+        max_length=20, choices=SuccessStories_PublishedStatus, default="published")
     SuccessStories_Upload_Image_1 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
 
@@ -163,6 +163,10 @@ class ToolsData(models.Model):
     ToolsData_LastUpdatedDate = models.DateTimeField(
         auto_now=True, blank=True, null=True)
     ToolsData_DownloadCounter = models.IntegerField()
+    Tools_PublishedStatus = (
+        ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
+    ToolsData_PublishedStatus = models.CharField(
+        max_length=20, choices=Tools_PublishedStatus, default="published")
 
     class Meta:
         verbose_name_plural = "Tools Data"
@@ -200,6 +204,10 @@ class ResourceData(models.Model):
     ResourceData_LastUpdatedDate = models.DateTimeField(
         auto_now=True, blank=True, null=True)
     ResourceData_DownloadCounter = models.IntegerField()
+    Resources_PublishedStatus = (
+        ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
+    ResourceData_PublishedStatus = models.CharField(
+        max_length=20, choices=Resources_PublishedStatus, default="published")
 
     class Meta:
         verbose_name_plural = "Resource Data"
@@ -388,6 +396,7 @@ class UserRegistration(models.Model):
         max_length=50, choices=CHOICES, default='Individual')
     userregistration_registration_date = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
+    userregistration_token = models.CharField(max_length=60,blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "User Registration"
@@ -395,3 +404,31 @@ class UserRegistration(models.Model):
 
     def __str__(self):
         return self.userregistration_first_name + " " + self.userregistration_last_name
+
+
+# translation quote
+
+class TranslationQuote(models.Model):
+    url = models.URLField(max_length=200)
+    language = models.CharField(max_length=200)
+    website_type = models.CharField(max_length=200, null=True)
+    delivery_date = models.DateField(max_length=200, null=True)
+
+    class Meta:
+        verbose_name_plural = "Translation Quote"
+        ordering = ['url']
+
+    def __str__(self):
+        return self.url
+
+
+class GuidelinceForIndianGovWebsite(models.Model):
+    name = models.CharField(max_length=100)
+    percentage = models.IntegerField()
+
+    class Meta:
+        verbose_name_plural = "Guidelince For Indian Gov Website"
+
+    def __str__(self):
+        return self.name
+    

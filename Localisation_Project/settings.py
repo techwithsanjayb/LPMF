@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3h!7#b#*w)xr0)r_3#^=7$fmaepm40dd%0$7k5&-i)h(wp%0cy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 # SANJAYB
 
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -47,8 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Localisation_App',
-    'ckeditor'
+    'ckeditor',
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -175,7 +177,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # print(BASE_DIR)
 
 
-SERVER_EMAIL = 'tanvip@cdac.in'
+SERVER_EMAIL = 'pshweta@cdac.in'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.cdac.in'
 EMAIL_HOST_PASSWORD = ''  # please enter password
