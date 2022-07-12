@@ -1115,9 +1115,11 @@
 }
 
 .footer-right a {
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
     color: white;
+    /* letter-spacing: 1px; */
+    padding-left:4px;
 }
 
 .footer-right a:hover {
@@ -1510,6 +1512,7 @@
     .footer-left a {
         text-decoration: none;
         color: white;
+        padding-left: 2px;
     }
 
     .footer-left a:hover {
