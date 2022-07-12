@@ -1,6 +1,6 @@
 
 import re
-from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm
+from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm,UserChangePasswordForm,UserForgetPasswordForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
@@ -14,7 +14,9 @@ import requests
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from .word_count import crawl_data
-import json
+from django.contrib.auth.models import User
+import uuid
+from .helpers import send_forget_password_email
 
 global str_num
 # Menu
@@ -99,10 +101,8 @@ def toolsPage(request):
         'count': count,
         'form': UserLoginForm()
     }
-    if request.user.is_authenticated:
-        return render(request, 'Localisation_App/tools.html', context)
-    else:
-        return render(request, 'Localisation_App/login.html', context)
+    return render(request, 'Localisation_App/tools.html', context)
+    
 
 
 def tools(request):
@@ -1280,11 +1280,15 @@ def Register_user(request):
 
 
 def login_user(request):
+    form = UserLoginForm()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
+        print(request.POST.get('username'))
+        print(request.POST.get('password'))
         if form.is_valid():
+            print("loginform")
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             print("if form is valid")
@@ -1293,7 +1297,13 @@ def login_user(request):
                 login(request, user)
                 return redirect('/')
             else:
-                return redirect('')
+                messages.error(request, 'Error Processing Your Request,Wrong Username or password')
+                context = {
+                    'topmenus': TopMenuItemsdata,
+                    'FooterMenuItemsdata': FooterMenuItemsdata,
+                    'form': UserLoginForm()
+                }
+                return render(request, 'Localisation_App/login.html', context)
 
         else:
             messages.error(request, 'Error Processing Your Request')
@@ -1302,7 +1312,6 @@ def login_user(request):
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'form': UserLoginForm()
             }
-
             print("else")
             return render(request, 'Localisation_App/login.html', context)
     else:
@@ -1324,6 +1333,90 @@ def logout_user(request):
     }
     logout(request)
     return render(request, 'Localisation_App/logout.html', context)
+
+
+def changePassword(request,token):
+    form = UserChangePasswordForm()
+    user_Profile_obj=UserRegistration.objects.get(userregistration_token = token)
+    if user_Profile_obj is not None:    
+        print("inside change padsword",user_Profile_obj.pk)
+        if request.method == 'POST':
+            form = UserChangePasswordForm(data=request.POST)
+            if form.is_valid():
+                print("inside Post") 
+                password1 = form.cleaned_data['password1']
+                password2 = form.cleaned_data['password2']
+                user_id = request.POST.get('user_id')
+                if password1 == password2 :
+                    if user_id is None:
+                        messages.success(request, 'User Not Found')
+                        return redirect('Localisation_App:forgetPassword')
+                    else:
+                        user_Register_obj=UserRegistration.objects.get(pk=user_id)
+                        user_Register_obj.userregistration_password = password1
+                        user_Register_obj.userregistration_confirm_password = password2
+                        user_Register_obj.save()
+                        print('Password Reset Successfully ')
+                        return redirect('Localisation_App:forgetPassword')
+                else:
+                    return redirect('Localisation_App:forgetPassword')
+            else:
+                return redirect('Localisation_App:forgetPassword')
+        user_id=user_Profile_obj.pk
+        context = {
+            'form': form,
+            'User_Id':user_id
+        }
+        return render(request, 'Localisation_App/changePassword.html',context)
+    else:
+        messages.success(request, 'User Not Found')
+        print('User Not Found')
+        return redirect('Localisation_App:forgetPassword')
+   
+           
+   
+    
+    
+
+
+def forgetPassword(request):
+    form =UserForgetPasswordForm()
+    try:
+        if request.method == 'POST':
+            form = UserForgetPasswordForm(data=request.POST)
+            if form.is_valid():
+                print('insideValidmethod')
+                username = form.cleaned_data['username']
+                if not User.objects.filter(username = username).first():
+                    messages.success(request, 'No user found with this username')
+                    print('No user found with this username')
+                    return redirect('Localisation_App:forgetPassword')
+                user_obj=User.objects.get(username = username)
+                token=str(uuid.uuid4())
+                user_Profile_obj=UserRegistration.objects.get(userregistration_username = username)
+                user_Profile_obj.userregistration_token = token
+                user_Profile_obj.save()
+                send_forget_password_email(user_Profile_obj.userregistration_email_field,token)
+                print("userdata",user_obj)
+                
+                
+                messages.success(request, 'An email is sent')
+                print('An email is sent')
+                context={
+                    'form':form
+                }
+                return redirect('Localisation_App:forgetPassword',context)
+         
+            
+    except Exception as e:
+        print(e)
+    context={
+        'form':form
+    }
+    return render(request, 'Localisation_App/forgetPassword.html',context)
+
+
+
 
 
 def goTranslate(request):

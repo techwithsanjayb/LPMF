@@ -189,7 +189,7 @@ class AdminContact(admin.ModelAdmin):
 
 @admin.register(UserRegistration)
 class AdminUserRegistration(admin.ModelAdmin):
-    list_display = ('userregistration_user_id',)
+    list_display = ('userregistration_username',)
     
     def has_add_permission(self, request):
         return False
