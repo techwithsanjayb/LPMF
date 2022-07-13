@@ -62,19 +62,19 @@
                 <div>
                     
                     <div class="accordion-item section1">
-                        <h2 class="accordion-header" id=Carasol1_{{ forloop.counter }}>
+                        <h2 class="accordion-header" id="Carasol1_{{ forloop.counter }}">
                             <button class="accordion-button collapsed btn1" type="button" data-bs-toggle="collapse"
-                                data-bs-target=#Carasol2_{{ forloop.counter }} aria-expanded="false" aria-controls=Carasol2_{{ forloop.counter }}>
+                                data-bs-target="#Carasol2_{{ forloop.counter }}" aria-expanded="false" aria-controls="Carasol2_{{ forloop.counter }}">
                                 {% comment %} <i class='fas fa-arrow-right' style="margin:0 10px 0 0"></i>&nbsp;&nbsp; {% endcomment %}
                                 <span><img  src="/static/Localisation_App/img/girlques.png"/></span>
                                     {{ faq.FAQs_Question|safe }}
                             </button>
                         </h2>
-                        <div  id=Carasol2_{{ forloop.counter }} class="accordion-collapse collapse" aria-labelledby=Carasol1_{{ forloop.counter }}
+                        <div id="Carasol2_{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="Carasol1_{{ forloop.counter }}"
                             data-bs-parent="#accordionExample">
-                            <div  class="accordion-body">
-                                 <span><img  src="/static/Localisation_App/img/boyreply2.png"/></span>
-                                {{ faq.FAQs_Answer|safe }}
+                            <div class="accordion-body">
+                                 <span class="faq-img-answers" style="width:100px"><img  src="/static/Localisation_App/img/boyreply2.png"/></span>
+                                <span class="faq-answers">{{ faq.FAQs_Answer|safe }}</span>
                             </div>
                         </div>
                     </div>
