@@ -1,11 +1,7 @@
-{% extends 'Localisation_App/base.html' %} 
-{% block title %}Home{% endblock %}
+{% extends 'Localisation_App/base.html' %} {% block title %}Home{% endblock %}
 {% load static %} {% block home %}
 
 <!--carousel start-->
-
-
-
 
 <div class="container-fluid">
   <div class="row">
@@ -83,8 +79,20 @@
           >
             <span style="color: grey"></span>
             {% for news in NewsAndEventsData%}
+<<<<<<< HEAD
             <i class="fa fa-location-arrow"></i><a class="news1" href="{{news.NewsAndEvents_Link }}" target="_blank"
               > {{ news.NewsAndEvents_HeadingName }}</a>&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+=======
+            <a
+              class="news1"
+              href="{{news.NewsAndEvents_Link }}"
+              target="_blank"
+            >
+              *
+              <strong>{{ news.NewsAndEvents_HeadingName }}</strong>
+              * {{news.NewsAndEvents_Discription}}</a
+            >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
+>>>>>>> 57405c20092e0087973a85f67de492149fa32e0c
           </marquee>
         </div>
       </div>
@@ -212,40 +220,59 @@
 <!--Vision end-->
 <!-- Bhashani Section -->
 
-<div class="container-fluid my-5" >
+<div class="container-fluid my-5">
   <div class="bhashani-title-section">
     <h1>Bhasha Daan</h1>
     <p>One Platform, Multiple Crowdsourcing Initiatives</p>
-    <div class="text">Help to build an open repository of data to digitally enrich your language</div>
+    <div class="text">
+      Help to build an open repository of data to digitally enrich your language
+    </div>
   </div>
   <div class="row bhasha-main d-flex justify-content-center">
-    <div class="col-lg-2 col-md-6 bhasha-card" style="background-color: #C4D3C7;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/bolo.png' %}" alt="">
+    <div
+      class="col-lg-2 col-md-6 bhasha-card"
+      style="background-color: #c4d3c7"
+    >
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/bolo.png' %}"
+        alt=""
+      />
       <p>Enrich your language by donating your voice</p>
-      <div class="participate">
-        Start Participating
-      </div>
+      <div class="participate">Start Participating</div>
     </div>
-    <div class="col-lg-2 col-md-6 bhasha-card" style="background-color: #F3C9B6;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/likho.png' %}" alt="">
+    <div
+      class="col-lg-2 col-md-6 bhasha-card"
+      style="background-color: #f3c9b6"
+    >
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/likho.png' %}"
+        alt=""
+      />
       <p>Enrich your language by translating text</p>
-      <div class="participate">
-        Start Participating
-      </div>
+      <div class="participate">Start Participating</div>
     </div>
-    <div class="col-lg-2 col-md-6 bhasha-card" style="background-color: #9ED2DF;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/dekho.png' %}" alt="">
+    <div
+      class="col-lg-2 col-md-6 bhasha-card"
+      style="background-color: #9ed2df"
+    >
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/dekho.png' %}"
+        alt=""
+      />
       <p>Enrich your language by typing the text you see</p>
-      <div class="participate">
-        Start Participating
-      </div>
+      <div class="participate">Start Participating</div>
     </div>
-    <div class="col-lg-2 bhasha-card" style="background-color: #B1B3D0;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/suno.png' %}" alt="">
+    <div class="col-lg-2 bhasha-card" style="background-color: #b1b3d0">
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/suno.png' %}"
+        alt=""
+      />
       <p>Enrich your language by typing the audio that you hear</p>
-      <div class="participate">
-        Start Participating
-      </div>
+      <div class="participate">Start Participating</div>
     </div>
   </div>
 </div>
@@ -257,17 +284,25 @@
   <div class="show-section">
     <div class="row">
       <div class="col-2">
-        <img class="img-fluid" src="{% static './Localisation_App/img/services-page.jpg' %}" style="height:200px;width: 200px;" alt="">
+        <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/services-page.jpg' %}"
+          style="height: 200px; width: 200px"
+          alt=""
+        />
       </div>
       <div class="col-10">
-        <div class="show-section-para" data-aos="zoom-in" data-aos-duration="1200">
-          Relevant standards, best practices, tools and technologies for realizing the dream of localizing all the citizen services in regional languages.
+        <div
+          class="show-section-para"
+          data-aos="zoom-in"
+          data-aos-duration="1200"
+        >
+          Relevant standards, best practices, tools and technologies for
+          realizing the dream of localizing all the citizen services in regional
+          languages.
         </div>
-        
       </div>
     </div>
-    
-   
   </div>
 </div>
 
