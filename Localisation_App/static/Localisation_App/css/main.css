@@ -622,6 +622,7 @@
 
 .aboutUs-para {
     margin-top: 30px;
+    margin-right:40px;
     text-align: justify;
     font-style: normal;
     font-weight: 500;
@@ -645,13 +646,13 @@
 }
 
 .aboutUs-section-para {
-    margin-top: -30px;
+    margin-top: 10px;
     text-align: justify;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 40px;
-    padding-right: 20px;
+    padding-right: 50px;
     /* or 210% */
     letter-spacing: 0.5px;
     color: #6B6A6A;
@@ -673,12 +674,12 @@
 }
 
 .aboutus-Button2 {
-    width: 140px;
-    height: 49px;
+    width: 120px;
+    height: 45px;
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 1170px;
+    margin-left: 1250px;
     font-weight: 600;
     font-size: 20px;
     margin-top: 20px;
@@ -782,6 +783,11 @@
     font-size: 22px;
     text-align: center;
     letter-spacing: -0.015em;
+    color: #4E4C4C;
+}
+
+.card-description a {
+    
     color: #4E4C4C;
 }
 
@@ -1174,6 +1180,13 @@
     width: 730px;
 }
 
+.navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
+    display:block;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
 
 /* Footer Section Ends*/
 
@@ -1204,6 +1217,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -1316,6 +1330,12 @@
         margin-left: 7px;
         text-align: center;
         letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+
+    .card-description a {
+    
         color: #4E4C4C;
     }
 
@@ -1605,6 +1625,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -1702,6 +1723,11 @@
         margin-left: 7px;
         text-align: center;
         letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+    .card-description a {
+    
         color: #4E4C4C;
     }
 
@@ -1961,6 +1987,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -2130,6 +2157,10 @@
         letter-spacing: -0.015em;
         color: #4E4C4C;
     }
+    .card-description a {
+    
+        color: #4E4C4C;
+    }
 
     .icon {
         height: 100px;
@@ -2256,6 +2287,7 @@
     .aboutUs-para {
         margin-top: 30px;
         text-align: center;
+        margin-right:45px;
         font-style: normal;
         font-weight: 500;
         font-size: 40px;
@@ -2523,6 +2555,10 @@
         margin-left: 7px;
         text-align: center;
         letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+    .card-description a {
+    
         color: #4E4C4C;
     }
 
