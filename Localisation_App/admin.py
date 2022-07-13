@@ -148,9 +148,11 @@ class AdminNewsAndEvents(admin.ModelAdmin):
     list_display = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link',
                     'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
     list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link',
-                          'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
-    list_filter = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link')
-    search_fields = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link')
+                          'short_NewsAndEvents_Discription', 'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
+    list_filter = ('NewsAndEvents_HeadingName',
+                   'NewsAndEvents_Link', 'NewsAndEvents_Discription')
+    search_fields = ('NewsAndEvents_HeadingName',
+                     'NewsAndEvents_Link', 'NewsAndEvents_Discription')
     ordering = ('NewsAndEvents_HeadingName',)
     list_per_page: int = 20
 
@@ -199,6 +201,7 @@ class AdminUserRegistration(admin.ModelAdmin):
         return False
 
 
+admin.site.register(FooterMenuItems)
 admin.site.register(TranslationQuote)
 admin.site.register(EmpanelledAgencies)
 admin.site.register(EmpanelledAgenciesEmail)
