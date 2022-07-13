@@ -1575,7 +1575,7 @@ def dashboard(request):
         'resourcesHitCount': resourcesName_hitCount_Per_Name
 
     }
-    return render(request, 'Localisation_App/Dashboard.html', context)
+    return render(request, 'Localisation_App/dashboard.html', context)
 
 
 # Translation Quote

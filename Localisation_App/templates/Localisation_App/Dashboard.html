@@ -107,7 +107,7 @@
           <h3 class="Dsh_Heading">Resources Dataset</h3>
           <hr/>
           <div class="card-body">
-            <canvas style="height: 100%" id="Resources"></canvas>
+            <canvas style="height: 100%; color:rgb(139, 65, 192)" id="Resources"></canvas>
           </div>
         </div>
       </div>
@@ -126,24 +126,15 @@
               datasets: [{
               label: 'Tools hit',
               backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                '#0091D5',
                 ],
               maxBarThickness:40,
               hoverBackgroundColor:'rgb(9, 51, 67)',
-              borderColor: 'rgb(242, 184, 48)',
               data: {{toolsHitCount|safe}},}]
           },
           options:
           {
-            indexAxis: 'y',
+            indexAxis: 'x',
          },
     });
   </script>
@@ -174,7 +165,6 @@
               ],
             maxBarThickness:40,
             hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
             data: {{resourcesHitCount|safe}},}]
         },
         options:
@@ -207,7 +197,6 @@
             ],
             maxBarThickness:20,
             hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
             data: {{count_Of_Stories_PerCategory|safe}},
         }]
     },
@@ -227,13 +216,12 @@
         datasets: [{
             label: 'Tools Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
+            '#1C4E80',
+            '#7E909A',
+            '#EA6A47',
         ],
-            maxBarThickness:10,
+            maxBarThickness:5,
             hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
             data: {{count_Of_Tools_PerCategory|safe}},
         }]
     },
@@ -255,13 +243,12 @@
         datasets: [{
             label: 'Resources Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
+            '#1C4E80',
+            '#7E909A',
+            '#EA6A47',
         ],
-            maxBarThickness:10,
+            maxBarThickness:5,
             hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
             data: {{count_Of_Resources_PerCategory|safe}},
         }]
     },
@@ -282,10 +269,11 @@
         datasets: [{
             label: 'User Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            '#1C4E80',
+            '#7E909A',
+            '#EA6A47',
             ],
+            maxBarThickness:5,s
             hoverOffset: 4,
             data: {{count_Of_User_PerCategory|safe}},
         }]
@@ -313,7 +301,6 @@
             ],
             maxBarThickness:20,
             hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
             data: {{guidelinesCount_Per_Type|safe}},
         }]
     },
