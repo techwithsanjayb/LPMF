@@ -148,7 +148,7 @@ class AdminFAQs_Category(admin.ModelAdmin):
 class AdminNewsAndEvents(admin.ModelAdmin):
     list_display = ('NewsAndEvents_HeadingName', 'short_NewsAndEvents_Discription', 'NewsAndEvents_Link',
                     'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
-    list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link', 'short_NewsAndEvents_Discription',
+    list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link', 'short_NewsAndEvents_Discription'
                           , 'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
     list_filter = ('NewsAndEvents_HeadingName',
                    'NewsAndEvents_Link', 'NewsAndEvents_Discription')
@@ -205,11 +205,7 @@ class AdminUserRegistration(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
-<<<<<<< HEAD
 admin.site.register(FooterMenuItems)
-=======
-
->>>>>>> 57405c20092e0087973a85f67de492149fa32e0c
 admin.site.register(TranslationQuote)
 admin.site.register(EmpanelledAgencies)
 admin.site.register(EmpanelledAgenciesEmail)
