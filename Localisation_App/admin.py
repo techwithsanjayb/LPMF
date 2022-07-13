@@ -149,7 +149,7 @@ class AdminNewsAndEvents(admin.ModelAdmin):
     list_display = ('NewsAndEvents_HeadingName', 'short_NewsAndEvents_Discription', 'NewsAndEvents_Link',
                     'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
     list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link', 'short_NewsAndEvents_Discription',
-                          , 'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
+                          'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
     list_filter = ('NewsAndEvents_HeadingName',
                    'NewsAndEvents_Link', 'NewsAndEvents_Discription')
     search_fields = ('NewsAndEvents_HeadingName',
