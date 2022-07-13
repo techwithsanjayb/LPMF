@@ -106,6 +106,7 @@ def toolsPage(request):
 
 
 def tools(request):
+    
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -343,6 +344,27 @@ def toolsReset(request):
             'count': count
         }
         return render(request, 'Localisation_App/tools.html', context)
+
+
+
+def toolsDownloadCounter(request):
+    print("inside here")
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
+    ip=''
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    print("ip",ip)
+    request.session['toolsDownloadCounter_ip'] = ip
+    print("getcookie",request.session.get('toolsDownloadCounter_ip'))
+    return redirect('Localisation_App:toolsPage')
+    
+
+
+
+
+
 
 
 # Resources Page
