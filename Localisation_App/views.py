@@ -16,7 +16,10 @@ from django.core.exceptions import ValidationError
 from .word_count import crawl_data
 from django.contrib.auth.models import User
 import uuid
+from datetime import datetime
 from .helpers import send_forget_password_email
+import json
+from bson import json_util
 
 global str_num
 # Menu
@@ -89,24 +92,25 @@ def toolsPage(request):
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = tools_Data.count()
-    context = {
-        'topmenus': TopMenuItemsdata,
-        'FooterMenuItemsdata': FooterMenuItemsdata,
-        'toolsdata': tools_Data,
-        'tools_title': 'none',
-        'toolscategory': toolsCategory_data,
-        "page": page,
-        'status_All_Checked': 'True',
-        'Pagination_Type': 'All_Data',
-        'count': count,
-        'form': UserLoginForm()
-    }
-    return render(request, 'Localisation_App/tools.html', context)
-    
-
+    context={
+            'topmenus': TopMenuItemsdata,
+            'FooterMenuItemsdata': FooterMenuItemsdata,
+            'toolsdata': tools_Data,
+            'tools_title': 'none',
+            'toolscategory': toolsCategory_data,
+            "page": page,
+            'status_All_Checked': 'True',
+            'Pagination_Type': 'All_Data',
+            'count': count,
+            'form': UserLoginForm()
+        }
+    if request.user.is_authenticated:
+        return render(request, 'Localisation_App/tools.html', context)
+    else:
+        return render(request, 'Localisation_App/tools.html',context)
+  
 
 def tools(request):
-    
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -346,9 +350,10 @@ def toolsReset(request):
         return render(request, 'Localisation_App/tools.html', context)
 
 
-
-def toolsDownloadCounter(request):
-    print("inside here")
+def toolsDownloadCounter(request,id):
+    print("session time",)
+    print("requestid",id)
+    print("inside herehelloooooo")
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
     ip=''
     if x_forwarded_for:
@@ -356,10 +361,217 @@ def toolsDownloadCounter(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     print("ip",ip)
-    request.session['toolsDownloadCounter_ip'] = ip
-    print("getcookie",request.session.get('toolsDownloadCounter_ip'))
-    return redirect('Localisation_App:toolsPage')
+    saved_ip=None
+    time_posted = request.session.get('tools_Download_time')
+    savedTimeInSession=None
+    time_diff=0
+    if time_posted is not None:
+        print("time_posted not none")
+        print(time_posted)
+        print("datatatataa",type(datetime.fromisoformat(time_posted[:-1])))
+        savedTimeInSession=datetime.fromisoformat(time_posted[:-1])
+        dataCurrentTime=datetime.now()
+        print("time",type(dataCurrentTime))
+        timediff = dataCurrentTime - savedTimeInSession
+        time_diff = timediff.total_seconds()
+        print("timediff",timediff.total_seconds())
+    else:
+        print("time_posted none")
+    print("saved_ip",saved_ip)
     
+    if time_diff < 20:
+        saved_ip=request.session.get('toolsDownloadCounter_ip')
+    else:
+        request.session['toolsDownloadCounter_ip'] =None
+           
+    if ip != saved_ip:
+        # print("savedTimeInSession inside second not none")
+        # if ip != saved_ip:
+        print("ip is defferent inside second not none")
+        # if time_diff < 10:
+        print("time is less than 10 seconds inside second not none")
+        request.session['toolsDownloadCounter_ip'] = ip
+        data=datetime.now()
+        print("time",type(data))
+        data1=json.dumps(data, default=json_util.default)
+        aList =json.loads(data1)
+        testdata=aList['$date']
+        request.session['tools_Download_time'] = testdata
+        print("increase download count second")
+        tool_obj = ToolsData.objects.get(pk=id)
+        print("tools_obje",tool_obj)
+        print("before",tool_obj.ToolsData_DownloadCounter)
+        tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
+        tool_obj.save()
+        print("after",tool_obj.ToolsData_DownloadCounter)
+        return redirect('Localisation_App:toolsPage')   
+    else:
+        print("ip is same inside second none")
+        request.session['toolsDownloadCounter_ip'] = ip
+        print("same and none ip first")
+        data=datetime.now()
+        print("time",type(data))
+        data1=json.dumps(data, default=json_util.default)
+        aList =json.loads(data1)
+        print("data343434",aList)
+        testdata=aList['$date']
+        request.session['tools_Download_time'] = testdata
+        print("inside second none")
+        return redirect('Localisation_App:toolsPage')
+
+
+
+# def toolsDownloadCounter(request,id):
+#     print("session time",)
+#     print("requestid",id)
+#     print("inside herehelloooooo")
+#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
+#     ip=''
+#     if x_forwarded_for:
+#         ip = x_forwarded_for.split(',')[-1].strip()
+#     else:
+#         ip = request.META.get('REMOTE_ADDR')
+#     print("ip",ip)
+#     # request.session['tools_Download_time'] = None
+#     # request.session['toolsDownloadCounter_ip'] =None
+#     saved_ip=None
+#     time_posted = request.session.get('tools_Download_time')
+#     savedTimeInSession=None
+#     time_diff=0
+    
+    
+    
+    
+#     # data=datetime.now()
+#     # print("time",type(data))
+#     # data1=json.dumps(data, default=json_util.default)
+#     # aList =json.loads(data1)
+#     # testdata=aList['$date']
+#     # print("ourtest",aList['$date'])
+#     # print("datatatataa",type(datetime.fromisoformat(testdata[:-1])))
+#     # timetobesave=datetime.fromisoformat(testdata[:-1])
+#     # print("timetoionebnfftdgbkki",timetobesave)
+#     # print("timetoionebnfftdgbkki-TYpe",type(timetobesave))
+    
+    
+    
+#     if time_posted is not None:
+#         print("time_posted not none")
+#         print(time_posted)
+#         print("datatatataa",type(datetime.fromisoformat(time_posted[:-1])))
+#         savedTimeInSession=datetime.fromisoformat(time_posted[:-1])
+#         dataCurrentTime=datetime.now()
+#         print("time",type(dataCurrentTime))
+#         # dataCurrent1=json.dumps(dataCurrent, default=json_util.default)
+#         # aListdataCurrent1=json.loads(dataCurrent1)
+#         # testdata3=aListdataCurrent1['$date']
+#         # print("datatestsaved",savedTime)
+#         timediff = dataCurrentTime - savedTimeInSession
+#         time_diff = timediff.total_seconds()
+#         print("timediff",timediff.total_seconds())
+#     else:
+#         print("time_posted none")
+#     print("saved_ip",saved_ip)
+    
+#     if time_diff < 20:
+#         saved_ip=request.session.get('toolsDownloadCounter_ip')
+#     else:
+#         request.session['toolsDownloadCounter_ip'] =None
+           
+#     if savedTimeInSession is not None:
+#         print("savedTimeInSession inside second not none")
+#         if ip != saved_ip:
+#             print("ip is defferent inside second not none")
+#             # if time_diff < 10:
+#             print("time is less than 10 seconds inside second not none")
+#             request.session['toolsDownloadCounter_ip'] = ip
+#             data=datetime.now()
+#             print("time",type(data))
+#             data1=json.dumps(data, default=json_util.default)
+#             aList =json.loads(data1)
+#             testdata=aList['$date']
+#             request.session['tools_Download_time'] = testdata
+#             print("increase download count second")
+#             tool_obj = ToolsData.objects.get(pk=id)
+#             print("tools_obje",tool_obj)
+#             print("before",tool_obj.ToolsData_DownloadCounter)
+#             tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
+#             tool_obj.save()
+#             print("after",tool_obj.ToolsData_DownloadCounter)
+#             return redirect('Localisation_App:toolsPage')
+#             # else:
+#             #     print("time is more than 10 seconds inside second not none")
+#             #     request.session['toolsDownloadCounter_ip'] = ip
+#             #     data=datetime.now()
+#             #     print("time",type(data))
+#             #     data1=json.dumps(data, default=json_util.default)
+#             #     aList =json.loads(data1)
+#             #     testdata=aList['$date']
+#             #     request.session['tools_Download_time'] = testdata
+#             #     return redirect('Localisation_App:toolsPage')   
+#         else:
+#             print("ip is same inside second not none")
+#             request.session['toolsDownloadCounter_ip'] = ip
+#             data=datetime.now()
+#             print("time",type(data))
+#             data1=json.dumps(data, default=json_util.default)
+#             aList =json.loads(data1)
+#             testdata=aList['$date']
+#             request.session['tools_Download_time'] = testdata
+#             return redirect('Localisation_App:toolsPage') 
+#     else:
+#         print("savedTimeInSession inside second none")
+#         if ip != saved_ip:
+#             print("ip is defferent inside second none")
+#             # if time_diff < 10:
+#             print("time is less than 10 seconds inside second none")
+#             request.session['toolsDownloadCounter_ip'] = ip
+#             data=datetime.now()
+#             print("time",type(data))
+#             data1=json.dumps(data, default=json_util.default)
+#             aList =json.loads(data1)
+#             testdata=aList['$date']
+#             request.session['tools_Download_time'] = testdata
+#             print("increase download count second")
+#             print("getcookie",request.session.get('toolsDownloadCounter_ip'))
+#             tool_obj = ToolsData.objects.get(pk=id)
+#             print("tools_obje",tool_obj)
+#             print("before",tool_obj.ToolsData_DownloadCounter)
+#             tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
+#             tool_obj.save()
+#             print("after",tool_obj.ToolsData_DownloadCounter)
+#             return redirect('Localisation_App:toolsPage')
+#             # else:
+#             #     print("time is more than 10 seconds inside second none")
+#             #     request.session['toolsDownloadCounter_ip'] = ip
+#             #     print("Inside 300 seconds")
+#             #     data=datetime.now()
+#             #     print("time",type(data))
+#             #     data1=json.dumps(data, default=json_util.default)
+#             #     aList =json.loads(data1)
+#             #     print("data343434",aList)
+#             #     testdata=aList['$date']
+#             #     request.session['tools_Download_time'] = testdata
+#             #     return redirect('Localisation_App:toolsPage')  
+#         else:
+#             print("ip is same inside second none")
+#             request.session['toolsDownloadCounter_ip'] = ip
+#             print("same and none ip first")
+#             data=datetime.now()
+#             print("time",type(data))
+#             data1=json.dumps(data, default=json_util.default)
+#             aList =json.loads(data1)
+#             print("data343434",aList)
+#             testdata=aList['$date']
+#             request.session['tools_Download_time'] = testdata
+#             print("inside second none")
+#             return redirect('Localisation_App:toolsPage')     
+        
+
+        
+            
+        
+        
 
 
 
@@ -632,6 +844,111 @@ def resourcesReset(request):
             'count': count
         }
         return render(request, 'Localisation_App/resources.html', context)
+
+
+
+def resourceDownloadCounter(request,id):
+    print("session time",)
+    print("requestid",id)
+    print("inside herehelloooooo")
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
+    ip=''
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    print("ip",ip)
+    saved_ip=None
+    time_posted = request.session.get('resources_Download_time')
+    savedTimeInSession=None
+    time_diff=0
+    if time_posted is not None:
+        print("time_posted not none")
+        print(time_posted)
+        print("datatatataa",type(datetime.fromisoformat(time_posted[:-1])))
+        savedTimeInSession=datetime.fromisoformat(time_posted[:-1])
+        dataCurrentTime=datetime.now()
+        print("time",type(dataCurrentTime))
+        timediff = dataCurrentTime - savedTimeInSession
+        time_diff = timediff.total_seconds()
+        print("timediff",timediff.total_seconds())
+    else:
+        print("time_posted none")
+    print("saved_ip",saved_ip)
+    
+    if time_diff < 60:
+        saved_ip=request.session.get('resourcesDownloadCounter_ip')
+    else:
+        request.session['resourcesDownloadCounter_ip'] =None
+           
+    if ip != saved_ip:
+        # print("savedTimeInSession inside second not none")
+        # if ip != saved_ip:
+        print("ip is defferent inside second not none")
+        # if time_diff < 10:
+        print("time is less than 10 seconds inside second not none")
+        request.session['resourcesDownloadCounter_ip'] = ip
+        data=datetime.now()
+        print("time",type(data))
+        data1=json.dumps(data, default=json_util.default)
+        aList =json.loads(data1)
+        testdata=aList['$date']
+        request.session['resources_Download_time'] = testdata
+        print("increase download count second")
+        resources_obj = ResourceData.objects.get(pk=id)
+        print("resources_obje",resources_obj)
+        print("before",resources_obj.ResourceData_DownloadCounter)
+        resources_obj.ResourceData_DownloadCounter= resources_obj.ResourceData_DownloadCounter + 1
+        resources_obj.save()
+        print("after",resources_obj.ResourceData_DownloadCounter)
+        return redirect('Localisation_App:resourcesPage')   
+        # else:
+        #     print("ip is same inside second not none")
+        #     request.session['resourcesDownloadCounter_ip'] = ip
+        #     data=datetime.now()
+        #     print("time",type(data))
+        #     data1=json.dumps(data, default=json_util.default)
+        #     aList =json.loads(data1)
+        #     testdata=aList['$date']
+        #     request.session['resources_Download_time'] = testdata
+        #     return redirect('Localisation_App:resourcesPage') 
+    else:
+        # print("savedTimeInSession inside second none")
+        # if ip != saved_ip:
+            # print("ip is defferent inside second none")
+            # # if time_diff < 10:
+            # print("time is less than 10 seconds inside second none")
+            # request.session['resourcesDownloadCounter_ip'] = ip
+            # data=datetime.now()
+            # print("time",type(data))
+            # data1=json.dumps(data, default=json_util.default)
+            # aList =json.loads(data1)
+            # testdata=aList['$date']
+            # request.session['resources_Download_time'] = testdata
+            # print("increase download count second")
+            # print("getcookie",request.session.get('resourcesDownloadCounter_ip'))
+            # resources_obj = ResourceData.objects.get(pk=id)
+            # print("resources_obje",resources_obj)
+            # print("before",resources_obj.ResourceData_DownloadCounter)
+            # resources_obj.ResourceData_DownloadCounter= resources_obj.ResourceData_DownloadCounter + 1
+            # resources_obj.save()
+            # print("after",resources_obj.ResourceData_DownloadCounter)
+            # return redirect('Localisation_App:resourcesPage')
+        # else:
+        print("ip is same inside second none")
+        request.session['resourcesDownloadCounter_ip'] = ip
+        print("same and none ip first")
+        data=datetime.now()
+        print("time",type(data))
+        data1=json.dumps(data, default=json_util.default)
+        aList =json.loads(data1)
+        print("data343434",aList)
+        testdata=aList['$date']
+        request.session['resources_Download_time'] = testdata
+        print("inside second none")
+        return redirect('Localisation_App:resourcesPage')
+
+
 
 
 # Successstory Page
