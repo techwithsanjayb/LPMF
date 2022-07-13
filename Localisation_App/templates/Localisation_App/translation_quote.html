@@ -1,6 +1,8 @@
-{% extends 'Localisation_App/base.html' %} {% block title %}Translation Quote{%
-endblock %} {% load static %} {% block translation_quote %} {% comment %} css {%
-endcomment %}
+{% extends 'Localisation_App/base.html' %} 
+{% block title %}Translation Quote{% endblock %}
+ {% load static %}
+  {% block translation_quote %} 
+  {% comment %} css {% endcomment %}
 <link
   href="{% static 'Localisation_App/css/translation_quote.css' %}"
   rel="stylesheet"
@@ -57,7 +59,8 @@ endcomment %}
         </div>
         {% ifequal status 'success' %}
         <h5 class="text-primary text-center fw-semibold">{{message}}</h5>
-        {% endifequal %} {% ifequal status 'error' %}
+        {% endifequal %}
+         {% ifequal status 'error' %}
         <h5 class="text-danger text-center fw-semibold">{{message}}</h5>
         {% endifequal %}
       </form>
@@ -65,7 +68,8 @@ endcomment %}
   </div>
 </div>
 
-{% comment %} OLD CODE STARTS {% endcomment %} {% comment %}
+{% comment %} OLD CODE STARTS {% endcomment %} 
+{% comment %}
 <div class="m-3">
   <div class="container">
     <div class="text-center p-3">
@@ -112,4 +116,6 @@ endcomment %}
     </div>
   </div>
 </div>
-{% endcomment %} {% comment %} OLD CODE ENDS {% endcomment %} {% endblock %}
+{% endcomment %} 
+{% comment %} OLD CODE ENDS {% endcomment %} 
+{% endblock %}
