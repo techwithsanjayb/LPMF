@@ -1356,11 +1356,19 @@ def changePassword(request,token):
                         user_Register_obj.userregistration_password = password1
                         user_Register_obj.userregistration_confirm_password = password2
                         user_Register_obj.save()
+                        
+                        user_main_obj=User.objects.get(username = user_Profile_obj.userregistration_username)
+                        user_main_obj.set_password(password1)
+                        user_main_obj.save()
+                        
+                        
                         print('Password Reset Successfully ')
                         return redirect('Localisation_App:forgetPassword')
                 else:
+                    messages.success(request, 'Passwords are not matching')
                     return redirect('Localisation_App:forgetPassword')
             else:
+                messages.success(request, 'Data is not valid')
                 return redirect('Localisation_App:forgetPassword')
         user_id=user_Profile_obj.pk
         context = {

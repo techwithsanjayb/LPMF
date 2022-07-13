@@ -167,6 +167,7 @@ class ToolsData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ToolsData_PublishedStatus = models.CharField(
         max_length=20, choices=Tools_PublishedStatus, default="published")
+    
 
     class Meta:
         verbose_name_plural = "Tools Data"

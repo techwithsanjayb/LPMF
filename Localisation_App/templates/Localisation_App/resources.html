@@ -113,6 +113,8 @@
           <div class="col-sm-12 col-lg-4">
 
             <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
+
+            <div class="Total_downloads">Total Downloads : {{data.ResourceData_DownloadCounter }}</div>
             <div class="tools-size">
               File Size : {{ data.ResourceData_fileSize}}
             </div>
@@ -146,6 +148,7 @@
               {{ data.ResourceData_Description|safe }}
             </p>
             </div>
+            <div class="Updated_Date1 mt-4">Category : {{ data.ResourceData_CategoryType }}</div>
             <div class="Updated_Date">Last Updated Date : {{data.ResourceData_LastUpdatedDate|date:"M d, Y"}}</div>
           </div>
         </div>
