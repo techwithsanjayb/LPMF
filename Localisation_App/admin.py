@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration,GuidelinceForIndianGovWebsite, TranslationQuote
+from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration, GuidelinceForIndianGovWebsite, TranslationQuote
 # Register your models here.
+from django.template.defaultfilters import truncatechars
 
 
 @admin.register(SuccessStories_Category)
@@ -24,7 +25,8 @@ class AdminStories(admin.ModelAdmin):
                           'SuccessStories_PublishedStatus', 'SuccessStories_category', 'SuccessStories_Link')
     list_filter = ('SuccessStories_PublishedStatus',
                    'SuccessStories_category', 'SuccessStories_Link')
-    search_fields = ('SuccessStories_TitleName','SuccessStories_Description', 'SuccessStories_Link')
+    search_fields = ('SuccessStories_TitleName',
+                     'SuccessStories_Description', 'SuccessStories_Link')
     ordering = ('SuccessStories_TitleName',)
     list_per_page: int = 20
     save_on_top = True
@@ -144,14 +146,20 @@ class AdminFAQs_Category(admin.ModelAdmin):
 
 @admin.register(NewsAndEvents)
 class AdminNewsAndEvents(admin.ModelAdmin):
-    list_display = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link',
+    list_display = ('NewsAndEvents_HeadingName', 'short_NewsAndEvents_Discription', 'NewsAndEvents_Link',
                     'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
-    list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link',
-                          'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
-    list_filter = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link')
-    search_fields = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link')
+    list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link', 'short_NewsAndEvents_Discription',
+                          , 'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
+    list_filter = ('NewsAndEvents_HeadingName',
+                   'NewsAndEvents_Link', 'NewsAndEvents_Discription')
+    search_fields = ('NewsAndEvents_HeadingName',
+                     'NewsAndEvents_Link', 'NewsAndEvents_Discription')
     ordering = ('NewsAndEvents_HeadingName',)
     list_per_page: int = 20
+
+    def short_NewsAndEvents_Discription(self, obj):
+        # return obj.villain_set.count()
+        return truncatechars(obj.NewsAndEvents_Discription, 80)
 
 
 @admin.register(Footer_Links)
@@ -190,18 +198,20 @@ class AdminContact(admin.ModelAdmin):
 @admin.register(UserRegistration)
 class AdminUserRegistration(admin.ModelAdmin):
     list_display = ('userregistration_username',)
-    
+
     def has_add_permission(self, request):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return False
 
+
 admin.site.register(TranslationQuote)
+
 
 @admin.register(GuidelinceForIndianGovWebsite)
 class AdminGuidelinceForIndianGovWebsite(admin.ModelAdmin):
-    list_display = ('name','percentage')
+    list_display = ('name', 'percentage')
 
 
 # SANJAY BHARGAVA ADDED BELOW LINES
