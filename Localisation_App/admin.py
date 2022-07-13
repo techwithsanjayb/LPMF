@@ -147,7 +147,7 @@ class AdminFAQs_Category(admin.ModelAdmin):
 class AdminNewsAndEvents(admin.ModelAdmin):
     list_display = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link',
                     'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
-    list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link',
+    list_display_links = ('NewsAndEvents_HeadingName', 'NewsAndEvents_Link', 'short_NewsAndEvents_Discription',
                           'NewsAndEvents_CreationDate', 'NewsAndEvents_UpdatedDate',)
     list_filter = ('NewsAndEvents_HeadingName',
                    'NewsAndEvents_Link', 'NewsAndEvents_Discription')
