@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration,GuidelinceForIndianGovWebsite, TranslationQuote
+from .models import TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration, GuidelinceForIndianGovWebsite, TranslationQuote
 # Register your models here.
+
+# from django.utils.html import mark_safe  # Newer versions
+
+# from import_export.admin import ExportActionMixin
 
 
 @admin.register(SuccessStories_Category)
@@ -18,50 +22,77 @@ class AdminSuccessStories_Category(admin.ModelAdmin):
 
 @admin.register(SuccessStories)
 class AdminStories(admin.ModelAdmin):
-    list_display = ('SuccessStories_TitleName',
-                    'SuccessStories_PublishedStatus', 'SuccessStories_category', 'SuccessStories_Link')
+    list_display = ('SuccessStories_TitleName',  'SuccessStories_category',
+                    'SuccessStories_Description', 'SuccessStories_Link')
     list_display_links = ('SuccessStories_TitleName',
-                          'SuccessStories_PublishedStatus', 'SuccessStories_category', 'SuccessStories_Link')
+                          'SuccessStories_category', 'SuccessStories_Description', 'SuccessStories_Link')
     list_filter = ('SuccessStories_PublishedStatus',
                    'SuccessStories_category', 'SuccessStories_Link')
-    search_fields = ('SuccessStories_TitleName','SuccessStories_Description', 'SuccessStories_Link')
+    search_fields = ('SuccessStories_TitleName',
+                     'SuccessStories_Description', 'SuccessStories_Link')
     ordering = ('SuccessStories_TitleName',)
+
+    # def SuccessStories_Description_Text(self, obj):
+    #     # return HTML link that will not be escaped
+    #     return mark_safe(
+    #         obj.SuccessStories_Description)
+
     list_per_page: int = 20
     save_on_top = True
 
 
 @admin.register(Article)
 class AdminArticle(admin.ModelAdmin):
-    list_display = ('Article_HeadingName', 'Article_MenuId')
-    list_display_links = ('Article_HeadingName', 'Article_MenuId')
+    list_display = ('Article_HeadingName', 'Article_MenuId',
+                    'Article_Description')
+    list_display_links = ('Article_HeadingName',
+                          'Article_MenuId', 'Article_Description')
     list_filter = ('Article_MenuId',)
     search_fields = ('Article_HeadingName',
                      'Article_Description', 'Article_MenuId')
     ordering = ('Article_HeadingName',)
+
+    # def Article_Description_Text(self, obj):
+    #     # return HTML link that will not be escaped
+    #     return mark_safe(
+    #         obj.Article_Description)
     list_per_page: int = 20
 
 
 @admin.register(ResourceData)
 class AdminResourceData(admin.ModelAdmin):
-    list_display = ('ResourceData_HeadingName', 'ResourceData_CategoryType')
+    list_display = ('ResourceData_HeadingName',
+                    'ResourceData_CategoryType', 'ResourceData_Description')
     list_display_links = ('ResourceData_HeadingName',
-                          'ResourceData_CategoryType')
+                          'ResourceData_CategoryType', 'ResourceData_Description')
     list_filter = ('ResourceData_CategoryType',)
 
     search_fields = ('ResourceData_HeadingName',
                      'ResourceData_Description',)
     ordering = ('ResourceData_HeadingName',)
+
+    # def ResourceData_Description_Text(self, obj):
+    #     # return HTML link that will not be escaped
+    #     return mark_safe(
+    #         obj.ResourceData_Description)
     list_per_page: int = 20
 
 
 @admin.register(ToolsData)
 class AdminToolsData(admin.ModelAdmin):
-    list_display = ('ToolsData_HeadingName', 'ToolsData_CategoryType')
-    list_display_links = ('ToolsData_HeadingName', 'ToolsData_CategoryType')
+    list_display = ('ToolsData_HeadingName',
+                    'ToolsData_CategoryType', 'ToolsData_Description')
+    list_display_links = ('ToolsData_HeadingName',
+                          'ToolsData_CategoryType', 'ToolsData_Description')
     list_filter = ('ToolsData_CategoryType',)
     search_fields = ('ToolsData_HeadingName',
                      'ToolsData_Description', )
     ordering = ('ToolsData_HeadingName',)
+
+    # def ToolsData_Description_Text(self, obj):
+    #     # return HTML link that will not be escaped
+    #     return mark_safe(
+    #         obj.ToolsData_Description)
 
 
 list_per_page: int = 20
@@ -69,11 +100,17 @@ list_per_page: int = 20
 
 @admin.register(FAQs)
 class AdminFAQs(admin.ModelAdmin):
-    list_display = ('FAQs_Question', 'FAQs_CategoryType')
-    list_display_links = ('FAQs_Question', 'FAQs_CategoryType')
+    list_display = ('FAQs_Question', 'FAQs_CategoryType', 'FAQs_Answer')
+    list_display_links = (
+        'FAQs_Question', 'FAQs_CategoryType', 'FAQs_Answer')
     list_filter = ('FAQs_CategoryType',)
     search_fields = ('FAQs_Question', 'FAQs_Answer')
     ordering = ('FAQs_Question',)
+
+    # def FAQs_Answer_Text(self, obj):
+    #     # return HTML link that will not be escaped
+    #     return mark_safe(
+    #         obj.FAQs_Answer)
 
     list_per_page: int = 20
 
@@ -88,16 +125,23 @@ class AdminFooter_Links_Info(admin.ModelAdmin):
     search_fields = ('Footer_Links_Info_SubTitle',
                      'Footer_Links_Info_MainTitle')
     ordering = ('Footer_Links_Info_SubTitle',)
+
     list_per_page: int = 20
 
 
 @admin.register(Services)
 class AdminServices(admin.ModelAdmin):
-    list_display = ('Services_Name', 'Services_Description')
+    list_display = ('Services_Name', 'Services_Description',)
     list_display_links = ('Services_Name', 'Services_Description')
     list_filter = ('Services_Name',)
     search_fields = ('Services_Name', 'Services_Description')
     ordering = ('Services_Name',)
+
+    # def Services_Description_Text(self, obj):
+    #     # return HTML link that will not be escaped
+    #     return mark_safe(
+    #         obj.FAQs_Answer)
+
     list_per_page: int = 20
 
 
@@ -190,18 +234,20 @@ class AdminContact(admin.ModelAdmin):
 @admin.register(UserRegistration)
 class AdminUserRegistration(admin.ModelAdmin):
     list_display = ('userregistration_user_id',)
-    
+
     def has_add_permission(self, request):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return False
 
+
 admin.site.register(TranslationQuote)
+
 
 @admin.register(GuidelinceForIndianGovWebsite)
 class AdminGuidelinceForIndianGovWebsite(admin.ModelAdmin):
-    list_display = ('name','percentage')
+    list_display = ('name', 'percentage')
 
 
 # SANJAY BHARGAVA ADDED BELOW LINES

@@ -622,6 +622,7 @@
 
 .aboutUs-para {
     margin-top: 30px;
+    margin-right:45px;
     text-align: justify;
     font-style: normal;
     font-weight: 500;
@@ -645,13 +646,13 @@
 }
 
 .aboutUs-section-para {
-    margin-top: -30px;
+    margin-top: 10px;
     text-align: justify;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 40px;
-    padding-right: 20px;
+    padding-right: 50px;
     /* or 210% */
     letter-spacing: 0.5px;
     color: #6B6A6A;
@@ -1202,6 +1203,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -1602,6 +1604,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -1958,6 +1961,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -2253,6 +2257,7 @@
     .aboutUs-para {
         margin-top: 30px;
         text-align: center;
+        margin-right:45px;
         font-style: normal;
         font-weight: 500;
         font-size: 40px;
