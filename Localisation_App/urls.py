@@ -11,6 +11,7 @@ urlpatterns = [
     path('aboutus/', views.aboutus, name='aboutus'),
     path('toolsPage/', views.toolsPage, name='toolsPage'),
     path('tools/', views.tools, name='tools'),
+    path('toolsDownloadCounter/', views.toolsDownloadCounter, name='toolsDownloadCounter'),
     path('toolsReset/', views.toolsReset, name='toolsReset'),
     path('toolsSearch/<tools_title>', views.toolsSearch, name='toolsSearch'),
     path('resourcesPage/', views.resourcesPage, name='resourcesPage'),

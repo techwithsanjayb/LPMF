@@ -16,16 +16,9 @@
   <body>
     <div class="row" style="text-align: center"><h1>Dashboard</h1></div>
 
-    <!--TOOLS CATEGORY DATASETS SECTION-->
+  
     <div class="row" style="margin-top: 50px">
-      <!-- <div class="col-sm-2">
-        <div class="card">
-          <div class="card-body">
-            <canvas style="height: 100%" id="Tools"></canvas>
-          </div>
-        </div>
-        <h3>TOOLS Category Datasets</h3>
-      </div> -->
+     
       <div class="col-1"></div>
       <!--GUIDELINES DATASETS SECTION-->
       <div class="col-sm-4">
@@ -38,7 +31,7 @@
         </div>
       </div>
 
-      <!--RESOURCES DATASETS SECTION  -->
+      <!--SUCCESS STORIES CATEGORY DATASETS SECTION  -->
       <div class="col-sm-4">
         <div class="card">
           <h3 class="Dsh_Heading">Success Stories Category Datasets</h3>
@@ -65,7 +58,7 @@
     <div class="row">
       <!--TOOLS DOWNLOAD WITH NAME DATASETS SECTION -->
       <div class="col-1"></div>
-      <div class="col-sm-7">
+      <div class="col-sm-8">
         <div class="card">
           <h3 class="Dsh_Heading">Tools Download Datasets</h3>
           <hr/>
@@ -75,8 +68,8 @@
         </div>
       </div>
 
-      <!--SUCCESS STORIES DATASET SECTION -->
-      <div class="col-sm-3">
+      <!--TOOLS CATEGORY DATASET SECTION -->
+      <div class="col-sm-2">
         <div class="card">
           <h3 class="Dsh_Heading">Tools Dataset</h3>
           <hr/>
@@ -90,9 +83,9 @@
 
 
     <div class="row">
-      <!--TOOLS DOWNLOAD WITH NAME DATASETS SECTION -->
+      <!--RESOURCES DOWNLOAD WITH NAME DATASETS SECTION -->
       <div class="col-1"></div>
-      <div class="col-sm-7">
+      <div class="col-sm-8">
         <div class="card">
           <h3 class="Dsh_Heading">Resources Download Datasets</h3>
           <hr/>
@@ -102,12 +95,13 @@
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <!--RESOURCES CATEGORY DATASET SECTION -->
+      <div class="col-sm-2">
         <div class="card">
           <h3 class="Dsh_Heading">Resources Dataset</h3>
           <hr/>
           <div class="card-body">
-            <canvas style="height: 100%; color:rgb(139, 65, 192)" id="Resources"></canvas>
+            <canvas style="height: 100%;" id="Resources"></canvas>
           </div>
         </div>
       </div>
@@ -126,10 +120,10 @@
               datasets: [{
               label: 'Tools hit',
               backgroundColor: [
-                '#0091D5',
+                '#EA6A47',
                 ],
               maxBarThickness:40,
-              hoverBackgroundColor:'rgb(9, 51, 67)',
+              hoverBackgroundColor:'#0091D5',
               data: {{toolsHitCount|safe}},}]
           },
           options:
@@ -151,20 +145,12 @@
         {
             labels: {{resourcesshit_name|safe}},
             datasets: [{
-            label: 'Tools hit',
+            label: 'Resources hit',
             backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
+            '#484848',
               ],
             maxBarThickness:40,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
+            hoverBackgroundColor:'#0091D5',
             data: {{resourcesHitCount|safe}},}]
         },
         options:
@@ -174,7 +160,7 @@
   });
 </script>
 
-  <!--SUCCESS STORIES DATASET SCRIPT SECTION-->
+  <!--SUCCESS STORIES CATEGORY DATASET SCRIPT SECTION-->
   <script>
     var ctx = document.getElementById('Stories').getContext('2d');
     var myChart = new Chart(ctx,{
@@ -183,20 +169,12 @@
         data: {
         labels: {{successStories_CategoryData|safe}},
         datasets: [{
-            label: 'Success Stories Dataset',
+            label: 'Success Stories Category Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            '#484848',
             ],
             maxBarThickness:20,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_Stories_PerCategory|safe}},
         }]
     },
@@ -221,7 +199,8 @@
             '#EA6A47',
         ],
             maxBarThickness:5,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
+            hoverOffset: 4,
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_Tools_PerCategory|safe}},
         }]
     },
@@ -248,7 +227,8 @@
             '#EA6A47',
         ],
             maxBarThickness:5,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
+            hoverOffset: 4,
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_Resources_PerCategory|safe}},
         }]
     },
@@ -273,8 +253,9 @@
             '#7E909A',
             '#EA6A47',
             ],
-            maxBarThickness:5,s
+            maxBarThickness:5,
             hoverOffset: 4,
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_User_PerCategory|safe}},
         }]
     },
@@ -295,12 +276,10 @@
         datasets: [{
             label: 'Guidelines for Indian Govt Websites',
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
+            '#1C4E80'
             ],
             maxBarThickness:20,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
+            hoverBackgroundColor:'#0091D5',
             data: {{guidelinesCount_Per_Type|safe}},
         }]
     },
