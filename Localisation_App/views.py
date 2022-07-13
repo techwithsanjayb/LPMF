@@ -1799,10 +1799,27 @@ def dashboard2(request):
 
 
 def machine_translation(request):
-    return render(request,'Localisation_App/machine_translation.html')
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data
+        
+    }
+    
+    return render(request,'Localisation_App/machine_translation.html',context)
 
 def name_matcher(request):
-    return render(request,'Localisation_App/name_matcher.html')
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+
+
+    }
+    
+    return render(request,'Localisation_App/name_matcher.html',context)
 
 def empanelled_agencies(request):
     top_menu_items_data = TopMenuItems.objects.all()
