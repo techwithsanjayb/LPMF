@@ -435,3 +435,25 @@ class GuidelinceForIndianGovWebsite(models.Model):
 
     def __str__(self):
         return self.name
+    
+class EmpanelledAgencies(models.Model):
+    company_name = models.CharField(max_length=100)
+    contact_person = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Empanelled Agencies"
+        ordering = ['company_name']
+
+    def __str__(self):
+        return self.company_name
+    
+class EmpanelledAgenciesEmail(models.Model):
+    empanelled_agencies = models.ForeignKey(EmpanelledAgencies, verbose_name=("Empanelled Agency Name"), on_delete=models.CASCADE)
+    email= models.EmailField(max_length=254)
+
+    class Meta:
+        verbose_name_plural = "Empanelled Agencies Emails"
+        ordering = ['email']
+
+    def __str__(self):
+        return self.email
