@@ -153,8 +153,7 @@ class RegisterForm(UserCreationForm):
             'first_name', 'middle_name', 'last_name', 'email', 'username', 'phone_number', 'password1', 'password2', 'check',
         ]
 
-
-class UserLoginForm(AuthenticationForm):
+class UserLoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
 
@@ -162,7 +161,7 @@ class UserLoginForm(AuthenticationForm):
         required=True,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control input-1',
                 'placeholder': 'Username'
             }
         ))
@@ -171,11 +170,47 @@ class UserLoginForm(AuthenticationForm):
         required=True,
         widget=forms.PasswordInput(
             attrs={
+                'class': 'form-control input-1',
+                'placeholder': 'Password',
+
+            }
+        ))
+
+class UserForgetPasswordForm(forms.Form):
+    
+    username = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Username'
+            }
+    ))
+
+
+
+class UserChangePasswordForm(forms.Form):
+    password1 = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Password',
+
+            }
+    ))
+
+    password2 = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={
                 'class': 'form-control',
                 'placeholder': 'Password',
 
             }
         ))
+
+
 
 
 class TranslationQuoteForm(forms.Form):

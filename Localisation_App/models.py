@@ -167,6 +167,7 @@ class ToolsData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ToolsData_PublishedStatus = models.CharField(
         max_length=20, choices=Tools_PublishedStatus, default="published")
+    
 
     class Meta:
         verbose_name_plural = "Tools Data"
@@ -396,6 +397,7 @@ class UserRegistration(models.Model):
         max_length=50, choices=CHOICES, default='Individual')
     userregistration_registration_date = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
+    userregistration_token = models.CharField(max_length=60,blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "User Registration"

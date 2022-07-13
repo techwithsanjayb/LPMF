@@ -55,13 +55,22 @@
 					<div class="tools-main-card-section">
 						<div class="row">
 							<div class="col-sm-12 col-lg-4"> <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
+								
+
+								<div class="Total_downloads">Total Downloads : {{data.ToolsData_DownloadCounter }}</div>
+								
 								<div class="tools-size"> File Size : {{ data.ToolsData_fileSize}} </div> {% if data.ToolsData_UploadSupportDocument != '' %}
 								<a style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadSupportDocument}}" download>
 									<div class="tools-section-button">Document</div>
 								</a> {% endif %} {% if data.ToolsData_UploadToolCode != '' %}
-								<a style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>
-									<div class="tools-section-button">Download</div>
-								</a> {% endif %} </div>
+
+                                
+								
+									<a class="btn btn-primary" href="{% url 'Localisation_App:toolsDownloadCounter' %}"><a type="submit" style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>Download</a></a>
+								
+								
+								{% endif %} </div>
+
 							<div class="col-sm-12 col-lg-8">
 								<div class="Heading">
 									<h3 style="color: #023047;">{{ data.ToolsData_HeadingName }}</h3> </div>
@@ -69,6 +78,7 @@
 								<div class="Discription">
 									<p> {{ data.ToolsData_Description|safe }} </p>
 								</div>
+								<div class="Updated_Date1">Category : {{ data.ToolsData_CategoryType }}</div>
 								<div class="Updated_Date">Last Updated Date : {{data.ToolsData_LastUpdatedDate|date:"M d, Y"}}</div>
 							</div>
 						</div>
