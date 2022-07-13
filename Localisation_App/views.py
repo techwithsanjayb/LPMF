@@ -8,7 +8,7 @@ from multiprocessing import context
 from django.contrib.auth import login, authenticate, logout,  update_session_auth_hash
 from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.shortcuts import render, redirect
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, TranslationQuote, UserRegistration, GuidelinceForIndianGovWebsite
+from .models import Article, EmpanelledAgencies, EmpanelledAgenciesEmail, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, TranslationQuote, UserRegistration, GuidelinceForIndianGovWebsite
 import random
 import requests
 from django.core.validators import URLValidator
@@ -2116,17 +2116,51 @@ def dashboard2(request):
 
 
 def machine_translation(request):
-    return render(request,'Localisation_App/machine_translation.html')
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data
+        
+    }
+    
+    return render(request,'Localisation_App/machine_translation.html',context)
 
 def name_matcher(request):
-    return render(request,'Localisation_App/name_matcher.html')
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+
+
+    }
+    
+    return render(request,'Localisation_App/name_matcher.html',context)
 
 def empanelled_agencies(request):
-    TopMenuItemsdata = TopMenuItems.objects.all()
-    FooterMenuItemsdata = FooterMenuItems.objects.all()
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    
+    empanelled_agecies_data = EmpanelledAgencies.objects.all()
+    empanelled_agecies_data_list = []
+    for i in empanelled_agecies_data:
+        data = {}
+        data['company_name'] = i.company_name
+        data['contact_person'] = i.contact_person
+        
+        emails = []       
+        for i in EmpanelledAgenciesEmail.objects.filter(empanelled_agencies=i):
+            emails.append(i.email)
+        data['email'] = emails
+        
+        empanelled_agecies_data_list.append(data)
+    
+    print(empanelled_agecies_data_list)
 
     context = {
-        'topmenus': TopMenuItemsdata,
-        'FooterMenuItemsdata': FooterMenuItemsdata,
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'empanelled_agencies_data': empanelled_agecies_data_list,
     }
     return render(request,'Localisation_App/empanelled_agencies.html', context)
