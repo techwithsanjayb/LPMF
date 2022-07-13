@@ -84,9 +84,9 @@
               href="{{news.NewsAndEvents_Link }}"
               target="_blank"
             >
-              *
-              <strong>{{ news.NewsAndEvents_HeadingName }}</strong>
-              * {{news.NewsAndEvents_Discription}}</a
+            <i class="fa-solid fa-location-arrow"></i>
+              <strong>{{ news.NewsAndEvents_HeadingName }} - </strong>
+               {{news.NewsAndEvents_Discription}}</a
             >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
           </marquee>
         </div>
@@ -130,7 +130,7 @@
     </div>
   </div>
 
-  <div class="container my-3" style="">
+  <div class="container my-3" >
     <div class="services-title">Our Services</div>
     <div class="row">
       <div
@@ -159,7 +159,7 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">{{ Servicesdata.1.Services_Name }}</p>
+        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.1.Services_Name }}</a></p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card3"
@@ -173,7 +173,7 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">{{ Servicesdata.2.Services_Name }}</p>
+        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.2.Services_Name }}</a></p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card4"
@@ -187,11 +187,11 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">{{ Servicesdata.3.Services_Name }}</p>
+        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.3.Services_Name }}</a></p>
       </div>
 
       <button class="aboutus-Button2">
-        <a href="{% url 'Localisation_App:services' %}">Read More</a>
+        <a href="{% url 'Localisation_App:services' %}">More...</a>
       </button>
     </div>
   </div>
