@@ -8,7 +8,7 @@ from multiprocessing import context
 from django.contrib.auth import login, authenticate, logout,  update_session_auth_hash
 from django.contrib.auth.forms import UserChangeForm, AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.shortcuts import render, redirect
-from .models import Article, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, TranslationQuote, UserRegistration, GuidelinceForIndianGovWebsite
+from .models import Article, EmpanelledAgencies, EmpanelledAgenciesEmail, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, TranslationQuote, UserRegistration, GuidelinceForIndianGovWebsite
 import random
 import requests
 from django.core.validators import URLValidator
@@ -106,6 +106,7 @@ def toolsPage(request):
 
 
 def tools(request):
+    
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -343,6 +344,27 @@ def toolsReset(request):
             'count': count
         }
         return render(request, 'Localisation_App/tools.html', context)
+
+
+
+def toolsDownloadCounter(request):
+    print("inside here")
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
+    ip=''
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    print("ip",ip)
+    request.session['toolsDownloadCounter_ip'] = ip
+    print("getcookie",request.session.get('toolsDownloadCounter_ip'))
+    return redirect('Localisation_App:toolsPage')
+    
+
+
+
+
+
 
 
 # Resources Page
@@ -1575,7 +1597,7 @@ def dashboard(request):
         'resourcesHitCount': resourcesName_hitCount_Per_Name
 
     }
-    return render(request, 'Localisation_App/Dashboard.html', context)
+    return render(request, 'Localisation_App/dashboard.html', context)
 
 
 # Translation Quote
@@ -1783,11 +1805,28 @@ def name_matcher(request):
     return render(request,'Localisation_App/name_matcher.html')
 
 def empanelled_agencies(request):
-    TopMenuItemsdata = TopMenuItems.objects.all()
-    FooterMenuItemsdata = FooterMenuItems.objects.all()
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    
+    empanelled_agecies_data = EmpanelledAgencies.objects.all()
+    empanelled_agecies_data_list = []
+    for i in empanelled_agecies_data:
+        data = {}
+        data['company_name'] = i.company_name
+        data['contact_person'] = i.contact_person
+        
+        emails = []       
+        for i in EmpanelledAgenciesEmail.objects.filter(empanelled_agencies=i):
+            emails.append(i.email)
+        data['email'] = emails
+        
+        empanelled_agecies_data_list.append(data)
+    
+    print(empanelled_agecies_data_list)
 
     context = {
-        'topmenus': TopMenuItemsdata,
-        'FooterMenuItemsdata': FooterMenuItemsdata,
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'empanelled_agencies_data': empanelled_agecies_data_list,
     }
     return render(request,'Localisation_App/empanelled_agencies.html', context)

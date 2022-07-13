@@ -2,6 +2,8 @@ from pyexpat import model
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.core.validators import RegexValidator
+from django.forms import CharField
+
 # Create your models here.
 
 '''
@@ -167,7 +169,6 @@ class ToolsData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ToolsData_PublishedStatus = models.CharField(
         max_length=20, choices=Tools_PublishedStatus, default="published")
-    
 
     class Meta:
         verbose_name_plural = "Tools Data"
@@ -220,6 +221,7 @@ class ResourceData(models.Model):
 
 class NewsAndEvents(models.Model):
     NewsAndEvents_HeadingName = models.CharField(max_length=100)
+    NewsAndEvents_Discription = models.CharField(max_length=5000)
     NewsAndEvents_CreationDate = models.DateTimeField(
         auto_now=True,  blank=True)
     NewsAndEvents_UpdatedDate = models.DateTimeField(
@@ -397,7 +399,8 @@ class UserRegistration(models.Model):
         max_length=50, choices=CHOICES, default='Individual')
     userregistration_registration_date = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
-    userregistration_token = models.CharField(max_length=60,blank=True, null=True)
+    userregistration_token = models.CharField(
+        max_length=60, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "User Registration"
@@ -433,3 +436,24 @@ class GuidelinceForIndianGovWebsite(models.Model):
     def __str__(self):
         return self.name
     
+class EmpanelledAgencies(models.Model):
+    company_name = models.CharField(max_length=100)
+    contact_person = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Empanelled Agencies"
+        ordering = ['company_name']
+
+    def __str__(self):
+        return self.company_name
+    
+class EmpanelledAgenciesEmail(models.Model):
+    empanelled_agencies = models.ForeignKey(EmpanelledAgencies, verbose_name=("Empanelled Agency Name"), on_delete=models.CASCADE)
+    email= models.EmailField(max_length=254)
+
+    class Meta:
+        verbose_name_plural = "Empanelled Agencies Emails"
+        ordering = ['email']
+
+    def __str__(self):
+        return self.email
