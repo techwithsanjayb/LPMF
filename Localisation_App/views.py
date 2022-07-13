@@ -1781,3 +1781,13 @@ def machine_translation(request):
 
 def name_matcher(request):
     return render(request,'Localisation_App/name_matcher.html')
+
+def empanelled_agencies(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
+
+    context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+    }
+    return render(request,'Localisation_App/empanelled_agencies.html', context)
