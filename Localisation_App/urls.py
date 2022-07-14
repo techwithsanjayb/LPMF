@@ -18,7 +18,7 @@ urlpatterns = [
     path('resources/', views.resources, name='resources'),
     path('resourceDownloadCounter/<int:id>', views.resourceDownloadCounter, name='resourceDownloadCounter'),
     path('resourcesReset/', views.resourcesReset, name='resourcesReset'),
-    path('resourceSearch/<resource_title>',
+    path('resourceSearch/<slug:resource_title>',
          views.resourceSearch, name='resourceSearch'),
     path('services/', views.services, name='services'),
     path('successstoryPage/', views.successstoryPage, name='successstoryPage'),
@@ -70,6 +70,9 @@ urlpatterns = [
     path('machine-translation/', views.machine_translation, name="machine_translation"),
     path('name-matcher/', views.name_matcher, name="name_matcher"),
     path('empanelled_agencies/', views.empanelled_agencies, name="empanelled_agencies"),
+    
+    
+#     path("Slug_test/<slug:slug>", views.Slug_test, name="Slug_test"),
 ]
 
 if settings.DEBUG:
