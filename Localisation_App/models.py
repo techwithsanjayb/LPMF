@@ -2,8 +2,8 @@ from pyexpat import model
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.core.validators import RegexValidator
-from django.forms import CharField
-
+from django.forms import CharField, ChoiceField, DateField
+import datetime
 # Create your models here.
 
 '''
@@ -407,23 +407,7 @@ class UserRegistration(models.Model):
         ordering = ['userregistration_first_name']
 
     def __str__(self):
-        return self.userregistration_first_name + " " + self.userregistration_last_name
-
-
-# translation quote
-
-class TranslationQuote(models.Model):
-    url = models.URLField(max_length=200)
-    language = models.CharField(max_length=200)
-    website_type = models.CharField(max_length=200, null=True)
-    delivery_date = models.DateField(max_length=200, null=True)
-
-    class Meta:
-        verbose_name_plural = "Translation Quote"
-        ordering = ['url']
-
-    def __str__(self):
-        return self.url
+        return self.userregistration_username
 
 
 class GuidelinceForIndianGovWebsite(models.Model):
@@ -457,3 +441,39 @@ class EmpanelledAgenciesEmail(models.Model):
 
     def __str__(self):
         return self.email
+    
+    
+# translation quote
+class TranslationQuote(models.Model):
+    # Client side Field
+    url = models.URLField(max_length=200)
+    company_email = models.EmailField(max_length=254, null=True)
+    language = models.CharField(max_length=200, null=True)
+    domain = models.CharField(max_length=200, null=True)
+    delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    client_remark = models.TextField(max_length=50, null=True)
+    
+    #  client field not comming from form
+    submission_date = models.DateTimeField(default=datetime.datetime.now())
+    application_number = models.CharField(max_length=50, null=True)
+    uer_id = models.ForeignKey(UserRegistration, verbose_name=("Username") , on_delete=models.CASCADE, null=True)
+
+    #  Admin side field
+    total_words = models.IntegerField(null=True)
+    total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True)
+    translation_delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    quotation_generated_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    
+    status_choice = [('PENDING','PENDING'),('INPROCESS','INPROCESS')]
+    status = models.CharField(choices=status_choice, default='PENDING', max_length=50, null=True)
+    admin_remark = models.TextField( max_length=50, null=True)
+    
+
+    class Meta:
+        verbose_name_plural = "Translation Quote"
+        ordering = ['url']
+
+    def __str__(self):
+        return self.url
+    
+
