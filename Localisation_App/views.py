@@ -1326,7 +1326,7 @@ def srvTTS(request):
                     'FooterMenuItemsdata': FooterMenuItemsdata,
                 }
                 print("returned")
-                return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+                return render(request, 'Localisation_App/ttsService.html', context)
 
     context = {
         "service": "srvTTS",
@@ -1336,7 +1336,7 @@ def srvTTS(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
         "DIVTITLE": "HELLO"
     }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+    return render(request, 'Localisation_App/ttsService.html', context)
 
 
 def srvTransliteration(request):
@@ -1358,7 +1358,7 @@ def srvTransliteration(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
 
     }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+    return render(request, 'Localisation_App/transliteration_modal.html', context)
 
 
 # Faqs Page

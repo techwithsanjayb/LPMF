@@ -6,7 +6,7 @@
 <div>
   <h4>Services Demo</h4>s
 
-  <div style="margin-left:500px"><a href="{% url 'Localisation_App:srvTTS' %}">srvTTS</a>--------------------<a
+  {% comment %} <div style="margin-left:500px"><a href="{% url 'Localisation_App:srvTTS' %}">srvTTS</a>--------------------<a
       href="{% url 'Localisation_App:srvTransliteration' %}">srvTransliteration</a></div>
   <a href="{% url 'Localisation_App:goTranslate' %}">GoTranslate</a>
 
@@ -29,6 +29,6 @@
   </div>
 
   {% endif %}
-</div>
+</div> {% endcomment %}
 
 {% endblock %}
