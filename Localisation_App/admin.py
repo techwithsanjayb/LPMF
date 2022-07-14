@@ -25,14 +25,15 @@ class AdminSuccessStories_Category(admin.ModelAdmin):
 @admin.register(SuccessStories)
 class AdminStories(admin.ModelAdmin):
     list_display = ('SuccessStories_TitleName', 'short_SuccessStories_Description',
-                    'SuccessStories_PublishedStatus', 'SuccessStories_category', 'SuccessStories_Link')
+                    'SuccessStories_PublishedStatus', 'SuccessStories_Link')
     list_display_links = ('SuccessStories_TitleName', 'short_SuccessStories_Description',
-                          'SuccessStories_PublishedStatus', 'SuccessStories_category', 'SuccessStories_Link')
+                          'SuccessStories_PublishedStatus',  'SuccessStories_Link')
     list_filter = ('SuccessStories_PublishedStatus',
                    'SuccessStories_category', 'SuccessStories_Link')
-    search_fields = ('SuccessStories_TitleName',
+    search_fields = ('SuccessStories_TitleName','SuccessStories_Cdac_Contribution',
                      'SuccessStories_Description', 'SuccessStories_Link')
     ordering = ('SuccessStories_TitleName',)
+     
     list_per_page: int = 20
     save_on_top = True
 
@@ -83,6 +84,7 @@ class AdminToolsData(admin.ModelAdmin):
     search_fields = ('ToolsData_HeadingName','ToolsData_slug',
                      'ToolsData_Description', )
     ordering = ('ToolsData_HeadingName',)
+    prepopulated_fields = {"ToolsData_slug": ("ToolsData_HeadingName",)}
   
 
     list_per_page: int = 20

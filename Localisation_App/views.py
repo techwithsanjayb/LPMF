@@ -239,7 +239,12 @@ def tools(request):
 
 
 def toolsSearch(request, tools_title):
+    
+    
+    tools_searchData=tools_title.replace(" ", "-")
     print("titlenone", tools_title)
+    print("replace space ",tools_title.replace(" ", "-"))
+    
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     toolsCategory_data = Tools_Category.objects.all()
@@ -248,12 +253,14 @@ def toolsSearch(request, tools_title):
     if request.method == "POST":
         print("insideSearchMethod")
         print(tools_title)
-        tools_title1 = request.POST.get("toolname")
-        print("toolstitile", tools_title1)
+        
+        tools_title12 = request.POST.get("toolname")
+        print("resourcestitle", tools_title12)
+        tools_searchData1=tools_title12.replace(" ", "-")
 
-        if tools_title1 != '':
+        if tools_searchData1 != '':
             tools_Data = ToolsData.objects.filter(
-                ToolsData_HeadingName__icontains=tools_title1)
+                ToolsData_slug__icontains=tools_searchData1)
             count = tools_Data.count()
             print("datatooldssds", count)
             page = Paginator(tools_Data, 8)
@@ -264,7 +271,7 @@ def toolsSearch(request, tools_title):
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'toolsdata': tools_Data,
-                'tools_title': tools_title1,
+                'tools_title': tools_searchData1,
                 'toolscategory': toolsCategory_data,
                 "page": page,
                 'status_All_Checked': 'True',
@@ -289,9 +296,9 @@ def toolsSearch(request, tools_title):
                 'count': count
             }
         return render(request, 'Localisation_App/tools.html', context)
-    if tools_title != 'none':
+    if tools_searchData != 'none':
         tools_Data1 = ToolsData.objects.filter(
-            ToolsData_HeadingName__icontains=tools_title)
+            ToolsData_slug__icontains=tools_searchData)
         page = Paginator(tools_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -301,7 +308,7 @@ def toolsSearch(request, tools_title):
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'toolsdata': tools_Data1,
-            'tools_title': tools_title,
+            'tools_title': tools_searchData,
             'toolscategory': toolsCategory_data,
             "page": page,
             'status_All_Checked': 'True',
