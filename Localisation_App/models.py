@@ -99,7 +99,6 @@ class SuccessStories(models.Model):
         max_length=20, choices=SuccessStories_PublishedStatus, default="published")
     SuccessStories_Upload_Image_1 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
-
     SuccessStories_Upload_Image_2 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     SuccessStories_Upload_Image_3 = models.ImageField(
@@ -108,17 +107,17 @@ class SuccessStories(models.Model):
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     SuccessStories_Upload_Image_5 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
-
     SuccessStories_category = models.ForeignKey(
         SuccessStories_Category, on_delete=models.CASCADE, null=True, blank=True)
-
     SuccessStories_Cdac_Contribution = models.CharField(
         max_length=500, null=True, blank=True)
-
     CHOICES1 = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5),
                 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)]
     SuccessStories_Priority = models.IntegerField(
         choices=CHOICES1, null=True, blank=True)
+    SuccessStories_slug=models.SlugField(max_length=10000,blank=True, null=True)
+   
+
 
     class Meta:
         verbose_name_plural = "Success Stories"
@@ -171,7 +170,7 @@ class ToolsData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ToolsData_PublishedStatus = models.CharField(
         max_length=20, choices=Tools_PublishedStatus, default="published")
-    ToolsData_slug=models.SlugField(max_length=2000,blank=True, null=True)
+    ToolsData_slug=models.SlugField(max_length=10000,blank=True, null=True)
   
 
     class Meta:

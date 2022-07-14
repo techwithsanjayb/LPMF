@@ -1,6 +1,7 @@
 localisation.sql
 __pycache__
 **/media
+**/logs
 **/ToolsCode
 ToolsCode/*.*
 **/ToolsCode/*.*
