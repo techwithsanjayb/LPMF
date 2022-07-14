@@ -43,35 +43,47 @@
           >
         </li>
 
-
-        <li class="nav-item dropdown {% if request.path == '/services/' or request.path == '/toolsPage/' or request.path == '/resourcesPage/' %}active{% endif %}">
-          <a class="nav-link dropdown-toggle items" style="padding:0px" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Our Products  
+        <li
+          class="nav-item dropdown {% if request.path == '/services/' or request.path == '/toolsPage/' or request.path == '/resourcesPage/' %}active{% endif %}"
+        >
+          <a
+            class="nav-link dropdown-toggle items"
+            style="padding: 0px"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Our Products
           </a>
-          <ul class="dropdown-menu" style="padding-left:12px;" aria-labelledby="navbarDropdownMenuLink">
-           <li
-          class="nav-item active"
-        >
-          <a class="items" href="{% url 'Localisation_App:services' %}"
-            >{{ topmenus.2 }}</a
+          <ul
+            class="dropdown-menu"
+            style="padding-left: 12px"
+            aria-labelledby="navbarDropdownMenuLink"
           >
-        </li>
-        <li
-          class="nav-item {% if request.path == '/toolsPage/' %}active{% endif %}"
-        >
-          <a class="items" href="{% url 'Localisation_App:toolsPage' %}"
-            >{{ topmenus.3 }}</a
-          >
-        </li>
-        <li
-          class="nav-item {% if request.path == '/resourcesPage/' %}active{% endif %}"
-        >
-          <a class="items" href="{% url 'Localisation_App:resourcesPage' %}"
-            >{{ topmenus.10 }}</a
-          >
-        </li>
+            <li class="nav-item active">
+              <a class="items" href="{% url 'Localisation_App:services' %}"
+                >{{ topmenus.2 }}</a
+              >
+            </li>
+            <li
+              class="nav-item {% if request.path == '/toolsPage/' %}active{% endif %}"
+            >
+              <a class="items" href="{% url 'Localisation_App:toolsPage' %}"
+                >{{ topmenus.3 }}</a
+              >
+            </li>
+            <li
+              class="nav-item {% if request.path == '/resourcesPage/' %}active{% endif %}"
+            >
+              <a class="items" href="{% url 'Localisation_App:resourcesPage' %}"
+                >{{ topmenus.10 }}</a
+              >
+            </li>
           </ul>
         </li>
+        
         <li
           class="nav-item {% if request.path == '/successstoryPage/' %}active{% endif %}"
         >
