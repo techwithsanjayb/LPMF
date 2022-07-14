@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Localisation_App',
     'ckeditor',
-
+    # 'import_export',
 
 ]
 
