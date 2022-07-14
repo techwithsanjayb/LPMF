@@ -25,6 +25,11 @@ global str_num
 # Menu
 
 
+
+
+
+
+
 def topmenu(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     context = {
@@ -351,9 +356,7 @@ def toolsReset(request):
 
 
 def toolsDownloadCounter(request,id):
-    print("session time",)
     print("requestid",id)
-    print("inside herehelloooooo")
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
     ip=''
     if x_forwarded_for:
@@ -568,16 +571,6 @@ def toolsDownloadCounter(request,id):
 #             return redirect('Localisation_App:toolsPage')     
         
 
-        
-            
-        
-        
-
-
-
-
-
-
 
 # Resources Page
 
@@ -731,7 +724,12 @@ def resources(request):
 
 
 def resourceSearch(request, resource_title):
+    
+    resource_searchData=resource_title.replace(" ", "-")
     print("titlenone", resource_title)
+    print("replace space ",resource_title.replace(" ", "-"))
+    
+    
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     resoucesCategory_data = Resources_Category.objects.all()
@@ -740,13 +738,14 @@ def resourceSearch(request, resource_title):
 
     if request.method == "POST":
         print("insideSearchMethod")
-        print(resource_title)
-        resource_title1 = request.POST.get("resourcename")
-        print("resourcestitle", resource_title1)
+        print(resource_searchData)
+        resource_searchData12 = request.POST.get("resourcename")
+        print("resourcestitle", resource_searchData12)
+        resource_searchData1=resource_searchData12.replace(" ", "-")
 
-        if resource_title1 != '':
+        if resource_searchData1 != '':
             resource_Data = ResourceData.objects.filter(
-                ResourceData_HeadingName__icontains=resource_title1)
+                ResourceData_slug__icontains=resource_searchData1)
             count = resource_Data.count()
             print("dataresourcesdssds", count)
             page = Paginator(resource_Data, 8)
@@ -757,7 +756,7 @@ def resourceSearch(request, resource_title):
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'resoucesdata': resource_Data,
-                'resource_title': resource_title1,
+                'resource_title': resource_searchData1,
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
                 'status_All_Checked': 'True',
@@ -781,9 +780,9 @@ def resourceSearch(request, resource_title):
                 'count': count
             }
         return render(request, 'Localisation_App/resources.html', context)
-    if resource_title != 'none':
+    if resource_searchData != 'none':
         resource_Data1 = ResourceData.objects.filter(
-            ResourceData_HeadingName__icontains=resource_title)
+            ResourceData_slug__icontains=resource_searchData)
         page = Paginator(resource_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -793,7 +792,7 @@ def resourceSearch(request, resource_title):
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'resoucesdata': resource_Data1,
-            'resource_title': resource_title,
+            'resource_title': resource_searchData,
             'resourcescategory': resoucesCategory_data,
             "page": page,
             'status_All_Checked': 'True',

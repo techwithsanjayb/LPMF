@@ -4,6 +4,11 @@ from .models import EmpanelledAgencies, EmpanelledAgenciesEmail, TopMenuItems, A
 from django.template.defaultfilters import truncatechars
 
 
+
+
+
+
+
 @admin.register(SuccessStories_Category)
 class AdminSuccessStories_Category(admin.ModelAdmin):
     list_display = ('SuccessStories_CategoryType',
@@ -53,13 +58,13 @@ class AdminArticle(admin.ModelAdmin):
 
 @admin.register(ResourceData)
 class AdminResourceData(admin.ModelAdmin):
-    list_display = ('ResourceData_HeadingName',
+    list_display = ('ResourceData_HeadingName','ResourceData_slug',
                     'short_ResourceData_Description', 'ResourceData_CategoryType')
-    list_display_links = ('ResourceData_HeadingName', 'short_ResourceData_Description',
+    list_display_links = ('ResourceData_HeadingName','ResourceData_slug', 'short_ResourceData_Description',
                           'ResourceData_CategoryType')
     list_filter = ('ResourceData_CategoryType',)
 
-    search_fields = ('ResourceData_HeadingName',
+    search_fields = ('ResourceData_HeadingName','ResourceData_slug',
                      'ResourceData_Description',)
     ordering = ('ResourceData_HeadingName',)
     list_per_page: int = 20
@@ -78,6 +83,7 @@ class AdminToolsData(admin.ModelAdmin):
     search_fields = ('ToolsData_HeadingName',
                      'ToolsData_Description', )
     ordering = ('ToolsData_HeadingName',)
+  
 
     list_per_page: int = 20
 
