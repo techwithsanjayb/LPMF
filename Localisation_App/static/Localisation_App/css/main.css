@@ -796,15 +796,7 @@
     color: #4E4C4C;
 }
 
-.icon1 {
-    height: 70px;
-    width: 70px;
-    padding-top:10px;
-    border-radius: 50px;
-    background-color: #023047ce;
-    margin-left: 80px;
-    margin-top: 10px;
-}
+
 .icon {
     height: 70px;
     width: 70px;
@@ -815,12 +807,7 @@
     margin-left: 80px;
     margin-top: 10px;
 }
-.icon_size{
-    height:50px;
-    width:80px;
-    
-    
-}
+
 
 
 /* Counter Section End */
