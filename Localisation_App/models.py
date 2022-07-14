@@ -226,7 +226,7 @@ class ResourceData(models.Model):
 
 class NewsAndEvents(models.Model):
     NewsAndEvents_HeadingName = models.CharField(max_length=100)
-    NewsAndEvents_Discription = models.CharField(max_length=5000)
+    NewsAndEvents_Discription = models.CharField(max_length=5000, null=True)
     NewsAndEvents_CreationDate = models.DateTimeField(
         auto_now=True,  blank=True)
     NewsAndEvents_UpdatedDate = models.DateTimeField(
@@ -446,7 +446,8 @@ class EmpanelledAgenciesEmail(models.Model):
 
     def __str__(self):
         return self.email
-    
+ # translation quote
+
     
 # translation quote
 class TranslationQuote(models.Model):
@@ -459,9 +460,9 @@ class TranslationQuote(models.Model):
     client_remark = models.TextField(max_length=50, null=True)
     
     #  client field not comming from form
-    submission_date = models.DateTimeField(default=datetime.datetime.now())
+    submission_date = models.DateTimeField()
     application_number = models.CharField(max_length=50, null=True)
-    uer_id = models.ForeignKey(UserRegistration, verbose_name=("Username") , on_delete=models.CASCADE, null=True)
+    username = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, null=True)
 
     #  Admin side field
     total_words = models.IntegerField(null=True)

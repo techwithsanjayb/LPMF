@@ -2001,7 +2001,9 @@ def translation_quote(request):
             print("application ", application_number)
             
             # add user 
-            current_user = request.user
+            current_user = request.user.username
+
+            print(current_user)
 
             data = TranslationQuote(
                 url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark,application_number=application_number, username=current_user)
