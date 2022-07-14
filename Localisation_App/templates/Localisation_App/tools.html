@@ -65,8 +65,13 @@
 								</a> {% endif %} {% if data.ToolsData_UploadToolCode != '' %}
 
                                 
+								<div class="tools-section-button">
+									<button class="btn btn-primary" onclick="location.href='{% url 'Localisation_App:toolsDownloadCounter' data.id %}' ">
+									<a type="submit" style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>
+										 Download</a>
+								    </button>
+								</div>
 								
-									<a class="btn btn-primary" href="{% url 'Localisation_App:toolsDownloadCounter' %}"><a type="submit" style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>Download</a></a>
 								
 								
 								{% endif %} </div>
@@ -74,6 +79,7 @@
 							<div class="col-sm-12 col-lg-8">
 								<div class="Heading">
 									<h3 style="color: #023047;">{{ data.ToolsData_HeadingName }}</h3> </div>
+									<div class="category-tool-title-slug"><p>{{ data.ToolsData_slug }}</p></div>
 								<hr/>
 								<div class="Discription">
 									<p> {{ data.ToolsData_Description|safe }} </p>

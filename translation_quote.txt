@@ -1,0 +1,29 @@
+
+
+Translation Quote ::
+
+client side ::
+    url
+    company_email
+    domain           < separate modal
+    language         < separate modal
+    delivery_date
+    client_remark
+
+    submission_date
+    application_number
+    user_id [ FK ]
+
+
+Admin side ::
+    total_word
+    total_cost
+    translation_delivery_date 
+    quotation_generated_date
+    status            <-- [ PENDING , IN PROCESS ] 
+    admin_remark      <-- quotation is valid for 10 days only
+
+
+
+admin approve the form
+if interested  -- YES | NO
