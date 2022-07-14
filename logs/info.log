@@ -1,0 +1,78 @@
+django.utils.autoreload INFO 2022-07-14 16:18:39,773 autoreload 3268 5996 Watching for file changes with StatReloader
+django.server INFO 2022-07-14 16:18:42,564 basehttp 3268 21200 "GET /faqs/ HTTP/1.1" 200 62647
+django INFO 2022-07-14 16:18:43,607 views 3268 21200 INSIDE views of Contact us 
+django INFO 2022-07-14 16:18:43,608 views 3268 21200 random num generated for captcha in contact us page
+django ERROR 2022-07-14 16:18:43,608 views 3268 21200 context assigned values in contact us views..........
+django.server INFO 2022-07-14 16:18:43,765 basehttp 3268 21200 "GET /contactus/ HTTP/1.1" 200 19129
+django.server INFO 2022-07-14 16:18:45,063 basehttp 3268 21200 "GET /faqs/ HTTP/1.1" 200 62647
+django.server INFO 2022-07-14 16:18:46,455 basehttp 3268 21200 "GET /dashboard HTTP/1.1" 200 23361
+django.utils.autoreload INFO 2022-07-14 16:19:12,296 autoreload 15952 19056 Watching for file changes with StatReloader
+django.utils.autoreload INFO 2022-07-14 16:19:27,592 autoreload 25224 23544 Watching for file changes with StatReloader
+django.server INFO 2022-07-14 16:19:31,108 basehttp 25224 16036 "GET /dashboard HTTP/1.1" 200 23361
+django INFO 2022-07-14 16:34:17,194 views 25224 19304 INSIDE views of Contact us 
+django INFO 2022-07-14 16:34:17,195 views 25224 19304 random num generated for captcha in contact us page
+django ERROR 2022-07-14 16:34:17,195 views 25224 19304 context assigned values in contact us views..........
+django.server INFO 2022-07-14 16:34:17,306 basehttp 25224 19304 "GET /contactus/ HTTP/1.1" 200 19129
+django.server INFO 2022-07-14 16:34:17,359 basehttp 25224 19304 "GET /static/Localisation_App/css/faqs.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:34:19,010 basehttp 25224 19304 "GET / HTTP/1.1" 200 30543
+django.server INFO 2022-07-14 16:34:19,059 basehttp 25224 19304 "GET /media/Localisation_App/Images/AboutUs_L6STW41.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:34:19,209 basehttp 25224 19304 "GET /media/Localisation_App/Images/Estimate_2T8OUxt.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:34:20,534 basehttp 25224 19304 "GET /aboutus/ HTTP/1.1" 200 19675
+django INFO 2022-07-14 16:34:22,033 views 25224 19304 INSIDE views of Contact us 
+django INFO 2022-07-14 16:34:22,033 views 25224 19304 random num generated for captcha in contact us page
+django ERROR 2022-07-14 16:34:22,034 views 25224 19304 context assigned values in contact us views..........
+django.server INFO 2022-07-14 16:34:22,216 basehttp 25224 19304 "GET /contactus/ HTTP/1.1" 200 19129
+django.utils.autoreload INFO 2022-07-14 16:34:52,802 autoreload 25240 5684 Watching for file changes with StatReloader
+django INFO 2022-07-14 16:35:02,335 views 25240 21392 INSIDE views of Contact us 
+django INFO 2022-07-14 16:35:02,335 views 25240 21392 random num generated for captcha in contact us page
+django ERROR 2022-07-14 16:35:02,335 views 25240 21392 context assigned values in contact us views..........
+django.server INFO 2022-07-14 16:35:02,555 basehttp 25240 21392 "GET /contactus/ HTTP/1.1" 200 19129
+django.server INFO 2022-07-14 16:35:03,719 basehttp 25240 21392 "GET / HTTP/1.1" 200 30543
+django.server INFO 2022-07-14 16:35:04,856 basehttp 25240 21392 "GET /aboutus/ HTTP/1.1" 200 19675
+django INFO 2022-07-14 16:35:05,319 views 25240 21392 INSIDE views of Contact us 
+django INFO 2022-07-14 16:35:05,320 views 25240 21392 random num generated for captcha in contact us page
+django ERROR 2022-07-14 16:35:05,320 views 25240 21392 context assigned values in contact us views..........
+django.server INFO 2022-07-14 16:35:05,452 basehttp 25240 21392 "GET /contactus/ HTTP/1.1" 200 19129
+django.server INFO 2022-07-14 16:37:28,200 basehttp 25240 4264 "GET / HTTP/1.1" 200 30543
+django.server INFO 2022-07-14 16:37:28,224 basehttp 25240 4264 "GET /static/Localisation_App/css/main.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,230 basehttp 25240 21676 "GET /static/Localisation_App/css/faqs.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,236 basehttp 25240 11636 "GET /static/Localisation_App/css/services.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,238 basehttp 25240 17704 "GET /static/Localisation_App/css/contactus.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,241 basehttp 25240 25200 "GET /static/Localisation_App/css/success-stories.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,243 basehttp 25240 8864 "GET /static/Localisation_App/css/tools.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,281 basehttp 25240 4264 "GET /static/Localisation_App/css/login.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,293 basehttp 25240 17704 "GET /static/Localisation_App/css/dashboard.css HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,338 basehttp 25240 4264 "GET /static/Localisation_App/img/mail.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,359 basehttp 25240 17704 "GET /static/Localisation_App/img/mobile1.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,360 basehttp 25240 11636 "GET /static/Localisation_App/img/llogo.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,361 basehttp 25240 21676 "GET /static/Localisation_App/img/Downloads.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,362 basehttp 25240 25200 "GET /media/Localisation_App/Images/AboutUs_L6STW41.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,362 basehttp 25240 8864 "GET /static/Localisation_App/img/Vector.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,398 basehttp 25240 4264 "GET /static/Localisation_App/img/service5.jpg HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,414 basehttp 25240 17704 "GET /static/Localisation_App/img/AboutUs3.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,416 basehttp 25240 11636 "GET /static/Localisation_App/img/Shake.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,419 basehttp 25240 21676 "GET /static/Localisation_App/img/gotranslate.jpg HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,420 basehttp 25240 25200 "GET /static/Localisation_App/img/Portals.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,421 basehttp 25240 8864 "GET /static/Localisation_App/img/gem.jpg HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,465 basehttp 25240 4264 "GET /static/Localisation_App/img/Clients.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,474 basehttp 25240 11636 "GET /static/Localisation_App/img/dekho.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,475 basehttp 25240 21676 "GET /static/Localisation_App/img/bolo.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,475 basehttp 25240 17704 "GET /static/Localisation_App/img/likho.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,486 basehttp 25240 25200 "GET /static/Localisation_App/img/suno.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,488 basehttp 25240 8864 "GET /static/Localisation_App/img/services-page.jpg HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,519 basehttp 25240 4264 "GET /static/Localisation_App/img/Target.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,537 basehttp 25240 21676 "GET /static/Localisation_App/img/Proof%20of%20Concept.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,538 basehttp 25240 11636 "GET /static/Localisation_App/img/Localization%20Deployment.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,538 basehttp 25240 17704 "GET /static/Localisation_App/img/Success-33.jpg HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,551 basehttp 25240 8864 "GET /media/Localisation_App/Images/Estimate_2T8OUxt.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,552 basehttp 25240 25200 "GET /static/Localisation_App/img/Portals%20Translated.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,578 basehttp 25240 4264 "GET /static/Localisation_App/img/bullet.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,594 basehttp 25240 11636 "GET /static/Localisation_App/img/meity.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,595 basehttp 25240 21676 "GET /static/Localisation_App/img/digital-india.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,595 basehttp 25240 17704 "GET /static/Localisation_App/img/mygov.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,607 basehttp 25240 8864 "GET /static/Localisation_App/img/Meity_startup_hub.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,607 basehttp 25240 25200 "GET /static/Localisation_App/img/tdil.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,636 basehttp 25240 4264 "GET /static/Localisation_App/img/vision-background.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:28,653 basehttp 25240 21676 "GET /static/Localisation_App/img/Cost.png HTTP/1.1" 304 0
+django.server INFO 2022-07-14 16:37:40,727 basehttp 25240 21676 "GET /static/Localisation_App/img/Services11.jpg HTTP/1.1" 200 78986
+django.server INFO 2022-07-14 16:37:44,643 basehttp 25240 21676 "GET /static/Localisation_App/img/Cost4.jpg HTTP/1.1" 304 0
