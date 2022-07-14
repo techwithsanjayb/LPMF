@@ -115,6 +115,7 @@ class SuccessStories(models.Model):
                 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)]
     SuccessStories_Priority = models.IntegerField(
         choices=CHOICES1, null=True, blank=True)
+    SuccessStories_slug=models.SlugField(max_length=10000,blank=True, null=True)
    
 
 

@@ -24,7 +24,7 @@ class AdminSuccessStories_Category(admin.ModelAdmin):
 
 @admin.register(SuccessStories)
 class AdminStories(admin.ModelAdmin):
-    list_display = ('SuccessStories_TitleName', 'short_SuccessStories_Description',
+    list_display = ('SuccessStories_TitleName','SuccessStories_slug', 'short_SuccessStories_Description',
                     'SuccessStories_PublishedStatus', 'SuccessStories_Link')
     list_display_links = ('SuccessStories_TitleName', 'short_SuccessStories_Description',
                           'SuccessStories_PublishedStatus',  'SuccessStories_Link')
@@ -33,6 +33,7 @@ class AdminStories(admin.ModelAdmin):
     search_fields = ('SuccessStories_TitleName','SuccessStories_Cdac_Contribution',
                      'SuccessStories_Description', 'SuccessStories_Link')
     ordering = ('SuccessStories_TitleName',)
+    prepopulated_fields = {"SuccessStories_slug": ("SuccessStories_TitleName",)}
      
     list_per_page: int = 20
     save_on_top = True

@@ -1117,6 +1117,14 @@ def successstory(request):
 
 
 def successstorySearch(request, story_title):
+    
+    
+     
+    story_searchData=story_title.replace(" ", "-")
+    print("titlenone", story_title)
+    print("replace space ",story_title.replace(" ", "-"))
+    
+    
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1127,12 +1135,14 @@ def successstorySearch(request, story_title):
     if request.method == "POST":
         print("insideSearchMethod")
         print(story_title)
-        strory_title1 = request.POST.get("storyname")
-        print("strory_title1", strory_title1)
+        
+        story_searchData12 = request.POST.get("storyname")
+        print("resourcestitle", story_searchData12)
+        story_searchData1=story_searchData12.replace(" ", "-")
 
-        if strory_title1 != '':
+        if story_searchData1 != '':
             successStoriesData = SuccessStories.objects.filter(
-                SuccessStories_TitleName__icontains=strory_title1).order_by('SuccessStories_Priority')
+                SuccessStories_slug__icontains=story_searchData1).order_by('SuccessStories_Priority')
             count = successStoriesData.count()
             print("dataStoriesdssds", count)
             page = Paginator(successStoriesData, 8)
@@ -1142,7 +1152,7 @@ def successstorySearch(request, story_title):
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'story_title': strory_title1,
+                'story_title': story_searchData1,
                 'SuccessStoriesData': successStoriesData,
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
@@ -1167,9 +1177,9 @@ def successstorySearch(request, story_title):
                 'count': count
             }
         return render(request, 'Localisation_App/successstory.html', context)
-    if story_title != 'none':
+    if story_searchData != 'none':
         Stories_Data1 = SuccessStories.objects.filter(
-            SuccessStories_TitleName__icontains=story_title).order_by('SuccessStories_Priority')
+            SuccessStories_slug__icontains=story_searchData).order_by('SuccessStories_Priority')
         page = Paginator(Stories_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -1179,7 +1189,7 @@ def successstorySearch(request, story_title):
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'SuccessStoriesData': Stories_Data1,
-            'story_title': story_title,
+            'story_title': story_searchData,
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'status_All_Checked': 'True',
