@@ -75,12 +75,12 @@ class AdminResourceData(admin.ModelAdmin):
 
 @admin.register(ToolsData)
 class AdminToolsData(admin.ModelAdmin):
-    list_display = ('ToolsData_HeadingName',
+    list_display = ('ToolsData_HeadingName','ToolsData_slug',
                     'short_ToolsData_Description', 'ToolsData_CategoryType')
-    list_display_links = ('ToolsData_HeadingName',
+    list_display_links = ('ToolsData_HeadingName','ToolsData_slug',
                           'short_ToolsData_Description', 'ToolsData_CategoryType')
     list_filter = ('ToolsData_CategoryType',)
-    search_fields = ('ToolsData_HeadingName',
+    search_fields = ('ToolsData_HeadingName','ToolsData_slug',
                      'ToolsData_Description', )
     ordering = ('ToolsData_HeadingName',)
   

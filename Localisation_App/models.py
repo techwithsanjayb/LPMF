@@ -171,6 +171,7 @@ class ToolsData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ToolsData_PublishedStatus = models.CharField(
         max_length=20, choices=Tools_PublishedStatus, default="published")
+    ToolsData_slug=models.SlugField(max_length=2000,blank=True, null=True)
   
 
     class Meta:
