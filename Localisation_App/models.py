@@ -3,9 +3,10 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.core.validators import RegexValidator
 from django.forms import CharField, ChoiceField, DateField
-import datetime
+from datetime import date
 from django.template.defaultfilters import slugify  # new
 from django.urls import reverse
+from django.conf import settings
 
 # Create your models here.
 
@@ -340,20 +341,20 @@ class Contact(models.Model):
         return self.option
 
 
-class User(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=60, default=None)
-    password = models.CharField(max_length=300)
-    Confirm_password = models.CharField(max_length=300)
-    phone = models.IntegerField(default=None)
-    date = models.DateField(auto_now=True, blank=True, null=True)
+# class User(models.Model):
+#     name = models.CharField(max_length=30)
+#     email = models.EmailField(max_length=60, default=None)
+#     password = models.CharField(max_length=300)
+#     Confirm_password = models.CharField(max_length=300)
+#     phone = models.IntegerField(default=None)
+#     date = models.DateField(auto_now=True, blank=True, null=True)
 
-    class Meta:
-        verbose_name_plural = "User"
-        ordering = ['name']
+#     class Meta:
+#         verbose_name_plural = "User"
+#         ordering = ['name']
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class CarouselData(models.Model):
@@ -460,9 +461,9 @@ class TranslationQuote(models.Model):
     client_remark = models.TextField(max_length=50, null=True)
     
     #  client field not comming from form
-    submission_date = models.DateTimeField()
+    submission_date = models.DateField(default=date.today)
     application_number = models.CharField(max_length=50, null=True)
-    username = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, null=True)
+    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     #  Admin side field
     total_words = models.IntegerField(null=True)

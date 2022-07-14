@@ -2001,7 +2001,7 @@ def translation_quote(request):
             print("application ", application_number)
             
             # add user 
-            current_user = request.user.username
+            current_user = request.user
 
             print(current_user)
 

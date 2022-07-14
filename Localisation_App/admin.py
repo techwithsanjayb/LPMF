@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EmpanelledAgencies, EmpanelledAgenciesEmail, TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, User, UserRegistration, GuidelinceForIndianGovWebsite, TranslationQuote
+from .models import EmpanelledAgencies, EmpanelledAgenciesEmail, TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, UserRegistration, GuidelinceForIndianGovWebsite, TranslationQuote
 # Register your models here.
 from django.template.defaultfilters import truncatechars
 
