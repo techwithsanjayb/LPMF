@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'Localisation_App/base.html' %}
 {% block title %}Machine Translation Service{% endblock %}
 {% load static %}
@@ -7,154 +8,209 @@
     <form>
     <h5 class="card-title text-dark">Machine Translation</h5>
     <p>The process of automatically translating content from one language (the source) to another (the target) without any human input</p>
+=======
+{% extends 'Localisation_App/base.html' %} {% block title %}Machine Translation Service{% endblock %} {% load static %} {% block machine_translation %}
+<div class="container card mb-5">
+  <form>
+    {% comment %} <h2 class="card-title text-dark">GIST Translation System</h2> {% endcomment %}
+>>>>>>> e0f0a6502c544e002aec0ca30024791fd24210aa
     <div class="card-body">
-        <div class="row">
-      <div class="col-8">
-        <div class="pb-3">
-            <h6>Select a newline separated English text file</h6>
-        <input type="file" name="file" id="inputfile" name="inputfile" onchange="showSelectedFile()" >
+      <div class="row">
+        <div class="row pb-2 border rounded-2" style="background-color:yellow">
+          <h3 class="text-dark text-center pt-2" >GIST Translation System</h3>
+          <p style="background-color: #f5e8a8" class="py-2 rounded-3 px-4 fs-6">
+            "GIST Translation System", which enables automated translations of the text from one language to another language. This engine is designed using Deep Learning (Neural Machine Translation) techniques and has been trained on data from generic domains. Since the engine is trained on generic data, the output accuracy is by and large good but may not be highly accurate as may be desired. It is thus expected that the User would use this system to get the translations out of the engine and correct the same wherever required.
+          </p>
         </div>
-        <div class="pb-2">
-            <h6>Input(loaded file or copy-paste content)</h6>
-            <textarea name="input" id="inputlong" placeholder="Enter Input Text" rows="4" class="form-control" required></textarea>
+        <div class="row border p-4 rounded-2">
+            {% comment %} <div class="text-center pb-2"><h4>Demonstration Area</h4></div> {% endcomment %}
+            <div class="col-4 pb-4 text-center">
+                <h6 style="background-color:#219EBC" class="py-2 rounded-2 text-white">Input(Loaded File or Copy-paste Content)</h6>
+            </div>
+            <div class="row pb-4">
+                {% comment %} <div class="col-6"> {% endcomment %}
+                      <span><span class="px-2">Select a newline separated English text file</span>
+                {% comment %} </div> {% endcomment %}
+                {% comment %} <div class="col-4"> {% endcomment %}
+                 
+                   <input
+                    type="file"
+                    name="file"
+                    id="inputfile"
+                    name="inputfile"
+                    onchange="showSelectedFile()"
+                   />
+                 </span>
+                {% comment %} </div> {% endcomment %}
+              </div>
+          <div class="col-6">
+            
+            <div class="pb-4">
+              
+              <textarea
+                name="input"
+                id="inputlong"
+                placeholder="Enter Input Text"
+                rows="6"
+                class="form-control"
+                required
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="text-white px-3 py-2 rounded-2 border-none"
+                style="width: 100px; background-color:#219EBC; border:none;"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="pb-4">
+              <textarea
+                placeholder="Output"
+                name="output"
+                id="output"
+                rows="6"
+                class="form-control"
+                required
+                disabled
+              ></textarea>
+            </div>
+            <div class="text-center text-white" >
+              <input
+                id="download"
+                type="button"
+                name="download"
+                value="Download"
+                onclick="downloadCSV();"
+                class="text-white px-3 py-2 rounded-2"
+                style="background-color:#219EBC; border:none;"
+              />
+            </div>
+          </div>
         </div>
-        <div class="pb-2">
-           <button type="submit" class="btn btn-primary btn-regular" style="width:100px">Submit</button>
-        </div>
-        <div class="pb-2">
-        <textarea name="output" id="output" rows="4" class="form-control" required disabled></textarea>
-        </div>
-        <div>
-        <input id="download" type="button" name="download" value="download" onclick="downloadCSV();">
-        </div>
-       </div>
-       <div class="col-4 ">
-        <div class="row d-flex justify-content-end">
+        {% comment %}
+        <div class="col-4">
+          <div class="row d-flex justify-content-end">
             <div class="col-8">
-              <div class="card p-2" style="background-color:#b7eeee">
+              <div class="card p-2" style="background-color: #b7eeee">
                 <div class="fs-4">API</div>
-                <div>https://gistlangserver.in/api/service/GetNLPTranslation</div>
+                <div>
+                  https://gistlangserver.in/api/service/GetNLPTranslation
+                </div>
               </div>
             </div>
-        </div>
-        <div class="row d-flex justify-content-end">
+          </div>
+          <div class="row d-flex justify-content-end">
             <div class="col-8">
-              <div class="card p-2" style="background-color:#e8b97b">
+              <div class="card p-2" style="background-color: #e8b97b">
                 <div class="fs-4">FUNCTION</div>
                 <div>Translation English -> Hindi</div>
               </div>
             </div>
-        </div>
-        <div class="row d-flex justify-content-end">
+          </div>
+          <div class="row d-flex justify-content-end">
             <div class="col-8">
-               <div class="card p-2" style="background-color:#e6868f">
-                  <div class="fs-4">DOMAIN</div>
-                  <div>General</div>
-                </div>
+              <div class="card p-2" style="background-color: #e6868f">
+                <div class="fs-4">DOMAIN</div>
+                <div>General</div>
+              </div>
             </div>
+          </div>
         </div>
-       </div>
+        {% endcomment %}
+      </div>
     </div>
-    </div>
-   </form>
+  </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script type="TEXT/JAVASCRIPT" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-
-
-
-
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script
+  type="TEXT/JAVASCRIPT"
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+></script>
 
 <script>
-    $(document).ready(()=>{
-        console.log("in ready function");
-        $("button").click((e)=>{
-            if($('#inputlong').val() != ""){
-            e.preventDefault();
-            let array = $('#inputlong').val().split('\n')
-            console.log("input is ",array)
-            const url = "https://gistlangserver.in/api/service/GetNLPTranslation";
-            for(let i=0; i<array.length; i++){
-            let data = {
-                inputSentence: array[i],
-                tLocale : "hin"
-            }
+  $(document).ready(() => {
+    console.log("in ready function");
+    $("button").click((e) => {
+      if ($("#inputlong").val() != "") {
+        e.preventDefault();
+        let array = $("#inputlong").val().split("\n");
+        console.log("input is ", array);
+        const url = "https://gistlangserver.in/api/service/GetNLPTranslation";
+        for (let i = 0; i < array.length; i++) {
+          let data = {
+            inputSentence: array[i],
+            tLocale: "hin",
+          };
 
-            $.ajax({
-                url: url,
-                type: "POST",
-                dataType: "json",
-                contentType: "application/json",
-                data: JSON.stringify(data),
-                
-                success: function (response) {
-                   console.log(response)
-                   $('#output').append(`${response.response}\n`)
-                },
-                error: function (err) {
-                   //Do Something to handle error
-                   console.log("error in calling ",err);
-                   alert("Currently service is not working...!!!")
-                },
-             });
-            }
+          $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+
+            success: function (response) {
+              console.log(response);
+              $("#output").append(`${response.response}\n`);
+            },
+            error: function (err) {
+              //Do Something to handle error
+              console.log("error in calling ", err);
+              alert("Currently service is not working...!!!");
+            },
+          });
         }
-        else{
-            alert("please fill input")
-        }
-        })
-    })    
+      } else {
+        alert("please fill input");
+      }
+    });
+  });
 </script>
 
 <script>
-    function showSelectedFile(){
-        //selectedfile.value= document.getElementById("inputfile").value; 
-    }
-    document.getElementById('inputfile')
-    .addEventListener('change', function() {
-    var fr=new FileReader();
-    fr.onload=function(){
-    //    document.getElementById('output')
-    //            .textContent=fr.result;
-    // document.getElementById('inputlong').innerText=fr.result;
-    document.getElementById('inputlong').innerHTML=fr.result;
-    
-    }
-    console.log (fr);
-    fr.readAsText(this.files[0]);
-    });
-    
-    
-    
-    function downloadCSV(filename, text) {
-    var text = document.getElementById("output").innerHTML;
-  
-    var filename = "Output.txt";
-    
-    
-    var pom = document.createElement('a');
-        pom.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(text));
-        pom.setAttribute('download', filename);
-        
-    if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        pom.dispatchEvent(event);
-    }
-    else 
-    {
-    pom.click();
-    }
-    
-   
+  function showSelectedFile() {
+    //selectedfile.value= document.getElementById("inputfile").value;
   }
+  document.getElementById("inputfile").addEventListener("change", function () {
+    var fr = new FileReader();
+    fr.onload = function () {
+      //    document.getElementById('output')
+      //            .textContent=fr.result;
+      // document.getElementById('inputlong').innerText=fr.result;
+      document.getElementById("inputlong").innerHTML = fr.result;
+    };
+    console.log(fr);
+    fr.readAsText(this.files[0]);
+  });
 
+  function downloadCSV(filename, text) {
+    var text = document.getElementById("output").innerHTML;
 
-    
-    
+    var filename = "Output.txt";
 
-    </script>
+    var pom = document.createElement("a");
+    pom.setAttribute(
+      "href",
+      "data:text/csv;charset=utf-8," + encodeURIComponent(text)
+    );
+    pom.setAttribute("download", filename);
+
+    if (document.createEvent) {
+      var event = document.createEvent("MouseEvents");
+      event.initEvent("click", true, true);
+      pom.dispatchEvent(event);
+    } else {
+      pom.click();
+    }
+  }
+</script>
 
 {% endblock %}

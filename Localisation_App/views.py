@@ -1,6 +1,6 @@
 
 import re
-from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm,UserChangePasswordForm,UserForgetPasswordForm
+from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm, UserChangePasswordForm, UserForgetPasswordForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
 from django.core.paginator import Paginator
@@ -20,8 +20,12 @@ from datetime import datetime
 from .helpers import send_forget_password_email
 import json
 from bson import json_util
-
+import uuid
+from django.contrib.auth.decorators import login_required
+import logging
+logger = logging.getLogger('django')
 global str_num
+
 # Menu
 
 
@@ -30,6 +34,7 @@ def topmenu(request):
     context = {
         'topmenus': TopMenuItemsdata
     }
+
     return render(request, 'Localisation_App/base.html', context)
 
 # Test Page
@@ -76,6 +81,7 @@ def aboutus(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
         'ArticleData': articleData,
     }
+
     return render(request, 'Localisation_App/aboutus.html', context)
 
 # Tools Page
@@ -85,6 +91,11 @@ def toolsPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tools_Data = ToolsData.objects.all()
+    # print("toolsdata",tools_Data['get_ResourcesData_slug_splited'])
+    # for d in tools_Data:
+    #     print("data",d['get_ToolsData_slug_splited'])
+    
+    
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
     toolsCategory_data = Tools_Category.objects.all()
     count = ToolsData.objects.all().count()
@@ -92,23 +103,23 @@ def toolsPage(request):
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = tools_Data.count()
-    context={
-            'topmenus': TopMenuItemsdata,
-            'FooterMenuItemsdata': FooterMenuItemsdata,
-            'toolsdata': tools_Data,
-            'tools_title': 'none',
-            'toolscategory': toolsCategory_data,
-            "page": page,
-            'status_All_Checked': 'True',
-            'Pagination_Type': 'All_Data',
-            'count': count,
-            'form': UserLoginForm()
-        }
+    context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+        'toolsdata': tools_Data,
+        'tools_title': 'none',
+        'toolscategory': toolsCategory_data,
+        "page": page,
+        'status_All_Checked': 'True',
+        'Pagination_Type': 'All_Data',
+        'count': count,
+        'form': UserLoginForm()
+    }
     if request.user.is_authenticated:
         return render(request, 'Localisation_App/tools.html', context)
     else:
-        return render(request, 'Localisation_App/tools.html',context)
-  
+        return render(request, 'Localisation_App/tools.html', context)
+
 
 def tools(request):
     checklist1 = []
@@ -234,7 +245,11 @@ def tools(request):
 
 
 def toolsSearch(request, tools_title):
+
+    tools_searchData = tools_title.replace(" ", "-")
     print("titlenone", tools_title)
+    print("replace space ", tools_title.replace(" ", "-"))
+
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     toolsCategory_data = Tools_Category.objects.all()
@@ -243,12 +258,14 @@ def toolsSearch(request, tools_title):
     if request.method == "POST":
         print("insideSearchMethod")
         print(tools_title)
-        tools_title1 = request.POST.get("toolname")
-        print("toolstitile", tools_title1)
 
-        if tools_title1 != '':
+        tools_title12 = request.POST.get("toolname")
+        print("resourcestitle", tools_title12)
+        tools_searchData1 = tools_title12.replace(" ", "-")
+
+        if tools_searchData1 != '':
             tools_Data = ToolsData.objects.filter(
-                ToolsData_HeadingName__icontains=tools_title1)
+                ToolsData_slug__icontains=tools_searchData1)
             count = tools_Data.count()
             print("datatooldssds", count)
             page = Paginator(tools_Data, 8)
@@ -259,7 +276,7 @@ def toolsSearch(request, tools_title):
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'toolsdata': tools_Data,
-                'tools_title': tools_title1,
+                'tools_title': tools_searchData1,
                 'toolscategory': toolsCategory_data,
                 "page": page,
                 'status_All_Checked': 'True',
@@ -284,9 +301,9 @@ def toolsSearch(request, tools_title):
                 'count': count
             }
         return render(request, 'Localisation_App/tools.html', context)
-    if tools_title != 'none':
+    if tools_searchData != 'none':
         tools_Data1 = ToolsData.objects.filter(
-            ToolsData_HeadingName__icontains=tools_title)
+            ToolsData_slug__icontains=tools_searchData)
         page = Paginator(tools_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -296,7 +313,7 @@ def toolsSearch(request, tools_title):
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'toolsdata': tools_Data1,
-            'tools_title': tools_title,
+            'tools_title': tools_searchData,
             'toolscategory': toolsCategory_data,
             "page": page,
             'status_All_Checked': 'True',
@@ -350,40 +367,38 @@ def toolsReset(request):
         return render(request, 'Localisation_App/tools.html', context)
 
 
-def toolsDownloadCounter(request,id):
-    print("session time",)
-    print("requestid",id)
-    print("inside herehelloooooo")
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
-    ip=''
+def toolsDownloadCounter(request, id):
+    print("requestid", id)
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    ip = ''
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[-1].strip()
     else:
         ip = request.META.get('REMOTE_ADDR')
-    print("ip",ip)
-    saved_ip=None
+    print("ip", ip)
+    saved_ip = None
     time_posted = request.session.get('tools_Download_time')
-    savedTimeInSession=None
-    time_diff=0
+    savedTimeInSession = None
+    time_diff = 0
     if time_posted is not None:
         print("time_posted not none")
         print(time_posted)
-        print("datatatataa",type(datetime.fromisoformat(time_posted[:-1])))
-        savedTimeInSession=datetime.fromisoformat(time_posted[:-1])
-        dataCurrentTime=datetime.now()
-        print("time",type(dataCurrentTime))
+        print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
+        savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
+        dataCurrentTime = datetime.now()
+        print("time", type(dataCurrentTime))
         timediff = dataCurrentTime - savedTimeInSession
         time_diff = timediff.total_seconds()
-        print("timediff",timediff.total_seconds())
+        print("timediff", timediff.total_seconds())
     else:
         print("time_posted none")
-    print("saved_ip",saved_ip)
-    
+    print("saved_ip", saved_ip)
+
     if time_diff < 20:
-        saved_ip=request.session.get('toolsDownloadCounter_ip')
+        saved_ip = request.session.get('toolsDownloadCounter_ip')
     else:
-        request.session['toolsDownloadCounter_ip'] =None
-           
+        request.session['toolsDownloadCounter_ip'] = None
+
     if ip != saved_ip:
         # print("savedTimeInSession inside second not none")
         # if ip != saved_ip:
@@ -391,41 +406,40 @@ def toolsDownloadCounter(request,id):
         # if time_diff < 10:
         print("time is less than 10 seconds inside second not none")
         request.session['toolsDownloadCounter_ip'] = ip
-        data=datetime.now()
-        print("time",type(data))
-        data1=json.dumps(data, default=json_util.default)
-        aList =json.loads(data1)
-        testdata=aList['$date']
+        data = datetime.now()
+        print("time", type(data))
+        data1 = json.dumps(data, default=json_util.default)
+        aList = json.loads(data1)
+        testdata = aList['$date']
         request.session['tools_Download_time'] = testdata
         print("increase download count second")
         tool_obj = ToolsData.objects.get(pk=id)
-        print("tools_obje",tool_obj)
-        print("before",tool_obj.ToolsData_DownloadCounter)
-        tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
+        print("tools_obje", tool_obj)
+        print("before", tool_obj.ToolsData_DownloadCounter)
+        tool_obj.ToolsData_DownloadCounter = tool_obj.ToolsData_DownloadCounter + 1
         tool_obj.save()
-        print("after",tool_obj.ToolsData_DownloadCounter)
-        return redirect('Localisation_App:toolsPage')   
+        print("after", tool_obj.ToolsData_DownloadCounter)
+        return redirect('Localisation_App:toolsPage')
     else:
         print("ip is same inside second none")
         request.session['toolsDownloadCounter_ip'] = ip
         print("same and none ip first")
-        data=datetime.now()
-        print("time",type(data))
-        data1=json.dumps(data, default=json_util.default)
-        aList =json.loads(data1)
-        print("data343434",aList)
-        testdata=aList['$date']
+        data = datetime.now()
+        print("time", type(data))
+        data1 = json.dumps(data, default=json_util.default)
+        aList = json.loads(data1)
+        print("data343434", aList)
+        testdata = aList['$date']
         request.session['tools_Download_time'] = testdata
         print("inside second none")
         return redirect('Localisation_App:toolsPage')
-
 
 
 # def toolsDownloadCounter(request,id):
 #     print("session time",)
 #     print("requestid",id)
 #     print("inside herehelloooooo")
-#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
+#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
 #     ip=''
 #     if x_forwarded_for:
 #         ip = x_forwarded_for.split(',')[-1].strip()
@@ -438,10 +452,8 @@ def toolsDownloadCounter(request,id):
 #     time_posted = request.session.get('tools_Download_time')
 #     savedTimeInSession=None
 #     time_diff=0
-    
-    
-    
-    
+
+
 #     # data=datetime.now()
 #     # print("time",type(data))
 #     # data1=json.dumps(data, default=json_util.default)
@@ -452,9 +464,8 @@ def toolsDownloadCounter(request,id):
 #     # timetobesave=datetime.fromisoformat(testdata[:-1])
 #     # print("timetoionebnfftdgbkki",timetobesave)
 #     # print("timetoionebnfftdgbkki-TYpe",type(timetobesave))
-    
-    
-    
+
+
 #     if time_posted is not None:
 #         print("time_posted not none")
 #         print(time_posted)
@@ -472,12 +483,12 @@ def toolsDownloadCounter(request,id):
 #     else:
 #         print("time_posted none")
 #     print("saved_ip",saved_ip)
-    
+
 #     if time_diff < 20:
 #         saved_ip=request.session.get('toolsDownloadCounter_ip')
 #     else:
 #         request.session['toolsDownloadCounter_ip'] =None
-           
+
 #     if savedTimeInSession is not None:
 #         print("savedTimeInSession inside second not none")
 #         if ip != saved_ip:
@@ -508,7 +519,7 @@ def toolsDownloadCounter(request,id):
 #             #     aList =json.loads(data1)
 #             #     testdata=aList['$date']
 #             #     request.session['tools_Download_time'] = testdata
-#             #     return redirect('Localisation_App:toolsPage')   
+#             #     return redirect('Localisation_App:toolsPage')
 #         else:
 #             print("ip is same inside second not none")
 #             request.session['toolsDownloadCounter_ip'] = ip
@@ -518,7 +529,7 @@ def toolsDownloadCounter(request,id):
 #             aList =json.loads(data1)
 #             testdata=aList['$date']
 #             request.session['tools_Download_time'] = testdata
-#             return redirect('Localisation_App:toolsPage') 
+#             return redirect('Localisation_App:toolsPage')
 #     else:
 #         print("savedTimeInSession inside second none")
 #         if ip != saved_ip:
@@ -552,7 +563,7 @@ def toolsDownloadCounter(request,id):
 #             #     print("data343434",aList)
 #             #     testdata=aList['$date']
 #             #     request.session['tools_Download_time'] = testdata
-#             #     return redirect('Localisation_App:toolsPage')  
+#             #     return redirect('Localisation_App:toolsPage')
 #         else:
 #             print("ip is same inside second none")
 #             request.session['toolsDownloadCounter_ip'] = ip
@@ -565,18 +576,7 @@ def toolsDownloadCounter(request,id):
 #             testdata=aList['$date']
 #             request.session['tools_Download_time'] = testdata
 #             print("inside second none")
-#             return redirect('Localisation_App:toolsPage')     
-        
-
-        
-            
-        
-        
-
-
-
-
-
+#             return redirect('Localisation_App:toolsPage')
 
 
 # Resources Page
@@ -731,7 +731,11 @@ def resources(request):
 
 
 def resourceSearch(request, resource_title):
+
+    resource_searchData = resource_title.replace(" ", "-")
     print("titlenone", resource_title)
+    print("replace space ", resource_title.replace(" ", "-"))
+
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     resoucesCategory_data = Resources_Category.objects.all()
@@ -740,13 +744,14 @@ def resourceSearch(request, resource_title):
 
     if request.method == "POST":
         print("insideSearchMethod")
-        print(resource_title)
-        resource_title1 = request.POST.get("resourcename")
-        print("resourcestitle", resource_title1)
+        print(resource_searchData)
+        resource_searchData12 = request.POST.get("resourcename")
+        print("resourcestitle", resource_searchData12)
+        resource_searchData1 = resource_searchData12.replace(" ", "-")
 
-        if resource_title1 != '':
+        if resource_searchData1 != '':
             resource_Data = ResourceData.objects.filter(
-                ResourceData_HeadingName__icontains=resource_title1)
+                ResourceData_slug__icontains=resource_searchData1)
             count = resource_Data.count()
             print("dataresourcesdssds", count)
             page = Paginator(resource_Data, 8)
@@ -757,7 +762,7 @@ def resourceSearch(request, resource_title):
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
                 'resoucesdata': resource_Data,
-                'resource_title': resource_title1,
+                'resource_title': resource_searchData1,
                 'resourcescategory': resoucesCategory_data,
                 "page": page,
                 'status_All_Checked': 'True',
@@ -781,9 +786,9 @@ def resourceSearch(request, resource_title):
                 'count': count
             }
         return render(request, 'Localisation_App/resources.html', context)
-    if resource_title != 'none':
+    if resource_searchData != 'none':
         resource_Data1 = ResourceData.objects.filter(
-            ResourceData_HeadingName__icontains=resource_title)
+            ResourceData_slug__icontains=resource_searchData)
         page = Paginator(resource_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -793,7 +798,7 @@ def resourceSearch(request, resource_title):
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'resoucesdata': resource_Data1,
-            'resource_title': resource_title,
+            'resource_title': resource_searchData,
             'resourcescategory': resoucesCategory_data,
             "page": page,
             'status_All_Checked': 'True',
@@ -846,41 +851,40 @@ def resourcesReset(request):
         return render(request, 'Localisation_App/resources.html', context)
 
 
-
-def resourceDownloadCounter(request,id):
+def resourceDownloadCounter(request, id):
     print("session time",)
-    print("requestid",id)
+    print("requestid", id)
     print("inside herehelloooooo")
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR') 
-    ip=''
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    ip = ''
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[-1].strip()
     else:
         ip = request.META.get('REMOTE_ADDR')
-    print("ip",ip)
-    saved_ip=None
+    print("ip", ip)
+    saved_ip = None
     time_posted = request.session.get('resources_Download_time')
-    savedTimeInSession=None
-    time_diff=0
+    savedTimeInSession = None
+    time_diff = 0
     if time_posted is not None:
         print("time_posted not none")
         print(time_posted)
-        print("datatatataa",type(datetime.fromisoformat(time_posted[:-1])))
-        savedTimeInSession=datetime.fromisoformat(time_posted[:-1])
-        dataCurrentTime=datetime.now()
-        print("time",type(dataCurrentTime))
+        print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
+        savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
+        dataCurrentTime = datetime.now()
+        print("time", type(dataCurrentTime))
         timediff = dataCurrentTime - savedTimeInSession
         time_diff = timediff.total_seconds()
-        print("timediff",timediff.total_seconds())
+        print("timediff", timediff.total_seconds())
     else:
         print("time_posted none")
-    print("saved_ip",saved_ip)
-    
+    print("saved_ip", saved_ip)
+
     if time_diff < 60:
-        saved_ip=request.session.get('resourcesDownloadCounter_ip')
+        saved_ip = request.session.get('resourcesDownloadCounter_ip')
     else:
-        request.session['resourcesDownloadCounter_ip'] =None
-           
+        request.session['resourcesDownloadCounter_ip'] = None
+
     if ip != saved_ip:
         # print("savedTimeInSession inside second not none")
         # if ip != saved_ip:
@@ -888,20 +892,20 @@ def resourceDownloadCounter(request,id):
         # if time_diff < 10:
         print("time is less than 10 seconds inside second not none")
         request.session['resourcesDownloadCounter_ip'] = ip
-        data=datetime.now()
-        print("time",type(data))
-        data1=json.dumps(data, default=json_util.default)
-        aList =json.loads(data1)
-        testdata=aList['$date']
+        data = datetime.now()
+        print("time", type(data))
+        data1 = json.dumps(data, default=json_util.default)
+        aList = json.loads(data1)
+        testdata = aList['$date']
         request.session['resources_Download_time'] = testdata
         print("increase download count second")
         resources_obj = ResourceData.objects.get(pk=id)
-        print("resources_obje",resources_obj)
-        print("before",resources_obj.ResourceData_DownloadCounter)
-        resources_obj.ResourceData_DownloadCounter= resources_obj.ResourceData_DownloadCounter + 1
+        print("resources_obje", resources_obj)
+        print("before", resources_obj.ResourceData_DownloadCounter)
+        resources_obj.ResourceData_DownloadCounter = resources_obj.ResourceData_DownloadCounter + 1
         resources_obj.save()
-        print("after",resources_obj.ResourceData_DownloadCounter)
-        return redirect('Localisation_App:resourcesPage')   
+        print("after", resources_obj.ResourceData_DownloadCounter)
+        return redirect('Localisation_App:resourcesPage')
         # else:
         #     print("ip is same inside second not none")
         #     request.session['resourcesDownloadCounter_ip'] = ip
@@ -911,44 +915,42 @@ def resourceDownloadCounter(request,id):
         #     aList =json.loads(data1)
         #     testdata=aList['$date']
         #     request.session['resources_Download_time'] = testdata
-        #     return redirect('Localisation_App:resourcesPage') 
+        #     return redirect('Localisation_App:resourcesPage')
     else:
         # print("savedTimeInSession inside second none")
         # if ip != saved_ip:
-            # print("ip is defferent inside second none")
-            # # if time_diff < 10:
-            # print("time is less than 10 seconds inside second none")
-            # request.session['resourcesDownloadCounter_ip'] = ip
-            # data=datetime.now()
-            # print("time",type(data))
-            # data1=json.dumps(data, default=json_util.default)
-            # aList =json.loads(data1)
-            # testdata=aList['$date']
-            # request.session['resources_Download_time'] = testdata
-            # print("increase download count second")
-            # print("getcookie",request.session.get('resourcesDownloadCounter_ip'))
-            # resources_obj = ResourceData.objects.get(pk=id)
-            # print("resources_obje",resources_obj)
-            # print("before",resources_obj.ResourceData_DownloadCounter)
-            # resources_obj.ResourceData_DownloadCounter= resources_obj.ResourceData_DownloadCounter + 1
-            # resources_obj.save()
-            # print("after",resources_obj.ResourceData_DownloadCounter)
-            # return redirect('Localisation_App:resourcesPage')
+        # print("ip is defferent inside second none")
+        # # if time_diff < 10:
+        # print("time is less than 10 seconds inside second none")
+        # request.session['resourcesDownloadCounter_ip'] = ip
+        # data=datetime.now()
+        # print("time",type(data))
+        # data1=json.dumps(data, default=json_util.default)
+        # aList =json.loads(data1)
+        # testdata=aList['$date']
+        # request.session['resources_Download_time'] = testdata
+        # print("increase download count second")
+        # print("getcookie",request.session.get('resourcesDownloadCounter_ip'))
+        # resources_obj = ResourceData.objects.get(pk=id)
+        # print("resources_obje",resources_obj)
+        # print("before",resources_obj.ResourceData_DownloadCounter)
+        # resources_obj.ResourceData_DownloadCounter= resources_obj.ResourceData_DownloadCounter + 1
+        # resources_obj.save()
+        # print("after",resources_obj.ResourceData_DownloadCounter)
+        # return redirect('Localisation_App:resourcesPage')
         # else:
         print("ip is same inside second none")
         request.session['resourcesDownloadCounter_ip'] = ip
         print("same and none ip first")
-        data=datetime.now()
-        print("time",type(data))
-        data1=json.dumps(data, default=json_util.default)
-        aList =json.loads(data1)
-        print("data343434",aList)
-        testdata=aList['$date']
+        data = datetime.now()
+        print("time", type(data))
+        data1 = json.dumps(data, default=json_util.default)
+        aList = json.loads(data1)
+        print("data343434", aList)
+        testdata = aList['$date']
         request.session['resources_Download_time'] = testdata
         print("inside second none")
         return redirect('Localisation_App:resourcesPage')
-
-
 
 
 # Successstory Page
@@ -1111,6 +1113,14 @@ def successstory(request):
 
 
 def successstorySearch(request, story_title):
+    
+    
+     
+    story_searchData=story_title.replace(" ", "-")
+    print("titlenone", story_title)
+    print("replace space ",story_title.replace(" ", "-"))
+    
+    
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1121,12 +1131,14 @@ def successstorySearch(request, story_title):
     if request.method == "POST":
         print("insideSearchMethod")
         print(story_title)
-        strory_title1 = request.POST.get("storyname")
-        print("strory_title1", strory_title1)
+        
+        story_searchData12 = request.POST.get("storyname")
+        print("resourcestitle", story_searchData12)
+        story_searchData1=story_searchData12.replace(" ", "-")
 
-        if strory_title1 != '':
+        if story_searchData1 != '':
             successStoriesData = SuccessStories.objects.filter(
-                SuccessStories_TitleName__icontains=strory_title1).order_by('SuccessStories_Priority')
+                SuccessStories_slug__icontains=story_searchData1).order_by('SuccessStories_Priority')
             count = successStoriesData.count()
             print("dataStoriesdssds", count)
             page = Paginator(successStoriesData, 8)
@@ -1136,7 +1148,7 @@ def successstorySearch(request, story_title):
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
-                'story_title': strory_title1,
+                'story_title': story_searchData1,
                 'SuccessStoriesData': successStoriesData,
                 'SuccessStories_CategoryData': successStories_CategoryData,
                 "page": page,
@@ -1161,9 +1173,9 @@ def successstorySearch(request, story_title):
                 'count': count
             }
         return render(request, 'Localisation_App/successstory.html', context)
-    if story_title != 'none':
+    if story_searchData != 'none':
         Stories_Data1 = SuccessStories.objects.filter(
-            SuccessStories_TitleName__icontains=story_title).order_by('SuccessStories_Priority')
+            SuccessStories_slug__icontains=story_searchData).order_by('SuccessStories_Priority')
         page = Paginator(Stories_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -1173,7 +1185,7 @@ def successstorySearch(request, story_title):
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
             'SuccessStoriesData': Stories_Data1,
-            'story_title': story_title,
+            'story_title': story_searchData,
             'SuccessStories_CategoryData': successStories_CategoryData,
             "page": page,
             'status_All_Checked': 'True',
@@ -1327,7 +1339,7 @@ def srvTTS(request):
                     'FooterMenuItemsdata': FooterMenuItemsdata,
                 }
                 print("returned")
-                return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+                return render(request, 'Localisation_App/ttsService.html', context)
 
     context = {
         "service": "srvTTS",
@@ -1337,7 +1349,7 @@ def srvTTS(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
         "DIVTITLE": "HELLO"
     }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+    return render(request, 'Localisation_App/ttsService.html', context)
 
 
 def srvTransliteration(request):
@@ -1359,7 +1371,7 @@ def srvTransliteration(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
 
     }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+    return render(request, 'Localisation_App/transliteration_modal.html', context)
 
 
 # Faqs Page
@@ -1539,12 +1551,13 @@ def help(request):
 
 
 def contactus(request):
+    logger.info("INSIDE views of Contact us ")
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="help")
     TopMenuItemsdata = TopMenuItems.objects.all()
     num = random.randrange(1121, 9899)
-
+    logger.info("random num generated for captcha in contact us page")
     str_num = str(num)
     context = {
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1552,6 +1565,7 @@ def contactus(request):
         'topmenus': TopMenuItemsdata,
         'img': str_num
     }
+    logger.error("context assigned values in contact us views..........")
 
     return render(request, 'Localisation_App/contactus.html', context)
 
@@ -1596,6 +1610,7 @@ def Register_user(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
         'form': form
     }
+
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -1636,7 +1651,8 @@ def login_user(request):
                 login(request, user)
                 return redirect('/')
             else:
-                messages.error(request, 'Error Processing Your Request,Wrong Username or password')
+                messages.error(
+                    request, 'Error Processing Your Request,Wrong Username or password')
                 context = {
                     'topmenus': TopMenuItemsdata,
                     'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1674,33 +1690,35 @@ def logout_user(request):
     return render(request, 'Localisation_App/logout.html', context)
 
 
-def changePassword(request,token):
+def changePassword(request, token):
     form = UserChangePasswordForm()
-    user_Profile_obj=UserRegistration.objects.get(userregistration_token = token)
-    if user_Profile_obj is not None:    
-        print("inside change padsword",user_Profile_obj.pk)
+    user_Profile_obj = UserRegistration.objects.get(
+        userregistration_token=token)
+    if user_Profile_obj is not None:
+        print("inside change padsword", user_Profile_obj.pk)
         if request.method == 'POST':
             form = UserChangePasswordForm(data=request.POST)
             if form.is_valid():
-                print("inside Post") 
+                print("inside Post")
                 password1 = form.cleaned_data['password1']
                 password2 = form.cleaned_data['password2']
                 user_id = request.POST.get('user_id')
-                if password1 == password2 :
+                if password1 == password2:
                     if user_id is None:
                         messages.success(request, 'User Not Found')
                         return redirect('Localisation_App:forgetPassword')
                     else:
-                        user_Register_obj=UserRegistration.objects.get(pk=user_id)
+                        user_Register_obj = UserRegistration.objects.get(
+                            pk=user_id)
                         user_Register_obj.userregistration_password = password1
                         user_Register_obj.userregistration_confirm_password = password2
                         user_Register_obj.save()
-                        
-                        user_main_obj=User.objects.get(username = user_Profile_obj.userregistration_username)
+
+                        user_main_obj = User.objects.get(
+                            username=user_Profile_obj.userregistration_username)
                         user_main_obj.set_password(password1)
                         user_main_obj.save()
-                        
-                        
+
                         print('Password Reset Successfully ')
                         return redirect('Localisation_App:forgetPassword')
                 else:
@@ -1709,61 +1727,54 @@ def changePassword(request,token):
             else:
                 messages.success(request, 'Data is not valid')
                 return redirect('Localisation_App:forgetPassword')
-        user_id=user_Profile_obj.pk
+        user_id = user_Profile_obj.pk
         context = {
             'form': form,
-            'User_Id':user_id
+            'User_Id': user_id
         }
-        return render(request, 'Localisation_App/changePassword.html',context)
+        return render(request, 'Localisation_App/changePassword.html', context)
     else:
         messages.success(request, 'User Not Found')
         print('User Not Found')
         return redirect('Localisation_App:forgetPassword')
-   
-           
-   
-    
-    
 
 
 def forgetPassword(request):
-    form =UserForgetPasswordForm()
+    form = UserForgetPasswordForm()
     try:
         if request.method == 'POST':
             form = UserForgetPasswordForm(data=request.POST)
             if form.is_valid():
                 print('insideValidmethod')
                 username = form.cleaned_data['username']
-                if not User.objects.filter(username = username).first():
-                    messages.success(request, 'No user found with this username')
+                if not User.objects.filter(username=username).first():
+                    messages.success(
+                        request, 'No user found with this username')
                     print('No user found with this username')
                     return redirect('Localisation_App:forgetPassword')
-                user_obj=User.objects.get(username = username)
-                token=str(uuid.uuid4())
-                user_Profile_obj=UserRegistration.objects.get(userregistration_username = username)
+                user_obj = User.objects.get(username=username)
+                token = str(uuid.uuid4())
+                user_Profile_obj = UserRegistration.objects.get(
+                    userregistration_username=username)
                 user_Profile_obj.userregistration_token = token
                 user_Profile_obj.save()
-                send_forget_password_email(user_Profile_obj.userregistration_email_field,token)
-                print("userdata",user_obj)
-                
-                
+                send_forget_password_email(
+                    user_Profile_obj.userregistration_email_field, token)
+                print("userdata", user_obj)
+
                 messages.success(request, 'An email is sent')
                 print('An email is sent')
-                context={
-                    'form':form
+                context = {
+                    'form': form
                 }
-                return redirect('Localisation_App:forgetPassword',context)
-         
-            
+                return redirect('Localisation_App:forgetPassword', context)
+
     except Exception as e:
         print(e)
-    context={
-        'form':form
+    context = {
+        'form': form
     }
-    return render(request, 'Localisation_App/forgetPassword.html',context)
-
-
-
+    return render(request, 'Localisation_App/forgetPassword.html', context)
 
 
 def goTranslate(request):
@@ -1918,6 +1929,7 @@ def dashboard(request):
 
 
 # Translation Quote
+@login_required()
 def translation_quote(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1964,12 +1976,16 @@ def translation_quote(request):
 
     form = TranslationQuoteForm()
     context['form'] = form
+    
+    
 
     if request.method == 'POST':
         url = request.POST.get('url')
+        company_email = request.POST.get('company_email')
         language = request.POST.get('language')
-        website_type = request.POST.get('website_type')
+        domain = request.POST.get('domain')
         delivery_date = request.POST.get('delivery_date')
+        client_remark = request.POST.get('client_remark')
 
         form = TranslationQuoteForm(request.POST)
 
@@ -1978,12 +1994,24 @@ def translation_quote(request):
         if form.is_valid():
             print("validation success")
             print(form.cleaned_data['url'])
+            print(form.cleaned_data['company_email'])
             print(form.cleaned_data['language'])
-            print(form.cleaned_data['website_type'])
+            print(form.cleaned_data['domain'])
             print(form.cleaned_data['delivery_date'])
+            print(form.cleaned_data['client_remark'])
+            
+            # generate application number (UNIQUE)
+            # 
+            application_number = uuid.uuid4().hex[:10].upper()
+            print("application ", application_number)
+            
+            # add user 
+            current_user = request.user
+
+            print(current_user)
 
             data = TranslationQuote(
-                url=url, language=language, website_type=website_type, delivery_date=delivery_date)
+                url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark,application_number=application_number, username=current_user)
             data.save()
             context['status'] = 'success'
             context['message'] = "Form submitted successfully"
@@ -2121,10 +2149,11 @@ def machine_translation(request):
     context = {
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data
-        
+
     }
-    
-    return render(request,'Localisation_App/machine_translation.html',context)
+
+    return render(request, 'Localisation_App/machine_translation.html', context)
+
 
 def name_matcher(request):
     top_menu_items_data = TopMenuItems.objects.all()
@@ -2135,27 +2164,28 @@ def name_matcher(request):
 
 
     }
-    
-    return render(request,'Localisation_App/name_matcher.html',context)
+
+    return render(request, 'Localisation_App/name_matcher.html', context)
+
 
 def empanelled_agencies(request):
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
-    
+
     empanelled_agecies_data = EmpanelledAgencies.objects.all()
     empanelled_agecies_data_list = []
     for i in empanelled_agecies_data:
         data = {}
         data['company_name'] = i.company_name
         data['contact_person'] = i.contact_person
-        
-        emails = []       
+
+        emails = []
         for i in EmpanelledAgenciesEmail.objects.filter(empanelled_agencies=i):
             emails.append(i.email)
         data['email'] = emails
-        
+
         empanelled_agecies_data_list.append(data)
-    
+
     print(empanelled_agecies_data_list)
 
     context = {
@@ -2163,4 +2193,4 @@ def empanelled_agencies(request):
         'FooterMenuItemsdata': footer_menu_items_data,
         'empanelled_agencies_data': empanelled_agecies_data_list,
     }
-    return render(request,'Localisation_App/empanelled_agencies.html', context)
+    return render(request, 'Localisation_App/empanelled_agencies.html', context)

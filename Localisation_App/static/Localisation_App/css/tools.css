@@ -17,6 +17,23 @@ body {
     margin-bottom: 10px;
 }
 
+
+.category-tool-title-slug{
+    min-width: 100px;
+    margin-top: 10px;
+    font-size: 23px;
+    background-color: #219EBC;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    border-radius: 10px;
+    font-weight: 600;
+    color:#ffffff;
+    margin-bottom: 10px;
+
+}
+
 .tools-box {
     background: url("../../../static/Localisation_App/img/success-21.png");
     background-size: 100%;
@@ -125,9 +142,9 @@ input[type="checkbox"] {
 }
 
 .tools-image {
-    width: 200px;
+    width: auto;
     height: 200px;
-    margin-left: 110px;
+    margin-left: 50px;
 }
 .filter-button{
     margin-left: 1px;

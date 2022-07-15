@@ -66,7 +66,7 @@
 
                                 
 								<div class="tools-section-button">
-									<button class="btn btn-primary" onclick="location.href='{% url 'Localisation_App:toolsDownloadCounter' data.id %}' ">
+									<button onclick="location.href='{% url 'Localisation_App:toolsDownloadCounter' data.id %}' ">
 									<a type="submit" style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>
 										 Download</a>
 								    </button>
@@ -79,6 +79,9 @@
 							<div class="col-sm-12 col-lg-8">
 								<div class="Heading">
 									<h3 style="color: #023047;">{{ data.ToolsData_HeadingName }}</h3> </div>
+										{% for d in data.get_ToolsData_slug_splited|slice:":5" %}
+										<span class="category-tool-title-slug">{{ d }}</span>
+										{% endfor %}
 								<hr/>
 								<div class="Discription">
 									<p> {{ data.ToolsData_Description|safe }} </p>
