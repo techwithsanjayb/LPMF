@@ -1,0 +1,40 @@
+{% extends 'Localisation_App/base.html' %} 
+{% block title %}Translation Quote User Dashboard{% endblock %}
+ {% load static %}
+  {% block translation_quote_user_dashboard %} 
+
+  {% comment %} css {% endcomment %}
+{% comment %} <link
+  href="{% static 'Localisation_App/css/translation_quote_user_dashboard.css' %}"
+  rel="stylesheet"
+/> {% endcomment %}
+
+<div class="container mb-5">
+  {% if translation_quote_data %}
+    {% for quote_data in translation_quote_data %}
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-start">Application Number : {{quote_data.application_number}}</h5>
+        <p class="card-text">
+          URL : {{quote_data.url}}
+          <br>
+          Language : {{quote_data.language}}
+          <br>
+          Submission Date : {{quote_data.submission_date}}
+          <br>
+          Status : <strong>{{quote_data.status}}</strong>
+        </p>
+        <a href="{% url 'Localisation_App:translation_quote_show' quote_data.application_number %}" class="btn btn-primary">View More</a>
+      </div>
+    </div>
+
+    {% endfor %}
+    {% else %}
+  <div>
+    No Record Found!
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

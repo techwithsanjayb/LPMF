@@ -1,5 +1,6 @@
 
 import re
+from threading import currentThread
 from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm, UserChangePasswordForm, UserForgetPasswordForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
@@ -16,13 +17,14 @@ from django.core.exceptions import ValidationError
 from .word_count import crawl_data
 from django.contrib.auth.models import User
 import uuid
-from datetime import datetime
+from datetime import date, datetime
 from .helpers import send_forget_password_email
 import json
 from bson import json_util
 import uuid
 from django.contrib.auth.decorators import login_required
 import logging
+from datetime import date
 logger = logging.getLogger('django')
 global str_num
 
@@ -1995,16 +1997,19 @@ def translation_quote(request):
             print(form.cleaned_data['delivery_date'])
             print(form.cleaned_data['client_remark'])
             
-            # generate application number (UNIQUE)
-            # 
-            application_number = uuid.uuid4().hex[:10].upper()
-            print("application ", application_number)
             
-            # add user 
+             # add user 
             current_user = request.user
 
             print(current_user)
-
+            
+            # generate application number (UNIQUE)
+            # 
+           
+            application_number = str('GI-'+ str(date.today().year) +'-' + current_user.username[0:2].upper() + str(random.randrange(100000000, 1000000000)))
+            print("application ", application_number)
+            
+            
             data = TranslationQuote(
                 url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark,application_number=application_number, username=current_user)
             data.save()
@@ -2189,3 +2194,48 @@ def empanelled_agencies(request):
         'empanelled_agencies_data': empanelled_agecies_data_list,
     }
     return render(request, 'Localisation_App/empanelled_agencies.html', context)
+
+
+# translation_quote_user_dashboard
+@login_required
+def translation_quote_user_dashboard(request):
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    
+    current_user =  request.user
+    print(current_user)
+    
+    translation_quote_data = TranslationQuote.objects.filter(username=current_user)
+    
+    print(translation_quote_data)
+    
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'translation_quote_data':translation_quote_data,
+    }
+    return render(request, 'Localisation_App/translation_quote_user_dashboard.html', context)
+
+
+# translation_quote_show
+@login_required
+def translation_quote_show(request, application_number):
+    # print("application number ", application_number)
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    
+    translation_quote_data = TranslationQuote.objects.filter(application_number=application_number)[0]
+    print(translation_quote_data)
+    username = translation_quote_data.username;
+    
+    print(username.username)
+    
+    user_details = UserRegistration.objects.filter(userregistration_username=username.username)
+    
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'translation_quote_data': translation_quote_data,
+        'user_details':user_details,
+    }
+    return render(request, 'Localisation_App/translation_quote_show.html', context)
