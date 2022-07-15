@@ -11,12 +11,14 @@ urlpatterns = [
     path('aboutus/', views.aboutus, name='aboutus'),
     path('toolsPage/', views.toolsPage, name='toolsPage'),
     path('tools/', views.tools, name='tools'),
+    path('toolsDownloadCounter/<int:id>', views.toolsDownloadCounter, name='toolsDownloadCounter'),
     path('toolsReset/', views.toolsReset, name='toolsReset'),
     path('toolsSearch/<tools_title>', views.toolsSearch, name='toolsSearch'),
     path('resourcesPage/', views.resourcesPage, name='resourcesPage'),
     path('resources/', views.resources, name='resources'),
+    path('resourceDownloadCounter/<int:id>', views.resourceDownloadCounter, name='resourceDownloadCounter'),
     path('resourcesReset/', views.resourcesReset, name='resourcesReset'),
-    path('resourceSearch/<resource_title>',
+    path('resourceSearch/<slug:resource_title>',
          views.resourceSearch, name='resourceSearch'),
     path('services/', views.services, name='services'),
     path('successstoryPage/', views.successstoryPage, name='successstoryPage'),
@@ -54,6 +56,8 @@ urlpatterns = [
     path('register/', views.Register_user, name="register"),
     path('login/', views.login_user, name='login'),
     path('logout/', views.logout_user, name='logout'),
+    path('forgetPassword/', views.forgetPassword, name='forgetPassword'),
+    path('changePassword/<token>/', views.changePassword, name='changePassword'),
     #     path('logout_user/', views.logout_user, name="logout"),
     #   path('register/', views.Register_user, name="register"),
 
@@ -63,7 +67,12 @@ urlpatterns = [
          name='translation_quote'),
     path('dashboard2', views.dashboard2, name="dashboard2"),
     path('dashboard', views.dashboard, name="dashboard"),
-    path('machine-translation/', views.machine_translation, name="machine_translation")
+    path('machine-translation/', views.machine_translation, name="machine_translation"),
+    path('name-matcher/', views.name_matcher, name="name_matcher"),
+    path('empanelled_agencies/', views.empanelled_agencies, name="empanelled_agencies"),
+    
+    
+#     path("Slug_test/<slug:slug>", views.Slug_test, name="Slug_test"),
 ]
 
 if settings.DEBUG:

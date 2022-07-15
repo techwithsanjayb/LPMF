@@ -1,0 +1,26 @@
+{% extends 'Localisation_App/base.html' %}
+{% block title %}Name Matcher Service{% endblock %}
+{% load static %}
+
+{% block name_matcher %}
+<div class="container card">
+    <h5 class="card-title text-dark">Name Matcher</h5>
+    <div class="card-body">
+        <div class="col-6">
+          <div class="pb-2">
+            {% comment %} <h6>Input(loaded file or copy-paste content)</h6> {% endcomment %}
+            <input name="input1" id="input1" type="text" placeholder="Enter First Name" class="form-control" required>
+          </div>
+        </div>
+        <div class="col-6">
+        <div class="pb-2">
+            {% comment %} <h6>Input(loaded file or copy-paste content)</h6> {% endcomment %}
+            <input name="input2" id="input2" type="text" placeholder="Enter Second Name" class="form-control" required>
+        </div>
+    </div>
+        <div class="pb-2">
+            <button type="submit" class="btn btn-primary btn-regular" style="width:100px">Submit</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

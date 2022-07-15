@@ -2,6 +2,10 @@ from pyexpat import model
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.core.validators import RegexValidator
+from django.forms import CharField
+from django.template.defaultfilters import slugify  # new
+from django.urls import reverse
+
 # Create your models here.
 
 '''
@@ -95,7 +99,6 @@ class SuccessStories(models.Model):
         max_length=20, choices=SuccessStories_PublishedStatus, default="published")
     SuccessStories_Upload_Image_1 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
-
     SuccessStories_Upload_Image_2 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     SuccessStories_Upload_Image_3 = models.ImageField(
@@ -104,17 +107,17 @@ class SuccessStories(models.Model):
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
     SuccessStories_Upload_Image_5 = models.ImageField(
         upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
-
     SuccessStories_category = models.ForeignKey(
         SuccessStories_Category, on_delete=models.CASCADE, null=True, blank=True)
-
     SuccessStories_Cdac_Contribution = models.CharField(
         max_length=500, null=True, blank=True)
-
     CHOICES1 = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5),
                 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)]
     SuccessStories_Priority = models.IntegerField(
         choices=CHOICES1, null=True, blank=True)
+    SuccessStories_slug=models.SlugField(max_length=10000,blank=True, null=True)
+   
+
 
     class Meta:
         verbose_name_plural = "Success Stories"
@@ -167,6 +170,8 @@ class ToolsData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ToolsData_PublishedStatus = models.CharField(
         max_length=20, choices=Tools_PublishedStatus, default="published")
+    ToolsData_slug=models.SlugField(max_length=10000,blank=True, null=True)
+  
 
     class Meta:
         verbose_name_plural = "Tools Data"
@@ -174,6 +179,9 @@ class ToolsData(models.Model):
 
     def __str__(self):
         return self.ToolsData_HeadingName
+    
+    def get_ToolsData_slug_splited(self):
+        return self.ToolsData_slug.split('-')
 
 
 class Resources_Category(models.Model):
@@ -208,6 +216,7 @@ class ResourceData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ResourceData_PublishedStatus = models.CharField(
         max_length=20, choices=Resources_PublishedStatus, default="published")
+    ResourceData_slug = models.SlugField(max_length=2000,blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Resource Data"
@@ -215,10 +224,14 @@ class ResourceData(models.Model):
 
     def __str__(self):
         return self.ResourceData_HeadingName
+    
+    def get_ResourcesData_slug_splited(self):
+        return self.ResourceData_slug.split('-')
 
 
 class NewsAndEvents(models.Model):
     NewsAndEvents_HeadingName = models.CharField(max_length=100)
+    NewsAndEvents_Discription = models.CharField(max_length=5000)
     NewsAndEvents_CreationDate = models.DateTimeField(
         auto_now=True,  blank=True)
     NewsAndEvents_UpdatedDate = models.DateTimeField(
@@ -396,6 +409,8 @@ class UserRegistration(models.Model):
         max_length=50, choices=CHOICES, default='Individual')
     userregistration_registration_date = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
+    userregistration_token = models.CharField(
+        max_length=60, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "User Registration"
@@ -430,4 +445,51 @@ class GuidelinceForIndianGovWebsite(models.Model):
 
     def __str__(self):
         return self.name
+    
+class EmpanelledAgencies(models.Model):
+    company_name = models.CharField(max_length=100)
+    contact_person = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Empanelled Agencies"
+        ordering = ['company_name']
+
+    def __str__(self):
+        return self.company_name
+    
+class EmpanelledAgenciesEmail(models.Model):
+    empanelled_agencies = models.ForeignKey(EmpanelledAgencies, verbose_name=("Empanelled Agency Name"), on_delete=models.CASCADE)
+    email= models.EmailField(max_length=254)
+
+    class Meta:
+        verbose_name_plural = "Empanelled Agencies Emails"
+        ordering = ['email']
+
+    def __str__(self):
+        return self.email
+
+
+
+# class TestSlug(models.Model):
+#     Test_Title = models.CharField(max_length=100)
+#     slug = models.SlugField()
+    
+#     class Meta:
+#         verbose_name_plural = "Test_Title"
+#         ordering = ['Test_Title']
+
+#     def __str__(self):
+#         return self.Test_Title
+  
+    
+#     # def __str__(self):
+#     #     return self.Test_Title
+
+#     # def get_absolute_url(self):
+#     #     return reverse("Slug_test", kwargs={"slug": self.slug})
+
+#     # def save(self, *args, **kwargs):  # new
+#     #     if not self.slug:
+#     #         self.slug = slugify(self.Test_Title)
+#     #     return super().save(*args, **kwargs)
     

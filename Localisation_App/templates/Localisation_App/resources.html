@@ -1,5 +1,5 @@
 {% extends 'Localisation_App/base.html' %}
-
+{% block title %}Resources{% endblock %}
 {% load static %}
 
 {% block tools %}
@@ -112,7 +112,9 @@
         <div class="row">
           <div class="col-sm-12 col-lg-4">
 
-            <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
+            <img src="{% static './Localisation_App/img/resources.png' %}" class="img-fluid tools-image" alt="..." />
+
+            <div class="Total_downloads">Total Downloads : {{data.ResourceData_DownloadCounter }}</div>
             <div class="tools-size">
               File Size : {{ data.ResourceData_fileSize}}
             </div>
@@ -126,10 +128,18 @@
             {% endif %}
 
             {% if data.ResourceData_UploadResourceCode != '' %}
-            <a style="text-decoration: none;color:white" href="/media/{{data.ResourceData_UploadResourceCode}}"
+            <!-- <a style="text-decoration: none;color:white" href="/media/{{data.ResourceData_UploadResourceCode}}"
               download>
               <div class="tools-section-button">Download </div>
-            </a>
+            </a> -->
+            <div class="tools-section-button">
+              <button class="btn btn-primary" onclick="location.href='{% url 'Localisation_App:resourceDownloadCounter' data.id %}' ">
+              <a type="submit" style="text-decoration: none;color:white" href="/media/{{data.ResourceData_UploadResourceCode}}" download>
+                 Download</a>
+                </button>
+            </div>
+
+
             {% endif %}
 
            
@@ -139,6 +149,9 @@
           <div class="col-sm-12 col-lg-8">
             <div class="Heading">
             <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
+            {% for d in data.get_ResourcesData_slug_splited|slice:":5" %}
+            <span class="category-tool-title-slug">{{ d }}</span>
+            {% endfor %}
           </div>
           <hr/>
             <div class="Discription">
@@ -146,6 +159,7 @@
               {{ data.ResourceData_Description|safe }}
             </p>
             </div>
+            <div class="Updated_Date1 mt-4">Category : {{ data.ResourceData_CategoryType }}</div>
             <div class="Updated_Date">Last Updated Date : {{data.ResourceData_LastUpdatedDate|date:"M d, Y"}}</div>
           </div>
         </div>

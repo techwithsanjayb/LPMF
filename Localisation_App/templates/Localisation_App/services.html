@@ -1,5 +1,6 @@
 
 {% extends 'Localisation_App/base.html' %}
+{% block title %}Services{% endblock %}
 {% load static %}
 
 {% block services %}
@@ -13,7 +14,7 @@
     C-DAC GIST has vast NLP resources and is pioneer in Indian Language
     computing. These are being now offered as web-service.
   </p> {% endcomment %}
-  <div class="row back-image pt-3" style="background-image: url('{% static './Localisation_App/img/Vector-4.png'%}')">
+  <div class="row back-image pt-3" style="background-image: url('{% static './Localisation_App/img/Vector-4.png' %}')">
     
     <!-- <div class="col-lg-3 fs-4 px-4">
       C-DAC GIST has vast NLP resources and is pioneer in Indian Language
@@ -45,7 +46,8 @@
               </div>
                           </div>
             <button class="btn btn-primary services-button">
-              <a href="{% url 'Localisation_App:ServicesDemoPage' %}" class="text-white text-decoration-none fs-4">Click Here</a>
+              {% comment %} <a href="{% url '{{service.Services_links}}' %}" class="text-white text-decoration-none fs-4">View Service Demo</a> {% endcomment %}
+              <a href={{service.Services_links}} class="text-white text-decoration-none fs-4">View Service Demo</a>
             </button>
           </div>
         </div>

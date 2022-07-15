@@ -1,4 +1,5 @@
-{% extends 'Localisation_App/base.html' %} {% load static %}{% block dashboard %}
+{% extends 'Localisation_App/base.html' %} {% block title %} Dashboard
+{%endblock %} {% load static %} {% block dashboard %}
 <html>
   <head>
     <link
@@ -8,53 +9,173 @@
       crossorigin="anonymous"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script>
+      (async () => {
+        const topology = await fetch(
+          "https://code.highcharts.com/mapdata/countries/in/in-all.topo.json"
+        ).then((response) => response.json());
+
+        // Prepare demo data. The data is joined to map using value of 'hc-key'
+        // property by default. See API docs for 'joinBy' for more info on linking
+        // data and map.
+        const data = [
+          ["in-py", 10],
+          ["in-ld", 11],
+          ["in-wb", 12],
+          ["in-or", 13],
+          ["in-br", 14],
+          ["in-sk", 15],
+          ["in-ct", 16],
+          ["in-tn", 17],
+          ["in-mp", 18],
+          ["in-2984", 19],
+          ["in-ga", 20],
+          ["in-nl", 21],
+          ["in-mn", 22],
+          ["in-ar", 23],
+          ["in-mz", 24],
+          ["in-tr", 25],
+          ["in-3464", 26],
+          ["in-dl", 27],
+          ["in-hr", 28],
+          ["in-ch", 29],
+          ["in-hp", 30],
+          ["in-jk", 31],
+          ["in-kl", 32],
+          ["in-ka", 33],
+          ["in-dn", 34],
+          ["in-mh", 35],
+          ["in-as", 36],
+          ["in-ap", 37],
+          ["in-ml", 38],
+          ["in-pb", 39],
+          ["in-rj", 40],
+          ["in-up", 41],
+          ["in-ut", 42],
+          ["in-jh", 43],
+        ];
+
+        // Create the chart
+        Highcharts.mapChart("container", {
+          chart: {
+            map: topology,
+          },
+
+          title: {
+            text: "Translteration Statistics in India ",
+          },
+
+          subtitle: {
+            text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/in/in-all.topo.json">India</a>',
+          },
+
+          mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+              verticalAlign: "bottom",
+            },
+          },
+
+          colorAxis: {
+            min: 0,
+          },
+
+          series: [
+            {
+              data: data,
+              name: "Random data",
+              states: {
+                hover: {
+                  color: "#CABB55",
+                },
+              },
+              dataLabels: {
+                enabled: true,
+                format: "{point.name}",
+              },
+            },
+          ],
+        });
+      })();
+    </script>
   </head>
 
   <body>
     <div class="row" style="text-align: center"><h1>Dashboard</h1></div>
 
-    <!--TOOLS CATEGORY DATASETS SECTION-->
-    <div class="row" style="margin-top: 50px">
-      <!-- <div class="col-sm-2">
+    <div class="row">
+      <div class="col-8">
+        <div id="container"></div>
+      </div>
+      <div class="col-4">other graph</div>
+    </div>
+
+    <div class="row" style="padding: 40px">
+      <div class="col-sm-4">
         <div class="card">
+          <h3 class="Dsh_Heading">Total Tools Downloaded</h3>
+          <hr />
           <div class="card-body">
-            <canvas style="height: 100%" id="Tools"></canvas>
+            <h3>102564</h3>
           </div>
         </div>
-        <h3>TOOLS Category Datasets</h3>
-      </div> -->
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card">
+          <h3 class="Dsh_Heading">Total Resources Downloaded</h3>
+          <hr />
+          <div class="card-body">
+            <h3>102564</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card">
+          <h3 class="Dsh_Heading">Total Websites Translated</h3>
+          <hr />
+          <div class="card-body">
+            <h3>102564</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 50px">
       <div class="col-1"></div>
       <!--GUIDELINES DATASETS SECTION-->
       <div class="col-sm-4">
         <div class="card">
+          <h3 class="Dsh_Heading">GIGW Guidelines</h3>
+          <hr />
           <div class="card-body">
             <canvas style="height: 100%" id="Guidelines"></canvas>
           </div>
-          <hr/>
-          <h3>GIGW Guidelines</h3>
         </div>
-        
       </div>
 
-      <!--RESOURCES DATASETS SECTION  -->
+      <!--SUCCESS STORIES CATEGORY DATASETS SECTION  -->
       <div class="col-sm-4">
         <div class="card">
+          <h3 class="Dsh_Heading">Success Stories Category Datasets</h3>
+          <hr />
           <div class="card-body">
             <canvas style="height: 100%" id="Stories"></canvas>
           </div>
-          <hr/>
-          <h3>Success Stories Category Datasets</h3>
         </div>
       </div>
 
       <!--USER DATASETS SECTION -->
       <div class="col-sm-2">
         <div class="card">
+          <h3 class="Dsh_Heading">User Datasets</h3>
+          <hr />
           <div class="card-body">
             <canvas style="height: 100%" id="User"></canvas>
           </div>
-          <hr/>
-          <h3>User Datasets</h3>
         </div>
       </div>
       <div class="col-1"></div>
@@ -63,50 +184,50 @@
     <div class="row">
       <!--TOOLS DOWNLOAD WITH NAME DATASETS SECTION -->
       <div class="col-1"></div>
-      <div class="col-sm-7">
+      <div class="col-sm-8">
         <div class="card">
+          <h3 class="Dsh_Heading">Tools Download Datasets</h3>
+          <hr />
           <div class="card-body">
             <canvas style="height: 100%" id="toolshit"></canvas>
           </div>
-          <hr/>
-          <h3>Tools Download Datasets</h3>
         </div>
       </div>
 
-      <!--SUCCESS STORIES DATASET SECTION -->
-      <div class="col-sm-3">
+      <!--TOOLS CATEGORY DATASET SECTION -->
+      <div class="col-sm-2">
         <div class="card">
+          <h3 class="Dsh_Heading">Tools Dataset</h3>
+          <hr />
           <div class="card-body">
             <canvas style="height: 100%" id="Tools"></canvas>
           </div>
-          <hr/>
-          <h3>Tools Dataset</h3>
         </div>
       </div>
       <div class="col-1"></div>
     </div>
 
-
     <div class="row">
-      <!--TOOLS DOWNLOAD WITH NAME DATASETS SECTION -->
+      <!--RESOURCES DOWNLOAD WITH NAME DATASETS SECTION -->
       <div class="col-1"></div>
-      <div class="col-sm-7">
+      <div class="col-sm-8">
         <div class="card">
+          <h3 class="Dsh_Heading">Resources Download Datasets</h3>
+          <hr />
           <div class="card-body">
             <canvas style="height: 100%" id="resourceshit"></canvas>
           </div>
-          <hr/>
-          <h3>Resources Download Datasets</h3>
         </div>
       </div>
 
-      <div class="col-sm-3">
+      <!--RESOURCES CATEGORY DATASET SECTION -->
+      <div class="col-sm-2">
         <div class="card">
+          <h3 class="Dsh_Heading">Resources Dataset</h3>
+          <hr />
           <div class="card-body">
             <canvas style="height: 100%" id="Resources"></canvas>
           </div>
-          <hr/>
-          <h3>Resources Dataset</h3>
         </div>
       </div>
       <div class="col-1"></div>
@@ -124,20 +245,35 @@
               datasets: [{
               label: 'Tools hit',
               backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                '#EA6A47',
                 ],
               maxBarThickness:40,
-              hoverBackgroundColor:'rgb(9, 51, 67)',
-              borderColor: 'rgb(242, 184, 48)',
+              hoverBackgroundColor:'#0091D5',
               data: {{toolsHitCount|safe}},}]
+          },
+          options:
+          {
+            indexAxis: 'x',
+         },
+    });
+  </script>
+
+  <!--RESOURCES DOWNLOAD WITH NAME SCRIPT SECTION  -->
+  <script>
+      var ctx = document.getElementById('resourceshit').getContext('2d');
+      var myChart = new Chart(ctx,{
+          type: 'bar',
+          data:
+          {
+              labels: {{resourcesshit_name|safe}},
+              datasets: [{
+              label: 'Resources hit',
+              backgroundColor: [
+              '#484848',
+                ],
+              maxBarThickness:40,
+              hoverBackgroundColor:'#0091D5',
+              data: {{resourcesHitCount|safe}},}]
           },
           options:
           {
@@ -153,52 +289,7 @@
     });
   </script>
 
-
-
-  
-  <!--RESOURCES DOWNLOAD WITH NAME SCRIPT SECTION  -->
-  <script>
-    var ctx = document.getElementById('resourceshit').getContext('2d');
-    var myChart = new Chart(ctx,{
-        type: 'bar',
-        data:
-        {
-            labels: {{resourcesshit_name|safe}},
-            datasets: [{
-            label: 'Tools hit',
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)'
-              ],
-            maxBarThickness:40,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
-            data: {{resourcesHitCount|safe}},}]
-        },
-        options:
-        {
-          indexAxis: 'y',
-          scales: {
-            y: {
-                ticks: {
-                    format: {
-                        style: 'percent'
-                    }
-                }
-            }
-        }
-       },
-  });
-</script>
-
-  <!--SUCCESS STORIES DATASET SCRIPT SECTION-->
+  <!--SUCCESS STORIES CATEGORY DATASET SCRIPT SECTION-->
   <script>
     var ctx = document.getElementById('Stories').getContext('2d');
     var myChart = new Chart(ctx,{
@@ -207,21 +298,12 @@
         data: {
         labels: {{successStories_CategoryData|safe}},
         datasets: [{
-            label: 'Success Stories Dataset',
+            label: 'Success Stories Category Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            '#484848',
             ],
             maxBarThickness:20,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_Stories_PerCategory|safe}},
         }]
     },
@@ -241,13 +323,13 @@
         datasets: [{
             label: 'Tools Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
+            '#1C4E80',
+            '#7E909A',
+            '#EA6A47',
         ],
-            maxBarThickness:10,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
+            maxBarThickness:5,
+            hoverOffset: 4,
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_Tools_PerCategory|safe}},
         }]
     },
@@ -269,13 +351,13 @@
         datasets: [{
             label: 'Resources Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
+            '#1C4E80',
+            '#7E909A',
+            '#EA6A47',
         ],
-            maxBarThickness:10,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
+            maxBarThickness:5,
+            hoverOffset: 4,
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_Resources_PerCategory|safe}},
         }]
     },
@@ -296,11 +378,13 @@
         datasets: [{
             label: 'User Dataset',
             backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            '#1C4E80',
+            '#7E909A',
+            '#EA6A47',
             ],
+            maxBarThickness:5,
             hoverOffset: 4,
+            hoverBackgroundColor:'#0091D5',
             data: {{count_Of_User_PerCategory|safe}},
         }]
     },
@@ -321,13 +405,10 @@
         datasets: [{
             label: 'Guidelines for Indian Govt Websites',
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
+            '#1C4E80'
             ],
             maxBarThickness:20,
-            hoverBackgroundColor:'rgb(9, 51, 67)',
-            borderColor: 'rgb(242, 184, 48)',
+            hoverBackgroundColor:'#0091D5',
             data: {{guidelinesCount_Per_Type|safe}},
         }]
     },

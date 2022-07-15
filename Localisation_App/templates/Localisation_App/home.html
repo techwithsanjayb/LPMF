@@ -1,4 +1,5 @@
-{% extends 'Localisation_App/base.html' %} {% load static %} {% block home %}
+{% extends 'Localisation_App/base.html' %} {% block title %}Home{% endblock %}
+{% load static %} {% block home %}
 
 <!--carousel start-->
 
@@ -63,7 +64,7 @@
           style="
             height: 40px;
             margin-left: -20px;
-            background-color: #ed875c;
+            background-color: #44b5d1dc;
             padding: 5px 0px 2px 10px;
           "
         >
@@ -78,8 +79,14 @@
           >
             <span style="color: grey"></span>
             {% for news in NewsAndEventsData%}
-            <a class="news1" href="{{news.NewsAndEvents_Link }}" target="_blank"
-              >{{ forloop.counter }} . {{ news.NewsAndEvents_HeadingName }}</a
+            <a
+              class="news1"
+              href="{{news.NewsAndEvents_Link }}"
+              target="_blank"
+            >
+            <i class="fa-solid fa-location-arrow"></i>
+              <strong>{{ news.NewsAndEvents_HeadingName }} - </strong>
+               {{news.NewsAndEvents_Discription}}</a
             >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
           </marquee>
         </div>
@@ -123,7 +130,7 @@
     </div>
   </div>
 
-  <div class="container my-3" style="">
+  <div class="container my-3" >
     <div class="services-title">Our Services</div>
     <div class="row">
       <div
@@ -133,12 +140,12 @@
       >
         <div class="icon">
           <img
-            src="{% static './Localisation_App/img/Vector.png' %}"
-            class="d-block w-100"
+            src="{% static './Localisation_App/img/Keyboard1.png' %}"
+            class="d-block w-100  pt-2"
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">{{ Servicesdata.0.Services_Name }}</p>
+        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.0.Services_Name }}</a></p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card2"
@@ -147,12 +154,12 @@
       >
         <div class="icon">
           <img
-            src="{% static './Localisation_App/img/Downloads.png' %}"
+            src="{% static './Localisation_App/img/Go-trans2.png' %}"
             class="d-block w-100"
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">{{ Servicesdata.1.Services_Name }}</p>
+        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.1.Services_Name }}</a></p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card3"
@@ -161,12 +168,12 @@
       >
         <div class="icon">
           <img
-            src="{% static './Localisation_App/img/Portals.png' %}"
+            src="{% static './Localisation_App/img/Go-trans.png' %}"
             class="d-block w-100"
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">{{ Servicesdata.2.Services_Name }}</p>
+        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.2.Services_Name }}</a></p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card4"
@@ -180,11 +187,11 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">{{ Servicesdata.3.Services_Name }}</p>
+        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.3.Services_Name }}</a></p>
       </div>
 
       <button class="aboutus-Button2">
-        <a href="{% url 'Localisation_App:services' %}">Read More</a>
+        <a href="{% url 'Localisation_App:services' %}">More...</a>
       </button>
     </div>
   </div>
@@ -206,64 +213,168 @@
 </div>
 
 <!--Vision end-->
-<!-- Bhashani Section -->
 
-<div class="container-fluid my-4" >
-  <div class="bhashani-title-section">
-    <h1>Bhasha Daan</h1>
-    <p>One Platform, Multiple Crowdsourcing Initiatives</p>
-    <div class="text">Help to build an open repository of data to digitally enrich your language</div>
+<!-- Ulca Section Starts -->
+
+<div class="container-fluid ulca-outer m-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="ulca-main-heading">
+        UNIVERSAL LANGUAGE CONTRIBUTION API
+      </div>
+      <div class="ulca-title">
+        About ULCA
+      </div>
+      <div class="ulca-sub-heading">
+        ULCA is a standard API and open scalable platform for indian language datasets and models.
+      </div>
+    </div>
+    <div class="col">
+
+    </div>
   </div>
-  <div class="row bhasha-main d-flex justify-content-center">
-    <div class="col-lg-2 col-md-6 bhasha-card" style="background-color: #C4D3C7;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/bolo.png' %}" alt="">
-      <p>Enrich your language by donating your voice</p>
-      <div class="participate">
-        Start Participating
+
+ 
+
+<div class="container-fluid">
+  <div class="row m-2">
+    <div class="col-md-12 col-lg-2">
+      <div class="row mb-2">
+        <div class="ulca-box col-sm-12 col-md-12 col-lg-12">
+          <h3>Data Sets</h3>
+          <p>Language Datasets</p>
+          <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/benchmark.png' %}"
+          alt=""
+        />
+          <!-- <img src="benchmark.png" alt=""> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="ulca-box col-md-12">
+          <h3>Data Sets</h3>
+          <p>Language Datasets</p>
+          <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/dataset.png' %}"
+          alt=""
+        />
+          <img src="dataset.png" alt="">
+        </div>
       </div>
     </div>
-    <div class="col-lg-2 col-md-6 bhasha-card" style="background-color: #F3C9B6;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/likho.png' %}" alt="">
-      <p>Enrich your language by translating text</p>
-      <div class="participate">
-        Start Participating
-      </div>
-    </div>
-    <div class="col-lg-2 col-md-6 bhasha-card" style="background-color: #9ED2DF;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/dekho.png' %}" alt="">
-      <p>Enrich your language by typing the text you see</p>
-      <div class="participate">
-        Start Participating
-      </div>
-    </div>
-    <div class="col-lg-2 bhasha-card" style="background-color: #B1B3D0;">
-      <img class="img-fluid" src="{% static './Localisation_App/img/suno.png' %}" alt="">
-      <p>Enrich your language by typing the audio that you hear</p>
-      <div class="participate">
-        Start Participating
+    <div class="col-md-12 col-lg-8">
+      <div class="row m-2 ulca-models">
+        <div class="col-md-12 col-lg-12">
+          <div class="row">
+            <h2 class="text-center ulca-model-title">Models</h2>
+            <p class="text-center">Language Specific Tasks</p>
+          </div>
+          <div class="row m-4">
+            <div class="col-sm-12 col-lg-3 model-card-1 text-center m-2">Translation</div>
+            <div class="col-sm-12 col-lg-3 model-card-2 text-center m-2">OCR</div>
+            <div class="col-sm-12 col-lg-3 model-card-3 text-center m-2">TTS</div>
+            <div class="col-sm-12 col-lg-3 model-card-4 text-center m-2">ASR</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+</div>
+
+
+<!-- Ulca Section Ends -->
+
+<!-- Bhashani Section -->
+
+<div class="container-fluid my-5">
+  <div class="bhashani-title-section">
+    <h1>Bhasha Daan</h1>
+    <p>One Platform, Multiple Crowdsourcing Initiatives</p>
+    <div class="text">
+      Help to build an open repository of data to digitally enrich your language
+    </div>
+  </div>
+  <div class="row bhasha-main d-flex justify-content-center">
+    <div
+      class="col-lg-2 col-md-6 bhasha-card"
+      style="background-color: #c4d3c7"
+    >
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/bolo.png' %}"
+        alt=""
+      />
+      <p>Enrich your language by donating your voice</p>
+      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/bolo-india" target="_blank">Start Participating</a></div>
+    </div>
+    <div
+      class="col-lg-2 col-md-6 bhasha-card"
+      style="background-color: #f3c9b6"
+    >
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/likho.png' %}"
+        alt=""
+      />
+      <p>Enrich your language by translating text</p>
+      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/likho-india" target="_blank">Start Participating</a></div>
+    </div>
+    <div
+      class="col-lg-2 col-md-6 bhasha-card"
+      style="background-color: #9ed2df"
+    >
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/dekho.png' %}"
+        alt=""
+      />
+      <p>Enrich your language by typing the text you see</p>
+      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/dekho-india" target="_blank">Start Participating</a></div>
+    </div>
+    <div class="col-lg-2 bhasha-card" style="background-color: #b1b3d0">
+      <img
+        class="img-fluid"
+        src="{% static './Localisation_App/img/suno.png' %}"
+        alt=""
+      />
+      <p>Enrich your language by typing the audio that you hear</p>
+      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/suno-india" target="_blank">Start Participating</a></div>
+    </div>
+  </div>
+</div>
+
 <!-- Bhashini Section End-->
+
+
 <!--Vision start-->
 
 <div style="width: 100%">
   <div class="show-section">
     <div class="row">
       <div class="col-2">
-        <img class="img-fluid" src="{% static './Localisation_App/img/services-page.jpg' %}" style="height:200px;width: 200px;" alt="">
+        <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/services-page.jpg' %}"
+          style="height: 200px; width: 200px"
+          alt=""
+        />
       </div>
       <div class="col-10">
-        <div class="show-section-para" data-aos="zoom-in" data-aos-duration="1200">
-          Relevant standards, best practices, tools and technologies for realizing the dream of localizing all the citizen services in regional languages.
+        <div
+          class="show-section-para"
+          data-aos="zoom-in"
+          data-aos-duration="1200"
+        >
+          Relevant standards, best practices, tools and technologies for
+          realizing the dream of localizing all the citizen services in regional
+          languages.
         </div>
-        
       </div>
     </div>
-    
-   
   </div>
 </div>
 
@@ -282,14 +393,14 @@
     >
   </div>
   <div class="succ-subheader">
-    Know all our successfull Integration of locaisation services and tools over
+    Know all our successfull Integration of localisation services and tools over
     different portals.
   </div>
   <div class="row px-4">
     <div class="col-sm-12 col-lg-6 d-flex justify-content-center">
       <img
         class="img-fluid"
-        src="{% static './Localisation_App/img/Success-33.jpg' %}"
+        src="{% static './Localisation_App/img/successStories1.png' %}"
         alt=""
       />
     </div>
@@ -310,10 +421,10 @@
           </p>
           <!-- <div class="succ-link">Know More</div> -->
           <div class="succ-link">
-            <i
+            <a href="{% url 'Localisation_App:successstoryPage' %}"><i
               class="fa fa-arrow-circle-right"
               style="font-size: 36px; color: #023047"
-            ></i>
+            ></i></a>
           </div>
         </div>
       </div>
@@ -326,10 +437,10 @@
             different portals..
           </p>
           <div class="succ-link">
-            <i
+            <a href="{% url 'Localisation_App:successstoryPage' %}"><i
               class="fa fa-arrow-circle-right"
               style="font-size: 36px; color: #023047"
-            ></i>
+            ></i></a>
           </div>
         </div>
         <div class="col-1"></div>
@@ -357,10 +468,10 @@
             different portals..
           </p>
           <div class="succ-link">
-            <i
+            <a href="{% url 'Localisation_App:successstoryPage' %}"><i
               class="fa fa-arrow-circle-right"
               style="font-size: 36px; color: #023047"
-            ></i>
+            ></i></a>
           </div>
         </div>
       </div>
@@ -412,7 +523,7 @@
           <img src="{% static './Localisation_App/img/cost.png' %}" class="test" alt="..." />
         </div> -->
       <div class="estimate-cost-button">
-        <a href="{% url 'Localisation_App:translation_quote' %}">Calculate</a>
+        <a href="{% url 'Localisation_App:translation_quote' %}">Enter URL</a>
       </div>
     </div>
   </div>

@@ -91,6 +91,11 @@
     text-align: center;
     border-radius: 10px;
 }
+
+.bhasha-card .participate a{
+    color: white;
+    text-decoration: none;
+}
 .first .bhasha-card:nth-child(even){
     background-color: pink;
 }
@@ -117,6 +122,7 @@
     text-align: center;
     font-weight: 500;
     margin-bottom: 40px;
+    margin-top: 20px;
 }
 
 .succ-img {
@@ -240,27 +246,45 @@
 /* success Story New Section End */
 
 .sticky-button {
-    width: 60px;
-    height: 130px;
+    width: 40px;
+    height: 40px;
     background-color: #3d55aa;
-    position: relative;
+    overflow: hidden;
     position: fixed;
     top: 30%;
     right: 0;
-    -webkit-transform: translateY(50%);
-    -ms-transform: translateY(50%);
-    transform: translateY(10%);
-
-    padding: 20px 20px 20px 0px;
+    border:1px solid grey;
+    border-radius: 10px;
 }
+.sticky-button:hover {
+    width: 220px;    
+}
+.sticky-button-2 {
+    width:40px;
+    height: 40px;
+    background-color: #11384e;
+    overflow: hidden;
+    position: fixed;
+    top: 35%;
+    right: 0;
+    border:1px solid grey;
+    border-radius: 10px;
+}
+.sticky-button-2:hover {
+    width: 220px;    
+}
+.sticky-button-2 a {
+    font-weight: 600;
+}
+
 
 .sticky-button a {
     font-weight: 600;
 }
 
-.sticky-button:hover {
+/* .sticky-button:hover {
     animation: square-to-circle 2.5s .5s infinite cubic-bezier(1, .015, .295, 1.225) alternate-reverse;
-}
+} */
 
 @keyframes square-to-circle {
     0% {
@@ -295,15 +319,55 @@
 }
 
 .sticky-button a {
-    writing-mode: vertical-rl;
-    white-space: wrap;
-    transform: rotate(180deg);
+    /* writing-mode: vertical-rl; */
+    /* white-space: wrap;
+    transform: rotate(180deg); */
     text-align: center;
     text-decoration: none;
     color: #ffffff;
     font-size: 18px;
+    padding-left: 10px;
 
 }
+
+.sticky-button-2 a {
+    /* writing-mode: vertical-rl;
+    white-space: wrap;
+    transform: rotate(180deg); */
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.sticky-button-3 {
+    width: 40px;
+    height: 40px;
+    background-color: #1e6a8d;
+    overflow: hidden;
+    position: fixed;
+    top: 40%;
+    right: 0;
+    border:1px solid grey;
+    border-radius: 10px;
+}
+.sticky-button-3:hover {
+    width: 220px;    
+}
+.sticky-button-3 a {
+    font-weight: 600;
+}
+
+.sticky-button-3 a {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    padding-left: 10px;
+
+}
+
 
 /* End Stcky Button */
 
@@ -563,6 +627,7 @@
 
 .aboutUs-para {
     margin-top: 30px;
+    margin-right:40px;
     text-align: justify;
     font-style: normal;
     font-weight: 500;
@@ -586,13 +651,13 @@
 }
 
 .aboutUs-section-para {
-    margin-top: -30px;
+    margin-top: 10px;
     text-align: justify;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 40px;
-    padding-right: 20px;
+    padding-right: 50px;
     /* or 210% */
     letter-spacing: 0.5px;
     color: #6B6A6A;
@@ -614,12 +679,12 @@
 }
 
 .aboutus-Button2 {
-    width: 140px;
-    height: 49px;
+    width: 120px;
+    height: 45px;
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 1170px;
+    margin-left: 1250px;
     font-weight: 600;
     font-size: 20px;
     margin-top: 20px;
@@ -726,15 +791,23 @@
     color: #4E4C4C;
 }
 
+.card-description a {
+    
+    color: #4E4C4C;
+}
+
+
 .icon {
     height: 70px;
     width: 70px;
-    padding: 10px;
+    padding-top:10px;
     border-radius: 50px;
-    background-color: #FFB703;
+    background-color: #F5AE59;
+    padding:10px;
     margin-left: 80px;
     margin-top: 10px;
 }
+
 
 
 /* Counter Section End */
@@ -1051,14 +1124,16 @@
 
 .footer-right {
     padding: 30px 0px 0px 70px;
-    width: 300px;
+    width: 320px;
     /* background-color: rgb(1, 118, 50); */
 }
 
 .footer-right a {
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
     color: white;
+    /* letter-spacing: 1px; */
+    padding-left:4px;
 }
 
 .footer-right a:hover {
@@ -1071,10 +1146,12 @@
 }
 .footer-right >ul >li{
     line-height: 30px;
-    font-size: 16px;
+    font-size: 20px;
     /* cursor: pointer; */
 }
-
+.footer-right >ul >li a{
+    font-size: 16px;
+}
 .copyright-section {
     margin-top: -10px;
     text-align: center;
@@ -1109,8 +1186,15 @@
 }
 
 .line {
-    margin-left: -40px;
-    width: 700px;
+    margin-left: -20px;
+    width: 730px;
+}
+
+.navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
+    display:block;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s linear;
 }
 
 
@@ -1143,6 +1227,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -1255,6 +1340,12 @@
         margin-left: 7px;
         text-align: center;
         letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+
+    .card-description a {
+    
         color: #4E4C4C;
     }
 
@@ -1451,6 +1542,7 @@
     .footer-left a {
         text-decoration: none;
         color: white;
+        padding-left: 2px;
     }
 
     .footer-left a:hover {
@@ -1543,6 +1635,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -1640,6 +1733,11 @@
         margin-left: 7px;
         text-align: center;
         letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+
+    .card-description a {
+    
         color: #4E4C4C;
     }
 
@@ -1899,6 +1997,7 @@
 
     .aboutUs-para {
         margin-top: 30px;
+        margin-right:45px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -2068,6 +2167,10 @@
         letter-spacing: -0.015em;
         color: #4E4C4C;
     }
+    .card-description a {
+    
+        color: #4E4C4C;
+    }
 
     .icon {
         height: 100px;
@@ -2194,6 +2297,7 @@
     .aboutUs-para {
         margin-top: 30px;
         text-align: center;
+        margin-right:45px;
         font-style: normal;
         font-weight: 500;
         font-size: 40px;
@@ -2461,6 +2565,10 @@
         margin-left: 7px;
         text-align: center;
         letter-spacing: -0.015em;
+        color: #4E4C4C;
+    }
+    .card-description a {
+    
         color: #4E4C4C;
     }
 
