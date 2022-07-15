@@ -2,11 +2,9 @@ from pyexpat import model
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.core.validators import RegexValidator
-from django.forms import CharField, ChoiceField, DateField
-from datetime import date
+from django.forms import CharField
 from django.template.defaultfilters import slugify  # new
 from django.urls import reverse
-from django.conf import settings
 
 # Create your models here.
 
@@ -233,7 +231,7 @@ class ResourceData(models.Model):
 
 class NewsAndEvents(models.Model):
     NewsAndEvents_HeadingName = models.CharField(max_length=100)
-    NewsAndEvents_Discription = models.CharField(max_length=5000, null=True)
+    NewsAndEvents_Discription = models.CharField(max_length=5000)
     NewsAndEvents_CreationDate = models.DateTimeField(
         auto_now=True,  blank=True)
     NewsAndEvents_UpdatedDate = models.DateTimeField(
@@ -347,20 +345,20 @@ class Contact(models.Model):
         return self.option
 
 
-# class User(models.Model):
-#     name = models.CharField(max_length=30)
-#     email = models.EmailField(max_length=60, default=None)
-#     password = models.CharField(max_length=300)
-#     Confirm_password = models.CharField(max_length=300)
-#     phone = models.IntegerField(default=None)
-#     date = models.DateField(auto_now=True, blank=True, null=True)
+class User(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=60, default=None)
+    password = models.CharField(max_length=300)
+    Confirm_password = models.CharField(max_length=300)
+    phone = models.IntegerField(default=None)
+    date = models.DateField(auto_now=True, blank=True, null=True)
 
-#     class Meta:
-#         verbose_name_plural = "User"
-#         ordering = ['name']
+    class Meta:
+        verbose_name_plural = "User"
+        ordering = ['name']
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 
 class CarouselData(models.Model):
@@ -419,7 +417,23 @@ class UserRegistration(models.Model):
         ordering = ['userregistration_first_name']
 
     def __str__(self):
-        return self.userregistration_username
+        return self.userregistration_first_name + " " + self.userregistration_last_name
+
+
+# translation quote
+
+class TranslationQuote(models.Model):
+    url = models.URLField(max_length=200)
+    language = models.CharField(max_length=200)
+    website_type = models.CharField(max_length=200, null=True)
+    delivery_date = models.DateField(max_length=200, null=True)
+
+    class Meta:
+        verbose_name_plural = "Translation Quote"
+        ordering = ['url']
+
+    def __str__(self):
+        return self.url
 
 
 class GuidelinceForIndianGovWebsite(models.Model):
@@ -453,43 +467,6 @@ class EmpanelledAgenciesEmail(models.Model):
 
     def __str__(self):
         return self.email
- # translation quote
-
-    
-# translation quote
-class TranslationQuote(models.Model):
-    # Client side Field
-    url = models.URLField(max_length=200)
-    company_email = models.EmailField(max_length=254, null=True)
-    language = models.CharField(max_length=200, null=True)
-    domain = models.CharField(max_length=200, null=True)
-    delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
-    client_remark = models.TextField(max_length=50, null=True)
-    
-    #  client field not comming from form
-    submission_date = models.DateField(default=date.today)
-    application_number = models.CharField(max_length=50, null=True)
-    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-
-    #  Admin side field
-    total_words = models.IntegerField(null=True)
-    total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True)
-    translation_delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
-    quotation_generated_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
-    
-    status_choice = [('PENDING','PENDING'),('INPROCESS','INPROCESS')]
-    status = models.CharField(choices=status_choice, default='PENDING', max_length=50, null=True)
-    admin_remark = models.TextField( max_length=50, null=True)
-    
-
-    class Meta:
-        verbose_name_plural = "Translation Quote"
-        ordering = ['url']
-
-    def __str__(self):
-        return self.url
-    
-
 
 
 
