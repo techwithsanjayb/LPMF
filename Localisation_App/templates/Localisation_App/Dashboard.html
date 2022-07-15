@@ -142,6 +142,13 @@
           options:
           {
             indexAxis: 'y',
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        precision: 0
+                    }
+                }]
+            }
          },
     });
   </script>
@@ -178,6 +185,15 @@
         options:
         {
           indexAxis: 'y',
+          scales: {
+            y: {
+                ticks: {
+                    format: {
+                        style: 'percent'
+                    }
+                }
+            }
+        }
        },
   });
 </script>
