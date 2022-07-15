@@ -226,10 +226,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # print(BASE_DIR)
 
 
-SERVER_EMAIL = 'tanvip@cdac.in'
+SERVER_EMAIL = 'pshweta@cdac.in'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.cdac.in'
-EMAIL_HOST_PASSWORD = ''  # please enter password
+EMAIL_HOST_PASSWORD = '**'  # please enter password
 EMAIL_HOST_USER = SERVER_EMAIL
 EMAIL_PORT = 587
 # EMAIL_USE_TLS = True

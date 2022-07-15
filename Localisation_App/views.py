@@ -21,15 +21,18 @@ from datetime import date, datetime
 from .helpers import send_forget_password_email
 import json
 from bson import json_util
+from django.urls import resolve
 import uuid
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 import logging
 from datetime import date
 logger = logging.getLogger('django')
 global str_num
 
 # Menu
-
+global url
 
 def topmenu(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -52,13 +55,14 @@ def Test(request):
 
 
 def Home(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     articleData = Article.objects.all()
     successStoriesData = SuccessStories.objects.all()
     servicesdata = Services.objects.all()
     newsAndEventsData = NewsAndEvents.objects.all()
-
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -73,6 +77,8 @@ def Home(request):
 
 
 def aboutus(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     print("hello")
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -90,9 +96,16 @@ def aboutus(request):
 
 
 def toolsPage(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tools_Data = ToolsData.objects.all()
+    # print("toolsdata",tools_Data['get_ResourcesData_slug_splited'])
+    # for d in tools_Data:
+    #     print("data",d['get_ToolsData_slug_splited'])
+    
+    
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
     toolsCategory_data = Tools_Category.objects.all()
     count = ToolsData.objects.all().count()
@@ -119,6 +132,8 @@ def toolsPage(request):
 
 
 def tools(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -242,7 +257,8 @@ def tools(request):
 
 
 def toolsSearch(request, tools_title):
-
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     tools_searchData = tools_title.replace(" ", "-")
     print("titlenone", tools_title)
     print("replace space ", tools_title.replace(" ", "-"))
@@ -339,6 +355,8 @@ def toolsSearch(request, tools_title):
 
 
 def toolsReset(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tools_Data = ToolsData.objects.all()
@@ -365,6 +383,8 @@ def toolsReset(request):
 
 
 def toolsDownloadCounter(request, id):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     print("requestid", id)
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     ip = ''
@@ -580,6 +600,8 @@ def toolsDownloadCounter(request, id):
 
 
 def resourcesPage(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     resoucesCategory_data = Resources_Category.objects.all()
@@ -605,6 +627,8 @@ def resourcesPage(request):
 
 
 def resources(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -728,7 +752,8 @@ def resources(request):
 
 
 def resourceSearch(request, resource_title):
-
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     resource_searchData = resource_title.replace(" ", "-")
     print("titlenone", resource_title)
     print("replace space ", resource_title.replace(" ", "-"))
@@ -823,6 +848,8 @@ def resourceSearch(request, resource_title):
 
 
 def resourcesReset(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     resources_Data = ResourceData.objects.all()
@@ -849,6 +876,8 @@ def resourcesReset(request):
 
 
 def resourceDownloadCounter(request, id):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     print("session time",)
     print("requestid", id)
     print("inside herehelloooooo")
@@ -952,6 +981,8 @@ def resourceDownloadCounter(request, id):
 
 # Successstory Page
 def successstoryPage(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
@@ -980,6 +1011,8 @@ def successstoryPage(request):
 
 
 def successstory(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -1110,14 +1143,11 @@ def successstory(request):
 
 
 def successstorySearch(request, story_title):
-    
-    
-     
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     story_searchData=story_title.replace(" ", "-")
     print("titlenone", story_title)
     print("replace space ",story_title.replace(" ", "-"))
-    
-    
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1210,6 +1240,8 @@ def successstorySearch(request, story_title):
 
 
 def successstoryReset(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
@@ -1238,6 +1270,8 @@ def successstoryReset(request):
 
 # Services Page
 def services(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     tTS_Form = TTSservice()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1252,6 +1286,8 @@ def services(request):
 
 
 def ServicesDemoPage(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     tTS_Form = TTSservice()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1265,6 +1301,8 @@ def ServicesDemoPage(request):
 
 
 def srvEnableTyping(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == "POST":
@@ -1275,12 +1313,16 @@ def srvEnableTyping(request):
 
 
 def srvGoTranslateWebLocalizer(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     return render(request, 'Localisation_App/ServicesDemoPage.html')
 
 
 def srvOnscreenKeyboard(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == "POST":
@@ -1303,6 +1345,8 @@ def srvOnscreenKeyboard(request):
 
 
 def srvTTS(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tTS_Form = TTSservice()
@@ -1350,6 +1394,8 @@ def srvTTS(request):
 
 
 def srvTransliteration(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == "POST":
@@ -1373,6 +1419,8 @@ def srvTransliteration(request):
 
 # Faqs Page
 def faqs(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     faqs_data = FAQs.objects.all()
@@ -1386,6 +1434,8 @@ def faqs(request):
 
 
 def faqsSearch(request, faq_title):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     print("titlenone", faq_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1427,6 +1477,8 @@ def faqsSearch(request, faq_title):
 
 # Terms And Conditions
 def termsandcondition(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_data = Footer_Links.objects.get(
@@ -1444,6 +1496,8 @@ def termsandcondition(request):
 
 
 def accessibilityStatement(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_data = Footer_Links.objects.get(
@@ -1459,6 +1513,8 @@ def accessibilityStatement(request):
 
 
 def websitepolicy(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1478,6 +1534,8 @@ def websitepolicy(request):
 
 
 def websitepolicydata(request, id):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     print("id : ", id)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1497,6 +1555,8 @@ def websitepolicydata(request, id):
 
 
 def sitemap(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_data = Footer_Links.objects.get(
@@ -1512,6 +1572,8 @@ def sitemap(request):
 
 
 def helpData(request, id):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     print("id : ", id)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1531,6 +1593,8 @@ def helpData(request, id):
 
 
 def help(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1548,6 +1612,8 @@ def help(request):
 
 
 def contactus(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     logger.info("INSIDE views of Contact us ")
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1568,6 +1634,8 @@ def contactus(request):
 
 
 def submit(request, img):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     if request.method == "POST":
         name = request.POST.get("name")
         captcha = request.POST.get("captcha")
@@ -1630,8 +1698,11 @@ def Register_user(request):
     return render(request, 'Localisation_App/register.html', context)
 
 
+
+
 def login_user(request):
     form = UserLoginForm()
+    url= request.session.get('requested_url')
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == 'POST':
@@ -1645,27 +1716,16 @@ def login_user(request):
             print("if form is valid")
             user = authenticate(username=username, password=password)
             if user is not None:
+                print("second method called")
                 login(request, user)
-                return redirect('/')
+                return redirect('Localisation_App:'+url)
             else:
-                messages.error(
-                    request, 'Error Processing Your Request,Wrong Username or password')
-                context = {
-                    'topmenus': TopMenuItemsdata,
-                    'FooterMenuItemsdata': FooterMenuItemsdata,
-                    'form': UserLoginForm()
-                }
-                return render(request, 'Localisation_App/login.html', context)
+                messages.error(request, 'Wrong Username or password')
+                return redirect('Localisation_App:login')
 
         else:
-            messages.error(request, 'Error Processing Your Request')
-            context = {
-                'topmenus': TopMenuItemsdata,
-                'FooterMenuItemsdata': FooterMenuItemsdata,
-                'form': UserLoginForm()
-            }
-            print("else")
-            return render(request, 'Localisation_App/login.html', context)
+            messages.error(request, 'Error Processing Your Request,Wrong Username or password ')
+            return redirect('Localisation_App:login')
     else:
         context = {
             'topmenus': TopMenuItemsdata,
@@ -1689,8 +1749,7 @@ def logout_user(request):
 
 def changePassword(request, token):
     form = UserChangePasswordForm()
-    user_Profile_obj = UserRegistration.objects.get(
-        userregistration_token=token)
+    user_Profile_obj = UserRegistration.objects.get(userregistration_token=token)
     if user_Profile_obj is not None:
         print("inside change padsword", user_Profile_obj.pk)
         if request.method == 'POST':
@@ -1702,8 +1761,8 @@ def changePassword(request, token):
                 user_id = request.POST.get('user_id')
                 if password1 == password2:
                     if user_id is None:
-                        messages.success(request, 'User Not Found')
-                        return redirect('Localisation_App:forgetPassword')
+                        messages.error(request, 'User Not Found')
+                        return redirect('http://127.0.0.1:5555/changePassword/'+token)
                     else:
                         user_Register_obj = UserRegistration.objects.get(
                             pk=user_id)
@@ -1715,25 +1774,27 @@ def changePassword(request, token):
                             username=user_Profile_obj.userregistration_username)
                         user_main_obj.set_password(password1)
                         user_main_obj.save()
-
+                        messages.success(request, 'Password Reset Successfully')
                         print('Password Reset Successfully ')
-                        return redirect('Localisation_App:forgetPassword')
+                        return redirect('http://127.0.0.1:5555/changePassword/'+token)
                 else:
-                    messages.success(request, 'Passwords are not matching')
-                    return redirect('Localisation_App:forgetPassword')
+                    messages.error(request, 'Passwords are not matching')
+                    return redirect('http://127.0.0.1:5555/changePassword/'+token)
             else:
-                messages.success(request, 'Data is not valid')
-                return redirect('Localisation_App:forgetPassword')
-        user_id = user_Profile_obj.pk
-        context = {
-            'form': form,
-            'User_Id': user_id
-        }
-        return render(request, 'Localisation_App/changePassword.html', context)
+                messages.error(request, 'Data is not valid')
+                return redirect('http://127.0.0.1:5555/changePassword/'+token)
+        else:
+            user_id = user_Profile_obj.pk
+            context = {
+                'form': form,
+                'User_Id': user_id
+            }
+            messages.error(request, '')
+            return render(request, 'Localisation_App/changePassword.html', context)
     else:
         messages.success(request, 'User Not Found')
         print('User Not Found')
-        return redirect('Localisation_App:forgetPassword')
+        return redirect('http://127.0.0.1:5555/changePassword/'+token)
 
 
 def forgetPassword(request):
@@ -1745,29 +1806,37 @@ def forgetPassword(request):
                 print('insideValidmethod')
                 username = form.cleaned_data['username']
                 if not User.objects.filter(username=username).first():
-                    messages.success(
+                    messages.error(
                         request, 'No user found with this username')
                     print('No user found with this username')
                     return redirect('Localisation_App:forgetPassword')
-                user_obj = User.objects.get(username=username)
-                token = str(uuid.uuid4())
-                user_Profile_obj = UserRegistration.objects.get(
-                    userregistration_username=username)
-                user_Profile_obj.userregistration_token = token
-                user_Profile_obj.save()
-                send_forget_password_email(
-                    user_Profile_obj.userregistration_email_field, token)
-                print("userdata", user_obj)
-
-                messages.success(request, 'An email is sent')
-                print('An email is sent')
-                context = {
-                    'form': form
-                }
-                return redirect('Localisation_App:forgetPassword', context)
-
+                else :
+                    print('user is not none')
+                    user_obj = User.objects.get(username=username)
+                    token = str(uuid.uuid4())
+                    user_Profile_obj = UserRegistration.objects.get(
+                        userregistration_username=username)
+                    user_Profile_obj.userregistration_token = token
+                    user_Profile_obj.save()
+                    
+                    mail_send_status=send_forget_password_email(
+                        user_Profile_obj.userregistration_email_field, token)
+                    print("userdata", user_obj)
+                    print("mail_send_status",mail_send_status)
+                    if mail_send_status:
+                        messages.success(request, 'An email is sent on your registered Email-Id')
+                        print('An email is sent')
+                        return redirect('Localisation_App:forgetPassword')
+                    else:
+                        messages.error(request, 'Failed to send sn email')
+                        print('Failed to send sn email')
+                        return redirect('Localisation_App:forgetPassword')
+            else:
+                messages.error(request, 'Data is not valid')
+                return redirect('Localisation_App:forgetPassword')
     except Exception as e:
         print(e)
+    messages.error(request, '')
     context = {
         'form': form
     }
@@ -1775,6 +1844,8 @@ def forgetPassword(request):
 
 
 def goTranslate(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     context = {
@@ -1786,6 +1857,8 @@ def goTranslate(request):
 
 
 def dashboard(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStoriescategory_name = []
@@ -1928,6 +2001,8 @@ def dashboard(request):
 # Translation Quote
 @login_required()
 def translation_quote(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
 
@@ -2029,6 +2104,8 @@ def translation_quote(request):
 
 
 def dashboard2(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     SuccessStoriescategory_name = []
     countOfStoriesWithCategory = []
     successStories_CategoryData = SuccessStories_Category.objects.all()
@@ -2144,6 +2221,8 @@ def dashboard2(request):
 
 
 def machine_translation(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
     context = {
@@ -2156,6 +2235,8 @@ def machine_translation(request):
 
 
 def name_matcher(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
     context = {
@@ -2169,6 +2250,8 @@ def name_matcher(request):
 
 
 def empanelled_agencies(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url']=url
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
 
