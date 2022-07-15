@@ -1,25 +1,23 @@
 {% extends 'Localisation_App/base.html' %} {% block title %}Machine Translation Service{% endblock %} {% load static %} {% block machine_translation %}
 <div class="container card mb-5">
   <form>
-    <h2 class="card-title text-dark">Machine Translation</h2>
+    {% comment %} <h2 class="card-title text-dark">GIST Translation System</h2> {% endcomment %}
     <div class="card-body">
       <div class="row">
-        <div class="row pb-2">
-          <p style="background-color: #f5e8a8" class="py-2 rounded-3 px-4">
-            The process of automatically translating content form one language
-            (the source) to another (the target) without any human input. Cdac
-            machine translation service converts content of various domain form
-            english to hindi.
+        <div class="row pb-2 border rounded-2" style="background-color:yellow">
+          <h3 class="text-dark text-center pt-2" >GIST Translation System</h3>
+          <p style="background-color: #f5e8a8" class="py-2 rounded-3 px-4 fs-6">
+            "GIST Translation System", which enables automated translations of the text from one language to another language. This engine is designed using Deep Learning (Neural Machine Translation) techniques and has been trained on data from generic domains. Since the engine is trained on generic data, the output accuracy is by and large good but may not be highly accurate as may be desired. It is thus expected that the User would use this system to get the translations out of the engine and correct the same wherever required.
           </p>
         </div>
         <div class="row border p-4 rounded-2">
             {% comment %} <div class="text-center pb-2"><h4>Demonstration Area</h4></div> {% endcomment %}
             <div class="col-4 pb-4 text-center">
-                <h6 style="background-color:#219EBC" class="py-2 rounded-2 text-white">Input(loaded file or copy-paste content)</h6>
+                <h6 style="background-color:#219EBC" class="py-2 rounded-2 text-white">Input(Loaded File or Copy-paste Content)</h6>
             </div>
             <div class="row pb-4">
                 {% comment %} <div class="col-6"> {% endcomment %}
-                      <span><span class="px-2 font-weight-bold">Select a newline separated English text file</span>
+                      <span><span class="px-2">Select a newline separated English text file</span>
                 {% comment %} </div> {% endcomment %}
                 {% comment %} <div class="col-4"> {% endcomment %}
                  
@@ -50,7 +48,7 @@
               <button
                 type="submit"
                 class="text-white px-3 py-2 rounded-2 border-none"
-                style="width: 100px; background-color:#697beb; border:none;"
+                style="width: 100px; background-color:#219EBC; border:none;"
               >
                 Submit
               </button>
@@ -73,7 +71,7 @@
                 id="download"
                 type="button"
                 name="download"
-                value="download"
+                value="Download"
                 onclick="downloadCSV();"
                 class="text-white px-3 py-2 rounded-2"
                 style="background-color:#219EBC; border:none;"

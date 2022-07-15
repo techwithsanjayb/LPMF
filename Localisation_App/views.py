@@ -20,9 +20,12 @@ from datetime import datetime
 from .helpers import send_forget_password_email
 import json
 from bson import json_util
+import uuid
+from django.contrib.auth.decorators import login_required
 import logging
 logger = logging.getLogger('django')
 global str_num
+
 # Menu
 
 
@@ -1336,7 +1339,7 @@ def srvTTS(request):
                     'FooterMenuItemsdata': FooterMenuItemsdata,
                 }
                 print("returned")
-                return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+                return render(request, 'Localisation_App/ttsService.html', context)
 
     context = {
         "service": "srvTTS",
@@ -1346,7 +1349,7 @@ def srvTTS(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
         "DIVTITLE": "HELLO"
     }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+    return render(request, 'Localisation_App/ttsService.html', context)
 
 
 def srvTransliteration(request):
@@ -1368,7 +1371,7 @@ def srvTransliteration(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
 
     }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+    return render(request, 'Localisation_App/transliteration_modal.html', context)
 
 
 # Faqs Page
@@ -1926,6 +1929,7 @@ def dashboard(request):
 
 
 # Translation Quote
+@login_required()
 def translation_quote(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1972,12 +1976,16 @@ def translation_quote(request):
 
     form = TranslationQuoteForm()
     context['form'] = form
+    
+    
 
     if request.method == 'POST':
         url = request.POST.get('url')
+        company_email = request.POST.get('company_email')
         language = request.POST.get('language')
-        website_type = request.POST.get('website_type')
+        domain = request.POST.get('domain')
         delivery_date = request.POST.get('delivery_date')
+        client_remark = request.POST.get('client_remark')
 
         form = TranslationQuoteForm(request.POST)
 
@@ -1986,12 +1994,24 @@ def translation_quote(request):
         if form.is_valid():
             print("validation success")
             print(form.cleaned_data['url'])
+            print(form.cleaned_data['company_email'])
             print(form.cleaned_data['language'])
-            print(form.cleaned_data['website_type'])
+            print(form.cleaned_data['domain'])
             print(form.cleaned_data['delivery_date'])
+            print(form.cleaned_data['client_remark'])
+            
+            # generate application number (UNIQUE)
+            # 
+            application_number = uuid.uuid4().hex[:10].upper()
+            print("application ", application_number)
+            
+            # add user 
+            current_user = request.user
+
+            print(current_user)
 
             data = TranslationQuote(
-                url=url, language=language, website_type=website_type, delivery_date=delivery_date)
+                url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark,application_number=application_number, username=current_user)
             data.save()
             context['status'] = 'success'
             context['message'] = "Form submitted successfully"
