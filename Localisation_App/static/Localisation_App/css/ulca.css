@@ -1,0 +1,99 @@
+.ulca-outer{
+
+    background: url("../../../static/Localisation_App/img/Ulca.png");
+    /* background-image: url('./Ulca.png'); */
+    background-size: cover;
+}
+.ulca-main-heading{
+    text-align: center;
+    font-size: 32px;
+    color:#505399;
+}
+
+.ulca-title{
+    text-align: center;
+    font-weight: 700;
+    font-size: 60px;
+}
+.ulca-sub-heading{
+    text-align: center;
+    font-size: 20px;
+    color:#424242;
+}
+
+/* .ulca-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-content: center;
+} */
+.ulca-box{
+     /* height:150px; */
+    padding: 10px; 
+    border:4px solid #B1B3D0;
+    border-radius:10px;
+    text-align: center;
+    /* background-color: red; */
+}
+.ulca-box h3{
+    font-weight: 600;
+}
+.ulca-box p{
+    margin-top: -10px;
+    /* font-family: 'Poppins', sans-serif; */
+    /* margin-bottom: -3px; */
+}
+.ulca-model-title{
+    font-weight: 600;
+}
+
+.ulca-models{
+    height:auto;
+    width:auto;
+    border:4px solid #B1B3D0;
+    border-radius:10px;
+    padding-left: 40px;
+}
+.ulca-models p{
+    margin-top: -10px;
+}
+
+.model-card-1{
+    height:150px;
+    width:250px !important;
+    background-color: #505399;
+    margin-left: 10px;
+    font-size: 32px;
+    padding-top:40px;
+    font-weight: 600;
+}
+.model-card-2{
+    height:150px;
+    width:250px !important;
+    background-color: #EA865B;
+    margin-left: 10px;
+    font-size: 32px;
+    padding-top:40px;
+    font-weight: 600;
+}
+
+.model-card-3{
+    height:150px;
+    width:250px !important;
+    background-color: #FEB603;
+    margin-left: 10px;
+    font-size: 32px;
+    padding-top:40px;
+    font-weight: 600;
+}
+
+.model-card-4{
+    height:150px;
+    width:250px !important;
+    background-color: #219EBB;
+    margin-left: 10px;
+    font-size: 32px;
+    padding-top:40px;
+    font-weight: 600;
+}
+
