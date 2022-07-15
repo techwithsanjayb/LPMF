@@ -1787,7 +1787,8 @@ def changePassword(request, token):
                 'form': form,
                 'User_Id': user_id
             }
-            return render('http://127.0.0.1:5555/changePassword/'+token)
+            messages.error(request, '')
+            return render(request, 'Localisation_App/changePassword.html', context)
     else:
         messages.success(request, 'User Not Found')
         print('User Not Found')
@@ -1821,7 +1822,7 @@ def forgetPassword(request):
                     print("userdata", user_obj)
                     print("mail_send_status",mail_send_status)
                     if mail_send_status:
-                        messages.success(request, 'An email is sent')
+                        messages.success(request, 'An email is sent on your registered Email-Id')
                         print('An email is sent')
                         return redirect('Localisation_App:forgetPassword')
                     else:
