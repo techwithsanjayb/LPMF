@@ -26,30 +26,36 @@
       >
         {% csrf_token %}
         <div class="row mt-3">
-          <div class="col-2 px-5 pt-2 fw-semibold">
-            <label for="inputPassword5" class="form-label">URL</label>
+          <div class="col-2 px-4 pt-2 fw-semibold">
+            <label for="inputPassword5" class="form-label">URL <span class="text-danger">*</span></label>
           </div>
           <div class="col-8">{{form.url}}</div>
         </div>
         <div class="row mt-3">
-          <div class="col-2 px-5 pt-2 fw-semibold">
-            <label class="form-label">Language</label>
+          <div class="col-2 px-4 pt-2 fw-semibold">
+            <label class="form-label">Company Email <span class="text-danger">*</span></label>
+          </div>
+          <div class="col-3">{{form.company_email}}</div>
+          <div class="col-2 px-4 pt-2 fw-semibold">
+            <label class="form-label">Domain <span class="text-danger">*</span></label>
+          </div>
+          <div class="col-3">{{form.domain}}</div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-2 px-4 pt-2 fw-semibold">
+            <label class="form-label">Language <span class="text-danger">*</span></label>
           </div>
           <div class="col-3">{{form.language}}</div>
-          {% comment %}
-        </div>
-        <div class="row mt-3">
-          {% endcomment %}
-          <div class="col-2 px-5 pt-2 fw-semibold">
-            <label class="form-label">Domain</label>
-          </div>
-          <div class="col-3">{{form.website_type}}</div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-2 px-5 pt-2 fw-semibold">
-            <label class="form-label">Delivery Date</label>
+          <div class="col-2 px-4 pt-2 fw-semibold">
+            <label class="form-label">Delivery Date <span class="text-danger">*</span></label>
           </div>
           <div class="col-3">{{form.delivery_date}}</div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-2 px-4 pt-2 fw-semibold">
+            <label class="form-label">Remark <span class="text-danger">*</span></label>
+          </div>
+          <div class="col-8">{{form.client_remark}}</div>
         </div>
         <div class="row mt-3">
           <div class="col-2"></div>

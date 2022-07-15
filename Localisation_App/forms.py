@@ -153,6 +153,7 @@ class RegisterForm(UserCreationForm):
             'first_name', 'middle_name', 'last_name', 'email', 'username', 'phone_number', 'password1', 'password2', 'check',
         ]
 
+
 class UserLoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
@@ -176,8 +177,9 @@ class UserLoginForm(forms.Form):
             }
         ))
 
+
 class UserForgetPasswordForm(forms.Form):
-    
+
     username = forms.CharField(
         required=True,
         widget=forms.TextInput(
@@ -185,8 +187,7 @@ class UserForgetPasswordForm(forms.Form):
                 'class': 'form-control',
                 'placeholder': 'Username'
             }
-    ))
-
+        ))
 
 
 class UserChangePasswordForm(forms.Form):
@@ -198,7 +199,7 @@ class UserChangePasswordForm(forms.Form):
                 'placeholder': 'Password',
 
             }
-    ))
+        ))
 
     password2 = forms.CharField(
         required=True,
@@ -211,19 +212,25 @@ class UserChangePasswordForm(forms.Form):
         ))
 
 
-
-
 class TranslationQuoteForm(forms.Form):
     url = forms.URLField(validators=[validators.MaxLengthValidator(200), validators.URLValidator(
     )], required=True, widget=forms.URLInput(attrs={'class': 'form-control trans_url', 'placeholder': 'Enter URL'}))
 
-    languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'), ('tamil', 'Tamil'), ('bengali', 'Bengali'), ('gujarati','Gujarati'),('telugu','Telugu')]
+    company_email = forms.EmailField(validators=[validators.EmailValidator(), validators.MaxLengthValidator(
+        50)], widget=forms.EmailInput(attrs={'class': 'form-control trans_email', 'placeholder': 'Enter Email'}), required=True)
+
+    languages = [('hindi', 'Hindi'), ('marathi', 'Marathi'), ('tamil', 'Tamil'),
+                 ('bengali', 'Bengali'), ('gujarati', 'Gujarati'), ('telugu', 'Telugu')]
     language = forms.ChoiceField(validators=[validators.MaxLengthValidator(20)], required=True, help_text='Select Language',
                                  choices=languages, widget=forms.Select(attrs={'type': 'date', 'class': 'form-select trans_language'}),)
 
-    types = [('transport', 'Transport'), ('medical', 'Medical'), ('travel', 'Travel and Tourism'), ('educational','Educational'),('ecommerce','E-Commerce')]
-    website_type = forms.ChoiceField(validators=[validators.MaxLengthValidator(
+    types = [('transport', 'Transport'), ('medical', 'Medical'), ('travel',
+                                                                  'Travel and Tourism'), ('educational', 'Educational'), ('ecommerce', 'E-Commerce')]
+    domain = forms.ChoiceField(validators=[validators.MaxLengthValidator(
         30)], required=True, choices=types, widget=forms.Select(attrs={'type': 'date', 'class': 'form-select trans_type'}),)
+
+    client_remark = forms.CharField(widget=forms.Textarea(
+        attrs={'rows': '6', 'class': 'form-control trans_remark', 'placeholder':"Remark"}))
 
     delivery_date = forms.DateField(widget=forms.DateInput(
         attrs={'type': 'date', 'class': 'form-control trans_date'}), required=True)
