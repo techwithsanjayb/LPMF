@@ -179,6 +179,9 @@ class ToolsData(models.Model):
 
     def __str__(self):
         return self.ToolsData_HeadingName
+    
+    def get_ToolsData_slug_splited(self):
+        return self.ToolsData_slug.split('-')
 
 
 class Resources_Category(models.Model):
@@ -221,6 +224,9 @@ class ResourceData(models.Model):
 
     def __str__(self):
         return self.ResourceData_HeadingName
+    
+    def get_ResourcesData_slug_splited(self):
+        return self.ResourceData_slug.split('-')
 
 
 class NewsAndEvents(models.Model):

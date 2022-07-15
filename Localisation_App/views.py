@@ -88,6 +88,11 @@ def toolsPage(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tools_Data = ToolsData.objects.all()
+    # print("toolsdata",tools_Data['get_ResourcesData_slug_splited'])
+    # for d in tools_Data:
+    #     print("data",d['get_ToolsData_slug_splited'])
+    
+    
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
     toolsCategory_data = Tools_Category.objects.all()
     count = ToolsData.objects.all().count()

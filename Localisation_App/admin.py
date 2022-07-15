@@ -85,7 +85,7 @@ class AdminToolsData(admin.ModelAdmin):
     search_fields = ('ToolsData_HeadingName','ToolsData_slug',
                      'ToolsData_Description', )
     ordering = ('ToolsData_HeadingName',)
-    prepopulated_fields = {"ToolsData_slug": ("ToolsData_HeadingName",)}
+    prepopulated_fields = {"ToolsData_slug": (" ",)}
   
 
     list_per_page: int = 20
