@@ -1760,7 +1760,7 @@ def changePassword(request, token):
                 if password1 == password2:
                     if user_id is None:
                         messages.error(request, 'User Not Found')
-                        return redirect('Localisation_App:forgetPassword')
+                        return redirect('http://127.0.0.1:5555/changePassword/'+token)
                     else:
                         user_Register_obj = UserRegistration.objects.get(
                             pk=user_id)
@@ -1774,7 +1774,7 @@ def changePassword(request, token):
                         user_main_obj.save()
                         messages.success(request, 'Password Reset Successfully')
                         print('Password Reset Successfully ')
-                        return redirect('Localisation_App:forgetPassword')
+                        return redirect('http://127.0.0.1:5555/changePassword/'+token)
                 else:
                     messages.error(request, 'Passwords are not matching')
                     return redirect('http://127.0.0.1:5555/changePassword/'+token)
@@ -1787,7 +1787,7 @@ def changePassword(request, token):
                 'form': form,
                 'User_Id': user_id
             }
-            return render(request, 'Localisation_App/changePassword.html', context)
+            return render('http://127.0.0.1:5555/changePassword/'+token)
     else:
         messages.success(request, 'User Not Found')
         print('User Not Found')
