@@ -22,6 +22,8 @@ import json
 from bson import json_util
 import uuid
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 import logging
 logger = logging.getLogger('django')
 global str_num
@@ -1651,24 +1653,12 @@ def login_user(request):
                 login(request, user)
                 return redirect('/')
             else:
-                messages.error(
-                    request, 'Error Processing Your Request,Wrong Username or password')
-                context = {
-                    'topmenus': TopMenuItemsdata,
-                    'FooterMenuItemsdata': FooterMenuItemsdata,
-                    'form': UserLoginForm()
-                }
-                return render(request, 'Localisation_App/login.html', context)
+                messages.error(request, 'Wrong Username or password')
+                return redirect('Localisation_App:login')
 
         else:
-            messages.error(request, 'Error Processing Your Request')
-            context = {
-                'topmenus': TopMenuItemsdata,
-                'FooterMenuItemsdata': FooterMenuItemsdata,
-                'form': UserLoginForm()
-            }
-            print("else")
-            return render(request, 'Localisation_App/login.html', context)
+            messages.error(request, 'Error Processing Your Request,Wrong Username or password ')
+            return redirect('Localisation_App:login')
     else:
         context = {
             'topmenus': TopMenuItemsdata,
@@ -1692,8 +1682,7 @@ def logout_user(request):
 
 def changePassword(request, token):
     form = UserChangePasswordForm()
-    user_Profile_obj = UserRegistration.objects.get(
-        userregistration_token=token)
+    user_Profile_obj = UserRegistration.objects.get(userregistration_token=token)
     if user_Profile_obj is not None:
         print("inside change padsword", user_Profile_obj.pk)
         if request.method == 'POST':
@@ -1705,7 +1694,7 @@ def changePassword(request, token):
                 user_id = request.POST.get('user_id')
                 if password1 == password2:
                     if user_id is None:
-                        messages.success(request, 'User Not Found')
+                        messages.error(request, 'User Not Found')
                         return redirect('Localisation_App:forgetPassword')
                     else:
                         user_Register_obj = UserRegistration.objects.get(
@@ -1718,21 +1707,22 @@ def changePassword(request, token):
                             username=user_Profile_obj.userregistration_username)
                         user_main_obj.set_password(password1)
                         user_main_obj.save()
-
+                        messages.success(request, 'Password Reset Successfully')
                         print('Password Reset Successfully ')
                         return redirect('Localisation_App:forgetPassword')
                 else:
-                    messages.success(request, 'Passwords are not matching')
-                    return redirect('Localisation_App:forgetPassword')
+                    messages.error(request, 'Passwords are not matching')
+                    return redirect('http://127.0.0.1:5555/changePassword/{{token}}/')
             else:
-                messages.success(request, 'Data is not valid')
-                return redirect('Localisation_App:forgetPassword')
-        user_id = user_Profile_obj.pk
-        context = {
-            'form': form,
-            'User_Id': user_id
-        }
-        return render(request, 'Localisation_App/changePassword.html', context)
+                messages.error(request, 'Data is not valid')
+                return redirect('http://127.0.0.1:5555/changePassword/{{token}}/')
+        else:
+            user_id = user_Profile_obj.pk
+            context = {
+                'form': form,
+                'User_Id': user_id
+            }
+            return render(request, 'Localisation_App/changePassword.html', context)
     else:
         messages.success(request, 'User Not Found')
         print('User Not Found')
@@ -1748,29 +1738,37 @@ def forgetPassword(request):
                 print('insideValidmethod')
                 username = form.cleaned_data['username']
                 if not User.objects.filter(username=username).first():
-                    messages.success(
+                    messages.error(
                         request, 'No user found with this username')
                     print('No user found with this username')
                     return redirect('Localisation_App:forgetPassword')
-                user_obj = User.objects.get(username=username)
-                token = str(uuid.uuid4())
-                user_Profile_obj = UserRegistration.objects.get(
-                    userregistration_username=username)
-                user_Profile_obj.userregistration_token = token
-                user_Profile_obj.save()
-                send_forget_password_email(
-                    user_Profile_obj.userregistration_email_field, token)
-                print("userdata", user_obj)
-
-                messages.success(request, 'An email is sent')
-                print('An email is sent')
-                context = {
-                    'form': form
-                }
-                return redirect('Localisation_App:forgetPassword', context)
-
+                else :
+                    print('user is not none')
+                    user_obj = User.objects.get(username=username)
+                    token = str(uuid.uuid4())
+                    user_Profile_obj = UserRegistration.objects.get(
+                        userregistration_username=username)
+                    user_Profile_obj.userregistration_token = token
+                    user_Profile_obj.save()
+                    
+                    mail_send_status=send_forget_password_email(
+                        user_Profile_obj.userregistration_email_field, token)
+                    print("userdata", user_obj)
+                    print("mail_send_status",mail_send_status)
+                    if mail_send_status:
+                        messages.success(request, 'An email is sent')
+                        print('An email is sent')
+                        return redirect('Localisation_App:forgetPassword')
+                    else:
+                        messages.error(request, 'Failed to send sn email')
+                        print('Failed to send sn email')
+                        return redirect('Localisation_App:forgetPassword')
+            else:
+                messages.error(request, 'Data is not valid')
+                return redirect('Localisation_App:forgetPassword')
     except Exception as e:
         print(e)
+    messages.error(request, '')
     context = {
         'form': form
     }
