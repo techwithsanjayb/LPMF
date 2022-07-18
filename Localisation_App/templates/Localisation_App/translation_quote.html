@@ -26,40 +26,58 @@
       >
         {% csrf_token %}
         <div class="row mt-3">
-          <div class="col-2 px-4 pt-2 fw-semibold">
+          <div class="col-lg-2 px-4 pt-2 fw-semibold">
             <label for="inputPassword5" class="form-label">URL <span class="text-danger">*</span></label>
           </div>
-          <div class="col-8">{{form.url}}</div>
+          <div class="col-lg-8">{{form.url}}</div>
+        </div>
+        <div class="row mt-1">
+          <div class="col-lg-2"></div>
+          {% if url_error %}
+          <div class="col-lg-8 text-danger  fw-semibold">{{url_error}}</div>
+        {% endif %}
         </div>
         <div class="row mt-3">
-          <div class="col-2 px-4 pt-2 fw-semibold">
+          <div class="col-lg-2 px-4 pt-2 fw-semibold">
             <label class="form-label">Company Email <span class="text-danger">*</span></label>
           </div>
-          <div class="col-3">{{form.company_email}}</div>
-          <div class="col-2 px-4 pt-2 fw-semibold">
+          <div class="col-lg-3">{{form.company_email}}</div>
+          <div class="col-lg-2 px-4 pt-2 fw-semibold">
             <label class="form-label">Domain <span class="text-danger">*</span></label>
           </div>
-          <div class="col-3">{{form.domain}}</div>
+          <div class="col-lg-3">{{form.domain}}</div>
+        </div>
+        <div class="row mt-1">
+          <div class="col-lg-2"></div>
+          {% if email_error %}
+          <div class="col-lg-8 text-danger  fw-semibold">{{email_error}}</div>
+        {% endif %}
         </div>
         <div class="row mt-3">
-          <div class="col-2 px-4 pt-2 fw-semibold">
+          <div class="col-lg-2 px-4 pt-2 fw-semibold">
             <label class="form-label">Language <span class="text-danger">*</span></label>
           </div>
-          <div class="col-3">{{form.language}}</div>
-          <div class="col-2 px-4 pt-2 fw-semibold">
+          <div class="col-lg-3">{{form.language}}</div>
+          <div class="col-lg-2 px-4 pt-2 fw-semibold">
             <label class="form-label">Delivery Date <span class="text-danger">*</span></label>
           </div>
-          <div class="col-3">{{form.delivery_date}}</div>
+          <div class="col-lg-3">{{form.delivery_date}}</div>
         </div>
         <div class="row mt-3">
-          <div class="col-2 px-4 pt-2 fw-semibold">
-            <label class="form-label">Remark <span class="text-danger">*</span></label>
+          <div class="col-lg-2 px-4 pt-2 fw-semibold">
+            <label class="form-label">Remark </label>
           </div>
-          <div class="col-8">{{form.client_remark}}</div>
+          <div class="col-lg-8">{{form.client_remark}}</div>
+        </div>
+        <div class="row mt-1">
+          <div class="col-lg-2"></div>
+          {% if remark_error %}
+          <div class="col-lg-8 text-danger fw-semibold">{{remark_error}}</div>
+        {% endif %}
         </div>
         <div class="row mt-3">
-          <div class="col-2"></div>
-          <div class="col-8 d-flex flex-row-reverse">
+          <div class="col-lg-2"></div>
+          <div class="col-lg-8 d-flex flex-row-reverse">
             <input class="btn btn-primary" type="submit" value="Submit" />
           </div>
         </div>

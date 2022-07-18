@@ -5,15 +5,16 @@
 <div class="container card mb-5">
 <form action={% url 'Localisation_App:srvTTS' %} method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <h2 class="card-title text-dark">TTS</h2>
+    {% comment %} <h2 class="card-title text-dark">TTS</h2> {% endcomment %}
     <div class="card-body">
-      <div class="row">
-         <div class="row pb-2">
-           <p style="background-color: #f5e8a8" class="py-2 rounded-3 px-4">
-            Text-to-Speech (TTS) is a software which renders the machine readable text into Human Voice. The TTS software allows people with visual impairments or reading disabilities to listen to written works on a computer or a mobile device. Text to Speech system when integrated with screen reader would enable visually challenged users to interpret and perform computer operations with audio interface.
-           </p>
-          </div>
-          <div class="row border rounded-2">
+      <div class="row d-flex mb-2 justify-content-center ">
+         <h2 class="text-dark text-center py-1 rounded-pill" style="background: linear-gradient(to right,  #008ccf 0%,#fbeed9 100%)">Text To Speech</h2>
+       </div>
+      <div class="row d-flex justify-content-center">
+         <div class="row border px-5 py-3 rounded-4 mb-3 fs-5" style="background-color: #f7efc6; text-align:justify; color:#262626">
+           Text-to-Speech (TTS) is a software which renders the machine readable text into Human Voice. The TTS software allows people with visual impairments or reading disabilities to listen to written works on a computer or a mobile device. Text to Speech system when integrated with screen reader would enable visually challenged users to interpret and perform computer operations with audio interface.
+         </div>
+         <div class="row border p-4 rounded-4" style="background-color:#f7efc6">
           <div class="row">
               <div class="col-lg-6 mb-4">
                  Select Language
@@ -37,7 +38,7 @@
               {% endif %}<br />
                  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                <div class="text-center">
-                 <button type="submit" class="text-white px-3 py-2 rounded-2 border-none" style="width: 100px; background-color:#219EBC; border:none;">Submit</button>
+                 <button type="submit" class="text-white px-3 py-2 rounded-2 border-none" style="width: 100px; background-color:#008ccf; border:none;">Submit</button>
                </div>
               </div>
        </div>

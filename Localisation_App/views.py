@@ -1,7 +1,9 @@
 
 import re
 from threading import currentThread
+from wsgiref import validate
 from django.db.models import Sum
+from django.forms import ValidationError
 from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm, UserChangePasswordForm, UserForgetPasswordForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
@@ -13,8 +15,6 @@ from django.shortcuts import render, redirect
 from .models import Article, EmpanelledAgencies, EmpanelledAgenciesEmail, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, TranslationQuote, UserRegistration, GuidelinceForIndianGovWebsite
 import random
 import requests
-from django.core.validators import URLValidator
-from django.core.exceptions import ValidationError
 from .word_count import crawl_data
 from django.contrib.auth.models import User
 import uuid
@@ -29,6 +29,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 import logging
 from datetime import date
+from django.core import validators
 logger = logging.getLogger('django')
 global str_num
 
@@ -1163,6 +1164,7 @@ def ServicesDemoPage(request):
     tTS_Form = TTSservice()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
+    logger.info("ServicesDemoPage page getting displayed with all data")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1187,6 +1189,7 @@ def srvEnableTyping(request):
 def srvGoTranslateWebLocalizer(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
+    logger.info("Go Translate WebLocalizer page getting displayed with all data")
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     return render(request, 'Localisation_App/ServicesDemoPage.html')
@@ -1205,7 +1208,7 @@ def srvOnscreenKeyboard(request):
             'FooterMenuItemsdata': FooterMenuItemsdata,
         }
         return render(request, 'Localisation_App/ServicesDemoPage.html', context)
-
+    logger.info("On screen Keyboard page getting displayed with all data")
     context = {
         "service": "onscreenkeyboard",
         "data": "onscreenkeyboard",
@@ -1236,9 +1239,11 @@ def srvTTS(request):
 
             url = 'http://localhost:8000/tts'
             payload = {'text': inputText, 'gender': gender, 'lang': language}
+            logger.info("TTS APi getting called with form data")
             r = requests.post(url, data=payload)
             print('response', r)
             if r.status_code == 200:
+                logger.info("TTS ,Recieved success response, after APi called with form data")
                 data = r.json()
                 print('response', data)
                 print('file', data['outspeech_filepath'][0])
@@ -1251,9 +1256,10 @@ def srvTTS(request):
                     'topmenus': TopMenuItemsdata,
                     'FooterMenuItemsdata': FooterMenuItemsdata,
                 }
+                logger.info("TTS Page getting displayed with recieved success response, after APi called with form data")
                 print("returned")
                 return render(request, 'Localisation_App/ttsService.html', context)
-
+    logger.info("TTS page getting displayed with all data")
     context = {
         "service": "srvTTS",
         "TTS_Form": tTS_Form,
@@ -1278,7 +1284,7 @@ def srvTransliteration(request):
             'FooterMenuItemsdata': FooterMenuItemsdata,
         }
         return render(request, 'Localisation_App/ServicesDemoPage.html', context)
-
+    logger.info("Transliteration page getting displayed")
     context = {
         "service": "srvTransliteration",
         "data": "srvTransliteration",
@@ -1296,6 +1302,7 @@ def faqs(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     faqs_data = FAQs.objects.all()
+    logger.info("Faqs page getting displayed")
     context = {
         'data': faqs_data,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1325,6 +1332,7 @@ def faqsSearch(request, faq_title):
                 FAQs_Question__icontains=faq_title1)
             count = fAQs_Data.count()
             print("faqcount", count)
+            logger.info("Faqs page getting displayed, with search filter")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1334,6 +1342,7 @@ def faqsSearch(request, faq_title):
             }
             return render(request, 'Localisation_App/faqs.html', context)
         else:
+            logger.info("Faqs page getting displayed, without search filter")
             count = faqs_data.count()
             context = {
                 'topmenus': TopMenuItemsdata,
@@ -1356,6 +1365,7 @@ def termsandcondition(request):
     footer_data = Footer_Links.objects.get(
         Footer_Links_Title__contains='Terms & Conditions')
     print("hello", footer_data)
+    logger.info("Terms and Condition page getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1394,6 +1404,7 @@ def websitepolicy(request):
     content = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_SubTitle="Copyright Policy")[0]
     print(content)
+    logger.info("websitepolicy page getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1415,6 +1426,7 @@ def websitepolicydata(request, id):
     footer_sub_data = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="Website Policies")
     content = Footer_Links_Info.objects.get(pk=id)
+    logger.info("websitepolicy page getting displayed with selected subtitle")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1433,6 +1445,7 @@ def sitemap(request):
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_data = Footer_Links.objects.get(
         Footer_Links_Title__contains='Sitemap')
+    logger.info("sitemap page getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1453,6 +1466,7 @@ def helpData(request, id):
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="help")
     print("Help ", footer_sub_data)
     content = Footer_Links_Info.objects.get(pk=id)
+    logger.info("Help page getting displayed with selected subtitle")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1474,6 +1488,7 @@ def help(request):
     content = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_SubTitle="Screen Reader Access")[0]
     print(content)
+    logger.info("Help page getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1486,7 +1501,7 @@ def help(request):
 def contactus(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
-    logger.info("INSIDE views of Contact us ")
+    logger.info("Contact us page getting displayed")
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="help")
@@ -1500,7 +1515,6 @@ def contactus(request):
         'topmenus': TopMenuItemsdata,
         'img': str_num
     }
-    logger.error("context assigned values in contact us views..........")
 
     return render(request, 'Localisation_App/contactus.html', context)
 
@@ -1549,16 +1563,20 @@ def Register_user(request):
     }
 
     if request.method == 'POST':
+        logger.info("Inside register page after submit button click")
         form = RegisterForm(request.POST)
         if form.is_valid():
+            logger.info("Inside register page , If form is valid all data saved into User model")
             form.save()
             print("Form Data")
             UserRegistration.objects.create(userregistration_first_name=form.cleaned_data.get('first_name'), userregistration_middle_name=form.cleaned_data.get('middle_name'), userregistration_last_name=form.cleaned_data.get('last_name'), userregistration_username=form.cleaned_data.get('username'), userregistration_email_field=form.cleaned_data.get(
                 'email'), userregistration_phone_number=form.cleaned_data.get('phone_number'), userregistration_address=form.cleaned_data.get('address'), userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'), registration_User_Type=form.cleaned_data.get('User_Type'))
             messages.success(request, 'Account was created for ' +
                              form.cleaned_data.get('first_name'))
+            logger.info("Inside register page,If form is valid all data saved into UserRegistration model")
             return redirect('/')
         else:
+            logger.info("Inside register page,If form is not valid, it will through error message")
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {
@@ -1567,6 +1585,7 @@ def Register_user(request):
                 'form': form
             }
             return render(request, 'Localisation_App/register.html', context)
+    logger.info("Register page getting displayed with register form")
     return render(request, 'Localisation_App/register.html', context)
 
 
@@ -1584,20 +1603,25 @@ def login_user(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             print("if form is valid")
+            logger.info("Login user form , if form is valid, data is passed to authenticate function ")
             user = authenticate(username=username, password=password)
             if user is not None:
+                logger.info("Login user form, after successfull authentication, login() function called ")
                 print("second method called")
                 login(request, user)
                 return redirect('Localisation_App:'+url)
             else:
+                logger.error("Login user form, Error in user login authentication")
                 messages.error(request, 'Wrong Username or password')
                 return redirect('Localisation_App:login')
 
         else:
+            logger.error("Login user form, Error Processing Your Request,Wrong Username or password ")
             messages.error(
                 request, 'Error Processing Your Request,Wrong Username or password ')
             return redirect('Localisation_App:login')
     else:
+        logger.info("Login user form page getting displayed ")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1609,6 +1633,7 @@ def login_user(request):
 def logout_user(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
+    logger.error("Logout user")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1631,29 +1656,39 @@ def changePassword(request, token):
                 password1 = form.cleaned_data['password1']
                 password2 = form.cleaned_data['password2']
                 user_id = request.POST.get('user_id')
+                logger.info("change password page, form is valid")
                 if password1 == password2:
+                    logger.info("change password page, both passwors are matched")
                     if user_id is None:
+                        logger.error("change password page, user_id not found")
                         messages.error(request, 'User Not Found')
                         return redirect('http://127.0.0.1:5555/changePassword/'+token)
                     else:
+                        logger.info("change password page, user_id found")
                         user_Register_obj = UserRegistration.objects.get(
                             pk=user_id)
                         user_Register_obj.userregistration_password = password1
                         user_Register_obj.userregistration_confirm_password = password2
+                        user_Register_obj.userregistration_confirm_password = password2
+                        user_Register_obj.userregistration_token = None
                         user_Register_obj.save()
-
+                        logger.info("change password page, updated password saved into user registration model")
                         user_main_obj = User.objects.get(
                             username=user_Profile_obj.userregistration_username)
                         user_main_obj.set_password(password1)
                         user_main_obj.save()
+                        logger.info("change password page, updated password saved into user model")
+                        logger.info("Password Reset Successfully, Token expired")
                         messages.success(
                             request, 'Password Reset Successfully')
                         print('Password Reset Successfully ')
                         return redirect('http://127.0.0.1:5555/changePassword/'+token)
                 else:
+                    logger.error("Passwords are not matching")
                     messages.error(request, 'Passwords are not matching')
                     return redirect('http://127.0.0.1:5555/changePassword/'+token)
             else:
+                logger.error("form is not valid")
                 messages.error(request, 'Data is not valid')
                 return redirect('http://127.0.0.1:5555/changePassword/'+token)
         else:
@@ -1665,6 +1700,7 @@ def changePassword(request, token):
             messages.error(request, '')
             return render(request, 'Localisation_App/changePassword.html', context)
     else:
+        logger.error("change password page, user not found")
         messages.success(request, 'User Not Found')
         print('User Not Found')
         return redirect('http://127.0.0.1:5555/changePassword/'+token)
@@ -1676,40 +1712,51 @@ def forgetPassword(request):
         if request.method == 'POST':
             form = UserForgetPasswordForm(data=request.POST)
             if form.is_valid():
+                logger.info("Forgot password page form is valid")
                 print('insideValidmethod')
                 username = form.cleaned_data['username']
                 if not User.objects.filter(username=username).first():
+                    logger.error("No user found with this username")
                     messages.error(
                         request, 'No user found with this username')
                     print('No user found with this username')
                     return redirect('Localisation_App:forgetPassword')
                 else:
+                    logger.info("User found with this username inside User model")
                     print('user is not none')
                     user_obj = User.objects.get(username=username)
                     token = str(uuid.uuid4())
+                    logger.info("Inside forgot password function, token is created")
+                    logger.info("User found with this username inside UserRegistration model")
                     user_Profile_obj = UserRegistration.objects.get(
                         userregistration_username=username)
                     user_Profile_obj.userregistration_token = token
                     user_Profile_obj.save()
+                    logger.info("Inside forgot password function, token is saved in UserRegistration model")
 
                     mail_send_status = send_forget_password_email(
                         user_Profile_obj.userregistration_email_field, token)
                     print("userdata", user_obj)
+                    
                     print("mail_send_status", mail_send_status)
                     if mail_send_status:
+                        logger.info("Inside forgot password function, An email is sent on your registered Email-Id")
                         messages.success(
                             request, 'An email is sent on your registered Email-Id')
                         print('An email is sent')
                         return redirect('Localisation_App:forgetPassword')
                     else:
+                        logger.error("Inside forgot password function, Failed to send sn email")
                         messages.error(request, 'Failed to send sn email')
                         print('Failed to send sn email')
                         return redirect('Localisation_App:forgetPassword')
             else:
+                logger.error("Inside forgot password function, Form is not valid")
                 messages.error(request, 'Data is not valid')
                 return redirect('Localisation_App:forgetPassword')
     except Exception as e:
         print(e)
+    logger.info("Forgot password page is getting displayed")
     messages.error(request, '')
     context = {
         'form': form
@@ -1722,6 +1769,7 @@ def goTranslate(request):
     request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
+    logger.info("goTranslate page is getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1783,6 +1831,7 @@ def dashboard(request):
         count = SuccessStories.objects.filter(
             SuccessStories_category__SuccessStories_CategoryType=n.SuccessStories_CategoryType).count()
         countOfStoriesWithCategory.append(count)
+    logger.info("Dashboard page, calculated total stories per category")
 
     for n in toolsCategory_data:
         toolscategory_name.append(n.Tools_CategoryType)
@@ -1790,6 +1839,7 @@ def dashboard(request):
         count = ToolsData.objects.filter(
             ToolsData_CategoryType__Tools_CategoryType=n.Tools_CategoryType).count()
         countOfToolsWithCategory.append(count)
+    logger.info("Dashboard page, calculated total tools per category")
 
     for n in resourcesCategory_data:
         resourcescategory_name.append(n.Resources_CategoryType)
@@ -1797,6 +1847,7 @@ def dashboard(request):
         count = ResourceData.objects.filter(
             ResourceData_CategoryType__Resources_CategoryType=n.Resources_CategoryType).count()
         countOfResourcesWithCategory.append(count)
+    logger.info("Dashboard page, calculated resources per category")
 
     for n in userRegistration_Data:
         userType_Duplicate.append(n.registration_User_Type)
@@ -1806,6 +1857,7 @@ def dashboard(request):
         count = UserRegistration.objects.filter(
             registration_User_Type=n).count()
         userCount_Per_Type.append(count)
+    logger.info("Dashboard page, calculated total user per User type while registration")
 
     for n in guidelines_data:
         guidelines_Duplicate.append(n.name)
@@ -1815,21 +1867,21 @@ def dashboard(request):
         # print(n)
         data = GuidelinceForIndianGovWebsite.objects.values(
             'percentage').filter().get(name=n)
-
         guidelinesCount_Per_Type.append(data["percentage"])
+    logger.info("Dashboard page, getting data of gudelines")
+
 
     for n in tools_data:
         id.append(n.id)
-
     for n in id:
         # print(n)
         data = ToolsData.objects.values('ToolsData_DownloadCounter').get(id=n)
         # print(data)
-
         toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
     for n in id:
         datname = ToolsData.objects.values('ToolsData_HeadingName').get(id=n)
         toolsName.append(datname["ToolsData_HeadingName"])
+    logger.info("Dashboard page, calculated total download hit ratio per tool")
 
     # # print("cat",toolsName)
     # # print("data",toolsName_hitCount_Per_Name)
@@ -1847,6 +1899,7 @@ def dashboard(request):
         datname = ResourceData.objects.values(
             'ResourceData_HeadingName').get(id=n)
         resourcesName.append(datname["ResourceData_HeadingName"])
+    logger.info("Dashboard page, calculated total download hit ratio per tool")
 
     print("cat", resourcesName)
     print("data", resourcesName_hitCount_Per_Name)
@@ -1946,7 +1999,32 @@ def translation_quote(request):
         form = TranslationQuoteForm(request.POST)
 
         context['form'] = form
-        print("dsnghufdygiu")
+        
+        #  validations
+        validate_url = validators.URLValidator()
+        validate_email = validators.EmailValidator()
+        
+        try:
+            validate_url(url)
+            
+        except ValidationError as e:
+            context['url_error'] = e.message
+            return render(request, "Localisation_App/translation_quote.html", context)
+        
+        try:
+            validate_email(company_email)
+        except ValidationError as e:
+            context['email_error'] = e.message
+            return render(request, "Localisation_App/translation_quote.html", context)
+        
+        try:
+            if len(client_remark) > 5000:
+                 raise ValidationError("You have entered "+ str(len(client_remark)) + " characters But only 5000 characters allowed")
+            
+        except ValidationError as e:
+            context['remark_error'] = e.message
+            return render(request, "Localisation_App/translation_quote.html", context)
+
         if form.is_valid():
             print("validation success")
             print(form.cleaned_data['url'])
@@ -1966,7 +2044,6 @@ def translation_quote(request):
 
             application_number = str('GI-' + str(date.today().year) + '-' +
                                      current_user.username[0:2].upper() + str(random.randrange(100000000, 1000000000)))
-            print("application ", application_number)
 
             data = TranslationQuote(
                 url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark, application_number=application_number, username=current_user)
@@ -2109,6 +2186,7 @@ def machine_translation(request):
     request.session['requested_url'] = url
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
+    logger.info("Machine Translation page is getting displayed")
     context = {
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data
@@ -2126,8 +2204,6 @@ def name_matcher(request):
     context = {
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
-
-
     }
 
     return render(request, 'Localisation_App/name_matcher.html', context)
