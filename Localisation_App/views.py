@@ -1,7 +1,9 @@
 
 import re
 from threading import currentThread
+from wsgiref import validate
 from django.db.models import Sum
+from django.forms import ValidationError
 from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm, UserChangePasswordForm, UserForgetPasswordForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
@@ -13,8 +15,6 @@ from django.shortcuts import render, redirect
 from .models import Article, EmpanelledAgencies, EmpanelledAgenciesEmail, SuccessStories, ResourceData, FAQs, NewsAndEvents, Services, ToolsData, TopMenuItems, SuccessStories_Category, Footer_Links, Footer_Links_Info, ToolsData, Tools_Category, FooterMenuItems, Tools_Searched_Title, Resources_Category, Contact, TranslationQuote, UserRegistration, GuidelinceForIndianGovWebsite
 import random
 import requests
-from django.core.validators import URLValidator
-from django.core.exceptions import ValidationError
 from .word_count import crawl_data
 from django.contrib.auth.models import User
 import uuid
@@ -29,6 +29,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 import logging
 from datetime import date
+from django.core import validators
 logger = logging.getLogger('django')
 global str_num
 
@@ -1946,7 +1947,32 @@ def translation_quote(request):
         form = TranslationQuoteForm(request.POST)
 
         context['form'] = form
-        print("dsnghufdygiu")
+        
+        #  validations
+        validate_url = validators.URLValidator()
+        validate_email = validators.EmailValidator()
+        
+        try:
+            validate_url(url)
+            
+        except ValidationError as e:
+            context['url_error'] = e.message
+            return render(request, "Localisation_App/translation_quote.html", context)
+        
+        try:
+            validate_email(company_email)
+        except ValidationError as e:
+            context['email_error'] = e.message
+            return render(request, "Localisation_App/translation_quote.html", context)
+        
+        try:
+            if len(client_remark) > 5000:
+                 raise ValidationError("You have entered "+ str(len(client_remark)) + " characters But only 5000 characters allowed")
+            
+        except ValidationError as e:
+            context['remark_error'] = e.message
+            return render(request, "Localisation_App/translation_quote.html", context)
+
         if form.is_valid():
             print("validation success")
             print(form.cleaned_data['url'])
@@ -1966,7 +1992,6 @@ def translation_quote(request):
 
             application_number = str('GI-' + str(date.today().year) + '-' +
                                      current_user.username[0:2].upper() + str(random.randrange(100000000, 1000000000)))
-            print("application ", application_number)
 
             data = TranslationQuote(
                 url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark, application_number=application_number, username=current_user)
@@ -2126,8 +2151,6 @@ def name_matcher(request):
     context = {
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
-
-
     }
 
     return render(request, 'Localisation_App/name_matcher.html', context)
