@@ -1,0 +1,15 @@
+
+
+.t-dash-main {
+  font-size: 20px;
+  background-color: aliceblue;
+}
+
+.t-dash-main > .row {
+  margin-bottom: 2px;
+}
+
+.t-dash-main > a {
+  margin-top: 12px;
+}
+

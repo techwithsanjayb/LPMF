@@ -4,27 +4,51 @@
   {% block translation_quote_user_dashboard %} 
 
   {% comment %} css {% endcomment %}
-{% comment %} <link
+  <link
   href="{% static 'Localisation_App/css/translation_quote_user_dashboard.css' %}"
   rel="stylesheet"
-/> {% endcomment %}
+  />
+  {% comment %} ends css {% endcomment %}
 
 <div class="container mb-5">
   {% if translation_quote_data %}
     {% for quote_data in translation_quote_data %}
     
     <div class="card">
-      <div class="card-body">
+      <div class="card-body px-4 t-dash-main">
         <h5 class="card-title text-start">Application Number : {{quote_data.application_number}}</h5>
-        <p class="card-text">
-          URL : {{quote_data.url}}
-          <br>
-          Language : {{quote_data.language}}
-          <br>
-          Submission Date : {{quote_data.submission_date}}
-          <br>
-          Status : <strong>{{quote_data.status}}</strong>
-        </p>
+          <div class="row">
+            <div class="col-lg-2">
+             URL :
+            </div>
+            <div class="col-lg-8">{{quote_data.url}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2">
+             Language :
+            </div>
+            <div class="col-lg-8">
+              {{quote_data.language}}
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-2">
+              Submission Date :
+            </div>
+            <div class="col-lg-8">
+              {{quote_data.submission_date}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2">
+              Status :
+            </div>
+            <div class="col-lg-8">
+             <strong class="{% if quote_data.status == 'PENDING' %} text-danger {% else %} text-primary {% endif %}">{{quote_data.status}}</strong>
+            </div>
+          </div>
         <a href="{% url 'Localisation_App:translation_quote_show' quote_data.application_number %}" class="btn btn-primary">View More</a>
       </div>
     </div>
