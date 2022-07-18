@@ -1,5 +1,7 @@
 
 import re
+from threading import currentThread
+from django.db.models import Sum
 from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm, UserChangePasswordForm, UserForgetPasswordForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
@@ -16,7 +18,7 @@ from django.core.exceptions import ValidationError
 from .word_count import crawl_data
 from django.contrib.auth.models import User
 import uuid
-from datetime import datetime
+from datetime import date, datetime
 from .helpers import send_forget_password_email
 import json
 from bson import json_util
@@ -26,11 +28,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import logging
+from datetime import date
 logger = logging.getLogger('django')
 global str_num
 
 # Menu
 global url
+
 
 def topmenu(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -54,13 +58,14 @@ def Test(request):
 
 def Home(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     articleData = Article.objects.all()
     successStoriesData = SuccessStories.objects.all()
     servicesdata = Services.objects.all()
     newsAndEventsData = NewsAndEvents.objects.all()
+    logger.info("Home page is getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -76,12 +81,13 @@ def Home(request):
 
 def aboutus(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     print("hello")
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     articleData = Article.objects.all().filter(Article_HeadingName="About Us")
     print("TEst ", articleData)
+    logger.info("About Us page is getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -95,15 +101,14 @@ def aboutus(request):
 
 def toolsPage(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tools_Data = ToolsData.objects.all()
     # print("toolsdata",tools_Data['get_ResourcesData_slug_splited'])
     # for d in tools_Data:
     #     print("data",d['get_ToolsData_slug_splited'])
-    
-    
+
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
     toolsCategory_data = Tools_Category.objects.all()
     count = ToolsData.objects.all().count()
@@ -123,15 +128,16 @@ def toolsPage(request):
         'count': count,
         'form': UserLoginForm()
     }
-    if request.user.is_authenticated:
-        return render(request, 'Localisation_App/tools.html', context)
-    else:
-        return render(request, 'Localisation_App/tools.html', context)
+    logger.info("Tools page getting displayed")
+    # if request.user.is_authenticated:
+    #     return render(request, 'Localisation_App/tools.html', context)
+    # else:
+    return render(request, 'Localisation_App/tools.html', context)
 
 
 def tools(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -172,7 +178,7 @@ def tools(request):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-
+            logger.info("Tools page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -188,6 +194,7 @@ def tools(request):
             # return render(request,'Localisation_App/tools.html',context)
             return render(request, 'Localisation_App/tools.html', context)
         else:
+            logger.info("Tools page getting displayed with all category filteration")
             page = Paginator(tools_Data, 8)
             Tools_Category.objects.all().update(Tools_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -207,6 +214,7 @@ def tools(request):
             print("inside 2")
             return render(request, 'Localisation_App/tools.html', context)
     for p in toolsCategory_data:
+        
         if p.Tools_Cat_Status == True:
             print("true")
             pagestatus = True
@@ -218,6 +226,7 @@ def tools(request):
     print(q)
 
     if pagestatus == True:
+        logger.info("Tools page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -235,6 +244,7 @@ def tools(request):
         }
 
     else:
+        logger.info("Tools page getting displayed with all category filteration and pagination")
         page = Paginator(tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -256,7 +266,7 @@ def tools(request):
 
 def toolsSearch(request, tools_title):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     tools_searchData = tools_title.replace(" ", "-")
     print("titlenone", tools_title)
     print("replace space ", tools_title.replace(" ", "-"))
@@ -283,6 +293,7 @@ def toolsSearch(request, tools_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
+            logger.info("Tools page getting displayed with searched tools data by slugs")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -295,6 +306,7 @@ def toolsSearch(request, tools_title):
                 'count': count
             }
         else:
+            logger.info("Tools page getting displayed with all tools data")
             page = Paginator(tools_Data, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -313,6 +325,7 @@ def toolsSearch(request, tools_title):
             }
         return render(request, 'Localisation_App/tools.html', context)
     if tools_searchData != 'none':
+        logger.info("Tools page getting displayed with searched tools data by slugs")
         tools_Data1 = ToolsData.objects.filter(
             ToolsData_slug__icontains=tools_searchData)
         page = Paginator(tools_Data1, 8)
@@ -332,6 +345,7 @@ def toolsSearch(request, tools_title):
             'count': count
         }
     else:
+        logger.info("Tools page getting displayed with all tools data")
         page = Paginator(tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -354,7 +368,7 @@ def toolsSearch(request, tools_title):
 
 def toolsReset(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tools_Data = ToolsData.objects.all()
@@ -366,6 +380,7 @@ def toolsReset(request):
     page = page.get_page(page_list)
     count = tools_Data.count()
     if request.method == "POST":
+        logger.info("Tools page getting displayed with all tools data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -382,7 +397,7 @@ def toolsReset(request):
 
 def toolsDownloadCounter(request, id):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     print("requestid", id)
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     ip = ''
@@ -396,6 +411,7 @@ def toolsDownloadCounter(request, id):
     savedTimeInSession = None
     time_diff = 0
     if time_posted is not None:
+        logger.info("Tools page, checking where time data is saved in tools_Download_time is not none ")
         print("time_posted not none")
         print(time_posted)
         print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
@@ -405,16 +421,21 @@ def toolsDownloadCounter(request, id):
         timediff = dataCurrentTime - savedTimeInSession
         time_diff = timediff.total_seconds()
         print("timediff", timediff.total_seconds())
+        logger.info("Tools page, calculating time difference from saved time with first button click to current button click time ")
     else:
+        logger.info("Tools page, checking where time data is saved in tools_Download_time is none ")
         print("time_posted none")
     print("saved_ip", saved_ip)
 
-    if time_diff < 20:
+    if time_diff < 60:
+        logger.info("Tools page,if time diff. is less than 20 seconds, then it will save requested ip to toolsDownloadCounter_ip session ")
         saved_ip = request.session.get('toolsDownloadCounter_ip')
     else:
+        logger.info("Tools page,if time diff. is more than 20 seconds, then it will set none to toolsDownloadCounter_ip session ")
         request.session['toolsDownloadCounter_ip'] = None
 
     if ip != saved_ip:
+        logger.info("Tools page,it will check that within 60 second request is comming from same ip or not, if not it will increase download count, and set toolsDownloadCounter_ip as requested ip and requested time to tools_Download_time ")
         # print("savedTimeInSession inside second not none")
         # if ip != saved_ip:
         print("ip is defferent inside second not none")
@@ -436,6 +457,7 @@ def toolsDownloadCounter(request, id):
         print("after", tool_obj.ToolsData_DownloadCounter)
         return redirect('Localisation_App:toolsPage')
     else:
+        logger.info("Tools page,if within 60 second request is comming from same ip, it will not increase download count, and set toolsDownloadCounter_ip as requested ip and requested time to tools_Download_time ")
         print("ip is same inside second none")
         request.session['toolsDownloadCounter_ip'] = ip
         print("same and none ip first")
@@ -450,156 +472,12 @@ def toolsDownloadCounter(request, id):
         return redirect('Localisation_App:toolsPage')
 
 
-# def toolsDownloadCounter(request,id):
-#     print("session time",)
-#     print("requestid",id)
-#     print("inside herehelloooooo")
-#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-#     ip=''
-#     if x_forwarded_for:
-#         ip = x_forwarded_for.split(',')[-1].strip()
-#     else:
-#         ip = request.META.get('REMOTE_ADDR')
-#     print("ip",ip)
-#     # request.session['tools_Download_time'] = None
-#     # request.session['toolsDownloadCounter_ip'] =None
-#     saved_ip=None
-#     time_posted = request.session.get('tools_Download_time')
-#     savedTimeInSession=None
-#     time_diff=0
-
-
-#     # data=datetime.now()
-#     # print("time",type(data))
-#     # data1=json.dumps(data, default=json_util.default)
-#     # aList =json.loads(data1)
-#     # testdata=aList['$date']
-#     # print("ourtest",aList['$date'])
-#     # print("datatatataa",type(datetime.fromisoformat(testdata[:-1])))
-#     # timetobesave=datetime.fromisoformat(testdata[:-1])
-#     # print("timetoionebnfftdgbkki",timetobesave)
-#     # print("timetoionebnfftdgbkki-TYpe",type(timetobesave))
-
-
-#     if time_posted is not None:
-#         print("time_posted not none")
-#         print(time_posted)
-#         print("datatatataa",type(datetime.fromisoformat(time_posted[:-1])))
-#         savedTimeInSession=datetime.fromisoformat(time_posted[:-1])
-#         dataCurrentTime=datetime.now()
-#         print("time",type(dataCurrentTime))
-#         # dataCurrent1=json.dumps(dataCurrent, default=json_util.default)
-#         # aListdataCurrent1=json.loads(dataCurrent1)
-#         # testdata3=aListdataCurrent1['$date']
-#         # print("datatestsaved",savedTime)
-#         timediff = dataCurrentTime - savedTimeInSession
-#         time_diff = timediff.total_seconds()
-#         print("timediff",timediff.total_seconds())
-#     else:
-#         print("time_posted none")
-#     print("saved_ip",saved_ip)
-
-#     if time_diff < 20:
-#         saved_ip=request.session.get('toolsDownloadCounter_ip')
-#     else:
-#         request.session['toolsDownloadCounter_ip'] =None
-
-#     if savedTimeInSession is not None:
-#         print("savedTimeInSession inside second not none")
-#         if ip != saved_ip:
-#             print("ip is defferent inside second not none")
-#             # if time_diff < 10:
-#             print("time is less than 10 seconds inside second not none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             print("increase download count second")
-#             tool_obj = ToolsData.objects.get(pk=id)
-#             print("tools_obje",tool_obj)
-#             print("before",tool_obj.ToolsData_DownloadCounter)
-#             tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
-#             tool_obj.save()
-#             print("after",tool_obj.ToolsData_DownloadCounter)
-#             return redirect('Localisation_App:toolsPage')
-#             # else:
-#             #     print("time is more than 10 seconds inside second not none")
-#             #     request.session['toolsDownloadCounter_ip'] = ip
-#             #     data=datetime.now()
-#             #     print("time",type(data))
-#             #     data1=json.dumps(data, default=json_util.default)
-#             #     aList =json.loads(data1)
-#             #     testdata=aList['$date']
-#             #     request.session['tools_Download_time'] = testdata
-#             #     return redirect('Localisation_App:toolsPage')
-#         else:
-#             print("ip is same inside second not none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             return redirect('Localisation_App:toolsPage')
-#     else:
-#         print("savedTimeInSession inside second none")
-#         if ip != saved_ip:
-#             print("ip is defferent inside second none")
-#             # if time_diff < 10:
-#             print("time is less than 10 seconds inside second none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             print("increase download count second")
-#             print("getcookie",request.session.get('toolsDownloadCounter_ip'))
-#             tool_obj = ToolsData.objects.get(pk=id)
-#             print("tools_obje",tool_obj)
-#             print("before",tool_obj.ToolsData_DownloadCounter)
-#             tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
-#             tool_obj.save()
-#             print("after",tool_obj.ToolsData_DownloadCounter)
-#             return redirect('Localisation_App:toolsPage')
-#             # else:
-#             #     print("time is more than 10 seconds inside second none")
-#             #     request.session['toolsDownloadCounter_ip'] = ip
-#             #     print("Inside 300 seconds")
-#             #     data=datetime.now()
-#             #     print("time",type(data))
-#             #     data1=json.dumps(data, default=json_util.default)
-#             #     aList =json.loads(data1)
-#             #     print("data343434",aList)
-#             #     testdata=aList['$date']
-#             #     request.session['tools_Download_time'] = testdata
-#             #     return redirect('Localisation_App:toolsPage')
-#         else:
-#             print("ip is same inside second none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             print("same and none ip first")
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             print("data343434",aList)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             print("inside second none")
-#             return redirect('Localisation_App:toolsPage')
-
-
 # Resources Page
 
 
 def resourcesPage(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     resoucesCategory_data = Resources_Category.objects.all()
@@ -621,12 +499,13 @@ def resourcesPage(request):
         'Pagination_Type': 'All_Data',
         'count': count
     }
+    logger.info("Resources page getting displayed")
     return render(request, 'Localisation_App/resources.html', context)
 
 
 def resources(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -667,7 +546,7 @@ def resources(request):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-
+            logger.info("Resources page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -683,6 +562,7 @@ def resources(request):
 
             return render(request, 'Localisation_App/resources.html', context)
         else:
+            logger.info("Resources page getting displayed with all category filteration")
             page = Paginator(resources_Data, 8)
             Resources_Category.objects.all().update(Resources_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -713,6 +593,7 @@ def resources(request):
     print(q)
 
     if pagestatus == True:
+        logger.info("Resources page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -730,6 +611,7 @@ def resources(request):
         }
 
     else:
+        logger.info("Resources page getting displayed with all category filteration and pagination")
         page = Paginator(resources_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -751,7 +633,7 @@ def resources(request):
 
 def resourceSearch(request, resource_title):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     resource_searchData = resource_title.replace(" ", "-")
     print("titlenone", resource_title)
     print("replace space ", resource_title.replace(" ", "-"))
@@ -778,6 +660,7 @@ def resourceSearch(request, resource_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
+            logger.info("Resources page getting displayed with searched data by slugs")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -790,6 +673,7 @@ def resourceSearch(request, resource_title):
                 'count': count
             }
         else:
+            logger.info("Resources page getting displayed with all data")
             page = Paginator(resources_Data, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -807,6 +691,7 @@ def resourceSearch(request, resource_title):
             }
         return render(request, 'Localisation_App/resources.html', context)
     if resource_searchData != 'none':
+        logger.info("Resources page getting displayed with searched data by slugs with pagination")
         resource_Data1 = ResourceData.objects.filter(
             ResourceData_slug__icontains=resource_searchData)
         page = Paginator(resource_Data1, 8)
@@ -826,6 +711,7 @@ def resourceSearch(request, resource_title):
             'count': count
         }
     else:
+        logger.info("Resources page getting displayed with all data")
         page = Paginator(resources_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -847,7 +733,7 @@ def resourceSearch(request, resource_title):
 
 def resourcesReset(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     resources_Data = ResourceData.objects.all()
@@ -859,6 +745,7 @@ def resourcesReset(request):
     page = page.get_page(page_list)
     count = resources_Data.count()
     if request.method == "POST":
+        logger.info("Resources page getting displayed with all data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -875,7 +762,7 @@ def resourcesReset(request):
 
 def resourceDownloadCounter(request, id):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     print("session time",)
     print("requestid", id)
     print("inside herehelloooooo")
@@ -891,6 +778,7 @@ def resourceDownloadCounter(request, id):
     savedTimeInSession = None
     time_diff = 0
     if time_posted is not None:
+        logger.info("Resources page, checking where time data is saved in resources_Download_time is not none ")
         print("time_posted not none")
         print(time_posted)
         print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
@@ -900,16 +788,21 @@ def resourceDownloadCounter(request, id):
         timediff = dataCurrentTime - savedTimeInSession
         time_diff = timediff.total_seconds()
         print("timediff", timediff.total_seconds())
+        logger.info("Resources page, calculating time difference from saved time with first button click to current button click time ")
     else:
+        logger.info("Resources page, checking where time data is saved in resources_Download_time is none ")
         print("time_posted none")
     print("saved_ip", saved_ip)
 
     if time_diff < 60:
+        logger.info("Resources page,if time diff. is less than 20 seconds, then it will save requested ip to resourcesDownloadCounter_ip session ")
         saved_ip = request.session.get('resourcesDownloadCounter_ip')
     else:
+        logger.info("Resources page,if time diff. is more than 20 seconds, then it will set none to resourcesDownloadCounter_ip session ")
         request.session['resourcesDownloadCounter_ip'] = None
 
     if ip != saved_ip:
+        logger.info("Resources page,it will check that within 60 second request is comming from same ip or not, if not it will increase download count, and set resourcesDownloadCounter_ip as requested ip and requested time to resources_Download_time ")
         # print("savedTimeInSession inside second not none")
         # if ip != saved_ip:
         print("ip is defferent inside second not none")
@@ -930,39 +823,10 @@ def resourceDownloadCounter(request, id):
         resources_obj.save()
         print("after", resources_obj.ResourceData_DownloadCounter)
         return redirect('Localisation_App:resourcesPage')
-        # else:
-        #     print("ip is same inside second not none")
-        #     request.session['resourcesDownloadCounter_ip'] = ip
-        #     data=datetime.now()
-        #     print("time",type(data))
-        #     data1=json.dumps(data, default=json_util.default)
-        #     aList =json.loads(data1)
-        #     testdata=aList['$date']
-        #     request.session['resources_Download_time'] = testdata
-        #     return redirect('Localisation_App:resourcesPage')
+       
     else:
-        # print("savedTimeInSession inside second none")
-        # if ip != saved_ip:
-        # print("ip is defferent inside second none")
-        # # if time_diff < 10:
-        # print("time is less than 10 seconds inside second none")
-        # request.session['resourcesDownloadCounter_ip'] = ip
-        # data=datetime.now()
-        # print("time",type(data))
-        # data1=json.dumps(data, default=json_util.default)
-        # aList =json.loads(data1)
-        # testdata=aList['$date']
-        # request.session['resources_Download_time'] = testdata
-        # print("increase download count second")
-        # print("getcookie",request.session.get('resourcesDownloadCounter_ip'))
-        # resources_obj = ResourceData.objects.get(pk=id)
-        # print("resources_obje",resources_obj)
-        # print("before",resources_obj.ResourceData_DownloadCounter)
-        # resources_obj.ResourceData_DownloadCounter= resources_obj.ResourceData_DownloadCounter + 1
-        # resources_obj.save()
-        # print("after",resources_obj.ResourceData_DownloadCounter)
-        # return redirect('Localisation_App:resourcesPage')
-        # else:
+        logger.info("Resources page,if within 60 second request is comming from same ip, it will not increase download count, and set resourcesDownloadCounter_ip as requested ip and requested time to resources_Download_time ")
+        
         print("ip is same inside second none")
         request.session['resourcesDownloadCounter_ip'] = ip
         print("same and none ip first")
@@ -980,7 +844,7 @@ def resourceDownloadCounter(request, id):
 # Successstory Page
 def successstoryPage(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
@@ -992,6 +856,7 @@ def successstoryPage(request):
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = successStoriesData.count()
+    logger.info("Success Stories page is getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1010,7 +875,7 @@ def successstoryPage(request):
 
 def successstory(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     checklist1 = []
     category_name = []
     pagestatus = False
@@ -1055,7 +920,7 @@ def successstory(request):
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
             count = q.count()
-
+            logger.info("Success stories page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1071,6 +936,7 @@ def successstory(request):
             # return render(request,'Localisation_App/successstory.html',context)
 
         else:
+            logger.info("Success stories page getting displayed with all category filteration")
             page = Paginator(successStoriesData, 8)
             SuccessStories_Category.objects.all().update(SuccessStories_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -1101,6 +967,7 @@ def successstory(request):
     print(q)
 
     if pagestatus == True:
+        logger.info("Success stories page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
@@ -1119,6 +986,7 @@ def successstory(request):
         }
 
     else:
+        logger.info("Success stories page getting displayed with all category filteration and pagination")
         page = Paginator(successStoriesData, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
@@ -1142,10 +1010,10 @@ def successstory(request):
 
 def successstorySearch(request, story_title):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
-    story_searchData=story_title.replace(" ", "-")
+    request.session['requested_url'] = url
+    story_searchData = story_title.replace(" ", "-")
     print("titlenone", story_title)
-    print("replace space ",story_title.replace(" ", "-"))
+    print("replace space ", story_title.replace(" ", "-"))
     print("titlenone", story_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1156,10 +1024,10 @@ def successstorySearch(request, story_title):
     if request.method == "POST":
         print("insideSearchMethod")
         print(story_title)
-        
+
         story_searchData12 = request.POST.get("storyname")
-        print("resourcestitle", story_searchData12)
-        story_searchData1=story_searchData12.replace(" ", "-")
+        print("successstoriestitle", story_searchData12)
+        story_searchData1 = story_searchData12.replace(" ", "-")
 
         if story_searchData1 != '':
             successStoriesData = SuccessStories.objects.filter(
@@ -1170,6 +1038,7 @@ def successstorySearch(request, story_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
+            logger.info("Success stories page getting displayed with searched data by heading")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1182,6 +1051,7 @@ def successstorySearch(request, story_title):
                 'count': count
             }
         else:
+            logger.info("Success stories  page getting displayed with all data")
             page = Paginator(successStoriesData, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -1206,6 +1076,7 @@ def successstorySearch(request, story_title):
         page = page.get_page(page_list)
         count = Stories_Data1.count()
         print("hereee", Stories_Data1)
+        logger.info("Success stories  page getting displayed with searched data by heading with pagination")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1218,6 +1089,7 @@ def successstorySearch(request, story_title):
             'count': count
         }
     else:
+        logger.info("Success stories  page getting displayed with all data")
         page = Paginator(successStoriesData, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -1239,7 +1111,7 @@ def successstorySearch(request, story_title):
 
 def successstoryReset(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
@@ -1251,6 +1123,7 @@ def successstoryReset(request):
     page = page.get_page(page_list)
     count = successStoriesData.count()
     if request.method == "POST":
+        logger.info("Success stories page getting displayed with all data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1269,11 +1142,12 @@ def successstoryReset(request):
 # Services Page
 def services(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     tTS_Form = TTSservice()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     servicesdata = Services.objects.all()
+    logger.info("Services page getting displayed with all data")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1285,7 +1159,7 @@ def services(request):
 
 def ServicesDemoPage(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     tTS_Form = TTSservice()
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1300,7 +1174,7 @@ def ServicesDemoPage(request):
 
 def srvEnableTyping(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == "POST":
@@ -1312,7 +1186,7 @@ def srvEnableTyping(request):
 
 def srvGoTranslateWebLocalizer(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     return render(request, 'Localisation_App/ServicesDemoPage.html')
@@ -1320,7 +1194,7 @@ def srvGoTranslateWebLocalizer(request):
 
 def srvOnscreenKeyboard(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == "POST":
@@ -1344,7 +1218,7 @@ def srvOnscreenKeyboard(request):
 
 def srvTTS(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     tTS_Form = TTSservice()
@@ -1393,7 +1267,7 @@ def srvTTS(request):
 
 def srvTransliteration(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == "POST":
@@ -1418,7 +1292,7 @@ def srvTransliteration(request):
 # Faqs Page
 def faqs(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     faqs_data = FAQs.objects.all()
@@ -1433,7 +1307,7 @@ def faqs(request):
 
 def faqsSearch(request, faq_title):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     print("titlenone", faq_title)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1476,7 +1350,7 @@ def faqsSearch(request, faq_title):
 # Terms And Conditions
 def termsandcondition(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_data = Footer_Links.objects.get(
@@ -1495,7 +1369,7 @@ def termsandcondition(request):
 
 def accessibilityStatement(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_data = Footer_Links.objects.get(
@@ -1512,7 +1386,7 @@ def accessibilityStatement(request):
 
 def websitepolicy(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1533,7 +1407,7 @@ def websitepolicy(request):
 
 def websitepolicydata(request, id):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     print("id : ", id)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1554,7 +1428,7 @@ def websitepolicydata(request, id):
 
 def sitemap(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_data = Footer_Links.objects.get(
@@ -1571,7 +1445,7 @@ def sitemap(request):
 
 def helpData(request, id):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     print("id : ", id)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
@@ -1592,7 +1466,7 @@ def helpData(request, id):
 
 def help(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1611,7 +1485,7 @@ def help(request):
 
 def contactus(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     logger.info("INSIDE views of Contact us ")
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1633,7 +1507,7 @@ def contactus(request):
 
 def submit(request, img):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     if request.method == "POST":
         name = request.POST.get("name")
         captcha = request.POST.get("captcha")
@@ -1696,11 +1570,9 @@ def Register_user(request):
     return render(request, 'Localisation_App/register.html', context)
 
 
-
-
 def login_user(request):
     form = UserLoginForm()
-    url= request.session.get('requested_url')
+    url = request.session.get('requested_url')
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     if request.method == 'POST':
@@ -1722,7 +1594,8 @@ def login_user(request):
                 return redirect('Localisation_App:login')
 
         else:
-            messages.error(request, 'Error Processing Your Request,Wrong Username or password ')
+            messages.error(
+                request, 'Error Processing Your Request,Wrong Username or password ')
             return redirect('Localisation_App:login')
     else:
         context = {
@@ -1747,7 +1620,8 @@ def logout_user(request):
 
 def changePassword(request, token):
     form = UserChangePasswordForm()
-    user_Profile_obj = UserRegistration.objects.get(userregistration_token=token)
+    user_Profile_obj = UserRegistration.objects.get(
+        userregistration_token=token)
     if user_Profile_obj is not None:
         print("inside change padsword", user_Profile_obj.pk)
         if request.method == 'POST':
@@ -1772,7 +1646,8 @@ def changePassword(request, token):
                             username=user_Profile_obj.userregistration_username)
                         user_main_obj.set_password(password1)
                         user_main_obj.save()
-                        messages.success(request, 'Password Reset Successfully')
+                        messages.success(
+                            request, 'Password Reset Successfully')
                         print('Password Reset Successfully ')
                         return redirect('http://127.0.0.1:5555/changePassword/'+token)
                 else:
@@ -1787,7 +1662,8 @@ def changePassword(request, token):
                 'form': form,
                 'User_Id': user_id
             }
-            return render('http://127.0.0.1:5555/changePassword/'+token)
+            messages.error(request, '')
+            return render(request, 'Localisation_App/changePassword.html', context)
     else:
         messages.success(request, 'User Not Found')
         print('User Not Found')
@@ -1807,7 +1683,7 @@ def forgetPassword(request):
                         request, 'No user found with this username')
                     print('No user found with this username')
                     return redirect('Localisation_App:forgetPassword')
-                else :
+                else:
                     print('user is not none')
                     user_obj = User.objects.get(username=username)
                     token = str(uuid.uuid4())
@@ -1815,13 +1691,14 @@ def forgetPassword(request):
                         userregistration_username=username)
                     user_Profile_obj.userregistration_token = token
                     user_Profile_obj.save()
-                    
-                    mail_send_status=send_forget_password_email(
+
+                    mail_send_status = send_forget_password_email(
                         user_Profile_obj.userregistration_email_field, token)
                     print("userdata", user_obj)
-                    print("mail_send_status",mail_send_status)
+                    print("mail_send_status", mail_send_status)
                     if mail_send_status:
-                        messages.success(request, 'An email is sent')
+                        messages.success(
+                            request, 'An email is sent on your registered Email-Id')
                         print('An email is sent')
                         return redirect('Localisation_App:forgetPassword')
                     else:
@@ -1842,7 +1719,7 @@ def forgetPassword(request):
 
 def goTranslate(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     context = {
@@ -1855,9 +1732,19 @@ def goTranslate(request):
 
 def dashboard(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
+    Total_Tools_DownloadCount = ToolsData.objects.aggregate(
+        Sum('ToolsData_DownloadCounter'))
+    # print(Total_Tools_DownloadCount)
+    # print(type(Total_Tools_DownloadCount))
+
+    Total_ResourceData_DownloadCount = ResourceData.objects.aggregate(
+        Sum('ResourceData_DownloadCounter'))
+    # print(Total_ResourceData_DownloadCount)
+    # print(type(Total_ResourceData_DownloadCount))
+
     SuccessStoriescategory_name = []
     countOfStoriesWithCategory = []
     successStories_CategoryData = SuccessStories_Category.objects.all()
@@ -1989,7 +1876,9 @@ def dashboard(request):
         'toolsHitCount': toolsName_hitCount_Per_Name,
 
         'resourcesshit_name': resourcesName,
-        'resourcesHitCount': resourcesName_hitCount_Per_Name
+        'resourcesHitCount': resourcesName_hitCount_Per_Name,
+        'Total_Tools_DownloadCount': Total_Tools_DownloadCount,
+        'Total_ResourceData_DownloadCount': Total_ResourceData_DownloadCount
 
     }
     return render(request, 'Localisation_App/dashboard.html', context)
@@ -1999,7 +1888,7 @@ def dashboard(request):
 @login_required()
 def translation_quote(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
 
@@ -2045,8 +1934,6 @@ def translation_quote(request):
 
     form = TranslationQuoteForm()
     context['form'] = form
-    
-    
 
     if request.method == 'POST':
         url = request.POST.get('url')
@@ -2068,19 +1955,21 @@ def translation_quote(request):
             print(form.cleaned_data['domain'])
             print(form.cleaned_data['delivery_date'])
             print(form.cleaned_data['client_remark'])
-            
-            # generate application number (UNIQUE)
-            # 
-            application_number = uuid.uuid4().hex[:10].upper()
-            print("application ", application_number)
-            
-            # add user 
+
+            # add user
             current_user = request.user
 
             print(current_user)
 
+            # generate application number (UNIQUE)
+            #
+
+            application_number = str('GI-' + str(date.today().year) + '-' +
+                                     current_user.username[0:2].upper() + str(random.randrange(100000000, 1000000000)))
+            print("application ", application_number)
+
             data = TranslationQuote(
-                url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark,application_number=application_number, username=current_user)
+                url=url, company_email=company_email, language=language, domain=domain, delivery_date=delivery_date, client_remark=client_remark, application_number=application_number, username=current_user)
             data.save()
             context['status'] = 'success'
             context['message'] = "Form submitted successfully"
@@ -2099,7 +1988,7 @@ def translation_quote(request):
 
 def dashboard2(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     SuccessStoriescategory_name = []
     countOfStoriesWithCategory = []
     successStories_CategoryData = SuccessStories_Category.objects.all()
@@ -2165,23 +2054,23 @@ def dashboard2(request):
         # print(n)
         data = GuidelinceForIndianGovWebsite.objects.values(
             'percentage').filter().get(name=n)
-        print(data["percentage"])
+        # print(data["percentage"])
         guidelinesCount_Per_Type.append(data["percentage"])
 
     for n in tools_data:
         id.append(n.id)
-    print(id)
+    # print(id)
     for n in id:
         # print(n)
         data = ToolsData.objects.values('ToolsData_DownloadCounter').get(id=n)
         # print(data)
-        print(data["ToolsData_DownloadCounter"])
+        # print(data["ToolsData_DownloadCounter"])
         toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
 
     for n in id:
         datname = ToolsData.objects.values('ToolsData_HeadingName').get(id=n)
         toolsName.append(datname["ToolsData_HeadingName"])
-        print(datname["ToolsData_HeadingName"])
+        # print(datname["ToolsData_HeadingName"])
 
     # # print("cat",toolsName)
     # # print("data",toolsName_hitCount_Per_Name)
@@ -2215,8 +2104,9 @@ def dashboard2(request):
 
 
 def machine_translation(request):
+
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
     context = {
@@ -2230,7 +2120,7 @@ def machine_translation(request):
 
 def name_matcher(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
     context = {
@@ -2245,7 +2135,7 @@ def name_matcher(request):
 
 def empanelled_agencies(request):
     url = resolve(request.path_info).url_name
-    request.session['requested_url']=url
+    request.session['requested_url'] = url
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
 
@@ -2271,3 +2161,51 @@ def empanelled_agencies(request):
         'empanelled_agencies_data': empanelled_agecies_data_list,
     }
     return render(request, 'Localisation_App/empanelled_agencies.html', context)
+
+
+# translation_quote_user_dashboard
+@login_required
+def translation_quote_user_dashboard(request):
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+
+    current_user = request.user
+    print(current_user)
+
+    translation_quote_data = TranslationQuote.objects.filter(
+        username=current_user)
+
+    print(translation_quote_data)
+
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'translation_quote_data': translation_quote_data,
+    }
+    return render(request, 'Localisation_App/translation_quote_user_dashboard.html', context)
+
+
+# translation_quote_show
+@login_required
+def translation_quote_show(request, application_number):
+    # print("application number ", application_number)
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+
+    translation_quote_data = TranslationQuote.objects.filter(
+        application_number=application_number)[0]
+    print(translation_quote_data)
+    username = translation_quote_data.username
+
+    print(username.username)
+
+    user_details = UserRegistration.objects.filter(
+        userregistration_username=username.username)
+
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'translation_quote_data': translation_quote_data,
+        'user_details': user_details,
+    }
+    return render(request, 'Localisation_App/translation_quote_show.html', context)
