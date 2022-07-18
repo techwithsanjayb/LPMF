@@ -16,36 +16,36 @@
     
     <div class="card">
       <div class="card-body px-4 t-dash-main">
-        <h5 class="card-title text-start">Application Number : {{quote_data.application_number}}</h5>
+        <h5 class="text-muted fs-4 fw-semibold my-2">Application Number : {{quote_data.application_number}}</h5>
           <div class="row">
-            <div class="col-lg-2">
+            <div class="col-sm-2">
              URL :
             </div>
-            <div class="col-lg-8">{{quote_data.url}}
+            <div class="col-sm-8">{{quote_data.url}}
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-2">
+            <div class="col-sm-2">
              Language :
             </div>
-            <div class="col-lg-8">
+            <div class="col-sm-8">
               {{quote_data.language}}
             </div>
           </div>
           
           <div class="row">
-            <div class="col-lg-2">
+            <div class="col-sm-2">
               Submission Date :
             </div>
-            <div class="col-lg-8">
+            <div class="col-sm-8">
               {{quote_data.submission_date}}
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-2">
+            <div class="col-sm-2">
               Status :
             </div>
-            <div class="col-lg-8">
+            <div class="col-sm-8">
              <strong class="{% if quote_data.status == 'PENDING' %} text-danger {% else %} text-primary {% endif %}">{{quote_data.status}}</strong>
             </div>
           </div>

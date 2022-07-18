@@ -4,40 +4,58 @@
   {% block translation_quote_show %} 
 
   {% comment %} css {% endcomment %}
-{% comment %} <link
+<link
   href="{% static 'Localisation_App/css/translation_quote_show.css' %}"
   rel="stylesheet"
-/> {% endcomment %}
+/>
 
-<div class="container mb-5">
-  {% if translation_quote_data %}
+<div class="container mb-5 mt-5">
+  {% with translation_quote_data as data %}
+  {% if data %}
   
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title text-start">Application Number : {{translation_quote_data.application_number}}</h5>
-      <div class="card-text">
-        URL : {{translation_quote_data.url}}
-        <br>
-        Language : {{translation_quote_data.language}}
-        <br>
-        Domain : {{translation_quote_data.domain}}
-        <br>
-        Company Email : {{translation_quote_data.company_email}}
-        <br>
-        Submission Date : {{translation_quote_data.submission_date}}
-        <br>
-        Status : <strong>{{translation_quote_data.status}}</strong>
-        <br>
-        {% ifequal translation_quote_data.status 'INPROCESS' %}
+    <div class="px-4 t-show-main">
+      <h5 class="text-muted fs-4 fw-semibold my-2">Application Number : {{data.application_number}}</h5>
+        <div class="row">
+          <div class="col-sm-2">
+           URL :
+          </div>
+          <div class="col-sm-8">{{data.url}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+           Language :
+          </div>
+          <div class="col-sm-8">
+            {{data.language}}
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-2">
+            Submission Date :
+          </div>
+          <div class="col-sm-8">
+            {{data.submission_date}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            Status :
+          </div>
+          <div class="col-sm-8">
+           <strong class="{% if data.status == 'PENDING' %} text-danger {% else %} text-primary {% endif %}">{{data.status}}</strong>
+          </div>
+        </div>
+
+        {% ifequal data.status 'INPROCESS' %}
         {% comment %} Admin Part {% endcomment %}
-
-
         <h2>Admin :</h2>
-        Total Words : {{translation_quote_data.total_words}}
+        Total Words : {{data.total_words}}
         <br>
-        Total Cost : {{translation_quote_data.total_cost}}
+        Total Cost : {{data.total_cost}}
         <br>
-        User Name : {{user_details.userregistration_first_name}} {{user_details.userregistration_last_name}}
+        User Name : {{user_details.userregistration_first_name}} {{user_details.userregistration_first_name}}
         {% else %}
         Nothing
         {% endifequal %}
@@ -50,6 +68,7 @@
     No Record Found!
   </div>
   {% endif %}
+  {% endwith %}
   
 </div>
 

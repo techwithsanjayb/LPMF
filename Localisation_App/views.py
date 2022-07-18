@@ -2276,8 +2276,9 @@ def translation_quote_show(request, application_number):
     print(username.username)
 
     user_details = UserRegistration.objects.filter(
-        userregistration_username=username.username)
-
+        userregistration_username=username.username)[0]
+    
+        
     context = {
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
