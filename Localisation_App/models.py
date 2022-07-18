@@ -1,4 +1,6 @@
+from datetime import date
 from pyexpat import model
+from django.conf import settings
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.core.validators import RegexValidator
@@ -421,12 +423,30 @@ class UserRegistration(models.Model):
 
 
 # translation quote
-
 class TranslationQuote(models.Model):
+    # Client side Field
     url = models.URLField(max_length=200)
-    language = models.CharField(max_length=200)
-    website_type = models.CharField(max_length=200, null=True)
-    delivery_date = models.DateField(max_length=200, null=True)
+    company_email = models.EmailField(max_length=254, null=True)
+    language = models.CharField(max_length=200, null=True)
+    domain = models.CharField(max_length=200, null=True)
+    delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    client_remark = models.TextField(max_length=50, null=True)
+    
+    #  client field not comming from form
+    submission_date = models.DateField(default=date.today)
+    application_number = models.CharField(max_length=50, null=True)
+    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+
+    #  Admin side field
+    total_words = models.IntegerField(null=True)
+    total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True)
+    translation_delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    quotation_generated_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    
+    status_choice = [('PENDING','PENDING'),('INPROCESS','INPROCESS')]
+    status = models.CharField(choices=status_choice, default='PENDING', max_length=50, null=True)
+    admin_remark = models.TextField( max_length=50, null=True)
+    
 
     class Meta:
         verbose_name_plural = "Translation Quote"
