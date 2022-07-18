@@ -65,6 +65,7 @@ def Home(request):
     successStoriesData = SuccessStories.objects.all()
     servicesdata = Services.objects.all()
     newsAndEventsData = NewsAndEvents.objects.all()
+    logger.info("Home page is getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -86,6 +87,7 @@ def aboutus(request):
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     articleData = Article.objects.all().filter(Article_HeadingName="About Us")
     print("TEst ", articleData)
+    logger.info("About Us page is getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -126,10 +128,11 @@ def toolsPage(request):
         'count': count,
         'form': UserLoginForm()
     }
-    if request.user.is_authenticated:
-        return render(request, 'Localisation_App/tools.html', context)
-    else:
-        return render(request, 'Localisation_App/tools.html', context)
+    logger.info("Tools page getting displayed")
+    # if request.user.is_authenticated:
+    #     return render(request, 'Localisation_App/tools.html', context)
+    # else:
+    return render(request, 'Localisation_App/tools.html', context)
 
 
 def tools(request):
@@ -175,7 +178,7 @@ def tools(request):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-
+            logger.info("Tools page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -191,6 +194,7 @@ def tools(request):
             # return render(request,'Localisation_App/tools.html',context)
             return render(request, 'Localisation_App/tools.html', context)
         else:
+            logger.info("Tools page getting displayed with all category filteration")
             page = Paginator(tools_Data, 8)
             Tools_Category.objects.all().update(Tools_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -210,6 +214,7 @@ def tools(request):
             print("inside 2")
             return render(request, 'Localisation_App/tools.html', context)
     for p in toolsCategory_data:
+        
         if p.Tools_Cat_Status == True:
             print("true")
             pagestatus = True
@@ -221,6 +226,7 @@ def tools(request):
     print(q)
 
     if pagestatus == True:
+        logger.info("Tools page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -238,6 +244,7 @@ def tools(request):
         }
 
     else:
+        logger.info("Tools page getting displayed with all category filteration and pagination")
         page = Paginator(tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -286,6 +293,7 @@ def toolsSearch(request, tools_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
+            logger.info("Tools page getting displayed with searched tools data by slugs")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -298,6 +306,7 @@ def toolsSearch(request, tools_title):
                 'count': count
             }
         else:
+            logger.info("Tools page getting displayed with all tools data")
             page = Paginator(tools_Data, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -316,6 +325,7 @@ def toolsSearch(request, tools_title):
             }
         return render(request, 'Localisation_App/tools.html', context)
     if tools_searchData != 'none':
+        logger.info("Tools page getting displayed with searched tools data by slugs")
         tools_Data1 = ToolsData.objects.filter(
             ToolsData_slug__icontains=tools_searchData)
         page = Paginator(tools_Data1, 8)
@@ -335,6 +345,7 @@ def toolsSearch(request, tools_title):
             'count': count
         }
     else:
+        logger.info("Tools page getting displayed with all tools data")
         page = Paginator(tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -369,6 +380,7 @@ def toolsReset(request):
     page = page.get_page(page_list)
     count = tools_Data.count()
     if request.method == "POST":
+        logger.info("Tools page getting displayed with all tools data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -399,6 +411,7 @@ def toolsDownloadCounter(request, id):
     savedTimeInSession = None
     time_diff = 0
     if time_posted is not None:
+        logger.info("Tools page, checking where time data is saved in tools_Download_time is not none ")
         print("time_posted not none")
         print(time_posted)
         print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
@@ -408,16 +421,21 @@ def toolsDownloadCounter(request, id):
         timediff = dataCurrentTime - savedTimeInSession
         time_diff = timediff.total_seconds()
         print("timediff", timediff.total_seconds())
+        logger.info("Tools page, calculating time difference from saved time with first button click to current button click time ")
     else:
+        logger.info("Tools page, checking where time data is saved in tools_Download_time is none ")
         print("time_posted none")
     print("saved_ip", saved_ip)
 
-    if time_diff < 20:
+    if time_diff < 60:
+        logger.info("Tools page,if time diff. is less than 20 seconds, then it will save requested ip to toolsDownloadCounter_ip session ")
         saved_ip = request.session.get('toolsDownloadCounter_ip')
     else:
+        logger.info("Tools page,if time diff. is more than 20 seconds, then it will set none to toolsDownloadCounter_ip session ")
         request.session['toolsDownloadCounter_ip'] = None
 
     if ip != saved_ip:
+        logger.info("Tools page,it will check that within 60 second request is comming from same ip or not, if not it will increase download count, and set toolsDownloadCounter_ip as requested ip and requested time to tools_Download_time ")
         # print("savedTimeInSession inside second not none")
         # if ip != saved_ip:
         print("ip is defferent inside second not none")
@@ -439,6 +457,7 @@ def toolsDownloadCounter(request, id):
         print("after", tool_obj.ToolsData_DownloadCounter)
         return redirect('Localisation_App:toolsPage')
     else:
+        logger.info("Tools page,if within 60 second request is comming from same ip, it will not increase download count, and set toolsDownloadCounter_ip as requested ip and requested time to tools_Download_time ")
         print("ip is same inside second none")
         request.session['toolsDownloadCounter_ip'] = ip
         print("same and none ip first")
@@ -451,150 +470,6 @@ def toolsDownloadCounter(request, id):
         request.session['tools_Download_time'] = testdata
         print("inside second none")
         return redirect('Localisation_App:toolsPage')
-
-
-# def toolsDownloadCounter(request,id):
-#     print("session time",)
-#     print("requestid",id)
-#     print("inside herehelloooooo")
-#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-#     ip=''
-#     if x_forwarded_for:
-#         ip = x_forwarded_for.split(',')[-1].strip()
-#     else:
-#         ip = request.META.get('REMOTE_ADDR')
-#     print("ip",ip)
-#     # request.session['tools_Download_time'] = None
-#     # request.session['toolsDownloadCounter_ip'] =None
-#     saved_ip=None
-#     time_posted = request.session.get('tools_Download_time')
-#     savedTimeInSession=None
-#     time_diff=0
-
-
-#     # data=datetime.now()
-#     # print("time",type(data))
-#     # data1=json.dumps(data, default=json_util.default)
-#     # aList =json.loads(data1)
-#     # testdata=aList['$date']
-#     # print("ourtest",aList['$date'])
-#     # print("datatatataa",type(datetime.fromisoformat(testdata[:-1])))
-#     # timetobesave=datetime.fromisoformat(testdata[:-1])
-#     # print("timetoionebnfftdgbkki",timetobesave)
-#     # print("timetoionebnfftdgbkki-TYpe",type(timetobesave))
-
-
-#     if time_posted is not None:
-#         print("time_posted not none")
-#         print(time_posted)
-#         print("datatatataa",type(datetime.fromisoformat(time_posted[:-1])))
-#         savedTimeInSession=datetime.fromisoformat(time_posted[:-1])
-#         dataCurrentTime=datetime.now()
-#         print("time",type(dataCurrentTime))
-#         # dataCurrent1=json.dumps(dataCurrent, default=json_util.default)
-#         # aListdataCurrent1=json.loads(dataCurrent1)
-#         # testdata3=aListdataCurrent1['$date']
-#         # print("datatestsaved",savedTime)
-#         timediff = dataCurrentTime - savedTimeInSession
-#         time_diff = timediff.total_seconds()
-#         print("timediff",timediff.total_seconds())
-#     else:
-#         print("time_posted none")
-#     print("saved_ip",saved_ip)
-
-#     if time_diff < 20:
-#         saved_ip=request.session.get('toolsDownloadCounter_ip')
-#     else:
-#         request.session['toolsDownloadCounter_ip'] =None
-
-#     if savedTimeInSession is not None:
-#         print("savedTimeInSession inside second not none")
-#         if ip != saved_ip:
-#             print("ip is defferent inside second not none")
-#             # if time_diff < 10:
-#             print("time is less than 10 seconds inside second not none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             print("increase download count second")
-#             tool_obj = ToolsData.objects.get(pk=id)
-#             print("tools_obje",tool_obj)
-#             print("before",tool_obj.ToolsData_DownloadCounter)
-#             tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
-#             tool_obj.save()
-#             print("after",tool_obj.ToolsData_DownloadCounter)
-#             return redirect('Localisation_App:toolsPage')
-#             # else:
-#             #     print("time is more than 10 seconds inside second not none")
-#             #     request.session['toolsDownloadCounter_ip'] = ip
-#             #     data=datetime.now()
-#             #     print("time",type(data))
-#             #     data1=json.dumps(data, default=json_util.default)
-#             #     aList =json.loads(data1)
-#             #     testdata=aList['$date']
-#             #     request.session['tools_Download_time'] = testdata
-#             #     return redirect('Localisation_App:toolsPage')
-#         else:
-#             print("ip is same inside second not none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             return redirect('Localisation_App:toolsPage')
-#     else:
-#         print("savedTimeInSession inside second none")
-#         if ip != saved_ip:
-#             print("ip is defferent inside second none")
-#             # if time_diff < 10:
-#             print("time is less than 10 seconds inside second none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             print("increase download count second")
-#             print("getcookie",request.session.get('toolsDownloadCounter_ip'))
-#             tool_obj = ToolsData.objects.get(pk=id)
-#             print("tools_obje",tool_obj)
-#             print("before",tool_obj.ToolsData_DownloadCounter)
-#             tool_obj.ToolsData_DownloadCounter= tool_obj.ToolsData_DownloadCounter + 1
-#             tool_obj.save()
-#             print("after",tool_obj.ToolsData_DownloadCounter)
-#             return redirect('Localisation_App:toolsPage')
-#             # else:
-#             #     print("time is more than 10 seconds inside second none")
-#             #     request.session['toolsDownloadCounter_ip'] = ip
-#             #     print("Inside 300 seconds")
-#             #     data=datetime.now()
-#             #     print("time",type(data))
-#             #     data1=json.dumps(data, default=json_util.default)
-#             #     aList =json.loads(data1)
-#             #     print("data343434",aList)
-#             #     testdata=aList['$date']
-#             #     request.session['tools_Download_time'] = testdata
-#             #     return redirect('Localisation_App:toolsPage')
-#         else:
-#             print("ip is same inside second none")
-#             request.session['toolsDownloadCounter_ip'] = ip
-#             print("same and none ip first")
-#             data=datetime.now()
-#             print("time",type(data))
-#             data1=json.dumps(data, default=json_util.default)
-#             aList =json.loads(data1)
-#             print("data343434",aList)
-#             testdata=aList['$date']
-#             request.session['tools_Download_time'] = testdata
-#             print("inside second none")
-#             return redirect('Localisation_App:toolsPage')
 
 
 # Resources Page
@@ -624,6 +499,7 @@ def resourcesPage(request):
         'Pagination_Type': 'All_Data',
         'count': count
     }
+    logger.info("Resources page getting displayed")
     return render(request, 'Localisation_App/resources.html', context)
 
 
@@ -670,7 +546,7 @@ def resources(request):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-
+            logger.info("Resources page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -686,6 +562,7 @@ def resources(request):
 
             return render(request, 'Localisation_App/resources.html', context)
         else:
+            logger.info("Resources page getting displayed with all category filteration")
             page = Paginator(resources_Data, 8)
             Resources_Category.objects.all().update(Resources_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -716,6 +593,7 @@ def resources(request):
     print(q)
 
     if pagestatus == True:
+        logger.info("Resources page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -733,6 +611,7 @@ def resources(request):
         }
 
     else:
+        logger.info("Resources page getting displayed with all category filteration and pagination")
         page = Paginator(resources_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -781,6 +660,7 @@ def resourceSearch(request, resource_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
+            logger.info("Resources page getting displayed with searched data by slugs")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -793,6 +673,7 @@ def resourceSearch(request, resource_title):
                 'count': count
             }
         else:
+            logger.info("Resources page getting displayed with all data")
             page = Paginator(resources_Data, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -810,6 +691,7 @@ def resourceSearch(request, resource_title):
             }
         return render(request, 'Localisation_App/resources.html', context)
     if resource_searchData != 'none':
+        logger.info("Resources page getting displayed with searched data by slugs with pagination")
         resource_Data1 = ResourceData.objects.filter(
             ResourceData_slug__icontains=resource_searchData)
         page = Paginator(resource_Data1, 8)
@@ -829,6 +711,7 @@ def resourceSearch(request, resource_title):
             'count': count
         }
     else:
+        logger.info("Resources page getting displayed with all data")
         page = Paginator(resources_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -862,6 +745,7 @@ def resourcesReset(request):
     page = page.get_page(page_list)
     count = resources_Data.count()
     if request.method == "POST":
+        logger.info("Resources page getting displayed with all data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -894,6 +778,7 @@ def resourceDownloadCounter(request, id):
     savedTimeInSession = None
     time_diff = 0
     if time_posted is not None:
+        logger.info("Resources page, checking where time data is saved in resources_Download_time is not none ")
         print("time_posted not none")
         print(time_posted)
         print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
@@ -903,16 +788,21 @@ def resourceDownloadCounter(request, id):
         timediff = dataCurrentTime - savedTimeInSession
         time_diff = timediff.total_seconds()
         print("timediff", timediff.total_seconds())
+        logger.info("Resources page, calculating time difference from saved time with first button click to current button click time ")
     else:
+        logger.info("Resources page, checking where time data is saved in resources_Download_time is none ")
         print("time_posted none")
     print("saved_ip", saved_ip)
 
     if time_diff < 60:
+        logger.info("Resources page,if time diff. is less than 20 seconds, then it will save requested ip to resourcesDownloadCounter_ip session ")
         saved_ip = request.session.get('resourcesDownloadCounter_ip')
     else:
+        logger.info("Resources page,if time diff. is more than 20 seconds, then it will set none to resourcesDownloadCounter_ip session ")
         request.session['resourcesDownloadCounter_ip'] = None
 
     if ip != saved_ip:
+        logger.info("Resources page,it will check that within 60 second request is comming from same ip or not, if not it will increase download count, and set resourcesDownloadCounter_ip as requested ip and requested time to resources_Download_time ")
         # print("savedTimeInSession inside second not none")
         # if ip != saved_ip:
         print("ip is defferent inside second not none")
@@ -933,39 +823,10 @@ def resourceDownloadCounter(request, id):
         resources_obj.save()
         print("after", resources_obj.ResourceData_DownloadCounter)
         return redirect('Localisation_App:resourcesPage')
-        # else:
-        #     print("ip is same inside second not none")
-        #     request.session['resourcesDownloadCounter_ip'] = ip
-        #     data=datetime.now()
-        #     print("time",type(data))
-        #     data1=json.dumps(data, default=json_util.default)
-        #     aList =json.loads(data1)
-        #     testdata=aList['$date']
-        #     request.session['resources_Download_time'] = testdata
-        #     return redirect('Localisation_App:resourcesPage')
+       
     else:
-        # print("savedTimeInSession inside second none")
-        # if ip != saved_ip:
-        # print("ip is defferent inside second none")
-        # # if time_diff < 10:
-        # print("time is less than 10 seconds inside second none")
-        # request.session['resourcesDownloadCounter_ip'] = ip
-        # data=datetime.now()
-        # print("time",type(data))
-        # data1=json.dumps(data, default=json_util.default)
-        # aList =json.loads(data1)
-        # testdata=aList['$date']
-        # request.session['resources_Download_time'] = testdata
-        # print("increase download count second")
-        # print("getcookie",request.session.get('resourcesDownloadCounter_ip'))
-        # resources_obj = ResourceData.objects.get(pk=id)
-        # print("resources_obje",resources_obj)
-        # print("before",resources_obj.ResourceData_DownloadCounter)
-        # resources_obj.ResourceData_DownloadCounter= resources_obj.ResourceData_DownloadCounter + 1
-        # resources_obj.save()
-        # print("after",resources_obj.ResourceData_DownloadCounter)
-        # return redirect('Localisation_App:resourcesPage')
-        # else:
+        logger.info("Resources page,if within 60 second request is comming from same ip, it will not increase download count, and set resourcesDownloadCounter_ip as requested ip and requested time to resources_Download_time ")
+        
         print("ip is same inside second none")
         request.session['resourcesDownloadCounter_ip'] = ip
         print("same and none ip first")
@@ -995,6 +856,7 @@ def successstoryPage(request):
     page_list = request.GET.get('page')
     page = page.get_page(page_list)
     count = successStoriesData.count()
+    logger.info("Success Stories page is getting displayed")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1058,7 +920,7 @@ def successstory(request):
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
             count = q.count()
-
+            logger.info("Success stories page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1074,6 +936,7 @@ def successstory(request):
             # return render(request,'Localisation_App/successstory.html',context)
 
         else:
+            logger.info("Success stories page getting displayed with all category filteration")
             page = Paginator(successStoriesData, 8)
             SuccessStories_Category.objects.all().update(SuccessStories_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -1104,6 +967,7 @@ def successstory(request):
     print(q)
 
     if pagestatus == True:
+        logger.info("Success stories page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
@@ -1122,6 +986,7 @@ def successstory(request):
         }
 
     else:
+        logger.info("Success stories page getting displayed with all category filteration and pagination")
         page = Paginator(successStoriesData, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
@@ -1161,7 +1026,7 @@ def successstorySearch(request, story_title):
         print(story_title)
 
         story_searchData12 = request.POST.get("storyname")
-        print("resourcestitle", story_searchData12)
+        print("successstoriestitle", story_searchData12)
         story_searchData1 = story_searchData12.replace(" ", "-")
 
         if story_searchData1 != '':
@@ -1173,6 +1038,7 @@ def successstorySearch(request, story_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
+            logger.info("Success stories page getting displayed with searched data by heading")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1185,6 +1051,7 @@ def successstorySearch(request, story_title):
                 'count': count
             }
         else:
+            logger.info("Success stories  page getting displayed with all data")
             page = Paginator(successStoriesData, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -1209,6 +1076,7 @@ def successstorySearch(request, story_title):
         page = page.get_page(page_list)
         count = Stories_Data1.count()
         print("hereee", Stories_Data1)
+        logger.info("Success stories  page getting displayed with searched data by heading with pagination")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1221,6 +1089,7 @@ def successstorySearch(request, story_title):
             'count': count
         }
     else:
+        logger.info("Success stories  page getting displayed with all data")
         page = Paginator(successStoriesData, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -1254,6 +1123,7 @@ def successstoryReset(request):
     page = page.get_page(page_list)
     count = successStoriesData.count()
     if request.method == "POST":
+        logger.info("Success stories page getting displayed with all data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1277,6 +1147,7 @@ def services(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     servicesdata = Services.objects.all()
+    logger.info("Services page getting displayed with all data")
     context = {
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
