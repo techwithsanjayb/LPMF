@@ -211,18 +211,20 @@
 .succ-desc p {
     color: #023047;
     text-align: center;
-
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .succ-desc2 p {
     color: #023047;
     text-align: center;
-
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .succ-desc3 p {
     color: #023047;
-    text-align: justify;
+    text-align: center;
     font-weight: 500;
     font-size: 18px;
 }
