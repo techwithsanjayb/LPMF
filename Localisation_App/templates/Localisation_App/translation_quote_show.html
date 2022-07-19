@@ -9,6 +9,10 @@
   rel="stylesheet"
 />
 
+<div class="text-center p-3">
+  <input type="text" class="text-center rounded-5 t-show-heading" value="Order Details" disabled />
+</div>
+
 <div class="container mb-5 mt-5">
   {% with translation_quote_data as data %}
   {% if data %}
@@ -62,7 +66,7 @@
             Status :
           </div>
           <div class="col-sm-4">
-           <strong class="{% if data.status == 'PENDING' %} text-danger {% else %} text-primary {% endif %}">{{data.status}}</strong>
+           <strong class="{% if data.status == 'PENDING' %} text-warning {% elif data.status == 'COMPLETED' %} text-success{% else %} text-primary {% endif %}">{{data.status}}</strong>
           </div>
           <div class="col-sm-2 fw-semibold">
             Expected Delivery Date :
@@ -84,7 +88,7 @@
             {% endif %}
           </div>
         </div>
-        {% ifequal data.status 'INPROCESS' %}
+        {% if data.status == 'INPROCESS' or data.status == 'COMPLETED' %}
         {% comment %} Admin Part {% endcomment %}
         <hr>
         <div class="row mt-2">
@@ -131,7 +135,7 @@
 
           Pending from admin side
         </div>
-        {% endifequal %}
+        {% endif %}
       </div>
     </div>
   </div>
