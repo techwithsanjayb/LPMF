@@ -389,7 +389,6 @@ class CarouselData(models.Model):
 
 # USER_REGISTRATION TABLES MODEL
 
-
 class UserRegistration(models.Model):
     userregistration_user_id = models.AutoField(primary_key=True)
     userregistration_first_name = models.CharField(max_length=60)

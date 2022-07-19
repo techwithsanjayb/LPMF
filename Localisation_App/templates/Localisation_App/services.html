@@ -39,17 +39,17 @@
               </div>
               <div class="row">
                 <div class="col-3 first-section">
-                <img class="card-img pb-2" src="{% static './Localisation_App/img/services-page.jpg' %}" width="auto"
-                height="auto" />
+                  <img class="card-img pb-2" src="{% static './Localisation_App/img/services-page.jpg' %}" width="auto"
+                  height="auto" />
                 </div>
                 <div class="col-9 second-section">
-                <span>{{ service.Services_Description}}</span>
+                  <span>{{ service.Services_Description}}</span>
                 </div>
               </div>
-                          </div>
-            <button class="btn btn-primary services-button" type="submit">
-              {% comment %} <a href="{% url 'Localisation_App:{service.Services_links}' %}" class="text-white text-decoration-none fs-4">View Service Demo</a> {% endcomment %}
-              View Service Demo
+            </div>
+            <button class="btn btn-primary services-button">
+              <a href="{% url service.Services_links %}" class="text-white text-decoration-none fs-4">View Service Demo</a>
+              {% comment %} <a href={{service.Services_links}} class="text-white text-decoration-none fs-4">View Service Demo</a> {% endcomment %}
             </button>
           </div>
         </div>
