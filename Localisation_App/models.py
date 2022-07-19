@@ -446,9 +446,9 @@ class TranslationQuote(models.Model):
     translation_delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     quotation_generated_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     
-    status_choice = [('PENDING','PENDING'),('INPROCESS','INPROCESS')]
+    status_choice = [('PENDING','PENDING'),('INPROCESS','INPROCESS'), ('COMPLETED','COMPLETED')]
     status = models.CharField(choices=status_choice, default='PENDING', max_length=50, null=True, blank=True)
-    admin_remark = models.TextField( max_length=50, null=True, blank=True)
+    admin_remark = models.TextField( max_length=1000, null=True, blank=True)
     
 
     class Meta:
