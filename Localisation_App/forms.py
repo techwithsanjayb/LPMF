@@ -230,7 +230,8 @@ class TranslationQuoteForm(forms.Form):
     domain = forms.ChoiceField(validators=[validators.MaxLengthValidator(
         30)], required=True, choices=types, widget=forms.Select(attrs={'type': 'date', 'class': 'form-select trans_type'}),)
 
-    client_remark = forms.CharField(widget=forms.Textarea(
+    client_remark = forms.CharField(
+        required=False, widget=forms.Textarea(
         attrs={'rows': '6', 'class': 'form-control trans_remark', 'placeholder':"Remark"}))
 
     delivery_date = forms.DateField(widget=forms.DateInput(

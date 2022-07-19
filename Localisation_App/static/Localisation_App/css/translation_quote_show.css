@@ -1,0 +1,10 @@
+
+.t-show-main {
+  font-size: 18px;
+  background-color: aliceblue;
+}
+
+.t-show-main > .row {
+  margin-bottom: 2px;
+}
+

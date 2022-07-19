@@ -4,42 +4,133 @@
   {% block translation_quote_show %} 
 
   {% comment %} css {% endcomment %}
-{% comment %} <link
+<link
   href="{% static 'Localisation_App/css/translation_quote_show.css' %}"
   rel="stylesheet"
-/> {% endcomment %}
+/>
 
-<div class="container mb-5">
-  {% if translation_quote_data %}
+<div class="container mb-5 mt-5">
+  {% with translation_quote_data as data %}
+  {% if data %}
   
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title text-start">Application Number : {{translation_quote_data.application_number}}</h5>
-      <div class="card-text">
-        URL : {{translation_quote_data.url}}
-        <br>
-        Language : {{translation_quote_data.language}}
-        <br>
-        Domain : {{translation_quote_data.domain}}
-        <br>
-        Company Email : {{translation_quote_data.company_email}}
-        <br>
-        Submission Date : {{translation_quote_data.submission_date}}
-        <br>
-        Status : <strong>{{translation_quote_data.status}}</strong>
-        <br>
-        {% ifequal translation_quote_data.status 'INPROCESS' %}
+    <div class="px-4 py-4 t-show-main">
+      <div class="row">
+        <div class="col-10">
+      <h5 class="text-muted fs-4 fw-semibold my-2">Application Number : {{data.application_number}}</h5>
+
+        </div>
+        <div class="col-2">user : {{user_details.userregistration_username}}</div>
+      </div>
+      <hr>
+        <div class="row  mt-2">
+          <div class="col-sm-2 fw-semibold">
+           URL :
+          </div>
+          <div class="col-sm-8">{{data.url}}
+          </div>
+        </div>
+        <div class="row  mt-2">
+          <div class="col-sm-2 fw-semibold">
+           Language :
+          </div>
+          <div class="col-sm-4 fw-semibold">
+            {{data.language|upper}}
+          </div>
+          <div class="col-sm-2 fw-semibold">
+            Domain :
+           </div>
+           <div class="col-sm-4">
+             {{data.domain|upper}}
+           </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-2 fw-semibold">
+            Company Email :
+          </div>
+          <div class="col-sm-4">
+            {{data.company_email}}
+          </div>
+          <div class="col-sm-2 fw-semibold">
+            Submission Date :
+          </div>
+          <div class="col-sm-4">
+            {{data.submission_date}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-2 fw-semibold">
+            Status :
+          </div>
+          <div class="col-sm-4">
+           <strong class="{% if data.status == 'PENDING' %} text-danger {% else %} text-primary {% endif %}">{{data.status}}</strong>
+          </div>
+          <div class="col-sm-2 fw-semibold">
+            Expected Delivery Date :
+          </div>
+          <div class="col-sm-4">
+            {{data.delivery_date}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-sm-2 fw-semibold">
+            Client Remark :
+          </div>
+          <div class="col-sm-4">
+            {% if data.client_remark %}
+            {{data.client_remark}}
+            {% else %}
+            NA
+            {% endif %}
+          </div>
+        </div>
+        {% ifequal data.status 'INPROCESS' %}
         {% comment %} Admin Part {% endcomment %}
-
-
-        <h2>Admin :</h2>
-        Total Words : {{translation_quote_data.total_words}}
-        <br>
-        Total Cost : {{translation_quote_data.total_cost}}
-        <br>
-        User Name : {{user_details.userregistration_first_name}} {{user_details.userregistration_last_name}}
+        <hr>
+        <div class="row mt-2">
+          <div class="col-sm-2 fw-semibold">
+            Total Words :
+          </div>
+          <div class="col-sm-4">
+            {{data.total_words}}
+          </div>
+          <div class="col-sm-2 fw-semibold">
+            Total Cost :
+          </div>
+          <div class="col-sm-4">
+            {{data.total_cost}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-2 fw-semibold">
+            Translation Delivery date :
+          </div>
+          <div class="col-sm-8">
+            {{data.translation_delivery_date}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-2 fw-semibold">
+            quotation generated date:
+          </div>
+          <div class="col-sm-8">
+            {{data.quotation_generated_date}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-2 fw-semibold">
+            Admin Remark :
+          </div>
+          <div class="col-sm-8">
+            {{data.admin_remark}}
+          </div>
+        </div>
         {% else %}
-        Nothing
+        <hr>
+        <div class='pb-4 text-secondary fw-semibold'>
+
+          Pending from admin side
+        </div>
         {% endifequal %}
       </div>
     </div>
@@ -50,6 +141,7 @@
     No Record Found!
   </div>
   {% endif %}
+  {% endwith %}
   
 </div>
 

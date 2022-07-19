@@ -1,5 +1,8 @@
 from datetime import date
 from pyexpat import model
+from signal import valid_signals
+from unittest.util import _MAX_LENGTH
+from wsgiref import validate
 from django.conf import settings
 from django.db import models
 from ckeditor.fields import RichTextField
@@ -7,6 +10,7 @@ from django.core.validators import RegexValidator
 from django.forms import CharField
 from django.template.defaultfilters import slugify  # new
 from django.urls import reverse
+from django.core import validators
 
 # Create your models here.
 
@@ -233,7 +237,7 @@ class ResourceData(models.Model):
 
 class NewsAndEvents(models.Model):
     NewsAndEvents_HeadingName = models.CharField(max_length=100)
-    NewsAndEvents_Discription = models.CharField(max_length=5000)
+    NewsAndEvents_Discription = models.CharField(max_length=5000, null=True)
     NewsAndEvents_CreationDate = models.DateTimeField(
         auto_now=True,  blank=True)
     NewsAndEvents_UpdatedDate = models.DateTimeField(
@@ -385,7 +389,6 @@ class CarouselData(models.Model):
 
 # USER_REGISTRATION TABLES MODEL
 
-
 class UserRegistration(models.Model):
     userregistration_user_id = models.AutoField(primary_key=True)
     userregistration_first_name = models.CharField(max_length=60)
@@ -425,12 +428,12 @@ class UserRegistration(models.Model):
 # translation quote
 class TranslationQuote(models.Model):
     # Client side Field
-    url = models.URLField(max_length=200)
-    company_email = models.EmailField(max_length=254, null=True)
-    language = models.CharField(max_length=200, null=True)
-    domain = models.CharField(max_length=200, null=True)
-    delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
-    client_remark = models.TextField(max_length=50, null=True)
+    url = models.URLField(max_length=200, validators=[validators.URLValidator(), validators.MaxLengthValidator(200)], blank=False)
+    company_email = models.EmailField(max_length=254, null=True, blank=False)
+    language = models.CharField(max_length=200, null=True, blank=False)
+    domain = models.CharField(max_length=200, null=True, blank=False)
+    delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=False)
+    client_remark = models.TextField(max_length=5000, null=True, blank=True)
     
     #  client field not comming from form
     submission_date = models.DateField(default=date.today)
@@ -438,14 +441,14 @@ class TranslationQuote(models.Model):
     username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     #  Admin side field
-    total_words = models.IntegerField(null=True)
-    total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True)
-    translation_delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
-    quotation_generated_date = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    total_words = models.IntegerField(null=True, blank=True)
+    total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    translation_delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    quotation_generated_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     
     status_choice = [('PENDING','PENDING'),('INPROCESS','INPROCESS')]
-    status = models.CharField(choices=status_choice, default='PENDING', max_length=50, null=True)
-    admin_remark = models.TextField( max_length=50, null=True)
+    status = models.CharField(choices=status_choice, default='PENDING', max_length=50, null=True, blank=True)
+    admin_remark = models.TextField( max_length=50, null=True, blank=True)
     
 
     class Meta:
