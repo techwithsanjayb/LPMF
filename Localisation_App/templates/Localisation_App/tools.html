@@ -10,7 +10,7 @@
 				<form action={% url 'Localisation_App:toolsSearch' tools_title %} method="POST" enctype="multipart/form-data"> {% csrf_token %}
 					<div class="row p-3">
 						<div class="col-6"> {% if tools_title == 'none' %}
-							<input class="form-control me-2" type="text" name="toolname" placeholder="Search" aria-label="Search" />{% else %}
+							<input class="form-control me-2" type="text" name="toolname" placeholder="Enter Words" aria-label="Enter Words" />{% else %}
 							<input class="form-control me-2" type="text" name="toolname" value={{ tools_title }} placeholder="Search" aria-label="Search" />{% endif %} 
 						</div>
 						<div class="col-6">
@@ -54,7 +54,7 @@
 				<div class="col-sm-12 col-lg-12 "  >
 					<div class="tools-main-card-section">
 						<div class="row">
-							<div class="col-sm-12 col-lg-4"> <img src="{% static './Localisation_App/img/tools_image.png' %}" class="img-fluid tools-image" alt="..." />
+							<div class="col-sm-12 col-lg-4"> <img src="{% static './Localisation_App/img/resources8.png' %}" class="img-fluid tools-image" alt="..." />
 								
 
 								<div class="Total_downloads">Total Downloads : {{data.ToolsData_DownloadCounter }}</div>

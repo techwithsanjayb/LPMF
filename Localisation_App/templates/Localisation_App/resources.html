@@ -18,8 +18,8 @@
           <div class="row p-3">
             <div class="col-6">
               {% if resource_title == 'none' %}
-              <input class="form-control me-2" type="text" name="resourcename" placeholder="Search"
-                aria-label="Search" />{% else %}
+              <input class="form-control me-2" type="text" name="resourcename" placeholder="Enter Words"
+                aria-label="Enter Words" />{% else %}
               <input class="form-control me-2" type="text" name="resourcename" value={{ resource_title }}
                 placeholder="Search" aria-label="Search" />{% endif %}
             </div>
@@ -123,7 +123,7 @@
             {% if data.ResourceData_UploadSupportDocument != '' %}
             <a style="text-decoration: none;color:white" href="/media/{{data.ResourceData_UploadSupportDocument}}"
               download>
-              <div class="tools-section-button">Download </div>
+              <div class="tools-section-button">Document </div>
             </a>
             {% endif %}
 
