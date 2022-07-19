@@ -1193,7 +1193,12 @@ def srvGoTranslateWebLocalizer(request):
     logger.info("Go Translate WebLocalizer page getting displayed with all data")
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    return render(request, 'Localisation_App/ServicesDemoPage.html')
+    context = {
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+        "service": "goTranslate"
+    }
+    return render(request, 'Localisation_App/gotranslate.html',context)
 
 
 def srvOnscreenKeyboard(request):
@@ -1775,8 +1780,9 @@ def goTranslate(request):
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
         "service": "goTranslate"
+        
     }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
+    return render(request, 'Localisation_App/gotranslate.html', context)
 
 
 def dashboard(request):
