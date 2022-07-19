@@ -14,7 +14,7 @@
 							<input class="form-control me-2" type="text" name="toolname" value={{ tools_title }} placeholder="Search" aria-label="Search" />{% endif %} 
 						</div>
 						<div class="col-6">
-							<input class="btn btn-primary" type="submit" style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Search" /> 
+							<input class="btn btn-primary tool-search-button" type="submit" style="background-color:#219EBC ;border-color:#219EBC; " value="Search" /> 
 						</div>
 						<hr style="margin-top: 20px;"> 
 					</div>
@@ -66,7 +66,7 @@
 
                                 
 								<div class="tools-section-button">
-									<button class="btn btn-primary" onclick="location.href='{% url 'Localisation_App:toolsDownloadCounter' data.id %}' ">
+									<button class="btn" onclick="location.href='{% url 'Localisation_App:toolsDownloadCounter' data.id %}' ">
 									<a type="submit" style="text-decoration: none;color:white" href="/media/{{data.ToolsData_UploadToolCode}}" download>
 										 Download</a>
 								    </button>
@@ -79,9 +79,9 @@
 							<div class="col-sm-12 col-lg-8">
 								<div class="Heading">
 									<h3 style="color: #023047;">{{ data.ToolsData_HeadingName }}</h3> </div>
-										{% for d in data.get_ToolsData_slug_splited|slice:":5" %}
+										<div class="category-tool-slug-section">{% for d in data.get_ToolsData_slug_splited|slice:":5" %}
 										<span class="category-tool-title-slug">{{ d }}</span>
-										{% endfor %}
+										{% endfor %}</div>
 								<hr/>
 								<div class="Discription">
 									<p> {{ data.ToolsData_Description|safe }} </p>
@@ -97,11 +97,11 @@
 				{% empty %}
 				<img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" /> 
 				{% endfor %}
-				<div class="section p-3"> {% if Pagination_Type == 'All_Data' %}
+				<div class="section p-3 d-flex justify-content-center"> {% if Pagination_Type == 'All_Data' %}
 					<div class="container">
 						<div class="row" style="width:500px">
 							<div class="col-md-12 offset-md-3">
-								<p style="width:200px">Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
+								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="..." style="width:200px">
 									<ul class="pagination" style="width:500px;">
 										<li class="page-item"> {% if page.has_previous %} <a class="page-link" href="{% url 'Localisation_App:tools' %}?page={{page.previous_page_number}}" tabindex="-1">Previous</a> {% endif %} </li> {% for num_page in page.paginator.page_range %} {% if page.number == num_page %}
@@ -117,7 +117,7 @@
 					</div> {% elif Pagination_Type == 'Searched_Post' %}
 					<div class="container">
 						<div class="row">
-							<div class=" col-lg-12 col-md-12 offset-md-3">
+							<div class=" col-lg-12 col-md-12 offset-md-3 ">
 								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="...">
 									<ul class="pagination">
@@ -133,7 +133,7 @@
 						</div>
 					</div> {% elif Pagination_Type == 'Category_Post' %}
 					<div class="container">
-						<div class="row">
+						<div class="row ">
 							<div class="col-lg-12 col-md-12 offset-md-3">
 								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="...">
