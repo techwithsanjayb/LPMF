@@ -7,6 +7,8 @@
 
 <!--Content starts here-->
 <div class="container-fluid">
+  <form action="{% url 'Localisation_App:machine_translation' %}" method="POST">
+    {%csrf_token%}
   <div class="text-center p-3">
     <input type="text" class="text-center rounded-5 sevices-heading" value="Services" disabled />
   </div>
@@ -45,9 +47,9 @@
                 </div>
               </div>
                           </div>
-            <button class="btn btn-primary services-button">
-              {% comment %} <a href="{% url '{{service.Services_links}}' %}" class="text-white text-decoration-none fs-4">View Service Demo</a> {% endcomment %}
-              <a href={{service.Services_links}} class="text-white text-decoration-none fs-4">View Service Demo</a>
+            <button class="btn btn-primary services-button" type="submit">
+              {% comment %} <a href="{% url 'Localisation_App:{service.Services_links}' %}" class="text-white text-decoration-none fs-4">View Service Demo</a> {% endcomment %}
+              View Service Demo
             </button>
           </div>
         </div>
@@ -70,7 +72,7 @@
   {% endblock %}
 
 
-
+<form/>
 </div>
 
 
