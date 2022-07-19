@@ -76,6 +76,7 @@ input[type="checkbox"] {
 }
 
 .tools-main-card-section {
+    margin-left: 20px;
     position: relative;
     background-color: #ffffff;
     padding: 12px;

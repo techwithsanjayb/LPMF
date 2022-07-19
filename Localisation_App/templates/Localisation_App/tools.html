@@ -52,8 +52,8 @@
 				{% for data in page.object_list %}
 				{% if data.ToolsData_PublishedStatus != 'Unpublished' %}
 				<div class="col-sm-12 col-lg-12 "  >
-					<div class="tools-main-card-section">
-						<div class="row">
+					<div class="tools-main-card-section" >
+						<div class="row" >
 							<div class="col-sm-12 col-lg-4"> <img src="{% static './Localisation_App/img/resources8.png' %}" class="img-fluid tools-image" alt="..." />
 								
 
@@ -99,7 +99,7 @@
 				{% endfor %}
 				<div class="section p-3"> {% if Pagination_Type == 'All_Data' %}
 					<div class="container">
-						<div class="row" style="width:500px">
+						<div class="row" style="width:500px;margin-left:300px;">
 							<div class="col-md-12 offset-md-3">
 								<p style="width:200px">Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="..." style="width:200px">
