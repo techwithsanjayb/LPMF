@@ -4,6 +4,9 @@
 
     background-size: cover;
 } */
+.ulca-outer-block{
+    margin-left:9rem !important;
+}
 .ulca-main {
     background-image: url("../../../static/Localisation_App/img/Ulcabackground.png");
     background-size: cover;
