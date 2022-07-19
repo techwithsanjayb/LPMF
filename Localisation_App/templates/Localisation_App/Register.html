@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-4">
                     <div class="form-group position-relative">
-                    <label>Middle name <span></span></label>
+                    <label>Middle name <span class="text-danger">*</span></label>
                     {{form.middle_name}}
                     </div>
                     {% if form.middle_name.errors %}
@@ -165,7 +165,7 @@
                     <div class="form-group">
                     <div class="custom-control">
                     {{form.check}}
-                   <label >I Accept <a href="#" class="text-primary">Terms And Condition</a></label>
+                   <label >I Accept <a href="#" class="text-primary">Terms And Condition</a><span class="text-danger">*</span></label>
                     </div>
                     {% if form.check.errors %}
                     {% for error in form.check.errors %}

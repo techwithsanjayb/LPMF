@@ -59,6 +59,7 @@ def Test(request):
 def Home(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
+    print("url",url)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     articleData = Article.objects.all()
@@ -270,7 +271,6 @@ def toolsSearch(request, tools_title):
     tools_searchData = tools_title.replace(" ", "-")
     print("titlenone", tools_title)
     print("replace space ", tools_title.replace(" ", "-"))
-
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     toolsCategory_data = Tools_Category.objects.all()
@@ -279,7 +279,6 @@ def toolsSearch(request, tools_title):
     if request.method == "POST":
         print("insideSearchMethod")
         print(tools_title)
-
         tools_title12 = request.POST.get("toolname")
         print("resourcestitle", tools_title12)
         tools_searchData1 = tools_title12.replace(" ", "-")
@@ -408,32 +407,42 @@ def toolsDownloadCounter(request, id):
     print("ip", ip)
     saved_ip = None
     time_posted = request.session.get('tools_Download_time')
+    tools_obj=ToolsData.objects.get(pk=id)
+    tools_requested_title=tools_obj.ToolsData_HeadingName
+    Heading=request.session.get('toolsDownloadCounter_toolHeading')
     savedTimeInSession = None
     time_diff = 0
-    if time_posted is not None:
-        logger.info("Tools page, checking where time data is saved in tools_Download_time is not none ")
-        print("time_posted not none")
-        print(time_posted)
-        print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
-        savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
-        dataCurrentTime = datetime.now()
-        print("time", type(dataCurrentTime))
-        timediff = dataCurrentTime - savedTimeInSession
-        time_diff = timediff.total_seconds()
-        print("timediff", timediff.total_seconds())
-        logger.info("Tools page, calculating time difference from saved time with first button click to current button click time ")
+    if tools_requested_title == Heading:
+        logger.info("Tools page, checking where saved heading name and requested name is different or not , if yes")
+        if time_posted is not None:
+            logger.info("Tools page, checking where time data is saved in tools_Download_time is not none ")
+            print("time_posted not none")
+            print(time_posted)
+            print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
+            savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
+            dataCurrentTime = datetime.now()
+            print("time", type(dataCurrentTime))
+            timediff = dataCurrentTime - savedTimeInSession
+            time_diff = timediff.total_seconds()
+            print("timediff", timediff.total_seconds())
+            logger.info("Tools page, calculating time difference from saved time with first button click to current button click time ")
+        else:
+            logger.info("Tools page, checking where time data is saved in tools_Download_time is none ")
+            print("time_posted none")
     else:
-        logger.info("Tools page, checking where time data is saved in tools_Download_time is none ")
-        print("time_posted none")
+        logger.info("Tools page, checking where saved heading name and requested name is different or not , if no")
+        time_diff = 70
     print("saved_ip", saved_ip)
-
+    
+   
     if time_diff < 60:
         logger.info("Tools page,if time diff. is less than 20 seconds, then it will save requested ip to toolsDownloadCounter_ip session ")
         saved_ip = request.session.get('toolsDownloadCounter_ip')
     else:
         logger.info("Tools page,if time diff. is more than 20 seconds, then it will set none to toolsDownloadCounter_ip session ")
         request.session['toolsDownloadCounter_ip'] = None
-
+   
+    
     if ip != saved_ip:
         logger.info("Tools page,it will check that within 60 second request is comming from same ip or not, if not it will increase download count, and set toolsDownloadCounter_ip as requested ip and requested time to tools_Download_time ")
         # print("savedTimeInSession inside second not none")
@@ -442,6 +451,7 @@ def toolsDownloadCounter(request, id):
         # if time_diff < 10:
         print("time is less than 10 seconds inside second not none")
         request.session['toolsDownloadCounter_ip'] = ip
+       
         data = datetime.now()
         print("time", type(data))
         data1 = json.dumps(data, default=json_util.default)
@@ -454,12 +464,16 @@ def toolsDownloadCounter(request, id):
         print("before", tool_obj.ToolsData_DownloadCounter)
         tool_obj.ToolsData_DownloadCounter = tool_obj.ToolsData_DownloadCounter + 1
         tool_obj.save()
+        
+        request.session['toolsDownloadCounter_toolHeading'] = tool_obj.ToolsData_HeadingName
         print("after", tool_obj.ToolsData_DownloadCounter)
         return redirect('Localisation_App:toolsPage')
     else:
         logger.info("Tools page,if within 60 second request is comming from same ip, it will not increase download count, and set toolsDownloadCounter_ip as requested ip and requested time to tools_Download_time ")
         print("ip is same inside second none")
         request.session['toolsDownloadCounter_ip'] = ip
+        tool_obj = ToolsData.objects.get(pk=id)
+        request.session['toolsDownloadCounter_toolHeading'] = tool_obj.ToolsData_HeadingName
         print("same and none ip first")
         data = datetime.now()
         print("time", type(data))
@@ -775,23 +789,30 @@ def resourceDownloadCounter(request, id):
     print("ip", ip)
     saved_ip = None
     time_posted = request.session.get('resources_Download_time')
+    resources_obj=ResourceData.objects.get(pk=id)
+    resource_requested_title=resources_obj.ResourceData_HeadingName
+    Heading=request.session.get('resourcesDownloadCounter_resourceHeading')
     savedTimeInSession = None
     time_diff = 0
-    if time_posted is not None:
-        logger.info("Resources page, checking where time data is saved in resources_Download_time is not none ")
-        print("time_posted not none")
-        print(time_posted)
-        print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
-        savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
-        dataCurrentTime = datetime.now()
-        print("time", type(dataCurrentTime))
-        timediff = dataCurrentTime - savedTimeInSession
-        time_diff = timediff.total_seconds()
-        print("timediff", timediff.total_seconds())
-        logger.info("Resources page, calculating time difference from saved time with first button click to current button click time ")
+    if resource_requested_title == Heading:
+        if time_posted is not None:
+            logger.info("Resources page, checking where time data is saved in resources_Download_time is not none ")
+            print("time_posted not none")
+            print(time_posted)
+            print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
+            savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
+            dataCurrentTime = datetime.now()
+            print("time", type(dataCurrentTime))
+            timediff = dataCurrentTime - savedTimeInSession
+            time_diff = timediff.total_seconds()
+            print("timediff", timediff.total_seconds())
+            logger.info("Resources page, calculating time difference from saved time with first button click to current button click time ")
+        else:
+            logger.info("Resources page, checking where time data is saved in resources_Download_time is none ")
+            print("time_posted none")
     else:
-        logger.info("Resources page, checking where time data is saved in resources_Download_time is none ")
-        print("time_posted none")
+        logger.info("Resources page, checking where saved heading name and requested name is different or not , if no")
+        time_diff = 70
     print("saved_ip", saved_ip)
 
     if time_diff < 60:
@@ -821,6 +842,8 @@ def resourceDownloadCounter(request, id):
         print("before", resources_obj.ResourceData_DownloadCounter)
         resources_obj.ResourceData_DownloadCounter = resources_obj.ResourceData_DownloadCounter + 1
         resources_obj.save()
+        
+        request.session['resourcesDownloadCounter_resourceHeading'] = resources_obj.ResourceData_HeadingName
         print("after", resources_obj.ResourceData_DownloadCounter)
         return redirect('Localisation_App:resourcesPage')
        
@@ -829,6 +852,8 @@ def resourceDownloadCounter(request, id):
         
         print("ip is same inside second none")
         request.session['resourcesDownloadCounter_ip'] = ip
+        resources_obj=ResourceData.objects.get(pk=id)
+        request.session['resourcesDownloadCounter_resourceHeading'] = resources_obj.ResourceData_HeadingName
         print("same and none ip first")
         data = datetime.now()
         print("time", type(data))
@@ -1706,6 +1731,8 @@ def changePassword(request, token):
 
 
 def forgetPassword(request):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
     form = UserForgetPasswordForm()
     try:
         if request.method == 'POST':
@@ -1758,7 +1785,9 @@ def forgetPassword(request):
     logger.info("Forgot password page is getting displayed")
     messages.error(request, '')
     context = {
-        'form': form
+        'form': form,
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
     }
     return render(request, 'Localisation_App/forgetPassword.html', context)
 
@@ -1900,8 +1929,7 @@ def dashboard(request):
         resourcesName.append(datname["ResourceData_HeadingName"])
     logger.info("Dashboard page, calculated total download hit ratio per tool")
 
-    print("cat", resourcesName)
-    print("data", resourcesName_hitCount_Per_Name)
+   
 
     context = {
         'topmenus': TopMenuItemsdata,
