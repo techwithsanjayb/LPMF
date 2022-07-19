@@ -1,0 +1,34 @@
+.footer-link-section{
+    background-color: #F5AE59;
+    /* width: 100%vh; */
+    height:40px;
+    margin:0;
+ 
+}
+
+.footer-section-cards{
+    /* background-color: aliceblue; */
+    color:black;
+    font-size: 15px;
+    font-weight: 700;
+    padding-top: 5px;
+    display:flex;
+    justify-content: center;
+   
+}
+.footer-section-cards a{
+    text-decoration: none;
+    color:black;
+}
+.footer-section-cards:hover{
+    background-color: #023047;
+    color: white;
+    /* width: 100%vh; */
+}   
+.footer-section-cards a:hover{
+color:white;
+}
+.footer-link-img{
+    height: 30px;
+    width: 30px;
+}
