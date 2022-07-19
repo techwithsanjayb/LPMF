@@ -4,6 +4,9 @@
 
     background-size: cover;
 } */
+.ulca-outer-block{
+    margin-left:9rem !important;
+}
 .ulca-main {
     background-image: url("../../../static/Localisation_App/img/Ulcabackground.png");
     background-size: cover;
@@ -60,7 +63,7 @@
 .model-1 {
     height: 180px;
     width: 280px;
-    background-color: #505399;
+    background-color: #acadcd;
     margin-left: 100px;
     margin-bottom: 10px;
     border-radius: 20px;
@@ -78,7 +81,7 @@
 .model-2 {
     height: 180px;
     width: 280px;
-    background-color: #EA865B;
+    background-color: #f1b89f;
     margin-left: 100px;
     margin-bottom: 10px;
     border-radius: 20px;
@@ -97,7 +100,7 @@
 .model-3 {
     height: 180px;
     width: 280px;
-    background-color: #FEB603;
+    background-color: #edd8a4;
     margin-left: 100px;
     margin-bottom: 10px;
     border-radius: 20px;
@@ -115,7 +118,7 @@
 .model-4 {
     height: 180px;
     width: 280px;
-    background-color: #4FAAC0;
+    background-color: #93d3e3;
     margin-left: 100px;
     margin-bottom: 10px;
     border-radius: 20px;
@@ -223,7 +226,7 @@
 
 .ulca-main-heading {
     text-align: center;
-    font-size: 32px;
+    font-size: 35px;
     color: #505399;
     font-weight: 600;
 }

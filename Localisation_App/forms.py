@@ -74,6 +74,7 @@ class RegisterForm(UserCreationForm):
 
     middle_name = forms.CharField(
         max_length=60,
+        required=True,
         help_text='Enter Middle Name',
         widget=forms.TextInput(
             attrs={'class': 'form-control', 'placeholder': 'Middle Name'})

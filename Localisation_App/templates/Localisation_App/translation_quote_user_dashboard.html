@@ -10,6 +10,10 @@
   />
   {% comment %} ends css {% endcomment %}
 
+  <div class="text-center p-3">
+    <input type="text" class="text-center rounded-5 t-dash-heading" value="Translation Quote Dashboard" disabled />
+  </div>
+
 <div class="container mb-5">
   {% if translation_quote_data %}
     {% for quote_data in translation_quote_data %}
@@ -46,7 +50,7 @@
               Status :
             </div>
             <div class="col-sm-8">
-             <strong class="{% if quote_data.status == 'PENDING' %} text-danger {% else %} text-primary {% endif %}">{{quote_data.status}}</strong>
+             <strong class="{% if quote_data.status == 'PENDING' %} text-warning {% elif quote_data.status == 'COMPLETED' %} text-success{% else %} text-primary {% endif %}">{{quote_data.status}}</strong>
             </div>
           </div>
         <a href="{% url 'Localisation_App:translation_quote_show' quote_data.application_number %}" class="btn btn-primary">View More</a>

@@ -123,7 +123,7 @@
             {% if data.ResourceData_UploadSupportDocument != '' %}
             <a style="text-decoration: none;color:white" href="/media/{{data.ResourceData_UploadSupportDocument}}"
               download>
-              <div class="tools-section-button">Download </div>
+              <div class="tools-section-button">Document </div>
             </a>
             {% endif %}
 
@@ -176,7 +176,7 @@
   <div class="section p-3">
     {% if Pagination_Type == 'All_Data' %}
     <div class="container">
-      <div class="row" style="width:500px">
+      <div class="row" style="width:500px;margin-left: 300px;">
         <div class="col-md-12 offset-md-3">
           <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
           <nav aria-label="...">

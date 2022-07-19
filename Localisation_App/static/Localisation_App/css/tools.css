@@ -31,14 +31,14 @@ body {
 .category-tool-title-slug{
     min-width: 100px;
     margin-top: 10px;
-    font-size: 23px;
+    font-size: 15px;
     background-color: #219EBC;
-    height: 30px;
+    height: 23px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 4px;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: 400;
     color:#ffffff;
     margin-bottom: 10px;
 
@@ -86,6 +86,7 @@ input[type="checkbox"] {
 }
 
 .tools-main-card-section {
+    margin-left: 20px;
     position: relative;
     background-color: #ffffff;
     padding: 12px;

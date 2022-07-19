@@ -129,7 +129,7 @@
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card1"
         data-aos="fade-down"
         data-aos-duration="1000"
-      >
+      ><a href="{% url 'Localisation_App:services' %}">
         <div class="icon">
           <img
             src="{% static './Localisation_App/img/Keyboard1.png' %}"
@@ -137,17 +137,14 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">
-          <a href="{% url 'Localisation_App:services' %}"
-            >{{ Servicesdata.0.Services_Name }}</a
-          >
-        </p>
+        <p class="card-description mt-2">{{ Servicesdata.0.Services_Name }}</p>
+      </a>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card2"
         data-aos="fade-down"
         data-aos-duration="1500"
-      >
+      ><a href="{% url 'Localisation_App:services' %}">
         <div class="icon">
           <img
             src="{% static './Localisation_App/img/Go-trans2.png' %}"
@@ -155,17 +152,14 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">
-          <a href="{% url 'Localisation_App:services' %}"
-            >{{ Servicesdata.1.Services_Name }}</a
-          >
-        </p>
+        <p class="card-description mt-2">{{ Servicesdata.1.Services_Name }}</p>
+      </a>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card3"
         data-aos="fade-down"
         data-aos-duration="2000"
-      >
+      ><a href="{% url 'Localisation_App:services' %}">
         <div class="icon">
           <img
             src="{% static './Localisation_App/img/Go-trans.png' %}"
@@ -173,17 +167,14 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">
-          <a href="{% url 'Localisation_App:services' %}"
-            >{{ Servicesdata.2.Services_Name }}</a
-          >
-        </p>
+        <p class="card-description mt-2">{{ Servicesdata.2.Services_Name }}</p>
+      </a>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card4"
         data-aos="fade-down"
         data-aos-duration="2500"
-      >
+      ><a href="{% url 'Localisation_App:services' %}">
         <div class="icon">
           <img
             src="{% static './Localisation_App/img/Clients.png' %}"
@@ -191,11 +182,8 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2">
-          <a href="{% url 'Localisation_App:services' %}"
-            >{{ Servicesdata.3.Services_Name }}</a
-          >
-        </p>
+        <p class="card-description mt-2">{{ Servicesdata.3.Services_Name }}</p>
+      </a>
       </div>
 
       <button class="aboutus-Button2">
@@ -227,7 +215,7 @@
 <div class="container-fluid ulca-main">
   <div class="row">
     <div class="col-12">
-      <div class="ulca-main-heading">
+      <div class="ulca-main-heading pt-4">
         Universal Language Contribution API (ULCA)
       </div>
       <!-- <div class="ulca-title">
@@ -239,7 +227,7 @@
       </div>
     </div>
   </div>
-  <div class="row m-3 py-2">
+  <div class="row m-3 py-2 ulca-outer-block">
     <div class="col-lg-2">
       <div class="row ulca-datasets">
         <div class="col-12">
@@ -269,29 +257,65 @@
       <h2 class="ulca-test">Models</h2>
       <p class="ulca-sub-section-subheading">Language Specific Tasks</p>
       <div class="row">
-        <div class="col-3 model-1">
-          <div class="ulca-model-title">Machine Translation (MT)</div>
+        <div class="col-lg-3">
+          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+          <div class="model-1">
+            <div class="ulca-model-title">
+              Machine Translation (MT)
+            </div>
+          </div>
+          </a>
         </div>
-        <div class="col-3 model-2">
-          <div class="ulca-model-title">Automatic Speech Recognition (ASR)</div>
+        <div class="col-lg-3">
+          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+          <div class="model-2">
+            <div class="ulca-model-title">
+               Automatic Speech Recognition (ASR)
+            </div>
+          </div>
+        </a>
         </div>
-        <div class="col-3 model-3">
-          <div class="ulca-model-title">Text to Speech</div>
-          <p class="ulca-model-title" style="margin-top: -40px">(TTS)</p>
+        <div class="col-lg-3 ">
+          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+          <div class="model-3">
+             <div class="ulca-model-title">
+               Text to Speech 
+             </div>
+          <p class="ulca-model-title" style="margin-top: -40px;">(TTS)</p>
+          </a>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-3 model-4">
-          <div class="ulca-model-title">
-            Optical Character Recognition (OCR)
+        <div class="col-lg-3">
+          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+          <div class="model-4">
+             <div class="ulca-model-title">
+                Optical Character Recognition (OCR)
+             </div>
           </div>
+          </a>
         </div>
-        <div class="col-3 model-5">
-          <div class="ulca-model-title">Speech To Speech (STS)</div>
+        <div class="col-lg-3">
+          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+          <div class="model-5">
+             <div class="ulca-model-title">
+                Speech To Speech
+             </div>
+             <p class="ulca-model-title" style="margin-top: -40px;">(STS)</p>
+          </div>
+          </a>
         </div>
-        <div class="col-3 model-6">
-          <div class="ulca-model-title">Transliteration</div>
+        <div class="col-lg-3">
+          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+          <div class="model-6">
+             <div class="ulca-model-title">
+               Transliteration
+             </div>
+          </div>
+          </a>
         </div>
+
       </div>
     </div>
   </div>
@@ -320,13 +344,7 @@
         alt=""
       />
       <p>Enrich your language by donating your voice</p>
-      <div class="participate">
-        <a
-          href="https://bhashini.gov.in/bhashadaan/en/bolo-india"
-          target="_blank"
-          >Start Participating</a
-        >
-      </div>
+      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/bolo-india" target="_blank">Start Participating</a>
     </div>
 
     <div
@@ -339,13 +357,7 @@
         alt=""
       />
       <p>Enrich your language by translating text</p>
-      <div class="participate">
-        <a
-          href="https://bhashini.gov.in/bhashadaan/en/likho-india"
-          target="_blank"
-          >Start Participating</a
-        >
-      </div>
+      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/likho-india" target="_blank">Start Participating</a>
     </div>
 
     <div
@@ -358,13 +370,7 @@
         alt=""
       />
       <p>Enrich your language by typing the text you see</p>
-      <div class="participate">
-        <a
-          href="https://bhashini.gov.in/bhashadaan/en/dekho-india"
-          target="_blank"
-          >Start Participating</a
-        >
-      </div>
+      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/dekho-india" target="_blank">Start Participating</a>
     </div>
 
     <div class="col-lg-2 bhasha-card" style="background-color: #b1b3d0">
@@ -374,13 +380,7 @@
         alt=""
       />
       <p>Enrich your language by typing the audio that you hear</p>
-      <div class="participate">
-        <a
-          href="https://bhashini.gov.in/bhashadaan/en/suno-india"
-          target="_blank"
-          >Start Participating</a
-        >
-      </div>
+      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/suno-india" target="_blank">Start Participating</a>
     </div>
   </div>
 </div>
@@ -430,7 +430,7 @@
     >
   </div>
   <div class="succ-subheader">
-    Know all our successfull Integration of localisation services and tools over
+    Know all our successfull Integration of Localisation services and tools over
     different portals.
   </div>
   <div class="row px-4">
@@ -453,8 +453,8 @@
         <div class="col-7 succ-desc mt-2">
           <h2>Localisation Deployment</h2>
           <p>
-            All our proof of concept of intregration of various services over
-            different portals..
+            Different websites have been integrated with our Language Services
+            and Products .
           </p>
           <!-- <div class="succ-link">Know More</div> -->
           <div class="succ-link">
@@ -472,8 +472,8 @@
         <div class="col-7 succ-desc2 mt-2">
           <h2>Proof Of Concept</h2>
           <p>
-            Various All our proof of concept of intregration of various services
-            over different portals..
+            Successfully deployed our Indian Language Services and products as
+            Proof of Concepts in various organizations.
           </p>
           <div class="succ-link">
             <a href="{% url 'Localisation_App:successstoryPage' %}"
@@ -505,8 +505,8 @@
         <div class="col-7 succ-desc3 mt-2">
           <h2>Service Deployment</h2>
           <p>
-            All our proof of concept of intregration of various services over
-            different portals..
+            Various Organizations are using our Indian Language Services in
+            their websites .
           </p>
           <div class="succ-link">
             <a href="{% url 'Localisation_App:successstoryPage' %}"

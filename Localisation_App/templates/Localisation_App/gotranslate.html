@@ -1,18 +1,26 @@
-{% block title %}GoTranslate Service{% endblock %}
+{% extends 'Localisation_App/base.html' %}
+{% load static %}
+{% block title %}GoTranslate {% endblock %}
+ {% block gotranslate_service %}
 <!--Content starts here-->
- <div class="container-fluid">
-    <div class="row">
-        <div class="col-6 d-flex "></div>
-        <div class="col-lg-6 pb-2">
-          <div class="col-lg-6 card p-4">
-            <div> Integration PDF: Click <a href="https://localisation.gov.in/index.php/developer?download=60:go-translate-web-localizer-snippet">here</a> to download integration video</div>
+ <div class="container card mb-4">
+  <div class="card-body">
+  <div class="row d-flex mb-2 justify-content-center ">
+    <h2 class="text-dark text-center py-1 rounded-pill" style="background: linear-gradient(to right,  #008ccf 0%,#fbeed9 100%)">GoTranslate</h2>
+  </div>
+    <div class="row d-flex justify-content-center mb-2">
+        {% comment %} <div class="col d-flex "></div> {% endcomment %}
+        {% comment %} <div class="col pb-2 "> {% endcomment %}
+          <div class="col-lg-8 fs-5 p-4 text-center">
+            <div> Integration PDF: Click <a href="https://localisation.gov.in/index.php/developer?download=60:go-translate-web-localizer-snippet">here</a> to download integration pdf</div>
           </div>
-          <div class="col-lg-2">
-
-          </div>
-          <div class="col-lg-6 card p-4">
-            <div> Integration Video: Click <a href="https://localisation.gov.in/phocadownload/userupload/tools/developer_tools/Snippet_Integration_Sentence_Video.mp4">here</a> to watch integration video</div>
+          
+          <div class="col-lg-8 fs-5 pt-4 pb-2 text-center">
+            <div class="pb-2"> Integration Video</div>
+              <video width="700" height="400" controls> <source src="{% static './Localisation_App/video/Snippet_Integration_Sentence_Video.mp4' %}" type="video/mp4"></video>
          </div>
-        </div>
+        {% comment %} </div> {% endcomment %}
     </div>
+  </div>
 </div>
+{%endblock%}
