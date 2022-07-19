@@ -59,9 +59,7 @@
   <div class="container-fluid">
     <div class="container-fluid">
       <div class="row newsclass">
-        <div
-          class="col-1 news-subhead"
-        >
+        <div class="col-1 news-subhead">
           <h5>News & Events</h5>
         </div>
         <div class="col-11 news-events">
@@ -78,9 +76,9 @@
               href="{{news.NewsAndEvents_Link }}"
               target="_blank"
             >
-            <i class="fa-solid fa-location-arrow"></i>
+              <i class="fa-solid fa-location-arrow"></i>
               <strong>{{ news.NewsAndEvents_HeadingName }} - </strong>
-               {{news.NewsAndEvents_Discription}}</a
+              {{news.NewsAndEvents_Discription}}</a
             >&nbsp;&nbsp;&nbsp;&nbsp; {% endfor %}
           </marquee>
         </div>
@@ -124,7 +122,7 @@
     </div>
   </div>
 
-  <div class="container my-3" >
+  <div class="container my-3">
     <div class="services-title">Our Services</div>
     <div class="row">
       <div
@@ -135,11 +133,15 @@
         <div class="icon">
           <img
             src="{% static './Localisation_App/img/Keyboard1.png' %}"
-            class="d-block w-100  pt-2"
+            class="d-block w-100 pt-2"
             alt="..."
           />
         </div>
-        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.0.Services_Name }}</a></p>
+        <p class="card-description mt-2">
+          <a href="{% url 'Localisation_App:services' %}"
+            >{{ Servicesdata.0.Services_Name }}</a
+          >
+        </p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card2"
@@ -153,7 +155,11 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.1.Services_Name }}</a></p>
+        <p class="card-description mt-2">
+          <a href="{% url 'Localisation_App:services' %}"
+            >{{ Servicesdata.1.Services_Name }}</a
+          >
+        </p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card3"
@@ -167,7 +173,11 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.2.Services_Name }}</a></p>
+        <p class="card-description mt-2">
+          <a href="{% url 'Localisation_App:services' %}"
+            >{{ Servicesdata.2.Services_Name }}</a
+          >
+        </p>
       </div>
       <div
         class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card4"
@@ -181,7 +191,11 @@
             alt="..."
           />
         </div>
-        <p class="card-description mt-2"><a href="{% url 'Localisation_App:services' %}">{{ Servicesdata.3.Services_Name }}</a></p>
+        <p class="card-description mt-2">
+          <a href="{% url 'Localisation_App:services' %}"
+            >{{ Servicesdata.3.Services_Name }}</a
+          >
+        </p>
       </div>
 
       <button class="aboutus-Button2">
@@ -210,35 +224,29 @@
 
 <!-- Ulca Section Starts -->
 
-
-<div class="container-fluid  ulca-main">
+<div class="container-fluid ulca-main">
   <div class="row">
     <div class="col-12">
       <div class="ulca-main-heading">
-        UNIVERSAL LANGUAGE CONTRIBUTION API (ULCA)
+        Universal Language Contribution API (ULCA)
       </div>
       <!-- <div class="ulca-title">
         About ULCA
       </div> -->
       <div class="ulca-sub-heading">
-        ULCA is a standard API and open scalable platform for indian language datasets and models.
+        ULCA is a standard API and open scalable platform for indian language
+        datasets and models.
       </div>
     </div>
-
   </div>
   <div class="row m-3 py-2">
     <div class="col-lg-2">
-
       <div class="row ulca-datasets">
         <div class="col-12">
-          <div class="ulca-sub-section-title">
-            DataSets
-          </div>
-          <div class="ulca-sub-section-subheading">
-            Language Datasets
-          </div>
+          <div class="ulca-sub-section-title">DataSets</div>
+          <div class="ulca-sub-section-subheading">Language Datasets</div>
           <img
-          class="ulca-img" 
+            class="ulca-img"
             src="{% static './Localisation_App/img/dataset.png' %}"
             alt="..."
           />
@@ -246,41 +254,30 @@
       </div>
       <div class="row ulca-benchmark">
         <div class="col-12">
-          <div class="ulca-sub-section-title">
-            Benchmark
-          </div>
-          <div class="ulca-sub-section-subheading">
-            Open Benchmarking
-          </div>
+          <div class="ulca-sub-section-title">Benchmark</div>
+          <div class="ulca-sub-section-subheading">Open Benchmarking</div>
           <img
-          class="ulca-img" 
+            class="ulca-img"
             src="{% static './Localisation_App/img/Benchmark.png' %}"
             alt="..."
           />
-
         </div>
       </div>
     </div>
 
-    <div class=" col-sm-11 col-lg-9 ulca-models mx-4">
+    <div class="col-sm-11 col-lg-9 ulca-models mx-4">
       <h2 class="ulca-test">Models</h2>
       <p class="ulca-sub-section-subheading">Language Specific Tasks</p>
       <div class="row">
         <div class="col-3 model-1">
-          <div class="ulca-model-title">
-          Machine Translation (MT)
-          </div>
+          <div class="ulca-model-title">Machine Translation (MT)</div>
         </div>
         <div class="col-3 model-2">
-          <div class="ulca-model-title">
-          Automatic Speech Recognition (ASR)
-          </div>
+          <div class="ulca-model-title">Automatic Speech Recognition (ASR)</div>
         </div>
         <div class="col-3 model-3">
-          <div class="ulca-model-title">
-          Text to Speech 
-          </div>
-          <p class="ulca-model-title" style="margin-top: -40px;">(TTS)</p>
+          <div class="ulca-model-title">Text to Speech</div>
+          <p class="ulca-model-title" style="margin-top: -40px">(TTS)</p>
         </div>
       </div>
       <div class="row">
@@ -288,25 +285,17 @@
           <div class="ulca-model-title">
             Optical Character Recognition (OCR)
           </div>
-         
         </div>
         <div class="col-3 model-5">
-          <div class="ulca-model-title">
-          Speech To Speech (STS)
-        </div>
+          <div class="ulca-model-title">Speech To Speech (STS)</div>
         </div>
         <div class="col-3 model-6">
-          <div class="ulca-model-title">
-          Transliteration
+          <div class="ulca-model-title">Transliteration</div>
         </div>
-        </div>
-
       </div>
     </div>
   </div>
 </div>
-
-
 
 <!-- Ulca Section Ends -->
 
@@ -331,7 +320,13 @@
         alt=""
       />
       <p>Enrich your language by donating your voice</p>
-      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/bolo-india" target="_blank">Start Participating</a></div>
+      <div class="participate">
+        <a
+          href="https://bhashini.gov.in/bhashadaan/en/bolo-india"
+          target="_blank"
+          >Start Participating</a
+        >
+      </div>
     </div>
 
     <div
@@ -344,7 +339,13 @@
         alt=""
       />
       <p>Enrich your language by translating text</p>
-      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/likho-india" target="_blank">Start Participating</a></div>
+      <div class="participate">
+        <a
+          href="https://bhashini.gov.in/bhashadaan/en/likho-india"
+          target="_blank"
+          >Start Participating</a
+        >
+      </div>
     </div>
 
     <div
@@ -357,7 +358,13 @@
         alt=""
       />
       <p>Enrich your language by typing the text you see</p>
-      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/dekho-india" target="_blank">Start Participating</a></div>
+      <div class="participate">
+        <a
+          href="https://bhashini.gov.in/bhashadaan/en/dekho-india"
+          target="_blank"
+          >Start Participating</a
+        >
+      </div>
     </div>
 
     <div class="col-lg-2 bhasha-card" style="background-color: #b1b3d0">
@@ -367,14 +374,18 @@
         alt=""
       />
       <p>Enrich your language by typing the audio that you hear</p>
-      <div class="participate"><a href="https://bhashini.gov.in/bhashadaan/en/suno-india" target="_blank">Start Participating</a></div>
+      <div class="participate">
+        <a
+          href="https://bhashini.gov.in/bhashadaan/en/suno-india"
+          target="_blank"
+          >Start Participating</a
+        >
+      </div>
     </div>
-
   </div>
 </div>
 
 <!-- Bhashini Section End-->
-
 
 <!--Vision start-->
 
@@ -447,10 +458,12 @@
           </p>
           <!-- <div class="succ-link">Know More</div> -->
           <div class="succ-link">
-            <a href="{% url 'Localisation_App:successstoryPage' %}"><i
-              class="fa fa-arrow-circle-right"
-              style="font-size: 36px; color: #023047"
-            ></i></a>
+            <a href="{% url 'Localisation_App:successstoryPage' %}"
+              ><i
+                class="fa fa-arrow-circle-right"
+                style="font-size: 36px; color: #023047"
+              ></i
+            ></a>
           </div>
         </div>
       </div>
@@ -463,10 +476,12 @@
             different portals..
           </p>
           <div class="succ-link">
-            <a href="{% url 'Localisation_App:successstoryPage' %}"><i
-              class="fa fa-arrow-circle-right"
-              style="font-size: 36px; color: #023047"
-            ></i></a>
+            <a href="{% url 'Localisation_App:successstoryPage' %}"
+              ><i
+                class="fa fa-arrow-circle-right"
+                style="font-size: 36px; color: #023047"
+              ></i
+            ></a>
           </div>
         </div>
         <div class="col-1"></div>
@@ -494,10 +509,12 @@
             different portals..
           </p>
           <div class="succ-link">
-            <a href="{% url 'Localisation_App:successstoryPage' %}"><i
-              class="fa fa-arrow-circle-right"
-              style="font-size: 36px; color: #023047"
-            ></i></a>
+            <a href="{% url 'Localisation_App:successstoryPage' %}"
+              ><i
+                class="fa fa-arrow-circle-right"
+                style="font-size: 36px; color: #023047"
+              ></i
+            ></a>
           </div>
         </div>
       </div>
@@ -549,7 +566,9 @@
           <img src="{% static './Localisation_App/img/cost.png' %}" class="test" alt="..." />
         </div> -->
       <div class="estimate-cost-button">
-        <a href="{% url 'Localisation_App:translation_quote' %}">Enter URL</a>
+        <a href="{% url 'Localisation_App:translation_quote' %}"
+          >Your Website Domain</a
+        >
       </div>
     </div>
   </div>
