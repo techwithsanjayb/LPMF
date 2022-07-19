@@ -1,5 +1,3 @@
-
-import re
 from threading import currentThread
 from wsgiref import validate
 from django.db.models import Sum
