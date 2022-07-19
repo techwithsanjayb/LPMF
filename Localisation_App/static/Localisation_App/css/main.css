@@ -46,8 +46,9 @@
 
 .bhashani-title-section h1 {
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     color: #023047;
+    font-size: 42px;
 }
 
 .bhashani-title-section p {
@@ -126,10 +127,11 @@
 
 /* Success Story New Section Start*/
 .succ-header {
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
     font-weight: 600;
     padding-top: 10px;
+    color: #023047;
 }
 
 .succ-subheader {
@@ -2776,7 +2778,7 @@
         text-align: center;
         font-weight: 700;
         color: #023047;
-        font-size: 40px;
+        font-size: 35px;
     }
 
     .bhashani-title-section p {
