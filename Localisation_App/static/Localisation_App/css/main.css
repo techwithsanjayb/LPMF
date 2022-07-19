@@ -211,18 +211,20 @@
 .succ-desc p {
     color: #023047;
     text-align: center;
-
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .succ-desc2 p {
     color: #023047;
     text-align: center;
-
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .succ-desc3 p {
     color: #023047;
-    text-align: justify;
+    text-align: center;
     font-weight: 500;
     font-size: 18px;
 }
@@ -389,6 +391,35 @@
 }
 
 .sticky-button-3 a {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    padding-left: 10px;
+
+}
+
+.sticky-button-4 {
+    width: 40px;
+    height: 40px;
+    background-color: #5dc6e9;
+    overflow: hidden;
+    position: fixed;
+    top: 45%;
+    right: 0;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.sticky-button-4:hover {
+    width: 220px;
+}
+
+.sticky-button-4 a {
+    font-weight: 600;
+}
+
+.sticky-button-4 a {
     text-align: center;
     text-decoration: none;
     color: #ffffff;
@@ -843,7 +874,7 @@
     background-color: #F5AE59;
     padding: 10px;
     margin-left: 80px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 
@@ -2451,6 +2482,35 @@
         padding-left: 10px;
 
     }
+    
+.sticky-button-4 {
+    width: 50px;
+    height: 50px;
+    background-color: #5dc6e9;
+    overflow: hidden;
+    position: fixed;
+    top: 45%;
+    right: 0;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.sticky-button-4:hover {
+    width: 200px;
+}
+
+.sticky-button-4 a {
+    font-weight: 600;
+}
+
+.sticky-button-4 a {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    padding-left: 10px;
+
+}
 
 
     /* End Stcky Button Section */
@@ -2917,6 +2977,35 @@
         font-size: 18px;
         padding-left: 10px;
 
+    }
+
+    .sticky-button-4 {
+        width: 100px;
+        height: 100px;
+        background-color: #5dc6e9;
+        overflow: hidden;
+        position: fixed;
+        top: 48%;
+        right: 0;
+        border: 1px solid grey;
+        border-radius: 10px;
+    }
+    
+    .sticky-button-4:hover {
+        width: 300px;
+    }
+    
+    .sticky-button-4 a {
+        font-weight: 600;
+    }
+    
+    .sticky-button-4 a {
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        padding-left: 10px;
+    
     }
 
 
