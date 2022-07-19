@@ -1615,6 +1615,7 @@ def Register_user(request):
 
 
 def login_user(request):
+    print("login",request.session.get('requested_url'))
     form = UserLoginForm()
     url = request.session.get('requested_url')
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1634,7 +1635,10 @@ def login_user(request):
                 logger.info("Login user form, after successfull authentication, login() function called ")
                 print("second method called")
                 login(request, user)
-                return redirect('Localisation_App:'+url)
+                if url != None:
+                    return redirect('Localisation_App:'+url)
+                else:
+                    return redirect('/')
             else:
                 logger.error("Login user form, Error in user login authentication")
                 messages.error(request, 'Wrong Username or password')
@@ -1656,6 +1660,9 @@ def login_user(request):
 
 
 def logout_user(request):
+    url = resolve(request.path_info).url_name
+    request.session['requested_url'] = url
+    print(url)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     logger.error("Logout user")
