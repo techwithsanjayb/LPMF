@@ -168,7 +168,7 @@
                     <div class="form-group">
                     <div class="custom-control">
                     {{form.check}}
-                   <label >I Accept <a href="#" class="text-primary">Terms And Condition</a><span class="text-danger">*</span></label>
+                   <label >I Accept <a href="{% static 'Localisation_App/PDF/TermsandCondition.pdf'%}" target="_top" class="text-primary">Terms And Condition</a><span class="text-danger">*</span></label>
                     </div>
                     {% if form.check.errors %}
                     {% for error in form.check.errors %}
