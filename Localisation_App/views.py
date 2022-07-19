@@ -1154,7 +1154,6 @@ def services(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
         'Servicesdata': servicesdata,
         'TTS_Form': tTS_Form,
-        "name": 'machine-translation'
     }
     return render(request, 'Localisation_App/services.html', context)
 
