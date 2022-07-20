@@ -1678,6 +1678,29 @@ def logout_user(request):
     return render(request, 'Localisation_App/logout.html', context)
 
 
+
+
+def User_Profile(request,id):
+    TopMenuItemsdata = TopMenuItems.objects.all()
+    FooterMenuItemsdata = FooterMenuItems.objects.all()
+    print("id",id)
+    user_obj=User.objects.get(pk=id)
+    username=user_obj.username
+    print("obje",user_obj.username)
+    userRegister_obj=UserRegistration.objects.get(userregistration_username=username)
+    print("obj454e",userRegister_obj)
+
+    context={
+        "User_obj":userRegister_obj,
+        'topmenus': TopMenuItemsdata,
+        'FooterMenuItemsdata': FooterMenuItemsdata,
+    }
+    return render(request,'Localisation_App/profile.html',context)
+
+
+
+
+
 def changePassword(request, token):
     form = UserChangePasswordForm()
     user_Profile_obj = UserRegistration.objects.get(
