@@ -2,6 +2,11 @@ body {
     background-color: aliceblue;
 }
 
+
+.category-below-line{
+    width:300px;
+    margin-left:15px;
+}
 .tool-search-button{
     width:120px
 }
@@ -20,7 +25,7 @@ body {
     margin-top: -20px;
     font-size: 23px;
     background-color: #219EBC;
-    width: 280px;
+    width: 260px;
     height: 40px;
     padding-top: 3px;
     margin-left: 30px;
@@ -147,7 +152,7 @@ input[type="checkbox"] {
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-left: 850px;
+    margin-left: 870px;
     margin-bottom: 20px;
     margin-top: 20px;
 }
@@ -231,6 +236,11 @@ input[type="checkbox"] {
 
     body {
         background-color: aliceblue;
+    }
+
+    .category-below-line{
+        width:300px;
+        margin-left:12px;
     }
 
     .Discription{
@@ -378,7 +388,7 @@ input[type="checkbox"] {
         font-size: 30px;
         font-weight: 600;
         letter-spacing: 1px;
-        margin-left: 750px;
+        margin-left: 800px;
         margin-bottom: 20px;
         margin-top: 20px;
     }
@@ -427,6 +437,16 @@ input[type="checkbox"] {
 
     body {
         background-color: aliceblue;
+    }
+
+    .enter-words{
+        font-size:14px;
+        width:105px;
+    }
+
+    .category-below-line{
+        width:210px;
+        margin-left:12px;
     }
 
 .pagination1{
@@ -582,7 +602,7 @@ input[type="checkbox"] {
         font-size: 30px;
         font-weight: 600;
         letter-spacing: 1px;
-        margin-left: 560px;
+        margin-left: 550px;
         margin-bottom: 20px;
         margin-top: 20px;
     }
@@ -616,7 +636,8 @@ input[type="checkbox"] {
     }
 
     .tool-search-button{
-        width:90px
+        width:90px;
+        margin-left:10px;
     }
 
     .Total_downloads{
@@ -638,6 +659,11 @@ input[type="checkbox"] {
 
     body {
         background-color: aliceblue;
+    }
+
+    .category-below-line{
+        width:640px;
+        margin-left:15px;
     }
     .Discription{
         margin-right: 50px;
@@ -859,6 +885,11 @@ input[type="checkbox"] {
         text-align: justify;
         padding-bottom: 70px;
        
+    }
+
+    .category-below-line{
+        width:730px;
+        margin-left:15px;
     }
 .pagination1{
     margin-left:250px;
