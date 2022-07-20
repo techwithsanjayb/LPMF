@@ -121,9 +121,8 @@ class SuccessStories(models.Model):
                 (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)]
     SuccessStories_Priority = models.IntegerField(
         choices=CHOICES1, null=True, blank=True)
-    SuccessStories_slug=models.SlugField(max_length=10000,blank=True, null=True)
-   
-
+    SuccessStories_slug = models.SlugField(
+        max_length=10000, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Success Stories"
@@ -176,8 +175,7 @@ class ToolsData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ToolsData_PublishedStatus = models.CharField(
         max_length=20, choices=Tools_PublishedStatus, default="published")
-    ToolsData_slug=models.SlugField(max_length=10000,blank=True, null=True)
-  
+    ToolsData_slug = models.SlugField(max_length=10000, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Tools Data"
@@ -185,7 +183,7 @@ class ToolsData(models.Model):
 
     def __str__(self):
         return self.ToolsData_HeadingName
-    
+
     def get_ToolsData_slug_splited(self):
         return self.ToolsData_slug.split('-')
 
@@ -222,7 +220,8 @@ class ResourceData(models.Model):
         ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
     ResourceData_PublishedStatus = models.CharField(
         max_length=20, choices=Resources_PublishedStatus, default="published")
-    ResourceData_slug = models.SlugField(max_length=2000,blank=True, null=True)
+    ResourceData_slug = models.SlugField(
+        max_length=2000, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Resource Data"
@@ -230,7 +229,7 @@ class ResourceData(models.Model):
 
     def __str__(self):
         return self.ResourceData_HeadingName
-    
+
     def get_ResourcesData_slug_splited(self):
         return self.ResourceData_slug.split('-')
 
@@ -428,28 +427,35 @@ class UserRegistration(models.Model):
 # translation quote
 class TranslationQuote(models.Model):
     # Client side Field
-    url = models.URLField(max_length=200, validators=[validators.URLValidator(), validators.MaxLengthValidator(200)], blank=False)
+    url = models.URLField(max_length=200, validators=[
+                          validators.URLValidator(), validators.MaxLengthValidator(200)], blank=False)
     company_email = models.EmailField(max_length=254, null=True, blank=False)
     language = models.CharField(max_length=200, null=True, blank=False)
     domain = models.CharField(max_length=200, null=True, blank=False)
-    delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=False)
+    delivery_date = models.DateField(
+        auto_now=False, auto_now_add=False, null=True, blank=False)
     client_remark = models.TextField(max_length=5000, null=True, blank=True)
-    
+
     #  client field not comming from form
     submission_date = models.DateField(default=date.today)
     application_number = models.CharField(max_length=50, null=True)
-    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    username = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     #  Admin side field
     total_words = models.IntegerField(null=True, blank=True)
-    total_cost = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
-    translation_delivery_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
-    quotation_generated_date = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
-    
-    status_choice = [('PENDING','PENDING'),('INPROCESS','INPROCESS'), ('COMPLETED','COMPLETED')]
-    status = models.CharField(choices=status_choice, default='PENDING', max_length=50, null=True, blank=True)
-    admin_remark = models.TextField( max_length=1000, null=True, blank=True)
-    
+    total_cost = models.DecimalField(
+        max_digits=12, decimal_places=2, null=True, blank=True)
+    translation_delivery_date = models.DateField(
+        auto_now=False, auto_now_add=False, null=True, blank=True)
+    quotation_generated_date = models.DateField(
+        auto_now=False, auto_now_add=False, null=True, blank=True)
+
+    status_choice = [('PENDING', 'PENDING'), ('INPROCESS',
+                                              'INPROCESS'), ('COMPLETED', 'COMPLETED')]
+    status = models.CharField(
+        choices=status_choice, default='PENDING', max_length=50, null=True, blank=True)
+    admin_remark = models.TextField(max_length=1000, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Translation Quote"
@@ -468,7 +474,8 @@ class GuidelinceForIndianGovWebsite(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class EmpanelledAgencies(models.Model):
     company_name = models.CharField(max_length=100)
     contact_person = models.CharField(max_length=100)
@@ -479,10 +486,12 @@ class EmpanelledAgencies(models.Model):
 
     def __str__(self):
         return self.company_name
-    
+
+
 class EmpanelledAgenciesEmail(models.Model):
-    empanelled_agencies = models.ForeignKey(EmpanelledAgencies, verbose_name=("Empanelled Agency Name"), on_delete=models.CASCADE)
-    email= models.EmailField(max_length=254)
+    empanelled_agencies = models.ForeignKey(EmpanelledAgencies, verbose_name=(
+        "Empanelled Agency Name"), on_delete=models.CASCADE)
+    email = models.EmailField(max_length=254)
 
     class Meta:
         verbose_name_plural = "Empanelled Agencies Emails"
@@ -492,19 +501,34 @@ class EmpanelledAgenciesEmail(models.Model):
         return self.email
 
 
+class MarketingSection(models.Model):
+    MarketingSection_lines = models.CharField(max_length=200)
+    MarketingSection_icon = models.ImageField(
+        upload_to="Localisation_App/Images", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    MarketingSection_PublishedStatus = (
+        ('Published', 'PUBLISHED'), ('Unpublished', 'UNPUBLISHED'))
+    MarketingSection_PublishedStatus = models.CharField(
+        max_length=20, choices=MarketingSection_PublishedStatus, default="published")
+
+    class Meta:
+        verbose_name_plural = "MarketingSection"
+        ordering = ['MarketingSection_lines']
+
+    def __str__(self):
+        return self.MarketingSection_lines
 
 # class TestSlug(models.Model):
 #     Test_Title = models.CharField(max_length=100)
 #     slug = models.SlugField()
-    
+
 #     class Meta:
 #         verbose_name_plural = "Test_Title"
 #         ordering = ['Test_Title']
 
 #     def __str__(self):
 #         return self.Test_Title
-  
-    
+
+
 #     # def __str__(self):
 #     #     return self.Test_Title
 
@@ -515,4 +539,3 @@ class EmpanelledAgenciesEmail(models.Model):
 #     #     if not self.slug:
 #     #         self.slug = slugify(self.Test_Title)
 #     #     return super().save(*args, **kwargs)
-    

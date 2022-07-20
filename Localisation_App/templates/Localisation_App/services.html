@@ -4,6 +4,10 @@
 {% load static %}
 
 {% block services %}
+<link
+      href="{% static 'Localisation_App/css/services.css' %}"
+      rel="stylesheet"
+    />
 
 <!--Content starts here-->
 <div class="container-fluid">
@@ -66,167 +70,10 @@
     </div>
    
 
-  
- 
+  </form>
   <script src="{% static 'Localisation_App/js/main1.js' %}"></script>
-  {% endblock %}
-
-
-<form/>
 </div>
+{% endblock %}
+    
+    
 
-
-
-
-
-
-
-
-
-{% comment %} {% extends 'Localisation_App/base.html' %} {% load static %} {% block services %}
-
-<!--Content starts here-->
-<d
-iv class="container-fluid ">
-  <div class="text-center p-3">
-    <input
-      type="button"
-      class="text-center rounded-5 sevices-heading"
-      value="Services"
-      disabled
-    />
-  </div>
-  <p class="text-center fs-5">
-    C-DAC GIST has vast NLP resources and is pioneer in Indian Language
-    computing. These are being now offered as web-service.
-  </p>
-
-  <div class="row">
-    {% for service in Servicesdata|slice:":3" %}
-    <div class="col-lg-4 col-sm-12 col-md-6 ">
-      <div class="row p-5 d-flex justify-content-center">
-        <div class="card rounded-5 service-card1">
-          <div class="p-4">
-            <div class="text-center">
-              <h5 class="text-muted pb-3 pt-2">
-                <strong>{{ service.Services_Name }}</strong>
-              </h5>
-            </div>
-            <img
-              class="card-img pb-2"
-              src="{% static './Localisation_App/img/services-page.jpg' %}"
-              width="auto"
-              height="auto"
-            />
-            <div class="service-text">
-              <span
-                >{{ service.Services_Description|striptags|slice:":100" }}</span
-              ><span
-                id="collapse{{forloop.counter}}"
-                class="accordion-collapse collapse"
-                aria-labelledby="heading{{forloop.counter}}"
-                data-bs-parent="#accordionExample"
-                >{{ service.Services_Description|striptags|slice:"100:" }}
-                <a
-                  class="read-less-btn{{forloop.counter}}"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapse{{forloop.counter}}"
-                  onclick="disableReadMore('read-more-btn{{forloop.counter}}')"
-                >
-                  read less...
-                </a>
-              </span>
-            </div>
-            <a
-              class="read-more-btn{{forloop.counter}}"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse{{forloop.counter}}"
-              onclick="disableReadMore('read-more-btn{{forloop.counter}}')"
-              style="display:block"
-            >
-              read more...
-            </a>
-            <!-- <a class="read-more-btn" onclick="newfunc('lessText','moreText','read-more-btn')">Read More ...</a>
-            <script src="{% static 'Localisation_App/js/main1.js' %}"></script> -->
-          </div>
-        </div>
-        {% if service.Services_links != '' %}
-        <div class="text-center pt-4">
-          <button class="rounded-4 services-button">
-              <a href="{% url 'Localisation_App:ServicesDemoPage' %}">Click</a>
-          </button>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-  <div class="row pb-5">
-    {% for service in Servicesdata|slice:"3:6" %}
-    <div class="col-lg-4 col-sm-12 col-md-6">
-      <div class="row p-5 d-flex justify-content-center">
-        <div class="card rounded-5 service-card4">
-          <div class="p-4">
-            <div class="text-center">
-              <h5 class="text-muted pb-3 pt-2">
-                <strong>{{ service.Services_Name }}</strong>
-              </h5>
-            </div>
-            <img
-              class="card-img pb-2"
-              src="{% static './Localisation_App/img/services-page.jpg' %}"
-              width="auto"
-              height="auto"
-            />
-            <div class="service-text">
-              <span
-                >{{ service.Services_Description|striptags|slice:":100" }}</span
-              >
-              <span
-                id="collapse1{{forloop.counter}}"
-                class="accordion-collapse collapse"
-                aria-labelledby="heading1{{forloop.counter}}"
-                data-bs-parent="#accordionExample"
-                >{{ service.Services_Description|striptags|slice:"100:" }}
-                <a
-                  class="read-less-btn1{{forloop.counter}}"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapse1{{forloop.counter}}"
-                  onclick="disableReadMore('read-more-btn1{{forloop.counter}}')"
-                >
-                  read less...
-                </a>
-              </span>
-            </div>
-            <a
-              class="read-more-btn1{{forloop.counter}}"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapse1{{forloop.counter}}"
-              onclick="disableReadMore('read-more-btn1{{forloop.counter}}')"
-            >
-              read more...
-            </a>
-          </div>
-        </div>
-        {% if service.Services_links != 'na' %}
-        <div class="text-center pt-4">
-          <button class="rounded-4 services-button">
-             <a href={{ service.Services_links }} target="_blank"><strong>Click</strong></a>
-          </button>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
- {% comment %} Translitration Modal starts here  {% endcomment %}
-
-{% include 'Localisation_App/translitration_modal.html' %}
-
- {% comment %} Translitration Modal ends here  {% endcomment %}
-
-</div>
-<script src="https://gisttransserver.in/js/CDAC-Typing.min.js"></script>
-<script src="{% static 'Localisation_App/js/main1.js' %}"></script>
