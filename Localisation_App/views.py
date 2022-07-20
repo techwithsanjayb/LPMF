@@ -58,7 +58,7 @@ def Test(request):
 def Home(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
-    print("url",url)
+    print("url", url)
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
     articleData = Article.objects.all()
@@ -178,7 +178,8 @@ def tools(request):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-            logger.info("Tools page getting displayed with selected category filteration")
+            logger.info(
+                "Tools page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -194,7 +195,8 @@ def tools(request):
             # return render(request,'Localisation_App/tools.html',context)
             return render(request, 'Localisation_App/tools.html', context)
         else:
-            logger.info("Tools page getting displayed with all category filteration")
+            logger.info(
+                "Tools page getting displayed with all category filteration")
             page = Paginator(tools_Data, 8)
             Tools_Category.objects.all().update(Tools_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -214,7 +216,7 @@ def tools(request):
             print("inside 2")
             return render(request, 'Localisation_App/tools.html', context)
     for p in toolsCategory_data:
-        
+
         if p.Tools_Cat_Status == True:
             print("true")
             pagestatus = True
@@ -226,7 +228,8 @@ def tools(request):
     print(q)
 
     if pagestatus == True:
-        logger.info("Tools page getting displayed with selected category filteration and pagination")
+        logger.info(
+            "Tools page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -244,7 +247,8 @@ def tools(request):
         }
 
     else:
-        logger.info("Tools page getting displayed with all category filteration and pagination")
+        logger.info(
+            "Tools page getting displayed with all category filteration and pagination")
         page = Paginator(tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -291,7 +295,8 @@ def toolsSearch(request, tools_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-            logger.info("Tools page getting displayed with searched tools data by slugs")
+            logger.info(
+                "Tools page getting displayed with searched tools data by slugs")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -323,7 +328,8 @@ def toolsSearch(request, tools_title):
             }
         return render(request, 'Localisation_App/tools.html', context)
     if tools_searchData != 'none':
-        logger.info("Tools page getting displayed with searched tools data by slugs")
+        logger.info(
+            "Tools page getting displayed with searched tools data by slugs")
         tools_Data1 = ToolsData.objects.filter(
             ToolsData_slug__icontains=tools_searchData)
         page = Paginator(tools_Data1, 8)
@@ -378,7 +384,8 @@ def toolsReset(request):
     page = page.get_page(page_list)
     count = tools_Data.count()
     if request.method == "POST":
-        logger.info("Tools page getting displayed with all tools data by reset filter button")
+        logger.info(
+            "Tools page getting displayed with all tools data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -406,42 +413,48 @@ def toolsDownloadCounter(request, id):
     print("ip", ip)
     saved_ip = None
     time_posted = request.session.get('tools_Download_time')
-    tools_obj=ToolsData.objects.get(pk=id)
-    tools_requested_title=tools_obj.ToolsData_HeadingName
-    Heading=request.session.get('toolsDownloadCounter_toolHeading')
+    tools_obj = ToolsData.objects.get(pk=id)
+    tools_requested_title = tools_obj.ToolsData_HeadingName
+    Heading = request.session.get('toolsDownloadCounter_toolHeading')
     savedTimeInSession = None
     time_diff = 0
     if tools_requested_title == Heading:
-        logger.info("Tools page, checking where saved heading name and requested name is different or not , if yes")
+        logger.info(
+            "Tools page, checking where saved heading name and requested name is different or not , if yes")
         if time_posted is not None:
-            logger.info("Tools page, checking where time data is saved in tools_Download_time is not none ")
+            logger.info(
+                "Tools page, checking where time data is saved in tools_Download_time is not none ")
             print("time_posted not none")
             print(time_posted)
-            print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
+            print("datatatataa", type(
+                datetime.fromisoformat(time_posted[:-1])))
             savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
             dataCurrentTime = datetime.now()
             print("time", type(dataCurrentTime))
             timediff = dataCurrentTime - savedTimeInSession
             time_diff = timediff.total_seconds()
             print("timediff", timediff.total_seconds())
-            logger.info("Tools page, calculating time difference from saved time with first button click to current button click time ")
+            logger.info(
+                "Tools page, calculating time difference from saved time with first button click to current button click time ")
         else:
-            logger.info("Tools page, checking where time data is saved in tools_Download_time is none ")
+            logger.info(
+                "Tools page, checking where time data is saved in tools_Download_time is none ")
             print("time_posted none")
     else:
-        logger.info("Tools page, checking where saved heading name and requested name is different or not , if no")
+        logger.info(
+            "Tools page, checking where saved heading name and requested name is different or not , if no")
         time_diff = 70
     print("saved_ip", saved_ip)
-    
-   
+
     if time_diff < 60:
-        logger.info("Tools page,if time diff. is less than 20 seconds, then it will save requested ip to toolsDownloadCounter_ip session ")
+        logger.info(
+            "Tools page,if time diff. is less than 20 seconds, then it will save requested ip to toolsDownloadCounter_ip session ")
         saved_ip = request.session.get('toolsDownloadCounter_ip')
     else:
-        logger.info("Tools page,if time diff. is more than 20 seconds, then it will set none to toolsDownloadCounter_ip session ")
+        logger.info(
+            "Tools page,if time diff. is more than 20 seconds, then it will set none to toolsDownloadCounter_ip session ")
         request.session['toolsDownloadCounter_ip'] = None
-   
-    
+
     if ip != saved_ip:
         logger.info("Tools page,it will check that within 60 second request is comming from same ip or not, if not it will increase download count, and set toolsDownloadCounter_ip as requested ip and requested time to tools_Download_time ")
         # print("savedTimeInSession inside second not none")
@@ -450,7 +463,7 @@ def toolsDownloadCounter(request, id):
         # if time_diff < 10:
         print("time is less than 10 seconds inside second not none")
         request.session['toolsDownloadCounter_ip'] = ip
-       
+
         data = datetime.now()
         print("time", type(data))
         data1 = json.dumps(data, default=json_util.default)
@@ -463,7 +476,7 @@ def toolsDownloadCounter(request, id):
         print("before", tool_obj.ToolsData_DownloadCounter)
         tool_obj.ToolsData_DownloadCounter = tool_obj.ToolsData_DownloadCounter + 1
         tool_obj.save()
-        
+
         request.session['toolsDownloadCounter_toolHeading'] = tool_obj.ToolsData_HeadingName
         print("after", tool_obj.ToolsData_DownloadCounter)
         return redirect('Localisation_App:toolsPage')
@@ -559,7 +572,8 @@ def resources(request):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-            logger.info("Resources page getting displayed with selected category filteration")
+            logger.info(
+                "Resources page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -575,7 +589,8 @@ def resources(request):
 
             return render(request, 'Localisation_App/resources.html', context)
         else:
-            logger.info("Resources page getting displayed with all category filteration")
+            logger.info(
+                "Resources page getting displayed with all category filteration")
             page = Paginator(resources_Data, 8)
             Resources_Category.objects.all().update(Resources_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -606,7 +621,8 @@ def resources(request):
     print(q)
 
     if pagestatus == True:
-        logger.info("Resources page getting displayed with selected category filteration and pagination")
+        logger.info(
+            "Resources page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -624,7 +640,8 @@ def resources(request):
         }
 
     else:
-        logger.info("Resources page getting displayed with all category filteration and pagination")
+        logger.info(
+            "Resources page getting displayed with all category filteration and pagination")
         page = Paginator(resources_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -673,7 +690,8 @@ def resourceSearch(request, resource_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-            logger.info("Resources page getting displayed with searched data by slugs")
+            logger.info(
+                "Resources page getting displayed with searched data by slugs")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -704,7 +722,8 @@ def resourceSearch(request, resource_title):
             }
         return render(request, 'Localisation_App/resources.html', context)
     if resource_searchData != 'none':
-        logger.info("Resources page getting displayed with searched data by slugs with pagination")
+        logger.info(
+            "Resources page getting displayed with searched data by slugs with pagination")
         resource_Data1 = ResourceData.objects.filter(
             ResourceData_slug__icontains=resource_searchData)
         page = Paginator(resource_Data1, 8)
@@ -758,7 +777,8 @@ def resourcesReset(request):
     page = page.get_page(page_list)
     count = resources_Data.count()
     if request.method == "POST":
-        logger.info("Resources page getting displayed with all data by reset filter button")
+        logger.info(
+            "Resources page getting displayed with all data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -788,37 +808,44 @@ def resourceDownloadCounter(request, id):
     print("ip", ip)
     saved_ip = None
     time_posted = request.session.get('resources_Download_time')
-    resources_obj=ResourceData.objects.get(pk=id)
-    resource_requested_title=resources_obj.ResourceData_HeadingName
-    Heading=request.session.get('resourcesDownloadCounter_resourceHeading')
+    resources_obj = ResourceData.objects.get(pk=id)
+    resource_requested_title = resources_obj.ResourceData_HeadingName
+    Heading = request.session.get('resourcesDownloadCounter_resourceHeading')
     savedTimeInSession = None
     time_diff = 0
     if resource_requested_title == Heading:
         if time_posted is not None:
-            logger.info("Resources page, checking where time data is saved in resources_Download_time is not none ")
+            logger.info(
+                "Resources page, checking where time data is saved in resources_Download_time is not none ")
             print("time_posted not none")
             print(time_posted)
-            print("datatatataa", type(datetime.fromisoformat(time_posted[:-1])))
+            print("datatatataa", type(
+                datetime.fromisoformat(time_posted[:-1])))
             savedTimeInSession = datetime.fromisoformat(time_posted[:-1])
             dataCurrentTime = datetime.now()
             print("time", type(dataCurrentTime))
             timediff = dataCurrentTime - savedTimeInSession
             time_diff = timediff.total_seconds()
             print("timediff", timediff.total_seconds())
-            logger.info("Resources page, calculating time difference from saved time with first button click to current button click time ")
+            logger.info(
+                "Resources page, calculating time difference from saved time with first button click to current button click time ")
         else:
-            logger.info("Resources page, checking where time data is saved in resources_Download_time is none ")
+            logger.info(
+                "Resources page, checking where time data is saved in resources_Download_time is none ")
             print("time_posted none")
     else:
-        logger.info("Resources page, checking where saved heading name and requested name is different or not , if no")
+        logger.info(
+            "Resources page, checking where saved heading name and requested name is different or not , if no")
         time_diff = 70
     print("saved_ip", saved_ip)
 
     if time_diff < 60:
-        logger.info("Resources page,if time diff. is less than 20 seconds, then it will save requested ip to resourcesDownloadCounter_ip session ")
+        logger.info(
+            "Resources page,if time diff. is less than 20 seconds, then it will save requested ip to resourcesDownloadCounter_ip session ")
         saved_ip = request.session.get('resourcesDownloadCounter_ip')
     else:
-        logger.info("Resources page,if time diff. is more than 20 seconds, then it will set none to resourcesDownloadCounter_ip session ")
+        logger.info(
+            "Resources page,if time diff. is more than 20 seconds, then it will set none to resourcesDownloadCounter_ip session ")
         request.session['resourcesDownloadCounter_ip'] = None
 
     if ip != saved_ip:
@@ -841,17 +868,17 @@ def resourceDownloadCounter(request, id):
         print("before", resources_obj.ResourceData_DownloadCounter)
         resources_obj.ResourceData_DownloadCounter = resources_obj.ResourceData_DownloadCounter + 1
         resources_obj.save()
-        
+
         request.session['resourcesDownloadCounter_resourceHeading'] = resources_obj.ResourceData_HeadingName
         print("after", resources_obj.ResourceData_DownloadCounter)
         return redirect('Localisation_App:resourcesPage')
-       
+
     else:
         logger.info("Resources page,if within 60 second request is comming from same ip, it will not increase download count, and set resourcesDownloadCounter_ip as requested ip and requested time to resources_Download_time ")
-        
+
         print("ip is same inside second none")
         request.session['resourcesDownloadCounter_ip'] = ip
-        resources_obj=ResourceData.objects.get(pk=id)
+        resources_obj = ResourceData.objects.get(pk=id)
         request.session['resourcesDownloadCounter_resourceHeading'] = resources_obj.ResourceData_HeadingName
         print("same and none ip first")
         data = datetime.now()
@@ -944,7 +971,8 @@ def successstory(request):
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
             count = q.count()
-            logger.info("Success stories page getting displayed with selected category filteration")
+            logger.info(
+                "Success stories page getting displayed with selected category filteration")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -960,7 +988,8 @@ def successstory(request):
             # return render(request,'Localisation_App/successstory.html',context)
 
         else:
-            logger.info("Success stories page getting displayed with all category filteration")
+            logger.info(
+                "Success stories page getting displayed with all category filteration")
             page = Paginator(successStoriesData, 8)
             SuccessStories_Category.objects.all().update(SuccessStories_Cat_Status=False)
             page_list = request.GET.get('page')
@@ -991,7 +1020,8 @@ def successstory(request):
     print(q)
 
     if pagestatus == True:
-        logger.info("Success stories page getting displayed with selected category filteration and pagination")
+        logger.info(
+            "Success stories page getting displayed with selected category filteration and pagination")
         page = Paginator(q, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
@@ -1010,7 +1040,8 @@ def successstory(request):
         }
 
     else:
-        logger.info("Success stories page getting displayed with all category filteration and pagination")
+        logger.info(
+            "Success stories page getting displayed with all category filteration and pagination")
         page = Paginator(successStoriesData, 8)
         # SuccessStrories_Category.objects.all().update(SuccessStrories_Cat_Status=False)
         page_list = request.GET.get('page')
@@ -1062,7 +1093,8 @@ def successstorySearch(request, story_title):
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
-            logger.info("Success stories page getting displayed with searched data by heading")
+            logger.info(
+                "Success stories page getting displayed with searched data by heading")
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1075,7 +1107,8 @@ def successstorySearch(request, story_title):
                 'count': count
             }
         else:
-            logger.info("Success stories  page getting displayed with all data")
+            logger.info(
+                "Success stories  page getting displayed with all data")
             page = Paginator(successStoriesData, 8)
             page_list = request.GET.get('page')
             page = page.get_page(page_list)
@@ -1100,7 +1133,8 @@ def successstorySearch(request, story_title):
         page = page.get_page(page_list)
         count = Stories_Data1.count()
         print("hereee", Stories_Data1)
-        logger.info("Success stories  page getting displayed with searched data by heading with pagination")
+        logger.info(
+            "Success stories  page getting displayed with searched data by heading with pagination")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1147,7 +1181,8 @@ def successstoryReset(request):
     page = page.get_page(page_list)
     count = successStoriesData.count()
     if request.method == "POST":
-        logger.info("Success stories page getting displayed with all data by reset filter button")
+        logger.info(
+            "Success stories page getting displayed with all data by reset filter button")
         context = {
             'topmenus': TopMenuItemsdata,
             'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1220,7 +1255,7 @@ def srvGoTranslateWebLocalizer(request):
         'FooterMenuItemsdata': FooterMenuItemsdata,
         "service": "goTranslate"
     }
-    return render(request, 'Localisation_App/gotranslate.html',context)
+    return render(request, 'Localisation_App/gotranslate.html', context)
 
 
 def srvOnscreenKeyboard(request):
@@ -1271,7 +1306,8 @@ def srvTTS(request):
             r = requests.post(url, data=payload)
             print('response', r)
             if r.status_code == 200:
-                logger.info("TTS ,Recieved success response, after APi called with form data")
+                logger.info(
+                    "TTS ,Recieved success response, after APi called with form data")
                 data = r.json()
                 print('response', data)
                 print('file', data['outspeech_filepath'][0])
@@ -1284,7 +1320,8 @@ def srvTTS(request):
                     'topmenus': TopMenuItemsdata,
                     'FooterMenuItemsdata': FooterMenuItemsdata,
                 }
-                logger.info("TTS Page getting displayed with recieved success response, after APi called with form data")
+                logger.info(
+                    "TTS Page getting displayed with recieved success response, after APi called with form data")
                 print("returned")
                 return render(request, 'Localisation_App/ttsService.html', context)
     logger.info("TTS page getting displayed with all data")
@@ -1594,17 +1631,20 @@ def Register_user(request):
         logger.info("Inside register page after submit button click")
         form = RegisterForm(request.POST)
         if form.is_valid():
-            logger.info("Inside register page , If form is valid all data saved into User model")
+            logger.info(
+                "Inside register page , If form is valid all data saved into User model")
             form.save()
             print("Form Data")
             UserRegistration.objects.create(userregistration_first_name=form.cleaned_data.get('first_name'), userregistration_middle_name=form.cleaned_data.get('middle_name'), userregistration_last_name=form.cleaned_data.get('last_name'), userregistration_username=form.cleaned_data.get('username'), userregistration_email_field=form.cleaned_data.get(
                 'email'), userregistration_phone_number=form.cleaned_data.get('phone_number'), userregistration_address=form.cleaned_data.get('address'), userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'), registration_User_Type=form.cleaned_data.get('User_Type'))
             messages.success(request, 'Account was created for ' +
                              form.cleaned_data.get('first_name'))
-            logger.info("Inside register page,If form is valid all data saved into UserRegistration model")
+            logger.info(
+                "Inside register page,If form is valid all data saved into UserRegistration model")
             return redirect('/')
         else:
-            logger.info("Inside register page,If form is not valid, it will through error message")
+            logger.info(
+                "Inside register page,If form is not valid, it will through error message")
             print('Form is not valid')
             messages.error(request, 'Error Processing Your Request')
             context = {
@@ -1618,7 +1658,7 @@ def Register_user(request):
 
 
 def login_user(request):
-    print("login",request.session.get('requested_url'))
+    print("login", request.session.get('requested_url'))
     form = UserLoginForm()
     url = request.session.get('requested_url')
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1632,10 +1672,12 @@ def login_user(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             print("if form is valid")
-            logger.info("Login user form , if form is valid, data is passed to authenticate function ")
+            logger.info(
+                "Login user form , if form is valid, data is passed to authenticate function ")
             user = authenticate(username=username, password=password)
             if user is not None:
-                logger.info("Login user form, after successfull authentication, login() function called ")
+                logger.info(
+                    "Login user form, after successfull authentication, login() function called ")
                 print("second method called")
                 login(request, user)
                 if url != None:
@@ -1643,12 +1685,14 @@ def login_user(request):
                 else:
                     return redirect('/')
             else:
-                logger.error("Login user form, Error in user login authentication")
+                logger.error(
+                    "Login user form, Error in user login authentication")
                 messages.error(request, 'Wrong Username or password')
                 return redirect('Localisation_App:login')
 
         else:
-            logger.error("Login user form, Error Processing Your Request,Wrong Username or password ")
+            logger.error(
+                "Login user form, Error Processing Your Request,Wrong Username or password ")
             messages.error(
                 request, 'Error Processing Your Request,Wrong Username or password ')
             return redirect('Localisation_App:login')
@@ -1693,7 +1737,8 @@ def changePassword(request, token):
                 user_id = request.POST.get('user_id')
                 logger.info("change password page, form is valid")
                 if password1 == password2:
-                    logger.info("change password page, both passwors are matched")
+                    logger.info(
+                        "change password page, both passwors are matched")
                     if user_id is None:
                         logger.error("change password page, user_id not found")
                         messages.error(request, 'User Not Found')
@@ -1707,13 +1752,16 @@ def changePassword(request, token):
                         user_Register_obj.userregistration_confirm_password = password2
                         user_Register_obj.userregistration_token = None
                         user_Register_obj.save()
-                        logger.info("change password page, updated password saved into user registration model")
+                        logger.info(
+                            "change password page, updated password saved into user registration model")
                         user_main_obj = User.objects.get(
                             username=user_Profile_obj.userregistration_username)
                         user_main_obj.set_password(password1)
                         user_main_obj.save()
-                        logger.info("change password page, updated password saved into user model")
-                        logger.info("Password Reset Successfully, Token expired")
+                        logger.info(
+                            "change password page, updated password saved into user model")
+                        logger.info(
+                            "Password Reset Successfully, Token expired")
                         messages.success(
                             request, 'Password Reset Successfully')
                         print('Password Reset Successfully ')
@@ -1759,36 +1807,43 @@ def forgetPassword(request):
                     print('No user found with this username')
                     return redirect('Localisation_App:forgetPassword')
                 else:
-                    logger.info("User found with this username inside User model")
+                    logger.info(
+                        "User found with this username inside User model")
                     print('user is not none')
                     user_obj = User.objects.get(username=username)
                     token = str(uuid.uuid4())
-                    logger.info("Inside forgot password function, token is created")
-                    logger.info("User found with this username inside UserRegistration model")
+                    logger.info(
+                        "Inside forgot password function, token is created")
+                    logger.info(
+                        "User found with this username inside UserRegistration model")
                     user_Profile_obj = UserRegistration.objects.get(
                         userregistration_username=username)
                     user_Profile_obj.userregistration_token = token
                     user_Profile_obj.save()
-                    logger.info("Inside forgot password function, token is saved in UserRegistration model")
+                    logger.info(
+                        "Inside forgot password function, token is saved in UserRegistration model")
 
                     mail_send_status = send_forget_password_email(
                         user_Profile_obj.userregistration_email_field, token)
                     print("userdata", user_obj)
-                    
+
                     print("mail_send_status", mail_send_status)
                     if mail_send_status:
-                        logger.info("Inside forgot password function, An email is sent on your registered Email-Id")
+                        logger.info(
+                            "Inside forgot password function, An email is sent on your registered Email-Id")
                         messages.success(
                             request, 'An email is sent on your registered Email-Id')
                         print('An email is sent')
                         return redirect('Localisation_App:forgetPassword')
                     else:
-                        logger.error("Inside forgot password function, Failed to send sn email")
+                        logger.error(
+                            "Inside forgot password function, Failed to send sn email")
                         messages.error(request, 'Failed to send sn email')
                         print('Failed to send sn email')
                         return redirect('Localisation_App:forgetPassword')
             else:
-                logger.error("Inside forgot password function, Form is not valid")
+                logger.error(
+                    "Inside forgot password function, Form is not valid")
                 messages.error(request, 'Data is not valid')
                 return redirect('Localisation_App:forgetPassword')
     except Exception as e:
@@ -1813,7 +1868,7 @@ def goTranslate(request):
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
         "service": "goTranslate"
-        
+
     }
     return render(request, 'Localisation_App/gotranslate.html', context)
 
@@ -1897,7 +1952,8 @@ def dashboard(request):
         count = UserRegistration.objects.filter(
             registration_User_Type=n).count()
         userCount_Per_Type.append(count)
-    logger.info("Dashboard page, calculated total user per User type while registration")
+    logger.info(
+        "Dashboard page, calculated total user per User type while registration")
 
     for n in guidelines_data:
         guidelines_Duplicate.append(n.name)
@@ -1909,7 +1965,6 @@ def dashboard(request):
             'percentage').filter().get(name=n)
         guidelinesCount_Per_Type.append(data["percentage"])
     logger.info("Dashboard page, getting data of gudelines")
-
 
     for n in tools_data:
         id.append(n.id)
@@ -1940,8 +1995,6 @@ def dashboard(request):
             'ResourceData_HeadingName').get(id=n)
         resourcesName.append(datname["ResourceData_HeadingName"])
     logger.info("Dashboard page, calculated total download hit ratio per tool")
-
-   
 
     context = {
         'topmenus': TopMenuItemsdata,
@@ -2038,28 +2091,29 @@ def translation_quote(request):
         form = TranslationQuoteForm(request.POST)
 
         context['form'] = form
-        
+
         #  validations
         validate_url = validators.URLValidator()
         validate_email = validators.EmailValidator()
-        
+
         try:
             validate_url(url)
-            
+
         except ValidationError as e:
             context['url_error'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
-        
+
         try:
             validate_email(company_email)
         except ValidationError as e:
             context['email_error'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
-        
+
         try:
             if len(client_remark) > 5000:
-                 raise ValidationError("You have entered "+ str(len(client_remark)) + " characters But only 5000 characters allowed")
-            
+                raise ValidationError(
+                    "You have entered " + str(len(client_remark)) + " characters But only 5000 characters allowed")
+
         except ValidationError as e:
             context['remark_error'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
@@ -2100,123 +2154,6 @@ def translation_quote(request):
             return render(request, 'Localisation_App/translation_quote.html', context)
 
     return render(request, "Localisation_App/translation_quote.html", context)
-
-
-def dashboard2(request):
-    url = resolve(request.path_info).url_name
-    request.session['requested_url'] = url
-    SuccessStoriescategory_name = []
-    countOfStoriesWithCategory = []
-    successStories_CategoryData = SuccessStories_Category.objects.all()
-
-    toolscategory_name = []
-    countOfToolsWithCategory = []
-    toolsCategory_data = Tools_Category.objects.all()
-
-    resourcescategory_name = []
-    countOfResourcesWithCategory = []
-    resourcesCategory_data = Resources_Category.objects.all()
-
-    userType = []
-    userType_Duplicate = []
-    userCount_Per_Type = []
-    userRegistration_Data = UserRegistration.objects.all()
-
-    guidelinesType = []
-    guidelines_Duplicate = []
-    guidelinesCount_Per_Type = []
-    guidelines_data = GuidelinceForIndianGovWebsite.objects.all()
-
-    toolsName = []
-    id = []
-    toolsName_hitCount_Per_Name = []
-    tools_data = ToolsData.objects.all()
-
-    for n in successStories_CategoryData:
-        SuccessStoriescategory_name.append(n.SuccessStories_CategoryType)
-    for n in successStories_CategoryData:
-        count = SuccessStories.objects.filter(
-            SuccessStories_category__SuccessStories_CategoryType=n.SuccessStories_CategoryType).count()
-        countOfStoriesWithCategory.append(count)
-
-    for n in toolsCategory_data:
-        toolscategory_name.append(n.Tools_CategoryType)
-    for n in toolsCategory_data:
-        count = ToolsData.objects.filter(
-            ToolsData_CategoryType__Tools_CategoryType=n.Tools_CategoryType).count()
-        countOfToolsWithCategory.append(count)
-
-    for n in resourcesCategory_data:
-        resourcescategory_name.append(n.Resources_CategoryType)
-    for n in resourcesCategory_data:
-        count = ResourceData.objects.filter(
-            ResourceData_CategoryType__Resources_CategoryType=n.Resources_CategoryType).count()
-        countOfResourcesWithCategory.append(count)
-
-    for n in userRegistration_Data:
-        userType_Duplicate.append(n.registration_User_Type)
-    data_unique = set(userType_Duplicate)
-    userType = list(data_unique)
-    for n in userType:
-        count = UserRegistration.objects.filter(
-            registration_User_Type=n).count()
-        userCount_Per_Type.append(count)
-
-    for n in guidelines_data:
-        guidelines_Duplicate.append(n.name)
-    data_unique = set(guidelines_Duplicate)
-    guidelinesType = list(data_unique)
-    for n in guidelinesType:
-        # print(n)
-        data = GuidelinceForIndianGovWebsite.objects.values(
-            'percentage').filter().get(name=n)
-        # print(data["percentage"])
-        guidelinesCount_Per_Type.append(data["percentage"])
-
-    for n in tools_data:
-        id.append(n.id)
-    # print(id)
-    for n in id:
-        # print(n)
-        data = ToolsData.objects.values('ToolsData_DownloadCounter').get(id=n)
-        # print(data)
-        # print(data["ToolsData_DownloadCounter"])
-        toolsName_hitCount_Per_Name.append(data["ToolsData_DownloadCounter"])
-
-    for n in id:
-        datname = ToolsData.objects.values('ToolsData_HeadingName').get(id=n)
-        toolsName.append(datname["ToolsData_HeadingName"])
-        # print(datname["ToolsData_HeadingName"])
-
-    # # print("cat",toolsName)
-    # # print("data",toolsName_hitCount_Per_Name)
-
-    context = {
-        'name': 'Success Strories Dataset',
-        'successStories_CategoryData': SuccessStoriescategory_name,
-        'count_Of_Stories_PerCategory': countOfStoriesWithCategory,
-
-        'tools_CategoryData': toolscategory_name,
-        'count_Of_Tools_PerCategory': countOfToolsWithCategory,
-
-        'resources_CategoryData': resourcescategory_name,
-        'count_Of_Resources_PerCategory': countOfResourcesWithCategory,
-
-        'user_CategoryData': userType,
-        'count_Of_User_PerCategory': userCount_Per_Type,
-
-
-        'guidelinesType': guidelinesType,
-        'guidelinesCount_Per_Type': guidelinesCount_Per_Type,
-
-
-        'toolshit_name': toolsName,
-        'toolsHitCount': toolsName_hitCount_Per_Name,
-
-
-
-    }
-    return render(request, 'Localisation_App/dashboard2.html', context)
 
 
 def machine_translation(request):
