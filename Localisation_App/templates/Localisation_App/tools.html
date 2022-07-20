@@ -84,7 +84,7 @@
 							<div class="col-sm-12 col-lg-8">
 								<div class="Heading">
 									<h3 style="color: #023047;">{{ data.ToolsData_HeadingName }}</h3> </div>
-										<div class="category-tool-slug-section">{% for d in data.get_ToolsData_slug_splited|slice:":5" %}
+										<div class="category-tool-slug-section">{% for d in data.get_ToolsData_slug_splited|slice:":10" %}
 										<span class="category-tool-title-slug">{{ d }}</span>
 										{% endfor %}</div>
 								<hr/>
@@ -148,7 +148,7 @@
                           class="sr-only">(current)</span></a> </li> {% else %}
 										<li class="page-item"> <a class="page-link" href="{% url 'Localisation_App:tools' %}?page={{num_page}}">{{num_page}}<span
                           class="sr-only">(current)</span></a> </li> {% endif %} {% endfor %}
-										<li class="page-item"> {% if page.has_next %} <a class="page-link" href="{% url 'Localisation_App:tools' %}?page={{page.next_page_number}}">Next</a> {% endif %} </li>
+										<li class="page-item" style="color"> {% if page.has_next %} <a class="page-link" href="{% url 'Localisation_App:tools' %}?page={{page.next_page_number}}">Next</a> {% endif %} </li>
 									</ul>
 								</nav>
 							</div>
