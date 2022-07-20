@@ -18,14 +18,14 @@
           <div class="row p-3">
             <div class="col-6">
               {% if resource_title == 'none' %}
-              <input class="form-control me-2" type="text" name="resourcename" placeholder="Enter Words"
+              <input class="form-control me-2 enter-words" type="text" name="resourcename" placeholder="Enter Words"
                 aria-label="Enter Words" />{% else %}
               <input class="form-control me-2" type="text" name="resourcename" value={{ resource_title }}
                 placeholder="Search" aria-label="Search" />{% endif %}
             </div>
             <div class="col-6">
-              <input class="btn btn-primary" type="submit"
-                style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Search" />
+              <input class="btn btn-primary tool-search-button" type="submit"
+                style="background-color:#219EBC ;border-color:#219EBC; " value="Search" />
             </div>
             <hr style="margin-top: 20px;">
           </div>
@@ -54,7 +54,7 @@
           </div>
           {% endif %} {% endcomment %}
           {% if status_All_Checked == 'True' %}
-          <ul>
+          <div class="categories-checkbox"><ul>
             {% for categories in resourcescategory %}
             <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}"
               onclick=" ">{{ categories.Resources_CategoryType }}</input></br>
@@ -78,7 +78,7 @@
             {% endif %}
             {% endfor %}
           </ul>
-          {% endif %}
+          {% endif %}</div>
           <div class="row">
             <div class="col-1"></div>
             <div class="col-5">
@@ -93,7 +93,7 @@
             type="submit" value="Fetch">Reset</button>
         </form>
       </div>
-      <hr style="width:350px;margin-left:18px;">
+      <hr class="category-below-line">
       <div class="col-4"></div>
 
       <p class="tools_Fetched_Record_Text">Records Fetched : {{ count }}</p>
@@ -133,7 +133,7 @@
               <div class="tools-section-button">Download </div>
             </a> -->
             <div class="tools-section-button">
-              <button class="btn btn-primary" onclick="location.href='{% url 'Localisation_App:resourceDownloadCounter' data.id %}' ">
+              <button class="btn" onclick="location.href='{% url 'Localisation_App:resourceDownloadCounter' data.id %}' ">
               <a type="submit" style="text-decoration: none;color:white" href="/media/{{data.ResourceData_UploadResourceCode}}" download>
                  Download</a>
                 </button>
@@ -151,7 +151,7 @@
             <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
             {% for d in data.get_ResourcesData_slug_splited|slice:":10" %}
             <span class="category-tool-title-slug">{{ d }}</span>
-            {% endfor %}
+            {% endfor %}</div>
           </div>
           <hr/>
             <div class="Discription">
@@ -176,7 +176,7 @@
   <div class="section p-3">
     {% if Pagination_Type == 'All_Data' %}
     <div class="container">
-      <div class="row" style="width:500px;margin-left: 300px;">
+      <div class="row pagination1"" >
         <div class="col-md-12 offset-md-3">
           <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
           <nav aria-label="...">

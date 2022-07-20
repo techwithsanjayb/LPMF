@@ -2,6 +2,11 @@
 {% block title %}Tools{% endblock %}
 {% load static %}
 {% block tools %}
+<link
+      href="{% static 'Localisation_App/css/tools.css' %}"
+      rel="stylesheet"
+/>
+
 <div class="container-fluid" >
 	<input type="button" class="text-center rounded-5 px-5 tools-page-header" value="Tools" disabled />
 	<div class="row tools-box"  >
@@ -10,7 +15,7 @@
 				<form action={% url 'Localisation_App:toolsSearch' tools_title %} method="POST" enctype="multipart/form-data"> {% csrf_token %}
 					<div class="row p-3">
 						<div class="col-6"> {% if tools_title == 'none' %}
-							<input class="form-control me-2" type="text" name="toolname" placeholder="Enter Words" aria-label="Enter Words" />{% else %}
+							<input class="form-control me-2 enter-words" type="text" name="toolname" placeholder="Enter Words" aria-label="Enter Words" />{% else %}
 							<input class="form-control me-2" type="text" name="toolname" value={{ tools_title }} placeholder="Search" aria-label="Search" />{% endif %} 
 						</div>
 						<div class="col-6">
@@ -31,8 +36,8 @@
 						</br> {% endif %} {% endfor %} </ul> {% endif %}</div>
 					<div class="row">
 						<div class="col-1"></div>
-						<div class="col-5">
-							<button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Filter</button>
+						<div class="col-5"><button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Filter</button>
+						
 				</form>
 				</div>
 				<div class="col-2">
@@ -40,7 +45,7 @@
 						<button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Reset</button>
 					</form>
 				</div>
-				<hr style="width:350px;margin-left:18px;">
+				<hr class="category-below-line" />
 				<div class="col-4"></div>
 				<p class="tools_Fetched_Record_Text">Records Fetched : {{ count }}</p>
 				</div>
@@ -99,7 +104,7 @@
 				{% endfor %}
 				<div class="section p-3 d-flex justify-content-center"> {% if Pagination_Type == 'All_Data' %}
 					<div class="container">
-						<div class="row pagination1" ">
+						<div class="row pagination1">
 							<div class="col-md-12 offset-md-3">
 								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="..." style="width:200px">
