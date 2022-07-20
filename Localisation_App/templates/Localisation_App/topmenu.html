@@ -83,7 +83,7 @@
             </li>
           </ul>
         </li>
-        
+
         <li
           class="nav-item {% if request.path == '/successstoryPage/' %}active{% endif %}"
         >
@@ -111,24 +111,61 @@
           >
         </li>
         {% if not user.is_authenticated %}
-        <li class="nav-item">
+        {% comment %} <li class="nav-item">
           <a class="items" href="{% url 'Localisation_App:register' %}">
             {{ topmenus.7 }}
           </a>
-        </li>
+        </li> {% endcomment %}
         <li class="nav-item">
           <a class="items" href="{% url 'Localisation_App:login' %}"
             >{{ topmenus.8 }}</a
           >
         </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="items" href="{% url 'Localisation_App:logout' %}"
-            >{{ topmenus.11 }}</a
+        {% else %} 
+
+        <li
+          class="nav-item dropdown {% if request.path == '/services/' or request.path == '/toolsPage/' or request.path == '/resourcesPage/' %}active{% endif %}"
+        >
+          <a
+            class="nav-link dropdown-toggle items"
+            style="padding: 0px"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
+            <img
+              src="{% static './Localisation_App/img/profile-icon-9.png' %}"
+              alt="..."
+              class="Profile-link-img"
+            />
+          </a>
+
+          <ul
+            class="dropdown-menu"
+            style="padding-left: 12px"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li
+              class="nav-item {% if request.path == '/toolsPage/' %}active{% endif %}"
+            >
+              <a
+                class="items"
+                href="{% url 'Localisation_App:profile' user.id %}"
+                >Profile</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="items" href="{% url 'Localisation_App:logout' %}"
+                >{{ topmenus.11 }}</a
+              >
+            </li>
+          </ul>
+          {% endif %}
         </li>
-        {% endif %}
       </ul>
+
       <div class="nav-item animate__animated animate__pulse animate__infinite">
         <div class="quote">
           <a
