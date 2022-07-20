@@ -1,12 +1,7 @@
 from django.contrib import admin
-from .models import EmpanelledAgencies, EmpanelledAgenciesEmail, TopMenuItems, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, UserRegistration, GuidelinceForIndianGovWebsite, TranslationQuote
+from .models import EmpanelledAgencies, EmpanelledAgenciesEmail, TopMenuItems, MarketingSection, Article, SuccessStories, ToolsData, ResourceData, FAQs, NewsAndEvents, Services, FAQs_Category, Tools_Category, Resources_Category, SuccessStories_Category, Footer_Links, Footer_Links_Info, FooterMenuItems, Tools_Searched_Title, Contact, UserRegistration, GuidelinceForIndianGovWebsite, TranslationQuote
 # Register your models here.
 from django.template.defaultfilters import truncatechars
-
-
-
-
-
 
 
 @admin.register(SuccessStories_Category)
@@ -24,17 +19,18 @@ class AdminSuccessStories_Category(admin.ModelAdmin):
 
 @admin.register(SuccessStories)
 class AdminStories(admin.ModelAdmin):
-    list_display = ('SuccessStories_TitleName','SuccessStories_slug', 'short_SuccessStories_Description',
+    list_display = ('SuccessStories_TitleName', 'SuccessStories_slug', 'short_SuccessStories_Description',
                     'SuccessStories_PublishedStatus', 'SuccessStories_Link')
     list_display_links = ('SuccessStories_TitleName', 'short_SuccessStories_Description',
                           'SuccessStories_PublishedStatus',  'SuccessStories_Link')
     list_filter = ('SuccessStories_PublishedStatus',
                    'SuccessStories_category', 'SuccessStories_Link')
-    search_fields = ('SuccessStories_TitleName','SuccessStories_Cdac_Contribution',
+    search_fields = ('SuccessStories_TitleName', 'SuccessStories_Cdac_Contribution',
                      'SuccessStories_Description', 'SuccessStories_Link')
     ordering = ('SuccessStories_TitleName',)
-    prepopulated_fields = {"SuccessStories_slug": ("SuccessStories_TitleName",)}
-     
+    prepopulated_fields = {
+        "SuccessStories_slug": ("SuccessStories_TitleName",)}
+
     list_per_page: int = 20
     save_on_top = True
 
@@ -60,13 +56,13 @@ class AdminArticle(admin.ModelAdmin):
 
 @admin.register(ResourceData)
 class AdminResourceData(admin.ModelAdmin):
-    list_display = ('ResourceData_HeadingName','ResourceData_slug',
+    list_display = ('ResourceData_HeadingName', 'ResourceData_slug',
                     'short_ResourceData_Description', 'ResourceData_CategoryType')
-    list_display_links = ('ResourceData_HeadingName','ResourceData_slug', 'short_ResourceData_Description',
+    list_display_links = ('ResourceData_HeadingName', 'ResourceData_slug', 'short_ResourceData_Description',
                           'ResourceData_CategoryType')
     list_filter = ('ResourceData_CategoryType',)
 
-    search_fields = ('ResourceData_HeadingName','ResourceData_slug',
+    search_fields = ('ResourceData_HeadingName', 'ResourceData_slug',
                      'ResourceData_Description',)
     ordering = ('ResourceData_HeadingName',)
     list_per_page: int = 20
@@ -77,16 +73,15 @@ class AdminResourceData(admin.ModelAdmin):
 
 @admin.register(ToolsData)
 class AdminToolsData(admin.ModelAdmin):
-    list_display = ('ToolsData_HeadingName','ToolsData_slug',
+    list_display = ('ToolsData_HeadingName', 'ToolsData_slug',
                     'short_ToolsData_Description', 'ToolsData_CategoryType')
-    list_display_links = ('ToolsData_HeadingName','ToolsData_slug',
+    list_display_links = ('ToolsData_HeadingName', 'ToolsData_slug',
                           'short_ToolsData_Description', 'ToolsData_CategoryType')
     list_filter = ('ToolsData_CategoryType',)
-    search_fields = ('ToolsData_HeadingName','ToolsData_slug',
+    search_fields = ('ToolsData_HeadingName', 'ToolsData_slug',
                      'ToolsData_Description', )
     ordering = ('ToolsData_HeadingName',)
     prepopulated_fields = {"ToolsData_slug": ("ToolsData_HeadingName",)}
-  
 
     list_per_page: int = 20
 
@@ -246,6 +241,18 @@ class AdminUserRegistration(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+
+@admin.register(MarketingSection)
+class Admin_MarketingSection(admin.ModelAdmin):
+    list_display = ('MarketingSection_lines',
+                    'MarketingSection_PublishedStatus')
+    list_filter = ('MarketingSection_lines',
+                   'MarketingSection_PublishedStatus')
+    search_fields = ('MarketingSection_lines',
+                     'MarketingSection_PublishedStatus')
+    ordering = ('MarketingSection_lines',)
+    list_per_page: int = 20
 
 
 admin.site.register(FooterMenuItems)

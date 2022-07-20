@@ -2,6 +2,11 @@ body {
     background-color: aliceblue;
 }
 
+
+.category-below-line{
+    width:300px;
+    margin-left:15px;
+}
 .tool-search-button{
     width:120px
 }
@@ -20,7 +25,7 @@ body {
     margin-top: -20px;
     font-size: 23px;
     background-color: #219EBC;
-    width: 280px;
+    width: 260px;
     height: 40px;
     padding-top: 3px;
     margin-left: 30px;
@@ -121,7 +126,7 @@ input[type="checkbox"] {
     border-radius: 5px;
     padding: 2px 2px;
     margin-top: 20px;
-    margin-left: 110px;
+    margin-left: 90px;
     text-align: center;
     background-color: #ecd8a7;
     color: rgb(58, 58, 58);
@@ -135,21 +140,21 @@ input[type="checkbox"] {
     font-size: 15px;
     font-weight: 200;
     margin-top: 15px;
-    margin-left: 75px;
-    width: 60%;
+    margin-left: 90px;
+    width: 57%;
 }
 
 .tools-page-header {
     background-color: #023047;
     color: #feffff;
-    width: auto;
+    width: 300px;
     height: 50px;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-left: 850px;
+    margin-left: 870px;
     margin-bottom: 20px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .tools-paginate {
@@ -223,12 +228,19 @@ input[type="checkbox"] {
 
 
 
+
+
 /* laptop */
 @media screen and (min-device-width: 1370px) and (max-device-width: 1650px) and (-webkit-min-device-pixel-ratio: 1) {
 
 
     body {
         background-color: aliceblue;
+    }
+
+    .category-below-line{
+        width:300px;
+        margin-left:12px;
     }
 
     .Discription{
@@ -322,7 +334,7 @@ input[type="checkbox"] {
     .tools-main-card-section {
         background-color: #ffffff;
         padding: 25px;
-        width: 100%;
+        width: 98%;
         /* margin-top: 90px; */
         /* margin-left: 120px; */
         
@@ -349,7 +361,7 @@ input[type="checkbox"] {
         border-radius: 5px;
         padding: 2px 2px;
         margin-top: 20px;
-        margin-left: 80px;
+        margin-left: 70px;
         text-align: center;
         background-color: #ecd8a7;
         color: rgb(58, 58, 58);
@@ -358,7 +370,7 @@ input[type="checkbox"] {
     .tools-section-button {
        
         /* background-color: #c354e6; */
-       
+       margin-left:70px;
         border-radius: 5px;
         padding: 2px;
         text-align: center;
@@ -376,14 +388,12 @@ input[type="checkbox"] {
         font-size: 30px;
         font-weight: 600;
         letter-spacing: 1px;
-        margin-left: 680px;
+        margin-left: 800px;
         margin-bottom: 20px;
         margin-top: 20px;
     }
 
-    .tools-main-card-section p {
-        font-size: 18px;
-    }
+   
 
     .tools-paginate {
         margin-left: 10px;
@@ -391,7 +401,7 @@ input[type="checkbox"] {
     }
 
     .tools-image {
-        margin-left: 50px;
+        margin-left: 30px;
         width:270px;
         height:200px;
         margin-bottom:20px;
@@ -412,7 +422,7 @@ input[type="checkbox"] {
     }
 
     .Total_downloads{
-        margin-left: 80px;
+        margin-left: 70px;
         color:rgb(190, 68, 20);
         font-size:18px;
         font-weight:500px; 
@@ -429,8 +439,18 @@ input[type="checkbox"] {
         background-color: aliceblue;
     }
 
+    .enter-words{
+        font-size:14px;
+        width:105px;
+    }
+
+    .category-below-line{
+        width:210px;
+        margin-left:12px;
+    }
+
 .pagination1{
-   margin-left:0px;
+   margin-left:100px;
 }
     
 
@@ -445,7 +465,7 @@ input[type="checkbox"] {
         position: absolute;
         bottom:15;
         right: 60;
-        margin-left:410px;
+        margin-left:350px;
         color:rgb(190, 68, 20);
         font-size:18px;
         font-weight:500px; 
@@ -456,9 +476,9 @@ input[type="checkbox"] {
     .Updated_Date1{
         position: absolute;
         
-        bottom:40;
+        bottom:50;
         right: 60;
-        margin-left:410px;
+        margin-left:350px;
         color:rgb(190, 68, 20);
         font-size:18px;
         font-weight:500px; 
@@ -519,7 +539,7 @@ input[type="checkbox"] {
     .tools-main-card-section {
         background-color: #ffffff;
         padding: 25px;
-        width: 100%;
+        width: 97%;
         /* margin-top: 90px; */
         /* margin-left: 120px; */
         
@@ -530,6 +550,8 @@ input[type="checkbox"] {
         box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
     }
 
+
+  
     .tools-main-card-section h2 {
         color: #3f3f3f;
         text-align: left;
@@ -538,7 +560,12 @@ input[type="checkbox"] {
     .tools-main-card-section p {
         text-align: justify;
         font-weight: 400;
+        font-size:22px;
+      
+        
+        
     }
+  
 
     .tools-size {
         height: auto;
@@ -546,7 +573,7 @@ input[type="checkbox"] {
         border-radius: 5px;
         padding: 2px 5px;
         margin-top: 20px;
-        margin-left: 40px;
+        margin-left: 30px;
         text-align: center;
         background-color: #ecd8a7;
         color: rgb(58, 58, 58);
@@ -562,8 +589,10 @@ input[type="checkbox"] {
         font-weight: 400;
         color: #ffffff;
         margin-top: 15px;
-        margin-left:40px;
+        margin-left:30px;
     }
+
+    
 
     .tools-page-header {
         background-color: #023047;
@@ -573,14 +602,12 @@ input[type="checkbox"] {
         font-size: 30px;
         font-weight: 600;
         letter-spacing: 1px;
-        margin-left: 680px;
+        margin-left: 550px;
         margin-bottom: 20px;
         margin-top: 20px;
     }
 
-    .tools-main-card-section p {
-        font-size: 18px;
-    }
+   
 
     .tools-paginate {
         margin-left: 10px;
@@ -609,11 +636,12 @@ input[type="checkbox"] {
     }
 
     .tool-search-button{
-        width:90px
+        width:90px;
+        margin-left:10px;
     }
 
     .Total_downloads{
-        margin-left: 40px;
+        margin-left: 30px;
         color:rgb(190, 68, 20);
         font-size:16px;
         font-weight:500px; 
@@ -632,6 +660,11 @@ input[type="checkbox"] {
     body {
         background-color: aliceblue;
     }
+
+    .category-below-line{
+        width:640px;
+        margin-left:15px;
+    }
     .Discription{
         margin-right: 50px;
         margin-left:30px;
@@ -639,7 +672,9 @@ input[type="checkbox"] {
         padding-bottom: 70px;
         
     }
-
+.pagination1{
+    margin-left:250px;
+}
     .Updated_Date{
         position: absolute;
         bottom:50;
@@ -689,7 +724,7 @@ input[type="checkbox"] {
 
     .Heading{
         text-align:center;
-       
+       margin-left:50px;
        
     }
 
@@ -702,7 +737,7 @@ input[type="checkbox"] {
     }
 
     .Total_downloads{
-        margin-left: 230px;
+        margin-left: 280px;
         color:rgb(190, 68, 20);
         font-size:22px;
         font-weight:500px; 
@@ -760,9 +795,10 @@ input[type="checkbox"] {
     .tools-main-card-section {
         background-color: #ffffff;
         padding: 12px;
-        width: 100%;
+        width: 115%;
         /* margin-top: 90px; */
-        margin-left: 120px;
+        margin-left: 80px;
+        margin-right:0px;
         margin-bottom: 20px;
         border-radius: 12px;
         -webkit-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
@@ -779,6 +815,7 @@ input[type="checkbox"] {
     .tools-main-card-section p {
         text-align: justify;
         font-weight: 400;
+        font-size:22px;
     }
 
     .tools-size {
@@ -787,7 +824,7 @@ input[type="checkbox"] {
         border-radius: 5px;
         padding: 2px 2px;
         margin-top: 20px;
-        margin-left: 250px;
+        margin-left: 300px;
         text-align: center;
         background-color: #ecd8a7;
         color: rgb(58, 58, 58);
@@ -803,7 +840,7 @@ input[type="checkbox"] {
         font-weight: 500;
         color: #ffffff;
         margin-top: 15px;
-        margin-left:250px;
+        margin-left:300px;
         width:200px;
         margin-bottom:20px;
     }
@@ -821,10 +858,7 @@ input[type="checkbox"] {
         margin-top: 20px;
     }
 
-    .tools-main-card-section p {
-        font-size: 22px;
-    }
-
+  
     .tools-paginate {
         margin-left: 120px;
 
@@ -832,9 +866,9 @@ input[type="checkbox"] {
 
     .tools-image {
         margin-top:20px;
-        margin-left: 250px;
-        width:200px;
-        height:150px;
+        margin-left: 290px;
+        width:230px;
+        height:180px;
         margin-bottom: 20px;
     }
 
@@ -842,41 +876,129 @@ input[type="checkbox"] {
 
 /* mobile */
 @media screen and (min-device-width: 320px) and (max-device-width: 767px) and (-webkit-min-device-pixel-ratio: 1) {
+    body {
+        background-color: aliceblue;
+    }
+    .Discription{
+        margin-right: 50px;
+        margin-left:30px;
+        text-align: justify;
+        padding-bottom: 70px;
+       
+    }
+
+    .category-below-line{
+        width:730px;
+        margin-left:15px;
+    }
+.pagination1{
+    margin-left:250px;
+}
+    .Updated_Date{
+        position: absolute;
+        bottom:50;
+        right: 60;
+        margin-left:380px;
+        color:rgb(190, 68, 20);
+        font-size:18px;
+        font-weight:500px; 
+        letter-spacing: 0.2px;
+        margin-top: 10px;
+    }
+    
+    .Updated_Date1{
+        position: absolute;
+        
+        bottom:20;
+        right: 60;
+        margin-left:410px;
+        color:rgb(190, 68, 20);
+        font-size:18px;
+        font-weight:500px; 
+        letter-spacing: 0.2px;
+        margin-top: 100px;
+    }
+    
+
+
+    .category-tool-slug-section{
+       text-align:center;
+    }
+
+    .category-tool-title-slug{
+        min-width: 100px;
+        margin-top: 10px;
+        font-size: 16px;
+        background-color: #219EBC;
+        height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 4px;
+        border-radius: 10px;
+        font-weight: 600;
+        color:#ffffff;
+        margin-bottom: 10px;
+    
+    }
+
+    .Heading{
+        text-align:center;
+       margin-left:50px;
+       
+    }
+
+  
+
+    .filter-button{
+        margin-left: 0px;
+        padding-left:0px;
+        width: 250px;
+    }
+
+    .Total_downloads{
+        margin-left: 250px;
+        color:rgb(190, 68, 20);
+        font-size:28px;
+        font-weight:500px; 
+        letter-spacing: 0.2px;
+    }
+
+    .category-tool-title {
+        margin-top: -20px;
+        font-size: 25px;
+        background-color: #219EBC;
+        width: 250px;
+        height: 40px;
+        padding-top: 3px;
+        margin-left: 50px;
+        padding-left: 7px;
+        border-radius: 10px;
+        font-weight: 600;
+        color:#ffffff;
+        margin-bottom: 10px;
+    }
+
     .tools-sidebar-section {
         background-color: #ffffff;
         padding: 12px;
-        width: 75%;
-        margin-bottom: 10px;
-        /* margin-top: 90px;
-        margin-left: 20px; */
-        margin-left: 115px;
+        width: 80%;
+        /* margin-top: 90px; */
+        margin-left: 100px;
+        margin-bottom: 20px;
         border-radius: 20px;
         -webkit-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
         -moz-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
         box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
     }
 
-    .tools-page-header {
-        background-color: #023047;
-        color: #feffff;
-        width: 200px;
-        height: 50px;
-        font-size: 30px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        margin-left: 390px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
     .tools-sidebar-section h3 {
-        padding-left: 34px;
-        text-align: center;
-        font-size: 35px;
+        padding-left: 38px;
+        color: #3f3f3f;
     }
 
     .tools-sidebar-item {
-        margin: 5px;
+        margin-left:30px;
+       
     }
 
     input[type="checkbox"] {
@@ -887,15 +1009,16 @@ input[type="checkbox"] {
 
     .tools-sidebar-item-text {
         color: #403F3F;
-        font-size: 32px;
+        font-size: 14px;
     }
 
     .tools-main-card-section {
         background-color: #ffffff;
         padding: 12px;
-        width: 100%;
-        /* margin-top: 90px;*/
-        margin-left: 120px;
+        width: 120%;
+        /* margin-top: 90px; */
+        margin-left: 50px;
+        margin-bottom: 20px;
         border-radius: 12px;
         -webkit-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
         -moz-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
@@ -903,49 +1026,77 @@ input[type="checkbox"] {
     }
 
     .tools-main-card-section h2 {
-        font-size: 40px;
-        text-align: center;
+        color: #3f3f3f;
+        text-align: left;
         margin-top: 20px;
     }
 
     .tools-main-card-section p {
-        font-size: 30px;
-        letter-spacing: 0.025em;
+        text-align: justify;
+        font-weight: 400;
+       font-size:30px;
     }
 
     .tools-size {
         height: auto;
-        width: 450px;
-        border-radius: 5px;
+        width: 220px;
+        border-radius: 7px;
         padding: 2px 2px;
         margin-top: 20px;
-        margin-left: 106px;
+        margin-left: 290px;
         text-align: center;
-        font-size: 30px;
         background-color: #ecd8a7;
         color: rgb(58, 58, 58);
-    }
-
-    .tools-image {
-        margin-left: 180px;
-        height: 300px;
-        width: 300px;
+        font-size:23px;
+        
     }
 
     .tools-section-button {
         background-color: #219EBC;
+        /* background-color: #c354e6; */
         border-radius: 5px;
         padding: 2px;
         text-align: center;
-        font-size: 35px;
+        font-size: 30px;
         font-weight: 500;
-        margin-top: 15px;
         color: #ffffff;
+        margin-top: 15px;
+        margin-left:300px;
+        width:200px;
+        margin-bottom:20px;
+    }
+    .btn{
+        font-size:25px;
     }
 
+    .tools-page-header {
+        background-color: #023047;
+        color: #feffff;
+        width: 300px;
+        height: 50px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-left: 340px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+   
     .tools-paginate {
-        margin-left: 110px;
+        margin-left: 120px;
 
     }
 
+    .tools-image {
+        margin-top:20px;
+        margin-left: 260px;
+        width:300px;
+        height:220px;
+        margin-bottom: 20px;
+    }
+   
+.categories-checkbox ul{
+    font-size:25px;
+}
 }
