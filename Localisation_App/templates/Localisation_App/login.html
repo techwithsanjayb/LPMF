@@ -22,11 +22,18 @@
         <div class="row mx-3">
          
           <div class="col-lg-12 mb-2">
-            {% if messages %}
             {% for message in messages %}
-            <div class="alert alert-danger">{{ message }}</div>
-              {% endfor %}
-              {% endif %}
+            <div class="container-fluid p-0">
+              <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                {% comment %} <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="True">&times;</span>
+                </button> {% endcomment %}
+                {{ message }}
+              </div>
+            </div>
+            {% endfor %}
+
+
             <div class="form-group position-relative mt-5">
               <label class="mb-2">Username <span class="text-danger">*</span></label>
               {{form.username}}
