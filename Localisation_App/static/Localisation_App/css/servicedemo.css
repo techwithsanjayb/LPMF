@@ -4,3 +4,9 @@
 .card{
   height: auto   !important;
 }
+
+
+/* For Name Matcher Service */
+.name-matcher-main {
+  min-height: 40vh;
+}
