@@ -34,7 +34,7 @@
                     {% endfor %}
                     {% endif %}
                     </div>
-                    <div class="col-md-4">
+                    {% comment %} <div class="col-md-4">
                     <div class="form-group position-relative">
                     <label>First name <span class="text-danger">*</span></label>
                     {{form.first_name}}
@@ -72,21 +72,21 @@
                     </div>
                     {% endfor %}
                     {% endif %}
-                    </div>
+                    </div> {% endcomment %}
                     <div class="col-md-12 mt-3">
                     <div class="form-group position-relative">
                     <label>Your Email <span class="text-danger">*</span></label>
-                    {{form.email}}
+                    {{form.username}}
                     </div>
-                    {% if form.email.errors %}
-                    {% for error in form.email.errors %}
+                    {% if form.username.errors %}
+                    {% for error in form.username.errors %}
                     <div class="alert alert-danger">
                     <strong>{{ error|escape }}</strong>
                     </div>
                     {% endfor %}
                     {% endif %}
                     </div>
-                    <div class="col-md-12">
+                    {% comment %} <div class="col-md-12">
                     <div class="form-group position-relative">
                     <label>Username <span class="text-danger">*</span></label>
                     {{form.username}}
@@ -98,8 +98,8 @@
                     </div>
                     {% endfor %}
                     {% endif %}
-                    </div>
-                   <div class="col-md-12">
+                    </div> {% endcomment %}
+                   {% comment %} <div class="col-md-12">
                     <div class="form-group position-relative">
                     <label>Phone Number <span class="text-danger">*</span></label>
                     {{form.phone_number}}
@@ -111,8 +111,8 @@
                     </div>
                     {% endfor %}
                     {% endif %}
-                    </div>
-                    <div class="col-md-12">
+                    </div> {% endcomment %}
+                    {% comment %} <div class="col-md-12">
                     <div class="form-group position-relative">
                     <label>Address <span class="text-danger">*</span></label>
                     {{form.address}}
@@ -124,7 +124,7 @@
                     </div>
                     {% endfor %}
                     {% endif %}
-                    </div>
+                    </div> {% endcomment %}
                     <div class="col-md-12">
                     <div class="form-group position-relative">
                     <label>Password <span class="text-danger">*</span></label>
@@ -151,7 +151,7 @@
                     {% endfor %}
                     {% endif %}
                     </div>
-                    <div class="col-md-12">
+                    {% comment %} <div class="col-md-12">
                     <div class="form-group position-relative">
                     <label>Select User Type <span class="text-danger">*</span></label>
                     {{form.User_Type}}
@@ -163,7 +163,7 @@
                     </div>
                     {% endfor %}
                     {% endif %}
-                    </div>
+                    </div> {% endcomment %}
                      <div class="col-md-12">
                     <div class="form-group">
                     <div class="custom-control">
