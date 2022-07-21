@@ -4,10 +4,13 @@
   rel="stylesheet"
 />
 <!--Content starts here-->
-<div class="col-1 border text-center">
+{% comment %} <div class="col-1 border text-center">
   <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none text-black"><i class="fa fa-arrow-left p-1" aria-hidden="true"></i>Back</a>
-</div>
+</div> {% endcomment %}
 <div class="container card mb-5">
+  <div class="col-1 border text-center">
+    <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none text-black"><i class="fa fa-arrow-left p-1" aria-hidden="true"></i>Back</a>
+  </div>
   <div class="card-body">
     <div class="row d-flex mb-2 justify-content-center">
       <h2
