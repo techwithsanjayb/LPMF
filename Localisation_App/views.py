@@ -2135,14 +2135,7 @@ def translation_quote(request):
             context['email_error'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
 
-        try:
-            if len(client_remark) > 5000:
-                raise ValidationError(
-                    "You have entered " + str(len(client_remark)) + " characters But only 5000 characters allowed")
-
-        except ValidationError as e:
-            context['remark_error'] = e.message
-            return render(request, "Localisation_App/translation_quote.html", context)
+        
 
         if form.is_valid():
             print("validation success")
@@ -2160,9 +2153,19 @@ def translation_quote(request):
             try:
                 date1 = form.cleaned_data['delivery_date']
                 if date1 < date.today():  
-                    raise ValidationError("The Delivery date cannot be in the past!")
+                    raise ValidationError("Delivery date cannot be in the past!")
             except ValidationError as e:
                 context['date_error'] = e.message
+                return render(request, "Localisation_App/translation_quote.html", context)
+            
+            try:
+                if len(client_remark) > 5000:
+                    raise ValidationError(
+                        # "You have entered " + str(len(client_remark)) + " characters But only 5000 characters allowed"
+                        "Max. Character Limit Exceeded(maximum length 5000 characters)"
+                        )
+            except ValidationError as e:
+                context['remark_error'] = e.message
                 return render(request, "Localisation_App/translation_quote.html", context)
 
             # generate application number (UNIQUE)
