@@ -575,8 +575,16 @@ transform: rotate(180deg); */
 
 /* News start */
 
+.loudspeaker{
+    width: 50px;
+    position: absolute;
+    top: 1%;
+    left: 55%;
+    height: 50px;
+}
+
 .customNews {
-    height: 40px;
+    
     background-color: #F5AE59;
 }
 
@@ -586,10 +594,13 @@ transform: rotate(180deg); */
 }
 
 .news-subhead {
-    height: 40px;
-    margin-left: 20px;
+    height: 50px;
+    /* margin-left: 20px; */
     background-color: #44b5d1dc;
-    padding: 5px 0px 2px 10px;
+    padding: 5px 0px 2px 1px;
+    /* text-align: center; */
+    width: 100px;
+    position: relative;
 
 }
 
