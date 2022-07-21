@@ -390,27 +390,40 @@ class CarouselData(models.Model):
 
 class UserRegistration(models.Model):
     userregistration_user_id = models.AutoField(primary_key=True)
-    userregistration_first_name = models.CharField(max_length=60)
-    userregistration_middle_name = models.CharField(max_length=60)
-    userregistration_last_name = models.CharField(max_length=60)
+    userregistration_first_name = models.CharField(max_length=60,blank=True, null=True)
+    userregistration_middle_name = models.CharField(max_length=60,blank=True, null=True)
+    userregistration_last_name = models.CharField(max_length=60,blank=True, null=True)
     userregistration_username = models.CharField(
         max_length=60, blank=True, null=True)
+
+
+
     userregistration_email_field = models.EmailField(
         max_length=60)
+
+
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     userregistration_phone_number = models.CharField(
-        validators=[phone_regex], max_length=17)  # Validators should be a list
+        validators=[phone_regex], max_length=17,blank=True, null=True)  # Validators should be a list
     userregistration_address = models.CharField(
         max_length=200, blank=True, null=True)
+
+
     userregistration_password = models.CharField(max_length=30)
     userregistration_confirm_password = models.CharField(max_length=30)
     userregistration_active_status = models.BooleanField(default=False)
+
+
     CHOICES = [('Individual', 'Individual'),
                ('Organization', 'Organization'),
                ('DomainExpert', 'DomainExpert')]
     registration_User_Type = models.CharField(
-        max_length=50, choices=CHOICES, default='Individual')
+        max_length=50, choices=CHOICES, default='Individual',blank=True, null=True)
+
+
+
+
     userregistration_registration_date = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
     userregistration_token = models.CharField(

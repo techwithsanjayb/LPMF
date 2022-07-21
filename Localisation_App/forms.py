@@ -64,64 +64,64 @@ class TTSservice(forms.Form):
 
 class RegisterForm(UserCreationForm):
 
-    first_name = forms.CharField(
+    # first_name = forms.CharField(
+    #     max_length=60,
+    #     required=True,
+    #     help_text='Enter First Name',
+    #     widget=forms.TextInput(
+    #         attrs={'class': 'form-control', 'placeholder': 'First Name'})
+    # )
+
+    # middle_name = forms.CharField(
+    #     max_length=60,
+    #     required=True,
+    #     help_text='Enter Middle Name',
+    #     widget=forms.TextInput(
+    #         attrs={'class': 'form-control', 'placeholder': 'Middle Name'})
+    # )
+
+    # last_name = forms.CharField(
+    #     max_length=60,
+    #     required=True,
+    #     help_text='Enter Last Name',
+    #     widget=forms.TextInput(
+    #         attrs={'class': 'form-control', 'placeholder': 'Last Name'})
+    # )
+
+    username = forms.EmailField(
         max_length=60,
         required=True,
-        help_text='Enter First Name',
+        help_text='Enter Email',
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'First Name'})
+            attrs={'class': 'form-control', 'placeholder': 'Email'})
     )
 
-    middle_name = forms.CharField(
-        max_length=60,
-        required=True,
-        help_text='Enter Middle Name',
-        widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Middle Name'})
-    )
+    # username = forms.CharField(
+    #     max_length=60,
+    #     required=True,
+    #     help_text='Enter Username',
+    #     widget=forms.TextInput(
+    #         attrs={'class': 'form-control', 'placeholder': 'Username'})
+    # )
 
-    last_name = forms.CharField(
-        max_length=60,
-        required=True,
-        help_text='Enter Last Name',
-        widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Last Name'})
-    )
+    # phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+    #                              message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    # phone_number = forms.CharField(
+    #     help_text='Enter Phone Number',
+    #     validators=[phone_regex],
+    #     widget=forms.TextInput(
+    #         attrs={'class': 'form-control', 'placeholder': 'Phone Number'})
 
-    email = forms.EmailField(
-        max_length=60,
-        required=True,
-        help_text='Enter Email Address',
-        widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Email Address'})
-    )
+    #     # max_length=17,
+    # )  # Validators should be a list
 
-    username = forms.CharField(
-        max_length=60,
-        required=True,
-        help_text='Enter Username',
-        widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Username'})
-    )
-
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = forms.CharField(
-        help_text='Enter Phone Number',
-        validators=[phone_regex],
-        widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Phone Number'})
-
-        # max_length=17,
-    )  # Validators should be a list
-
-    address = forms.CharField(
-        max_length=200,
-        required=True,
-        help_text='Enter Address',
-        widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Address'})
-    )
+    # address = forms.CharField(
+    #     max_length=200,
+    #     required=True,
+    #     help_text='Enter Address',
+    #     widget=forms.TextInput(
+    #         attrs={'class': 'form-control', 'placeholder': 'Address'})
+    # )
 
     password1 = forms.CharField(
         max_length=30,
@@ -139,19 +139,19 @@ class RegisterForm(UserCreationForm):
             attrs={'class': 'form-control', 'placeholder': 'Password Again'}),
     )
 
-    CHOICES = [('Individual', 'Individual'),
-               ('Organization', 'Organization'),
-               ('DomainExpert', 'DomainExpert')]
+    # CHOICES = [('Individual', 'Individual'),
+    #            ('Organization', 'Organization'),
+    #            ('DomainExpert', 'DomainExpert')]
 
-    User_Type = forms.ChoiceField(required=True, help_text='Select User Type', choices=CHOICES,
-                                  widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select User Type'}))
+    # User_Type = forms.ChoiceField(required=True, help_text='Select User Type', choices=CHOICES,
+    #                               widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select User Type'}))
 
     check = forms.BooleanField(required=True)
 
     class Meta:
         model = User
         fields = [
-            'first_name', 'middle_name', 'last_name', 'email', 'username', 'phone_number', 'password1', 'password2', 'check',
+            'username', 'password1', 'password2', 'check',
         ]
 
 
@@ -164,7 +164,7 @@ class UserLoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-1',
-                'placeholder': 'Username'
+                'placeholder': 'Email'
             }
         ))
 
@@ -181,12 +181,12 @@ class UserLoginForm(forms.Form):
 
 class UserForgetPasswordForm(forms.Form):
 
-    username = forms.CharField(
+    username = forms.EmailField(
         required=True,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Username'
+                'placeholder': 'Email'
             }
         ))
 

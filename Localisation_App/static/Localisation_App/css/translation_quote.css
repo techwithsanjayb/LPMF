@@ -1,5 +1,9 @@
 /*prefix : t_quote */
 
+.login-heading {
+    font-size: 333px;
+}
+
 .t_quote-heading {
     background-color: #023047;
     color:white;
