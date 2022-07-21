@@ -61,10 +61,12 @@ body {
 }
 
 .filter-button{
-    margin-left: 15px;
-    width: 100px;
+    margin-left: -10px;
+    width: 120px;
 }
-
+.pagination1{
+  width: 500px;margin-left:150px;
+}
 
 .sidebar-item-text {
   color: #403f3f;
@@ -202,6 +204,16 @@ input[type="checkbox"] {
     color: white;
 } */
 @media only screen and (max-device-width: 1680px) {
+  
+
+
+  .filter-button{
+    margin-left: -10px;
+    width: 100px;
+    
+ }
+
+
 
   .success-header-1 {
     /* font-size: 42px;
@@ -217,7 +229,7 @@ input[type="checkbox"] {
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin-left: 650px;
+    margin-left: 700px;
   }
 
   .category-success-title {
@@ -270,7 +282,20 @@ input[type="checkbox"] {
 
 
 @media only screen and (max-device-width: 1370px) {
+.pagination1{
+  margin-left:80px;
+}
 
+.filter-button{
+  margin-left: -10px;
+  width: 100px;
+  
+}
+
+.success-list {
+  padding: 5px;
+  font-size:15px;
+}
   .success-header-1 {
     /* font-size: 42px;
         font-weight: 700;
@@ -299,7 +324,7 @@ input[type="checkbox"] {
     width: 210px;
     height: 40px;
     padding-top: 3px;
-    margin-left: 15px;
+    margin-left: 10px;
     padding-left: 7px;
     border-radius: 10px;
     font-weight: 600;
@@ -339,7 +364,53 @@ input[type="checkbox"] {
     margin: 30px 125px 20px;
   }
 }
-@media only screen and (max-device-width: 1240px) {
+@media only screen  and (max-device-width: 1240px)  {
+  .filter-button{
+    margin-left: -10px;
+    width: 80px;
+    
+  }
+  .success-list {
+    padding: 5px;
+    font-size:15px;
+  }
+
+  .search-button{
+    width:80px
+  }
+  .success-header-1 {
+    /* font-size: 42px;
+      font-weight: 700;
+      text-align: center;
+      font-family: 'Inter', sans-serif; */
+    /* background: url("../../../static/Localisation_App/img/title2.png"); */
+    background-color: #023047;
+      color: #feffff;
+      width: auto;
+      height: 50px;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-left: 500px;
+      margin-bottom: 20px;
+      /* margin-top: 15px; */
+    
+  }
+  .category-success-title {
+    margin-top: -20px;
+    font-size: 20px;
+    background-color: #219EBC;
+    width: 180px;
+    height: 35px;
+    padding-top:3px;
+    
+    margin-left: 10px;
+    padding-left: 7px;
+    border-radius: 10px;
+    font-weight: 600;
+    color:#ffffff;
+    margin-bottom: 10px;
+  }
   .success-story-cdac-card-title {
     height: auto;
     width: 260px;
@@ -362,7 +433,30 @@ input[type="checkbox"] {
   }
 }
 /* Tablet Portrait and Landscape */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+@media only screen and (max-device-width: 1024px) {
+
+  .pagination1{
+    margin-left:10px;
+  }
+  .success-list {
+    padding: 5px;
+    font-size:13px;
+    font-weight:600px;
+  }
+
+
+  .success-story-card-title {
+    background-color: #ffebd2;
+    padding:0px 20px 0px 20px;
+    border-radius:10px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    text-align: left;
+  }
+  
+ 
   .success-story-cdac-card-title {
     height: auto;
     width: 260px;
@@ -374,16 +468,37 @@ input[type="checkbox"] {
     text-align: center;
     /* margin-left: 200px; */
   }
+  .search-button{
+    width:80px
+  }
 
   .success-story-card-description {
     font-size: 18px;
     font-weight: 400;
     text-align: center;
   }
+  .success-header-1 {
+    /* font-size: 42px;
+      font-weight: 700;
+      text-align: center;
+      font-family: 'Inter', sans-serif; */
+    /* background: url("../../../static/Localisation_App/img/title2.png"); */
+    background-color: #023047;
+      color: #feffff;
+      width: auto;
+      height: 50px;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-left: 450px;
+      margin-bottom: 20px;
+      /* margin-top: 15px; */
+    
+  }
 }
 
 /* mobile */
-@media screen and (min-device-width: 320px) and (max-device-width: 767px) and (-webkit-min-device-pixel-ratio: 1) {
+@media only screen and (max-device-width: 767px) {
   .success-sidebar {
     background-color: #ffffff;
     padding: 12px;
