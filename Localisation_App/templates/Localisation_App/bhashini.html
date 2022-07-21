@@ -1,0 +1,191 @@
+{% extends 'Localisation_App/base.html' %}
+{% block title %}Bhashini{% endblock %}
+{% load static %} 
+{% block Bhashini %}
+
+<!-- Bhashani Section -->
+<link
+      rel="stylesheet"
+      href="{% static 'Localisation_App/css/Bhashini-inside.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'Localisation_App/css/ulca.css' %}"
+    />
+
+<div class="container-fluid my-5">
+    <div class="bhashani-title-section">
+      <h1>Bhasha Daan</h1>
+      <p>One Platform, Multiple Crowdsourcing Initiatives</p>
+      <div class="text">
+        Help to build an open repository of data to digitally enrich your language
+      </div>
+    </div>
+    <div class="row bhasha-main d-flex justify-content-center">
+      <div
+        class="col-lg-2 col-md-6 bhasha-card"
+        style="background-color: #c4d3c7"
+      >
+        <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/bolo.png' %}"
+          alt=""
+        />
+        <p>Enrich your language by donating your voice</p>
+        <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/bolo-india" target="_blank">Start Participating</a>
+      </div>
+  
+      <div
+        class="col-lg-2 col-md-6 bhasha-card"
+        style="background-color: #f3c9b6"
+      >
+        <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/likho.png' %}"
+          alt=""
+        />
+        <p>Enrich your language by translating text</p>
+        <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/likho-india" target="_blank">Start Participating</a>
+      </div>
+  
+      <div
+        class="col-lg-2 col-md-6 bhasha-card"
+        style="background-color: #9ed2df"
+      >
+        <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/dekho.png' %}"
+          alt=""
+        />
+        <p>Enrich your language by typing the text you see</p>
+        <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/dekho-india" target="_blank">Start Participating</a>
+      </div>
+  
+      <div class="col-lg-2 bhasha-card" style="background-color: #b1b3d0">
+        <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/suno.png' %}"
+          alt=""
+        />
+        <p>Enrich your language by typing the audio that you hear</p>
+        <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/suno-india" target="_blank">Start Participating</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bhashini Section End-->
+
+  <!-- Ulca Section Starts -->
+
+<div class="container-fluid ulca-main">
+    <div class="row">
+      <div class="col-12">
+        <div class="ulca-main-heading pt-4">
+          Universal Language Contribution API (ULCA)
+        </div>
+        <!-- <div class="ulca-title">
+          About ULCA
+        </div> -->
+        <div class="ulca-sub-heading">
+          ULCA is a standard API and open scalable platform for indian language
+          datasets and models.
+        </div>
+      </div>
+    </div>
+    <div class="row m-3 py-2 ulca-outer-block">
+      <div class="col-lg-2">
+        <div class="row ulca-datasets">
+          <div class="col-12">
+            <div class="ulca-sub-section-title">DataSets</div>
+            <div class="ulca-sub-section-subheading">Language Datasets</div>
+            <img
+              class="ulca-img"
+              src="{% static './Localisation_App/img/dataset.png' %}"
+              alt="..."
+            />
+          </div>
+        </div>
+        <div class="row ulca-benchmark">
+          <div class="col-12">
+            <div class="ulca-sub-section-title">Benchmark</div>
+            <div class="ulca-sub-section-subheading">Open Benchmarking</div>
+            <img
+              class="ulca-img"
+              src="{% static './Localisation_App/img/Benchmark.png' %}"
+              alt="..."
+            />
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-sm-11 col-lg-9 ulca-models mx-4">
+        <h2 class="ulca-test">Models</h2>
+        <p class="ulca-sub-section-subheading">Language Specific Tasks</p>
+        <div class="row">
+          <div class="col-lg-3">
+            <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+            <div class="model-1">
+              <div class="ulca-model-title">
+                Machine Translation (MT)
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-lg-3">
+            <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+            <div class="model-2">
+              <div class="ulca-model-title">
+                 Automatic Speech Recognition (ASR)
+              </div>
+            </div>
+          </a>
+          </div>
+          <div class="col-lg-3 ">
+            <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+            <div class="model-3">
+               <div class="ulca-model-title">
+                 Text to Speech 
+               </div>
+            <p class="ulca-model-title" style="margin-top: -40px;">(TTS)</p>
+            </a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+            <div class="model-4">
+               <div class="ulca-model-title">
+                  Optical Character Recognition (OCR)
+               </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-lg-3">
+            <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+            <div class="model-5">
+               <div class="ulca-model-title">
+                  Speech To Speech
+               </div>
+               <p class="ulca-model-title" style="margin-top: -40px;">(STS)</p>
+            </div>
+            </a>
+          </div>
+          <div class="col-lg-3">
+            <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
+            <div class="model-6">
+               <div class="ulca-model-title">
+                 Transliteration
+               </div>
+            </div>
+            </a>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Ulca Section Ends -->
+  
+{% endblock %}

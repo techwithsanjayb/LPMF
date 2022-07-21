@@ -2283,3 +2283,14 @@ def translation_quote_show(request, application_number):
         'user_details': user_details,
     }
     return render(request, 'Localisation_App/translation_quote_show.html', context)
+
+
+def bhashini(request):
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+    }
+    return render(request,'Localisation_App/bhashini.html',context)
