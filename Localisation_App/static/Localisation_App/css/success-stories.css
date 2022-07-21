@@ -65,6 +65,13 @@ body {
     width: 100px;
 }
 
+.stories_Fetched_Record_Text{
+  margin-left:25px; 
+  color:rgb(190, 68, 20);
+  font-size:20px;
+  font-weight:900px; 
+  letter-spacing: 0.2px;
+}
 
 .sidebar-item-text {
   color: #403f3f;

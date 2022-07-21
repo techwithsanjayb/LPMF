@@ -2,6 +2,8 @@ from threading import currentThread
 from wsgiref import validate
 from django.db.models import Sum
 from django.forms import ValidationError
+
+from Localisation_Project.settings import CACHE_TTL
 from .forms import TTSservice, RegisterForm, TranslationQuoteForm, UserLoginForm, UserChangePasswordForm, UserForgetPasswordForm
 from django.contrib import messages
 from django.core.mail import send_mail, mail_admins
@@ -27,6 +29,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 import logging
 from datetime import date
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+
 from django.core import validators
 logger = logging.getLogger('django')
 global str_num
@@ -34,6 +41,7 @@ global str_num
 # Menu
 global url
 
+CACHE_TTL = getattr(settings,'CACHE_TTL',DEFAULT_TIMEOUT)
 
 def topmenu(request):
     TopMenuItemsdata = TopMenuItems.objects.all()
@@ -1392,31 +1400,45 @@ def faqsSearch(request, faq_title):
         faq_title1 = request.POST.get("faq_title")
         print("faqtitle", faq_title1)
 
-        if faq_title1 != '':
-            fAQs_Data = FAQs.objects.filter(
-                FAQs_Question__icontains=faq_title1)
-            count = fAQs_Data.count()
-            print("faqcount", count)
-            logger.info("Faqs page getting displayed, with search filter")
+        if cache.get(faq_title1):
+            fAQs_Data=cache.get(faq_title1)
+            print("data",fAQs_Data)
+            print("data from cache")
             context = {
-                'topmenus': TopMenuItemsdata,
-                'FooterMenuItemsdata': FooterMenuItemsdata,
-                'data': fAQs_Data,
-                'faq_title': faq_title1,
-                'count': count
-            }
+                    'topmenus': TopMenuItemsdata,
+                    'FooterMenuItemsdata': FooterMenuItemsdata,
+                    'data': fAQs_Data,
+                    'faq_title': faq_title1,
+                    'count': count
+                }
             return render(request, 'Localisation_App/faqs.html', context)
         else:
-            logger.info("Faqs page getting displayed, without search filter")
-            count = faqs_data.count()
-            context = {
-                'topmenus': TopMenuItemsdata,
-                'FooterMenuItemsdata': FooterMenuItemsdata,
-                'data': faqs_data,
-                'faq_title': 'none',
-                'count': count
-            }
-            return render(request, 'Localisation_App/faqs.html', context)
+            if faq_title1 != '':
+                fAQs_Data = FAQs.objects.filter(
+                    FAQs_Question__icontains=faq_title1)
+                count = fAQs_Data.count()
+                cache.set(faq_title1,fAQs_Data)
+                print("data from database")
+                logger.info("Faqs page getting displayed, with search filter")
+                context = {
+                    'topmenus': TopMenuItemsdata,
+                    'FooterMenuItemsdata': FooterMenuItemsdata,
+                    'data': fAQs_Data,
+                    'faq_title': faq_title1,
+                    'count': count
+                }
+                return render(request, 'Localisation_App/faqs.html', context)
+            else:
+                logger.info("Faqs page getting displayed, without search filter")
+                count = faqs_data.count()
+                context = {
+                    'topmenus': TopMenuItemsdata,
+                    'FooterMenuItemsdata': FooterMenuItemsdata,
+                    'data': faqs_data,
+                    'faq_title': 'none',
+                    'count': count
+                }
+                return render(request, 'Localisation_App/faqs.html', context)
 
     return render(request, 'Localisation_App/faqs.html', context)
 
@@ -1600,9 +1622,9 @@ def submit(request, img):
         ins.save()
         if img == captcha:
 
-            res = send_mail("feedback", "Feedback Recieved",
-                            "tanvip@cdac.in", [email])
-            print("reponse form email", res)
+            # res = send_mail("feedback", "Feedback Recieved",
+            #                 "tanvip@cdac.in", [email])
+            # print("reponse form email", res)
             messages.add_message(request, messages.SUCCESS,
                                  'feedback submitted successfully')
             print(messages)
@@ -1610,10 +1632,10 @@ def submit(request, img):
     #    return HttpResponse("form submitted successfully")
         else:
             messages.add_message(request, messages.ERROR,
-                                 'feeback submission failed')
+                                 'Captcha does not matched')
             return redirect('Localisation_App:contactus')
     else:
-        messages.add_message(request, messages.ERROR, 'server error')
+        messages.add_message(request, messages.ERROR, 'Server error')
         return redirect('Localisation_App:contactus')
 
 
@@ -1637,7 +1659,7 @@ def Register_user(request):
             print("Form Data")
             UserRegistration.objects.create(userregistration_email_field=form.cleaned_data.get(
                 'username'),userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'))
-            messages.success(request, 'Account was created for ' +form.cleaned_data.get('username'))
+            messages.success(request, 'Account creation successful')
             logger.info(
                 "Inside register page,If form is valid all data saved into UserRegistration model")
             return redirect('/')
@@ -1645,7 +1667,7 @@ def Register_user(request):
             logger.info(
                 "Inside register page,If form is not valid, it will through error message")
             print('Form is not valid')
-            messages.error(request, 'Error Processing Your Request')
+            messages.error(request, 'Error while processing your request')
             context = {
                 'topmenus': TopMenuItemsdata,
                 'FooterMenuItemsdata': FooterMenuItemsdata,
@@ -1686,14 +1708,14 @@ def login_user(request):
             else:
                 logger.error(
                     "Login user form, Error in user login authentication")
-                messages.error(request, 'Wrong Email or password')
+                messages.error(request, 'Wrong Email or Password')
                 return redirect('Localisation_App:login')
 
         else:
             logger.error(
                 "Login user form, Error Processing Your Request,Wrong Email or password ")
             messages.error(
-                request, 'Error Processing Your Request,Wrong Email or password ')
+                request, 'Chcek your Email or Password')
             return redirect('Localisation_App:login')
     else:
         logger.info("Login user form page getting displayed ")
@@ -1739,8 +1761,6 @@ def User_Profile(request,id):
         'FooterMenuItemsdata': FooterMenuItemsdata,
     }
     return render(request,'Localisation_App/profile.html',context)
-
-
 
 
 
@@ -1864,7 +1884,7 @@ def forgetPassword(request):
                     else:
                         logger.error(
                             "Inside forgot password function, Failed to send sn email")
-                        messages.error(request, 'Failed to send sn email')
+                        messages.error(request, 'Failed to send an email')
                         print('Failed to send sn email')
                         return redirect('Localisation_App:forgetPassword')
             else:

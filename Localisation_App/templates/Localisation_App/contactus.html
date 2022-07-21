@@ -17,24 +17,16 @@
       disabled
     />
     <div class="text-center">
-      {% if messages %} {% for message in messages %}
-      <div
-        class="toast show"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="toast-body">
-          {{message}}
-          <button
-            type="button"
-            class="btn-close float-end"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
+      {% for message in messages %}
+      <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+          {% comment %} <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="True">&times;</span>
+          </button> {% endcomment %}
+          {{ message }}
         </div>
       </div>
-      {% endfor %} {% endif %}
+      {% endfor %}
     </div>
     <div class="row pb-2 d-flex justify-content-center">
       <div class="contact-us-card">
