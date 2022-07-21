@@ -432,7 +432,7 @@ input[type="checkbox"] {
   
 }
 
-@media screen and (min-device-width: 1024px) and (max-device-width: 1369px) and (-webkit-min-device-pixel-ratio: 1) {
+@media screen and (min-device-width: 992px) and (max-device-width: 1369px) and (-webkit-min-device-pixel-ratio: 1) {
 
 
     body {
@@ -655,7 +655,7 @@ input[type="checkbox"] {
 
 
 /* Tablet */
-@media screen and (min-device-width: 768px) and (max-device-width: 1023px) and (-webkit-min-device-pixel-ratio: 1) {
+@media screen and (min-device-width: 768px) and (max-device-width: 991px) and (-webkit-min-device-pixel-ratio: 1) {
 
     body {
         background-color: aliceblue;
