@@ -1,7 +1,7 @@
 .footer-link-section{
     background-color: #F5AE59;
-    height:40px;
-    margin:0;
+    height:45px;
+    margin:0px;
  
 }
 
@@ -10,9 +10,10 @@
     color:black;
     font-size: 15px;
     font-weight: 700;
-    padding-top: 5px;
+    padding-top: 10px;
     display:flex;
-    justify-content: center;
+    justify-content: left;
+    padding-left:100px;
    
 }
 .footer-section-cards a{
@@ -24,10 +25,17 @@
     color: white;
 
 }   
+
+
 .footer-section-cards a:hover{
 color:white;
 }
+
+
 .footer-link-img{
     height: 30px;
     width: 30px;
+  
+    margin-right:10px;
 }
+

@@ -6,6 +6,9 @@
       href="{% static 'Localisation_App/css/servicedemo.css' %}"
       rel="stylesheet"
     />
+<div class="col-1 border text-center">
+  <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none text-black"><i class="fa fa-arrow-left p-1" aria-hidden="true"></i>Back</a>
+</div>
 <div class="container card mb-5">
 <form action={% url 'Localisation_App:srvTTS' %} method="POST" enctype="multipart/form-data">
     {% csrf_token %}

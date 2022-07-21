@@ -1,0 +1,179 @@
+/* Bhashini Section End*/
+.text {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #023047;
+}
+
+.bhashani-title-section {
+    margin-bottom: 20px;
+}
+
+.bhashani-title-section h1 {
+    text-align: center;
+    font-weight: 700;
+    color: #023047;
+    font-size: 35px;
+}
+
+.bhashani-title-section p {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    color: #023047;
+}
+
+.bhasha-card {
+    height: 200px;
+    width: 320px !important;
+    background-color: red;
+    margin: 14px;
+    border-radius: 0px 20px 0px 20px;
+    position: relative;
+    transition: transform .2s;
+}
+
+.bhasha-card:hover {
+    transform: scale(1.2);
+}
+
+.bhasha-card img {
+    height: 90px;
+    width: 100px;
+    position: absolute;
+    top: 5%;
+    left: 35%;
+}
+
+.bhasha-card p {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.bhasha-card .participate {
+    position: absolute;
+    top: 75%;
+    left: 20%;
+    width: 200px;
+    height: 30px;
+    background-color: #023047;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.bhasha-card .participate a {
+    color: white;
+    text-decoration: none;
+}
+
+.first .bhasha-card:nth-child(even) {
+    background-color: pink;
+}
+
+.bhasha-main {
+    position: relative;
+    align-items: center;
+}
+
+/* ===================================================== */
+/* ============== Screen Size Less Than 480 =========== */
+/* ===================================================== */
+
+@media only screen and (max-device-width: 480px) {
+
+    
+    /* Bhashini Section End*/
+    .text {
+        font-size: 20px;
+        text-align: center;
+        font-weight: 600;
+        color: #023047;
+
+    }
+
+    .bhashani-title-section {
+        margin-bottom: 20px;
+    }
+
+    .bhashani-title-section h1 {
+        text-align: center;
+        font-weight: 700;
+        color: #023047;
+        font-size: 35px;
+    }
+
+    .bhashani-title-section p {
+        font-size: 32px;
+        text-align: center;
+        font-weight: 600;
+        color: #023047;
+    }
+
+    .bhasha-card {
+        height: 200px;
+        width: 320px !important;
+        background-color: red;
+        margin: 14px;
+        border-radius: 0px 20px 0px 20px;
+        position: relative;
+        transition: transform .2s;
+    }
+
+    .bhasha-card:hover {
+        transform: scale(1.2);
+    }
+
+    .bhasha-card img {
+        height: 90px;
+        width: 100px;
+        position: absolute;
+        top: 5%;
+        left: 35%;
+    }
+
+    .bhasha-card p {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .bhasha-card .participate {
+        position: absolute;
+        top: 75%;
+        left: 20%;
+        width: 200px;
+        height: 30px;
+        background-color: #023047;
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .bhasha-card .participate a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .first .bhasha-card:nth-child(even) {
+        background-color: pink;
+    }
+
+    .bhasha-main {
+        position: relative;
+        align-items: center;
+    }
+
+    /* Bhashini Section Ends */
+}
+
+
+
+/* Bhashini Section Ends */
+

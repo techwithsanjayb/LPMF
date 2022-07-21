@@ -2157,10 +2157,16 @@ def translation_quote(request):
             current_user = request.user
 
             print(current_user)
+            try:
+                date1 = form.cleaned_data['delivery_date']
+                if date1 < date.today():  
+                    raise ValidationError("The date cannot be in the past!")
+            except ValidationError as e:
+                context['date_error'] = e.message
+                return render(request, "Localisation_App/translation_quote.html", context)
 
             # generate application number (UNIQUE)
             #
-
             application_number = str('GI-' + str(date.today().year) + '-' +
                                      current_user.username[0:2].upper() + str(random.randrange(100000000, 1000000000)))
 
@@ -2272,18 +2278,34 @@ def translation_quote_show(request, application_number):
 
     translation_quote_data = TranslationQuote.objects.filter(
         application_number=application_number)[0]
+    
     print(translation_quote_data)
     username = translation_quote_data.username
+    context = { 
+            'topmenus': top_menu_items_data,
+            'FooterMenuItemsdata': footer_menu_items_data,
+            'translation_quote_data': translation_quote_data,
+        }
+    
+    print("Email ",username.username)
+    
+    if username.username == 'admin':
+        print("hii")
+        return render(request, 'Localisation_App/translation_quote_show.html', context)
+    else:
+        user_details = UserRegistration.objects.filter(
+            userregistration_email_field=username.username)[0]
 
-    print(username.username)
-
-    user_details = UserRegistration.objects.filter(
-        userregistration_username=username.username)[0]
+        context['user_details'] = user_details
+        return render(request, 'Localisation_App/translation_quote_show.html', context)
+    
+    
+def bhashini(request):
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
 
     context = {
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
-        'translation_quote_data': translation_quote_data,
-        'user_details': user_details,
     }
-    return render(request, 'Localisation_App/translation_quote_show.html', context)
+    return render(request,'Localisation_App/bhashini.html',context)
