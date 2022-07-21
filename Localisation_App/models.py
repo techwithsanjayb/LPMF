@@ -399,7 +399,7 @@ class UserRegistration(models.Model):
 
 
     userregistration_email_field = models.EmailField(
-        max_length=60)
+        max_length=60,unique=True)
 
 
     phone_regex = RegexValidator(
