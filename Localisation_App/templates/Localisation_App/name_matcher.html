@@ -22,8 +22,7 @@ Service{% endblock %} {% load static %} {% block name_matcher %}
     </div>
     <div class="row d-flex justify-content-center">
       <div class="row border p-4 rounded-4 demo">
-        <div class="col-4">
-          <div class="pb-2">
+        <div class="col-4 pt-2">
             <input
               name="input1"
               id="name1"
@@ -34,11 +33,9 @@ Service{% endblock %} {% load static %} {% block name_matcher %}
               title="invalid name"
               required
             />
-          </div>
           <div id="error1" class="text-danger fw-semibold px-1 pb-2"></div>
         </div>
-        <div class="col-4">
-          <div class="pb-2">
+        <div class="col-4 pt-2">
             <input
               name="input2"
               id="name2"
@@ -46,22 +43,21 @@ Service{% endblock %} {% load static %} {% block name_matcher %}
               placeholder="Enter Second Name"
               class="form-control"
               pattern="^[A-Za-z ]{3,}$"
-              title="invalid name"
+              title="invalid name"  
               required
             />
-          </div>
           <div id="error2" class="text-danger fw-semibold px-1 pb-2"></div>
         </div>
-        <div id="error_both" class="text-danger fw-semibold px31 pb-2"></div>
-        <div class="pb-2">
+        <div class="col-4">
           <button
-            type="submit"
-            class="btn btn-primary btn-regular my-2"
-            style="width: 100px"
+          type="submit"
+          class="btn btn-primary btn-regular my-2"
+          style="width: 100px"
           >
-            Submit
-          </button>
-        </div>
+          Submit
+        </button>
+      </div>
+      <div id="error_both" class="text-danger fw-semibold px31 pb-2"></div>
       </div>
     </div>
     <div id="output" class="my-2 fw-semibold fs-5"></div>
