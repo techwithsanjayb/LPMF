@@ -1,5 +1,9 @@
 {% extends 'Localisation_App/base.html' %}{% block title %}Transliteration Service{% endblock %}{% load static %} {% block transliteration_service %}
 <link
+href="{% static 'Localisation_App/css/servicedemo.css' %}"
+rel="stylesheet"
+/>
+<link
   href="https://gisttransserver.in/assets/vendor/aos/aos.css"
   rel="stylesheet"
 />
@@ -39,13 +43,13 @@
   <div class="card-body">
     {% comment %} <h5 class="card-title text-dark">Transliteration Service</h5> {% endcomment %}
     <div class="row d-flex mb-2 justify-content-center ">
-      <h2 class="text-dark text-center py-1 rounded-pill" style="background: linear-gradient(to right,  #008ccf 0%,#fbeed9 100%)">Transliteration</h2>
+      <h2 class="text-dark text-center py-1 rounded-pill demoheading">Transliteration</h2>
     </div>
     <div class="row d-flex justify-content-center">
-      <div class="row border px-5 py-3 rounded-4 mb-3 fs-5" style="background-color: #f7efc6; text-align:justify; color:#262626">
+      <div class="row border px-5 py-3 rounded-4 mb-3 fs-5 demodesc">
         GIST-Transliteration is a phonetic transliteration mechanism that transliterates English data to Indian Language content (Hindi). You can type a word of your choice in English and get the transliterated output in selected language like Hindi or Gujarati.
       </div>
-      <div class="row border p-4 rounded-4" style="background-color:#f7efc6">
+      <div class="row border p-4 rounded-4 demo">
     <div class="row justify-content-md-center bg-light shadow-sm my-3 pt-3">
       <div
         class="col-lg-1"

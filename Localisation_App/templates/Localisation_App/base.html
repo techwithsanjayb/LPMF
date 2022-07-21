@@ -67,11 +67,6 @@
       href="{% static 'Localisation_App/css/main.css' %}"
       rel="stylesheet"
     />
-
-    <link
-      href="{% static 'Localisation_App/css/register.css' %}"
-      rel="stylesheet"
-    />
     <link
     href="{% static 'Localisation_App/css/ulca.css' %}"
     rel="stylesheet"
@@ -230,8 +225,10 @@
     {% block translation_quote_show %} {% endblock %}
 
     <!--Dashboard Page-->
-    {% block dashboard %} {% endblock %} {% comment %} Empanelled Agencies Page
-    {% endcomment %} {% block empanelled_agencies %} {% endblock %}
+    {% block dashboard %} {% endblock %} 
+    
+    {% comment %} Empanelled Agencies Page {% endcomment %} 
+    {% block empanelled_agencies %} {% endblock %}
 
     <!-- Footer Section Start -->
     {% include 'Localisation_App/footer.html' %}

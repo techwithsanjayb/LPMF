@@ -27,35 +27,21 @@
                 placeholder="Search" aria-label="Search" />{% endif %}
             </div>
             <div class="col-6">
-              <input class="btn btn-primary tool-search-button" type="submit"
-                style="background-color:#219EBC ;border-color:#219EBC; " value="Search" />
+              <input class="btn btn-primary tool-search-button" type="submit" style="background-color:#219EBC ;border-color:#219EBC; " value="Search" />
             </div>
             <hr style="margin-top: 20px;">
           </div>
 
 
         </form>
-
-        <!-- {{ count }} -->
+        
+      
 
         <div class="category-tool-title">Categories</div>
 
         <form action={% url 'Localisation_App:resources' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {% comment %} {% if status_All_Checked == 'True' %}
-          <div class="success-list">
-            <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked"
-              checked="checked" />
-
-            <label class="tools-sidebar-item-text" for="vehicle1">All</label><br />
-          </div>
-          {% else %}
-          <div class="success-list">
-            <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="all_checkbox" value="all_Checked" />
-
-            <label class="tools-sidebar-item-text" for="vehicle1">All</label><br />
-          </div>
-          {% endif %} {% endcomment %}
+        
           {% if status_All_Checked == 'True' %}
           <ul>
             {% for categories in resourcescategory %}
@@ -71,13 +57,11 @@
             {% if categories.Resources_Cat_Status %}
             <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}"
               checked="checked">{{ categories.Resources_CategoryType }}</input></br>
-            {% comment %} <label class="tools-sidebar-item-text" for="vehicle1">{{ categories.Resources_CategoryType
-              }}</label><br /> {% endcomment %}
+            
             {% else %}
             <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}"
               onclick=" ">{{ categories.Resources_CategoryType }}</input></br>
-            {% comment %} <label class="tools-sidebar-item-text" for="vehicle1">{{ categories.Resources_CategoryType
-              }}</label><br /> {% endcomment %}
+            
             {% endif %}
             {% endfor %}
           </ul>
@@ -128,9 +112,7 @@
               download>
               <div class="tools-section-button">Document </div>
             </a>
-            {% endif %}
-
-            {% if data.ResourceData_UploadResourceCode != '' %}
+            {% endif %}{% if data.ResourceData_UploadResourceCode != '' %}
             <!-- <a style="text-decoration: none;color:white" href="/media/{{data.ResourceData_UploadResourceCode}}"
               download>
               <div class="tools-section-button">Download </div>
@@ -143,18 +125,15 @@
             </div>
 
 
-            {% endif %}
-
-           
-          </div>
+            {% endif %} </div>
 
 
           <div class="col-sm-12 col-lg-8">
             <div class="Heading">
-            <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
-            {% for d in data.get_ResourcesData_slug_splited|slice:":10" %}
-            <span class="category-tool-title-slug">{{ d }}</span>
-            {% endfor %}</div>
+               <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
+                  <div class="category-tool-slug-section">{% for d in data.get_ResourcesData_slug_splited|slice:":10" %}
+                  <span class="category-tool-title-slug">{{ d }}</span>
+                  {% endfor %}</div>
           </div>
           <hr/>
             <div class="Discription">
