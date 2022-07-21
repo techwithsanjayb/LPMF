@@ -28,3 +28,7 @@
   font-weight: 600;
   color: rgb(72, 72, 72)
 }
+
+.t-show-pending {
+  color: #dfa421;
+}

@@ -5,16 +5,24 @@
 {% block register %}
 <link rel="stylesheet" href="{% static 'Localisation_App/css/register.css' %}">
 
-        <div class="container register-main">
+        <div class="container-fluid register-main">
           
           <div class="text-center p-3">
             <input type="text" class="text-center rounded-5 register-heading" value="Register" disabled />
           </div>
             <div class="row">
-                <div class="col-md-2">
-                    </div>
-                <div class="col-md-8 register-form-main">  
-                <form class="login-form" action={% url 'Localisation_App:register' %}  method="POST" enctype="multipart/form-data">
+                <div class="col-md-6">
+                  <img class="img-fluid" src="{% static './Localisation_App/img/registeration.png' %}" alt="..." />
+
+                </div>
+           <div class="col-1">
+
+           </div>
+                <div class=" col-sm-12 col-md-5 register-form-main">  
+                  <div class="register-user-icon">
+                    <img class="img-fluid" src="{% static './Localisation_App/img/Register-icon-1.png' %}" alt="..." />
+                  </div>
+                <form class="register-form" action={% url 'Localisation_App:register' %}  method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                   <div class="col-md-12">
@@ -180,7 +188,7 @@
                     </div>
                     </div>
                     <div class="col-md-12">
-                      <input class="login-button" type="submit" value="Register"/>
+                      <input class="register-button" type="submit" value="Register"/>
                     <!-- <button class="btn btn-primary w-100" type="submit" >Register</button> -->
                     </div>
                     <div class="mx-auto">

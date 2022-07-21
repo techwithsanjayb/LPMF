@@ -93,7 +93,7 @@ class RegisterForm(UserCreationForm):
         required=True,
         help_text='Enter Email',
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Email'})
+            attrs={'class': 'form-control input-1', 'placeholder': 'Email'})
     )
 
     # username = forms.CharField(
@@ -128,7 +128,7 @@ class RegisterForm(UserCreationForm):
         help_text='Enter Password',
         required=True,
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'Password'}),
+            attrs={'class': 'form-control input-1', 'placeholder': 'Password'}),
     )
 
     password2 = forms.CharField(
@@ -136,7 +136,7 @@ class RegisterForm(UserCreationForm):
         required=True,
         help_text='Enter Password Again',
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'Password Again'}),
+            attrs={'class': 'form-control input-1', 'placeholder': 'Password Again'}),
     )
 
     # CHOICES = [('Individual', 'Individual'),
@@ -185,7 +185,7 @@ class UserForgetPasswordForm(forms.Form):
         required=True,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control input-1',
                 'placeholder': 'Email'
             }
         ))
@@ -196,7 +196,7 @@ class UserChangePasswordForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control',
+                'class': 'form-control input-1',
                 'placeholder': 'Password',
 
             }

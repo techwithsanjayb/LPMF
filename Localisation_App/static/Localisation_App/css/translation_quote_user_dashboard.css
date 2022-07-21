@@ -25,3 +25,7 @@
 .t-dash-main2 {
   height: auto;
 }
+
+.t-dash-pending {
+  color: #dfa421;
+}
