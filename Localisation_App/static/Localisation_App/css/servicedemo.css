@@ -18,3 +18,7 @@
 .demo{
   background-color: #f7efc6;
 }
+/* For Name Matcher Service */
+.name-matcher-main {
+  min-height: 40vh;
+}

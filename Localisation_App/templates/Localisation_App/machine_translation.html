@@ -136,6 +136,7 @@ rel="stylesheet"
   $(document).ready(() => {
     console.log("in ready function");
     $("button").click((e) => {
+      $("#output").text(``);
       if ($("#inputlong").val() != "") {
         e.preventDefault();
         let array = $("#inputlong").val().split("\n");
