@@ -26,14 +26,14 @@
 				</form>
 				<div class="category-tool-title">Categories</div>
 				<form action={% url 'Localisation_App:tools' %} method="POST" enctype="multipart/form-data"> {% csrf_token %} {% if status_All_Checked == 'True' %}
-					<div class="categories-checkbox"><ul> {% for categories in toolscategory %}
+					<ul> {% for categories in toolscategory %}
 						<input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}" onclick=" ">{{ categories.Tools_CategoryType }}</input>
 						</br> {% endfor %} </ul> {% else %}
 					<ul> {% for categories in toolscategory %} {% if categories.Tools_Cat_Status %}
 						<input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}" checked="checked">{{ categories.Tools_CategoryType }}</input>
 						</br> {% else %}
 						<input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}" onclick=" ">{{ categories.Tools_CategoryType }}</input>
-						</br> {% endif %} {% endfor %} </ul> {% endif %}</div>
+						</br> {% endif %} {% endfor %} </ul> {% endif %}
 					<div class="row">
 						<div class="col-1"></div>
 						<div class="col-5"><button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Filter</button>
@@ -102,7 +102,8 @@
 				{% empty %}
 				<img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" /> 
 				{% endfor %}
-				<div class="section p-3 d-flex justify-content-center"> {% if Pagination_Type == 'All_Data' %}
+				<div class="section p-3 d-flex justify-content-center"> 
+					{% if Pagination_Type == 'All_Data' %}
 					<div class="container">
 						<div class="row pagination1">
 							<div class="col-md-12 offset-md-3">
@@ -119,9 +120,10 @@
 								</nav>
 							</div>
 						</div>
-					</div> {% elif Pagination_Type == 'Searched_Post' %}
+					</div> 
+					{% elif Pagination_Type == 'Searched_Post' %}
 					<div class="container">
-						<div class="row">
+						<div class="row pagination1">
 							<div class=" col-lg-12 col-md-12 offset-md-3 ">
 								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="...">
@@ -136,9 +138,10 @@
 								</nav>
 							</div>
 						</div>
-					</div> {% elif Pagination_Type == 'Category_Post' %}
+					</div>
+					 {% elif Pagination_Type == 'Category_Post' %}
 					<div class="container">
-						<div class="row ">
+						<div class="row pagination1">
 							<div class="col-lg-12 col-md-12 offset-md-3">
 								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="...">
