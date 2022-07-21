@@ -123,7 +123,7 @@
 					</div> 
 					{% elif Pagination_Type == 'Searched_Post' %}
 					<div class="container">
-						<div class="row">
+						<div class="row pagination1">
 							<div class=" col-lg-12 col-md-12 offset-md-3 ">
 								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="...">
@@ -141,7 +141,7 @@
 					</div>
 					 {% elif Pagination_Type == 'Category_Post' %}
 					<div class="container">
-						<div class="row ">
+						<div class="row pagination1">
 							<div class="col-lg-12 col-md-12 offset-md-3">
 								<p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p>
 								<nav aria-label="...">
