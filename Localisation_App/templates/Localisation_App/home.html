@@ -55,7 +55,7 @@
 <!--carousel end -->
 <!--News start-->
 
-<nav class="customNews">
+{% comment %} <nav class="customNews">
   <div class="container-fluid">
     <div class="container-fluid">
       <div class="row newsclass">
@@ -85,7 +85,58 @@
       </div>
     </div>
   </div>
-</nav>
+</nav> {% endcomment %}
+<div class="row">
+  <div class="col-1 news-subhead">
+    <h5>News & Events</h5>
+  </div>
+  <div class="col-10" >
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a
+           class="news1"
+           href="{{NewsAndEventsData.0.NewsAndEvents_Link }}"
+           target="_blank"
+          >
+          <i class="fa-solid fa-location-arrow"></i>
+          <strong>{{ NewsAndEventsData.0.NewsAndEvents_HeadingName }} - </strong>
+          {{NewsAndEventsData.0.NewsAndEvents_Discription}}</a
+          >&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+         {% comment %} <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="visually-hidden">Next</span>
+         </button> {% endcomment %}
+       {% for news in NewsAndEventsData|slice:"1:" %}
+          <div class="carousel-item">
+            <a
+              class="news1"
+              href="{{news.NewsAndEvents_Link }}"
+              target="_blank"
+            >
+            <i class="fa-solid fa-location-arrow"></i>
+            <strong>{{ news.NewsAndEvents_HeadingName }} - </strong>
+            {{news.NewsAndEvents_Discription}}</a
+            >&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+           {% comment %} <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+           </button>
+           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="visually-hidden">Next</span>
+           </button> {% endcomment %}
+       {% endfor %}
+      </div>
+    </div>
+  </div>
+<div>
 
 <!--News end-->
 
