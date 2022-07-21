@@ -2862,12 +2862,12 @@ transform: rotate(180deg); */
     
     
     .sticky-button {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         background-color: #3d55aa;
         overflow: hidden;
         position: fixed;
-        top: 28%;
+        top: 16%;
         right: 0;
         border: 1px solid grey;
         border-radius: 10px;
@@ -2891,12 +2891,12 @@ transform: rotate(180deg); */
     
     
     .sticky-button-2 {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         background-color: #11384e;
         overflow: hidden;
         position: fixed;
-        top: 34%;
+        top: 21%;
         right: 0;
         border: 1px solid grey;
         border-radius: 10px;
@@ -2938,12 +2938,12 @@ transform: rotate(180deg); */
     
     
     .sticky-button-3 {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         background-color: #1e6a8d;
         overflow: hidden;
         position: fixed;
-        top: 38%;
+        top: 26%;
         right: 0;
         border: 1px solid grey;
         border-radius: 10px;
@@ -2967,12 +2967,12 @@ transform: rotate(180deg); */
     }
     
     .sticky-button-4 {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         background-color: #5dc6e9;
         overflow: hidden;
         position: fixed;
-        top: 42%;
+        top: 31%;
         right: 0;
         border: 1px solid grey;
         border-radius: 10px;
