@@ -2153,10 +2153,16 @@ def translation_quote(request):
             current_user = request.user
 
             print(current_user)
+            try:
+                date1 = form.cleaned_data['delivery_date']
+                if date1 < date.today():  
+                    raise ValidationError("The date cannot be in the past!")
+            except ValidationError as e:
+                context['date_error'] = e.message
+                return render(request, "Localisation_App/translation_quote.html", context)
 
             # generate application number (UNIQUE)
             #
-
             application_number = str('GI-' + str(date.today().year) + '-' +
                                      current_user.username[0:2].upper() + str(random.randrange(100000000, 1000000000)))
 
