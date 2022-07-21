@@ -2268,18 +2268,23 @@ def translation_quote_show(request, application_number):
 
     translation_quote_data = TranslationQuote.objects.filter(
         application_number=application_number)[0]
+    
     print(translation_quote_data)
     username = translation_quote_data.username
+    context = { 
+            'topmenus': top_menu_items_data,
+            'FooterMenuItemsdata': footer_menu_items_data,
+            'translation_quote_data': translation_quote_data,
+        }
+    
+    print("Email ",username.username)
+    
+    if username.username == 'admin':
+        print("hii")
+        return render(request, 'Localisation_App/translation_quote_show.html', context)
+    else:
+        user_details = UserRegistration.objects.filter(
+            userregistration_email_field=username.username)[0]
 
-    print(username.username)
-
-    user_details = UserRegistration.objects.filter(
-        userregistration_username=username.username)[0]
-
-    context = {
-        'topmenus': top_menu_items_data,
-        'FooterMenuItemsdata': footer_menu_items_data,
-        'translation_quote_data': translation_quote_data,
-        'user_details': user_details,
-    }
-    return render(request, 'Localisation_App/translation_quote_show.html', context)
+        context['user_details'] = user_details
+        return render(request, 'Localisation_App/translation_quote_show.html', context)
