@@ -51,10 +51,12 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary services-button">
-              <a href="{% url service.Services_links %}" class="text-white text-decoration-none fs-4">View Service Demo</a>
-              {% comment %} <a href={{service.Services_links}} class="text-white text-decoration-none fs-4">View Service Demo</a> {% endcomment %}
-            </button>
+            <a href="{% url service.Services_links %}" class="services-button pt-1 text-white d-flex justify-content-center text-decoration-none fs-4">
+            {% comment %} <button class="btn btn-primary services-button"> {% endcomment %}
+              View Service Demo
+              {% comment %} <a href={{service.Services_links}} class="text-white text-decoration-none fs-4">View Service Demo {% endcomment %}
+            {% comment %} </button> {% endcomment %}
+          </a>
           </div>
         </div>
       </div>
