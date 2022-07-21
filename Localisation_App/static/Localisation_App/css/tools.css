@@ -39,18 +39,19 @@ body {
 
 .category-tool-title-slug{
     min-width: 100px;
-    margin-top: 10px;
+    border:none;
+
     font-size: 15px;
     background-color: #219EBC;
     height: 23px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 4px;
+    padding-bottom: 24px;
     border-radius: 10px;
     font-weight: 400;
     color:#ffffff;
-    margin-bottom: 10px;
-
+   
+    
 }
 
 .tools-box {
