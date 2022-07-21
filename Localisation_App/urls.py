@@ -66,16 +66,11 @@ urlpatterns = [
          name='goTranslate'),
     path('translation-quote/', views.translation_quote,
          name='translation_quote'),
-<<<<<<< HEAD
-    path('translation-quote-user-dashboard', views.translation_quote_user_dashboard, name='translation_quote_user_dashboard'),
-    path('translation-quote-show/<str:application_number>/', views.translation_quote_show, name='translation_quote_show'),
-=======
     path('translation-quote-user-dashboard', views.translation_quote_user_dashboard,
          name='translation_quote_user_dashboard'),
     path('translation-quote-show/<str:application_number>/',
          views.translation_quote_show, name='translation_quote_show'),
     #     path('dashboard2', views.dashboard2, name="dashboard2"),
->>>>>>> 9a2b218433ce7e0fbee7f04099cae4fba87f5f99
     path('dashboard', views.dashboard, name="dashboard"),
     path('machine-translation/', views.machine_translation,
          name="machine_translation"),
