@@ -1746,6 +1746,7 @@ def User_Profile(request,id):
 
 def changePassword(request, token):
     form = UserChangePasswordForm()
+    print("token",token)
     user_Profile_obj = UserRegistration.objects.get(
         userregistration_token=token)
     if user_Profile_obj is not None:
@@ -1777,7 +1778,7 @@ def changePassword(request, token):
                         logger.info(
                             "change password page, updated password saved into user registration model")
                         user_main_obj = User.objects.get(
-                            username=user_Profile_obj.userregistration_username)
+                            username=user_Profile_obj.userregistration_email_field)
                         user_main_obj.set_password(password1)
                         user_main_obj.save()
                         logger.info(
@@ -1787,15 +1788,15 @@ def changePassword(request, token):
                         messages.success(
                             request, 'Password Reset Successfully')
                         print('Password Reset Successfully ')
-                        return redirect('http://127.0.0.1:5555/changePassword/'+token)
+                        return redirect('Localisation_App:login')
                 else:
                     logger.error("Passwords are not matching")
                     messages.error(request, 'Passwords are not matching')
-                    return redirect('http://127.0.0.1:5555/changePassword/'+token)
+                    return redirect('http://127.0.0.1:5552/changePassword/'+token)
             else:
                 logger.error("form is not valid")
                 messages.error(request, 'Data is not valid')
-                return redirect('http://127.0.0.1:5555/changePassword/'+token)
+                return redirect('http://127.0.0.1:5552/changePassword/'+token)
         else:
             user_id = user_Profile_obj.pk
             context = {
@@ -1808,7 +1809,7 @@ def changePassword(request, token):
         logger.error("change password page, user not found")
         messages.success(request, 'User Not Found')
         print('User Not Found')
-        return redirect('http://127.0.0.1:5555/changePassword/'+token)
+        return redirect('http://127.0.0.1:5552/changePassword/'+token)
 
 
 def forgetPassword(request):
@@ -1833,13 +1834,16 @@ def forgetPassword(request):
                         "User found with this Email inside User model")
                     print('user is not none')
                     user_obj = User.objects.get(username=username)
+                    print("userghjkj",user_obj)
                     token = str(uuid.uuid4())
-                    logger.info(
-                        "Inside forgot password function, token is created")
+                    # logger.info(
+                    #     "Inside forgot password function, token is created")
                     logger.info(
                         "User found with this Email inside UserRegistration model")
+                    print("username",username)
                     user_Profile_obj = UserRegistration.objects.get(
-                        userregistration_username=username)
+                        userregistration_email_field=username)
+                    print("userrtyt",user_Profile_obj)
                     user_Profile_obj.userregistration_token = token
                     user_Profile_obj.save()
                     logger.info(
@@ -2153,10 +2157,16 @@ def translation_quote(request):
             current_user = request.user
 
             print(current_user)
+            try:
+                date1 = form.cleaned_data['delivery_date']
+                if date1 < date.today():  
+                    raise ValidationError("The Delivery date cannot be in the past!")
+            except ValidationError as e:
+                context['date_error'] = e.message
+                return render(request, "Localisation_App/translation_quote.html", context)
 
             # generate application number (UNIQUE)
             #
-
             application_number = str('GI-' + str(date.today().year) + '-' +
                                      current_user.username[0:2].upper() + str(random.randrange(100000000, 1000000000)))
 
@@ -2288,3 +2298,14 @@ def translation_quote_show(request, application_number):
 
         context['user_details'] = user_details
         return render(request, 'Localisation_App/translation_quote_show.html', context)
+    
+    
+def bhashini(request):
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+    }
+    return render(request,'Localisation_App/bhashini.html',context)
