@@ -94,16 +94,16 @@
           <div class="row">
             <div class="col-1"></div>
             <div class="col-5">
-          <button class='btn btn-primary filter-button' type="submit" style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Fetch">Filter</button>
+          <button class='btn btn-primary filter-button' type="submit" style="background-color:#219EBC ;border-color:#219EBC; " value="Fetch">Filter</button>
         </form>
         </div>
         <div class="col-2">
         <form action={% url 'Localisation_App:successstoryReset' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <button class='btn btn-primary filter-button' type="submit" style="background-color:#219EBC ;border-color:#219EBC; width:120px" value="Fetch">Reset</button>
+          <button class='btn btn-primary filter-button' type="submit" style="background-color:#219EBC ;border-color:#219EBC; " value="Fetch">Reset</button>
         </form>
         </div>
-        <hr style="width:320px;margin-left:18px;">
+        <hr />
         <div class="col-4"></div>
         <p class="tools_Fetched_Record_Text">Records Fetched : {{ count }}</p>
     </div>
@@ -197,7 +197,7 @@
       {% endfor %}
       {% if Pagination_Type == 'All_Data' %}
         <div class="container">
-          <div class="row" style="width: 500px;margin-left:300px">
+          <div class="row pagination1" >
             <div class="col-md-12 offset-md-3">
               <!-- <p>Page:{{page.number}}/{{ page.paginator.num_pages}}</p> -->
               <nav aria-label="...">
