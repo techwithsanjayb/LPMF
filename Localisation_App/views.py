@@ -2156,7 +2156,7 @@ def translation_quote(request):
             try:
                 date1 = form.cleaned_data['delivery_date']
                 if date1 < date.today():  
-                    raise ValidationError("The date cannot be in the past!")
+                    raise ValidationError("The Delivery date cannot be in the past!")
             except ValidationError as e:
                 context['date_error'] = e.message
                 return render(request, "Localisation_App/translation_quote.html", context)
