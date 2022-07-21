@@ -26,14 +26,14 @@
 				</form>
 				<div class="category-tool-title">Categories</div>
 				<form action={% url 'Localisation_App:tools' %} method="POST" enctype="multipart/form-data"> {% csrf_token %} {% if status_All_Checked == 'True' %}
-					<div class="categories-checkbox"><ul> {% for categories in toolscategory %}
+					<ul> {% for categories in toolscategory %}
 						<input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}" onclick=" ">{{ categories.Tools_CategoryType }}</input>
 						</br> {% endfor %} </ul> {% else %}
 					<ul> {% for categories in toolscategory %} {% if categories.Tools_Cat_Status %}
 						<input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}" checked="checked">{{ categories.Tools_CategoryType }}</input>
 						</br> {% else %}
 						<input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}" onclick=" ">{{ categories.Tools_CategoryType }}</input>
-						</br> {% endif %} {% endfor %} </ul> {% endif %}</div>
+						</br> {% endif %} {% endfor %} </ul> {% endif %}
 					<div class="row">
 						<div class="col-1"></div>
 						<div class="col-5"><button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Filter</button>
