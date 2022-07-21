@@ -86,7 +86,7 @@
     </div>
   </div>
 </nav> {% endcomment %}
-<div class="row">
+<div class="row mx-1">
   <div class="col-1 news-subhead">
     <h5>News & Events</h5>
   </div>
@@ -136,7 +136,7 @@
       </div>
     </div>
   </div>
-<div>
+</div>
 
 <!--News end-->
 
@@ -261,212 +261,52 @@
 
 <!--Vision end-->
 
-<!-- Ulca Section Starts -->
 
-<div class="container-fluid ulca-main">
-  <div class="row">
-    <div class="col-12">
-      <div class="ulca-main-heading pt-4">
-        Universal Language Contribution API (ULCA)
-      </div>
-      <!-- <div class="ulca-title">
-        About ULCA
-      </div> -->
-      <div class="ulca-sub-heading">
-        ULCA is a standard API and open scalable platform for indian language
-        datasets and models.
+<!-- Bhashini Home Section Starts -->
+
+<div class="container-fluid test pt-5">
+  <div class="row bhasha-row ">
+    <div class="col d-flex justify-content-center mb-4">
+      <div class="bhasha-description-section d-flex justify-content-center flex-wrap">
+        <img class="bhasha-img" src="{% static './Localisation_App/img/BhashiniLogo.png' %}"
+        alt="..." />
+        <div class="text-center">
+          <p>Bhashini aims to build a National Public Digital Platform for languages to develop services and products for citizens by leveraging the power of artificial intelligence and other emerging technologies.</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row m-3 py-2 ulca-outer-block">
-    <div class="col-lg-2">
-      <div class="row ulca-datasets">
-        <div class="col-12">
-          <div class="ulca-sub-section-title">DataSets</div>
-          <div class="ulca-sub-section-subheading">Language Datasets</div>
-          <img
-            class="ulca-img"
-            src="{% static './Localisation_App/img/dataset.png' %}"
-            alt="..."
-          />
-        </div>
+
+  <div class=" bhasha-below-rows row justify-content-around">
+    <div class="col-4 bhasha-section">
+      <div class="bhasha-icon d-flex justify-content-center">
+        <img class="bhasha-img-1" src="{% static './Localisation_App/img/ulca2.png' %}"
+        alt="...">
       </div>
-      <div class="row ulca-benchmark">
-        <div class="col-12">
-          <div class="ulca-sub-section-title">Benchmark</div>
-          <div class="ulca-sub-section-subheading">Open Benchmarking</div>
-          <img
-            class="ulca-img"
-            src="{% static './Localisation_App/img/Benchmark.png' %}"
-            alt="..."
-          />
-        </div>
-      </div>
+     <div class="bhasha-section-content">
+      UNIVERSAL LANGUAGE CONTRIBUTION API
+     </div>
+     <p class="bhasha-sub-section-content">
+      Standard API and open scalable data platform
+     </p>
+     <a class="bhasha-button" href="{% url 'Localisation_App:bhashini' %}"  target="_blank"> Know More ..</a>
     </div>
-
-    <div class="col-sm-11 col-lg-9 ulca-models mx-4">
-      <h2 class="ulca-test">Models</h2>
-      <p class="ulca-sub-section-subheading">Language Specific Tasks</p>
-      <div class="row">
-        <div class="col-lg-3">
-          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
-          <div class="model-1">
-            <div class="ulca-model-title">
-              Machine Translation (MT)
-            </div>
-          </div>
-          </a>
-        </div>
-        <div class="col-lg-3">
-          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
-          <div class="model-2">
-            <div class="ulca-model-title">
-               Automatic Speech Recognition (ASR)
-            </div>
-          </div>
-        </a>
-        </div>
-        <div class="col-lg-3 ">
-          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
-          <div class="model-3">
-             <div class="ulca-model-title">
-               Text to Speech 
-             </div>
-          <p class="ulca-model-title" style="margin-top: -40px;">(TTS)</p>
-          </a>
-          </div>
-        </div>
+    <div class="col-4  bhasha-section">
+      <div class="bhasha-icon d-flex justify-content-center">
+        <img class="bhasha-img-1" src="{% static './Localisation_App/img/ulca2.png' %}"
+        alt="...">
       </div>
-      <div class="row">
-        <div class="col-lg-3">
-          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
-          <div class="model-4">
-             <div class="ulca-model-title">
-                Optical Character Recognition (OCR)
-             </div>
-          </div>
-          </a>
-        </div>
-        <div class="col-lg-3">
-          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
-          <div class="model-5">
-             <div class="ulca-model-title">
-                Speech To Speech
-             </div>
-             <p class="ulca-model-title" style="margin-top: -40px;">(STS)</p>
-          </div>
-          </a>
-        </div>
-        <div class="col-lg-3">
-          <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none">
-          <div class="model-6">
-             <div class="ulca-model-title">
-               Transliteration
-             </div>
-          </div>
-          </a>
-        </div>
-
-      </div>
+      <div class="bhasha-section-content d-flex justify-content-center">
+        BHASHA DAAN
+       </div>
+       <p class="bhasha-sub-section-content">
+        Open repository of multilingual data
+       </p>
+       <a class="bhasha-button" href="{% url 'Localisation_App:bhashini' %}" target="_blank"> Know More ..</a>
     </div>
   </div>
 </div>
-
-<!-- Ulca Section Ends -->
-
-<!-- Bhashani Section -->
-
-<div class="container-fluid my-5">
-  <div class="bhashani-title-section">
-    <h1>Bhasha Daan</h1>
-    <p>One Platform, Multiple Crowdsourcing Initiatives</p>
-    <div class="text">
-      Help to build an open repository of data to digitally enrich your language
-    </div>
-  </div>
-  <div class="row bhasha-main d-flex justify-content-center">
-    <div
-      class="col-lg-2 col-md-6 bhasha-card"
-      style="background-color: #c4d3c7"
-    >
-      <img
-        class="img-fluid"
-        src="{% static './Localisation_App/img/bolo.png' %}"
-        alt=""
-      />
-      <p>Enrich your language by donating your voice</p>
-      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/bolo-india" target="_blank">Start Participating</a>
-    </div>
-
-    <div
-      class="col-lg-2 col-md-6 bhasha-card"
-      style="background-color: #f3c9b6"
-    >
-      <img
-        class="img-fluid"
-        src="{% static './Localisation_App/img/likho.png' %}"
-        alt=""
-      />
-      <p>Enrich your language by translating text</p>
-      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/likho-india" target="_blank">Start Participating</a>
-    </div>
-
-    <div
-      class="col-lg-2 col-md-6 bhasha-card"
-      style="background-color: #9ed2df"
-    >
-      <img
-        class="img-fluid"
-        src="{% static './Localisation_App/img/dekho.png' %}"
-        alt=""
-      />
-      <p>Enrich your language by typing the text you see</p>
-      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/dekho-india" target="_blank">Start Participating</a>
-    </div>
-
-    <div class="col-lg-2 bhasha-card" style="background-color: #b1b3d0">
-      <img
-        class="img-fluid"
-        src="{% static './Localisation_App/img/suno.png' %}"
-        alt=""
-      />
-      <p>Enrich your language by typing the audio that you hear</p>
-      <a class="participate text-decoration-none" href="https://bhashini.gov.in/bhashadaan/en/suno-india" target="_blank">Start Participating</a>
-    </div>
-  </div>
-</div>
-
-<!-- Bhashini Section End-->
-
-<!--Vision start-->
-
-{% comment %} <div style="width: 100%">
-  <div class="show-section">
-    <div class="row">
-      <div class="col-2">
-        <img
-          class="img-fluid"
-          src="{% static './Localisation_App/img/services-page.jpg' %}"
-          style="height: 200px; width: 200px"
-          alt=""
-        />
-      </div>
-      <div class="col-10">
-        <div
-          class="show-section-para"
-          data-aos="zoom-in"
-          data-aos-duration="1200"
-        >
-          Relevant standards, best practices, tools and technologies for
-          realizing the dream of localizing all the citizen services in regional
-          languages.
-        </div>
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
-
-<!--Vision end-->
+<!-- Bhashinin Home Section Ends -->
 
 <!--marketing carousel start-->
 <div id="carouselExampleControls" class="carousel slide text-center p-5" data-bs-ride="carousel" style="background-color:#9ed2df; background-image: url('{% static './Localisation_App/img/Frame 2.png' %}'); background-repeat: no-repeat;  background-size: cover">
