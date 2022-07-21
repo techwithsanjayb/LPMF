@@ -22,10 +22,11 @@
         <div class="col-9">
       <h5 class="text-muted fs-4 fw-semibold my-2">Application Number : {{data.application_number}}</h5>
         </div>
-        <div class="col-3 fs-6">User Email : {% if user_details %} {{user_details.userregistration_email_field}}{% else %}Admin{% endif %}</div>
+        <div class="col-3 t-show-user-email">User Email : {% if user_details %} {{user_details.userregistration_email_field}}{% else %}Admin{% endif %}</div>
       </div>
       <hr>
-        <div class="row  mt-2">
+      <div class="t-show-body">
+        <div class="row">
           <div class="col-sm-2 fw-semibold">
            URL :
           </div>
@@ -42,7 +43,7 @@
           <div class="col-sm-2 fw-semibold">
             Domain :
            </div>
-           <div class="col-sm-4">
+           <div class="col-sm-4  fw-semibold">
              {{data.domain|upper}}
            </div>
         </div>
@@ -65,7 +66,7 @@
             Status :
           </div>
           <div class="col-sm-4">
-           <strong class="{% if data.status == 'PENDING' %} text-warning {% elif data.status == 'COMPLETED' %} text-success{% else %} text-primary {% endif %}">{{data.status}}</strong>
+           <strong class="{% if data.status == 'PENDING' %} t-show-pending {% elif data.status == 'COMPLETED' %} text-success{% else %} text-primary {% endif %}">{{data.status}}</strong>
           </div>
           <div class="col-sm-2 fw-semibold">
             Expected Delivery Date :
@@ -79,34 +80,35 @@
           <div class="col-sm-2 fw-semibold">
             Client Remark :
           </div>
-          <div class="col-sm-4">
-            {% if data.client_remark %}
-            {{data.client_remark}}
-            {% else %}
-            NA
-            {% endif %}
+          <div class="col-sm-8">
+            <textarea class='form-control' class="col-sm-12" col="auto" rows="6" disabled>{% if data.client_remark %}{{data.client_remark}}{% else %}NA{% endif %}</textarea>
           </div>
         </div>
+      
         {% if data.status == 'INPROCESS' or data.status == 'COMPLETED' %}
         {% comment %} Admin Part {% endcomment %}
         <hr>
+        <h3>Quotation Details:</h3>
         <div class="row mt-2">
           <div class="col-sm-2 fw-semibold">
             Total Words :
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 fw-bold">
             {{data.total_words}}
           </div>
           <div class="col-sm-2 fw-semibold">
             Total Cost :
           </div>
-          <div class="col-sm-4">
-            {{data.total_cost}}
+          <div class="col-sm-4 fw-semibold">
+            <span class="fw-bold">
+
+              {{data.total_cost}} 
+            </span> Rs
           </div>
         </div>
         <div class="row mt-2">
           <div class="col-sm-2 fw-semibold">
-            Translation Delivery date :
+            Translation Delivery Date :
           </div>
           <div class="col-sm-8">
             {{data.translation_delivery_date}}
@@ -114,7 +116,7 @@
         </div>
         <div class="row mt-2">
           <div class="col-sm-2 fw-semibold">
-            quotation generated date:
+            Quote Generated Date:
           </div>
           <div class="col-sm-8">
             {{data.quotation_generated_date}}
@@ -125,14 +127,16 @@
             Admin Remark :
           </div>
           <div class="col-sm-8">
-            {{data.admin_remark}}
+            <textarea class='form-control' class="col-sm-12" col="auto" rows="6" disabled>{% if data.admin_remark %}{{data.admin_remark}}{% else %}NA{% endif %}</textarea>
+           
           </div>
         </div>
+      </div>
         {% else %}
         <hr>
-        <div class='pb-4 text-secondary fw-semibold'>
+        <div class='pb-4 fs-5 text-secondary fw-semibold'>
 
-          Pending from admin side
+          Status : <span style="font-style:italic">Quotation is pending</span>
         </div>
         {% endif %}
       </div>

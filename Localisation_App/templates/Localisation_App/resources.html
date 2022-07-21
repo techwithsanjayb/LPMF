@@ -132,7 +132,7 @@
             <div class="Heading">
                <h3 style="color: #023047;">{{ data.ResourceData_HeadingName }}</h3>
                   <div class="category-tool-slug-section">{% for d in data.get_ResourcesData_slug_splited|slice:":10" %}
-                  <button class="category-tool-title-slug" style="margin-bottom:5px;">{{ d }}</button>
+                  <button class="category-tool-title-slug" >{{ d }}</button>
                   {% endfor %}</div>
           </div>
           <hr/>
