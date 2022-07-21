@@ -8,14 +8,14 @@
     letter-spacing: 1px;
 }
 .register-main{
-    background-image: url('../img/Register.png');
+    /* background-image: url('../img/Register.png'); */
     background-size: cover;
 }
 .register-form-main{
     /* background-color: red; */
     background-color:#dbeef3;
-    width:900px;
-    height:auto;
+    width:500px;
+    height:500px;
     /* border:3px solid #dda58f; */
     border-radius:20px;
     padding: 40px 20px;
@@ -40,7 +40,45 @@ box-shadow: 0px 0px 19px 4px rgba(147,168,179,1);
     font-size: 20px;
     color:white;
 }
+.register-form label{
+    color: rgb(6, 88, 126);
+    font-size: 20px;
+    font-weight: 500;
+    font-weight: 550;
+}
 
+.register-button:hover {
+    background-color: #046881;
+}
+.input-1{
+    /* background-color: #0089ac; */
+    /* width:200px; */
+    margin-bottom: 5px;
+    border: 2px solid #8FCEDD;
+}
+
+.register-user-icon {
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position:absolute;
+    top:-60;
+    left: 42%;
+}
+.register-button{
+
+    margin-top: 25px;
+    height:40px;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    background-color: #0089ac;
+    text-align: center;
+    padding: 4px;
+    font-size: 20px;
+    color:white;
+}
 .register-button:hover {
     background-color: #046881;
 }
