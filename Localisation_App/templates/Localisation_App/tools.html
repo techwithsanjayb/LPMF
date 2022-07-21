@@ -102,7 +102,8 @@
 				{% empty %}
 				<img src="{% static './Localisation_App/img/nodata.png' %}" class="d-block w-50" /> 
 				{% endfor %}
-				<div class="section p-3 d-flex justify-content-center"> {% if Pagination_Type == 'All_Data' %}
+				<div class="section p-3 d-flex justify-content-center"> 
+					{% if Pagination_Type == 'All_Data' %}
 					<div class="container">
 						<div class="row pagination1">
 							<div class="col-md-12 offset-md-3">
@@ -119,7 +120,8 @@
 								</nav>
 							</div>
 						</div>
-					</div> {% elif Pagination_Type == 'Searched_Post' %}
+					</div> 
+					{% elif Pagination_Type == 'Searched_Post' %}
 					<div class="container">
 						<div class="row pagination1">
 							<div class=" col-lg-12 col-md-12 offset-md-3 ">
@@ -136,7 +138,8 @@
 								</nav>
 							</div>
 						</div>
-					</div> {% elif Pagination_Type == 'Category_Post' %}
+					</div>
+					 {% elif Pagination_Type == 'Category_Post' %}
 					<div class="container">
 						<div class="row pagination1">
 							<div class="col-lg-12 col-md-12 offset-md-3">
