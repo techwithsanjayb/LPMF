@@ -4,3 +4,17 @@
 .card{
   height: auto   !important;
 }
+
+.demodesc{
+  background-color: #f7efc6;
+  text-align: justify;
+  color: #262626
+}
+
+.demoheading{
+  background: linear-gradient(to right, #008ccf 0%, #fbeed9 100%);
+}
+
+.demo{
+  background-color: #f7efc6;
+}
