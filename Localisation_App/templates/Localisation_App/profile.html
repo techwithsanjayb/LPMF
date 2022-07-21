@@ -20,6 +20,8 @@ href="{% static 'Localisation_App/css/profile.css' %}"
                 background-color: #c98a268a;
               "
             >
+
+            <p>hellooooooooooooooooooooooooooooooooooooooooooooo</p>
               <img
                 src="{% static './Localisation_App/img/profile12.png' %}"
                 alt="Avatar"
@@ -27,8 +29,8 @@ href="{% static 'Localisation_App/css/profile.css' %}"
                 style="width: 140px;height: 110px;"
 
               />
-              <h5>{{User_obj.userregistration_first_name}} {{User_obj.userregistration_last_name}}</h5>
-              <p style="text-align: center;">Username : {{User_obj.userregistration_username}}</p>
+              <h5>Email : {{User_obj.userregistration_email_field}}</h5>
+            
               <!-- <i class="far fa-edit mb-5"></i> -->
             </div>
             <div class="col-md-8">
@@ -40,21 +42,21 @@ href="{% static 'Localisation_App/css/profile.css' %}"
                     <h6>Email</h6>
                   </div>
                   <div class="col-8 mb-3">
-                    <p class="text-muted">{{User_obj.userregistration_email_field}}</p>
+                    <!-- <p class="text-muted">{{User_obj.userregistration_email_field}}</p> -->
                   </div>
                  
                   <div class="col-4 mb-3">
                     <h6>Phone</h6>
                   </div>
                   <div class="col-8 mb-3">
-                    <p class="text-muted">{{User_obj.userregistration_phone_number}}</p>
+                    <!-- <p class="text-muted">{{User_obj.userregistration_phone_number}}</p> -->
                   </div>
                  
                   <div class="col-4 mb-3">
                     <h6>Address</h6>
                   </div>
                   <div class="col-8 mb-3">
-                    <p class="text-muted">{{User_obj.userregistration_address}}</p>
+                    <!-- <p class="text-muted">{{User_obj.userregistration_address}}</p> -->
                   </div>
                 </div>
                 <hr class="mt-0 mb-4" />
@@ -63,7 +65,7 @@ href="{% static 'Localisation_App/css/profile.css' %}"
                         <h6>User Type</h6>
                       </div>
                       <div class="col-8 mb-3">
-                        <p class="text-muted">{{User_obj.registration_User_Type}}</p>
+                        <!-- <p class="text-muted">{{User_obj.registration_User_Type}}</p> -->
                       </div>
                 </div>
                 <!-- <div class="d-flex justify-content-start">

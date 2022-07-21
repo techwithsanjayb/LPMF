@@ -1730,8 +1730,8 @@ def User_Profile(request,id):
     user_obj=User.objects.get(pk=id)
     username=user_obj.username
     print("obje",user_obj.username)
-    userRegister_obj=UserRegistration.objects.get(userregistration_username=username)
-    print("obj454e",userRegister_obj)
+    userRegister_obj=UserRegistration.objects.get(userregistration_email_field=username)
+    print("obj454e",userRegister_obj.userregistration_email_field)
 
     context={
         "User_obj":userRegister_obj,
@@ -2268,29 +2268,23 @@ def translation_quote_show(request, application_number):
 
     translation_quote_data = TranslationQuote.objects.filter(
         application_number=application_number)[0]
+    
     print(translation_quote_data)
     username = translation_quote_data.username
+    context = { 
+            'topmenus': top_menu_items_data,
+            'FooterMenuItemsdata': footer_menu_items_data,
+            'translation_quote_data': translation_quote_data,
+        }
+    
+    print("Email ",username.username)
+    
+    if username.username == 'admin':
+        print("hii")
+        return render(request, 'Localisation_App/translation_quote_show.html', context)
+    else:
+        user_details = UserRegistration.objects.filter(
+            userregistration_email_field=username.username)[0]
 
-    print(username.username)
-
-    user_details = UserRegistration.objects.filter(
-        userregistration_username=username.username)[0]
-
-    context = {
-        'topmenus': top_menu_items_data,
-        'FooterMenuItemsdata': footer_menu_items_data,
-        'translation_quote_data': translation_quote_data,
-        'user_details': user_details,
-    }
-    return render(request, 'Localisation_App/translation_quote_show.html', context)
-
-
-def bhashini(request):
-    top_menu_items_data = TopMenuItems.objects.all()
-    footer_menu_items_data = FooterMenuItems.objects.all()
-
-    context = {
-        'topmenus': top_menu_items_data,
-        'FooterMenuItemsdata': footer_menu_items_data,
-    }
-    return render(request,'Localisation_App/bhashini.html',context)
+        context['user_details'] = user_details
+        return render(request, 'Localisation_App/translation_quote_show.html', context)

@@ -1,84 +1,88 @@
-{% extends 'Localisation_App/base.html' %} 
-{% block title %}Name Matcher Service{% endblock %} 
-{% load static %} 
-{% block name_matcher %}
+{% extends 'Localisation_App/base.html' %} {% block title %}Name Matcher Service{% endblock %} {% load static %} {% block name_matcher %}
 
 <link
   href="{% static 'Localisation_App/css/servicedemo.css' %}"
   rel="stylesheet"
 />
-<div class="container name-matcher-main">
-  <div class="card">
-    <h5 class="card-title text-dark">Name Matcher</h5>
-    <div class="card-body">
-      <div class="col-6">
-        <div class="pb-2">
-          <input
-            name="input1"
-            id="name1"
-            type="text"
-            placeholder="Enter First Name"
-            class="form-control"
-            required
-          />
+<div class="col-1 border text-center">
+  <a href="{% url 'Localisation_App:services' %}" class="text-decoration-none text-black"><i class="fa fa-arrow-left p-1" aria-hidden="true"></i>Back</a>
+</div>
+<div class="container card name-matcher-main mb-5">
+  <div class="card-body">
+    <div class="row d-flex mb-2 justify-content-center">
+      <h2 class="text-dark text-center py-1 rounded-pill demoheading">
+        Name Matcher
+      </h2>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="row border p-4 rounded-4 demo">
+        <div class="col-8">
+          <div class="pb-2">
+            <input
+              name="input1"
+              id="name1"
+              type="text"
+              placeholder="Enter First Name"
+              class="form-control"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="pb-2">
-          <input
-            name="input2"
-            id="name2"
-            type="text"
-            placeholder="Enter Second Name"
-            class="form-control"
-            required
-          />
+        <div class="col-8">
+          <div class="pb-2">
+            <input
+              name="input2"
+              id="name2"
+              type="text"
+              placeholder="Enter Second Name"
+              class="form-control"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div class="pb-2">
-        <button
-          type="submit"
-          class="btn btn-primary btn-regular"
-          style="width: 100px"
-        >
-          Submit
-        </button>
+        <div class="pb-2">
+          <button
+            type="submit"
+            class="btn btn-primary btn-regular"
+            style="width: 100px"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   </div>
   <div id="output"></div>
 </div>
 <script>
-    $(document).ready(() => {
-        console.log("in ready function");
-        $("button").click((e) => {
-            e.preventDefault();
-            let name1 = $("#name1").val()
-            let name2 = $("#name2").val()
+  $(document).ready(() => {
+    console.log("in ready function");
+    $("button").click((e) => {
+      e.preventDefault();
+      let name1 = $("#name1").val();
+      let name2 = $("#name2").val();
 
-            const url = "http://gistnamematcher.in/AFW/NameMatch/CompareStrings";
-            
-              $.ajax({
-                url: url,
-                type: "GET",
-                data: { 
-                    "FirstName":name1,
-                    "SecondName":name2,
-                    "Lenient":true
-                  },
-                success: function (response) {
-                  console.log(response);
-                  $("#output").html(`${response}\n`);
-                },
-                error: function (err) {
-                  //Do Something to handle error
-                  console.log("error in calling ", err);
-                  alert("Currently service is not working...!!!");
-                },
-              });
-            
-          
-        });
+      const url = "http://gistnamematcher.in/AFW/NameMatch/CompareStrings";
+
+      $.ajax({
+        url: url,
+        type: "GET",
+        data: {
+          FirstName: name1,
+          SecondName: name2,
+          Lenient: true,
+        },
+        success: function (response) {
+          console.log(response);
+          $("#output").html(`${response}\n`);
+        },
+        error: function (err) {
+          //Do Something to handle error
+          console.log("error in calling ", err);
+          alert("Currently service is not working...!!!");
+        },
       });
+    });
+  });
 </script>
 {% endblock %}
