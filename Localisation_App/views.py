@@ -1635,10 +1635,9 @@ def Register_user(request):
                 "Inside register page , If form is valid all data saved into User model")
             form.save()
             print("Form Data")
-            UserRegistration.objects.create(userregistration_first_name=form.cleaned_data.get('first_name'), userregistration_middle_name=form.cleaned_data.get('middle_name'), userregistration_last_name=form.cleaned_data.get('last_name'), userregistration_username=form.cleaned_data.get('username'), userregistration_email_field=form.cleaned_data.get(
-                'email'), userregistration_phone_number=form.cleaned_data.get('phone_number'), userregistration_address=form.cleaned_data.get('address'), userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'), registration_User_Type=form.cleaned_data.get('User_Type'))
-            messages.success(request, 'Account was created for ' +
-                             form.cleaned_data.get('first_name'))
+            UserRegistration.objects.create(userregistration_email_field=form.cleaned_data.get(
+                'username'),userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'))
+            messages.success(request, 'Account was created for ' +form.cleaned_data.get('username'))
             logger.info(
                 "Inside register page,If form is valid all data saved into UserRegistration model")
             return redirect('/')
@@ -1687,14 +1686,14 @@ def login_user(request):
             else:
                 logger.error(
                     "Login user form, Error in user login authentication")
-                messages.error(request, 'Wrong Username or password')
+                messages.error(request, 'Wrong Email or password')
                 return redirect('Localisation_App:login')
 
         else:
             logger.error(
-                "Login user form, Error Processing Your Request,Wrong Username or password ")
+                "Login user form, Error Processing Your Request,Wrong Email or password ")
             messages.error(
-                request, 'Error Processing Your Request,Wrong Username or password ')
+                request, 'Error Processing Your Request,Wrong Email or password ')
             return redirect('Localisation_App:login')
     else:
         logger.info("Login user form page getting displayed ")
@@ -1824,21 +1823,21 @@ def forgetPassword(request):
                 print('insideValidmethod')
                 username = form.cleaned_data['username']
                 if not User.objects.filter(username=username).first():
-                    logger.error("No user found with this username")
+                    logger.error("No user found with this Email")
                     messages.error(
-                        request, 'No user found with this username')
-                    print('No user found with this username')
+                        request, 'No user found with this Email')
+                    print('No user found with this Email')
                     return redirect('Localisation_App:forgetPassword')
                 else:
                     logger.info(
-                        "User found with this username inside User model")
+                        "User found with this Email inside User model")
                     print('user is not none')
                     user_obj = User.objects.get(username=username)
                     token = str(uuid.uuid4())
                     logger.info(
                         "Inside forgot password function, token is created")
                     logger.info(
-                        "User found with this username inside UserRegistration model")
+                        "User found with this Email inside UserRegistration model")
                     user_Profile_obj = UserRegistration.objects.get(
                         userregistration_username=username)
                     user_Profile_obj.userregistration_token = token
@@ -1867,7 +1866,7 @@ def forgetPassword(request):
             else:
                 logger.error(
                     "Inside forgot password function, Form is not valid")
-                messages.error(request, 'Data is not valid')
+                messages.error(request, 'Email is not valid')
                 return redirect('Localisation_App:forgetPassword')
     except Exception as e:
         print(e)
