@@ -431,10 +431,10 @@ class UserRegistration(models.Model):
 
     class Meta:
         verbose_name_plural = "User Registration"
-        ordering = ['userregistration_first_name']
+        ordering = ['userregistration_email_field']
 
     def __str__(self):
-        return self.userregistration_first_name + " " + self.userregistration_last_name
+        return self.userregistration_email_field 
 
 
 # translation quote

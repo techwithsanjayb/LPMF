@@ -1730,8 +1730,8 @@ def User_Profile(request,id):
     user_obj=User.objects.get(pk=id)
     username=user_obj.username
     print("obje",user_obj.username)
-    userRegister_obj=UserRegistration.objects.get(userregistration_username=username)
-    print("obj454e",userRegister_obj)
+    userRegister_obj=UserRegistration.objects.get(userregistration_email_field=username)
+    print("obj454e",userRegister_obj.userregistration_email_field)
 
     context={
         "User_obj":userRegister_obj,

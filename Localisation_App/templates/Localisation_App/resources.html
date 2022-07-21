@@ -43,13 +43,14 @@
           {% csrf_token %}
         
           {% if status_All_Checked == 'True' %}
-             <div class="categories-checkbox"><ul>
-                {% for categories in resourcescategory %}
-                      <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}"
-                           onclick=" ">{{ categories.Resources_CategoryType }}</input></br>
-            
-                {% endfor %}</ul>
-          
+          <ul>
+            {% for categories in resourcescategory %}
+            <input class="tools-sidebar-item" type="checkbox" id="vehicle1" name="checkbox" value="{{ categories.pk }}"
+              onclick=" ">{{ categories.Resources_CategoryType }}</input></br>
+            {% comment %} <label class="tools-sidebar-item-text" for="vehicle1">{{ categories.Resources_CategoryType
+              }}</label><br /> {% endcomment %}
+            {% endfor %}
+          </ul>
           {% else %}
           <ul>
             {% for categories in resourcescategory %}
@@ -64,7 +65,7 @@
             {% endif %}
             {% endfor %}
           </ul>
-          {% endif %}</div>
+          {% endif %}
           <div class="row">
             <div class="col-1"></div>
             <div class="col-5">
