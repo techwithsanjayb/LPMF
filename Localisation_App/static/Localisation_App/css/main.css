@@ -594,13 +594,14 @@ transform: rotate(180deg); */
 }
 
 .news-subhead {
-    height: 50px;
+    height: 60px;
     /* margin-left: 20px; */
     background-color: #44b5d1dc;
-    padding: 5px 0px 2px 1px;
+    padding: 10px 0px 2px 3px;
     /* text-align: center; */
-    width: 100px;
+    width: 105px;
     position: relative;
+    margin-left:0px;
 
 }
 
@@ -610,6 +611,7 @@ transform: rotate(180deg); */
 
 .news1 {
     font-weight: 500;
+    font-size:20px;
     color: #023047;
     text-decoration: none;
 }
@@ -701,7 +703,7 @@ transform: rotate(180deg); */
     background: #ED875C;
     border-radius: 8px;
     border: none;
-    margin-left: 1250px;
+    margin-left: 1100px;
     font-weight: 600;
     font-size: 20px;
     margin-top: 20px;
@@ -1045,12 +1047,13 @@ transform: rotate(180deg); */
 .estimate-cost-title {
     margin-top: 150px;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 36px;
     line-height: 43px;
     letter-spacing: 0.035em;
     color: #023047;
     text-align: center;
-    margin-right: 20px;
+    margin-right: 50px;
+    
 }
 
 .estimate-cost-money-img {
@@ -1058,19 +1061,19 @@ transform: rotate(180deg); */
 }
 
 .estimate-cost-button {
-    width: 500px;
-    height: 55px;
+    width: 400px;
+    height: 50px;
     background-color: #023047;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.38);
     border-radius: 18px;
     text-align: center;
     font-weight: 700;
-    font-size: 33px;
+    font-size: 25px;
     line-height: 43px;
     letter-spacing: 0.025em;
     color: #FFFFFF;
-    margin-left: 320px;
-    margin-top: 20px;
+    margin-left: 220px;
+    margin-top: 40px;
 }
 
 .estimate-cost-button a {
@@ -1228,6 +1231,13 @@ transform: rotate(180deg); */
 }
 
 @media only screen and (max-device-width: 1640px) {
+
+    .news1 {
+        font-weight: 500;
+        color: #023047;
+        text-decoration: none;
+        font-size:18px;
+    }
     .aboutus-Button2 {
         width: 120px;
         height: 49px;
@@ -1271,7 +1281,7 @@ transform: rotate(180deg); */
 
     .aboutUs-para {
         margin-top: 30px;
-        margin-right: 45px;
+        margin-right: 20px;
         text-align: justify;
         font-style: normal;
         font-weight: 500;
@@ -2049,8 +2059,8 @@ transform: rotate(180deg); */
 @media only screen and (max-device-width: 1024px)  {
 
     .news-subhead {
-        height: 40px;
-        width: 180px;
+        height: 60px;
+        width: 200px;
     }
 
     .news-events {

@@ -38,7 +38,7 @@ body {
 .success-sidebar {
   background-color: #ffffff;
   padding: 12px;
-  width: 80%;
+  width: 90%;
   margin-top: 0px;
   margin-left: 20px;
   border-radius: 20px;
@@ -214,7 +214,13 @@ input[type="checkbox"] {
 } */
 @media only screen and (max-device-width: 1680px) {
   
-
+  .stories_Fetched_Record_Text{
+    margin-left:25px; 
+    color:rgb(190, 68, 20);
+    font-size:20px;
+    font-weight:900px; 
+    letter-spacing: 0.2px;
+  }
 
   .filter-button{
     margin-left: -10px;
@@ -222,7 +228,9 @@ input[type="checkbox"] {
     
  }
 
-
+ .pagination1{
+  margin-left:70px;
+}
 
   .success-header-1 {
     /* font-size: 42px;
@@ -291,8 +299,17 @@ input[type="checkbox"] {
 
 
 @media only screen and (max-device-width: 1370px) {
+
+  .stories_Fetched_Record_Text{
+    margin-left:20px; 
+    color:rgb(190, 68, 20);
+    font-size:20px;
+    font-weight:900px; 
+    letter-spacing: 0.2px;
+  }
+
 .pagination1{
-  margin-left:80px;
+  margin-left:-10px;
 }
 
 .filter-button{
@@ -374,6 +391,15 @@ input[type="checkbox"] {
   }
 }
 @media only screen  and (max-device-width: 1240px)  {
+
+  .stories_Fetched_Record_Text{
+    margin-left:10px; 
+    color:rgb(190, 68, 20);
+    font-size:18px;
+    font-weight:900px; 
+    letter-spacing: 0.2px;
+  }
+
   .filter-button{
     margin-left: -10px;
     width: 80px;
@@ -400,7 +426,7 @@ input[type="checkbox"] {
       font-size: 30px;
       font-weight: 600;
       letter-spacing: 1px;
-      margin-left: 500px;
+      margin-left: 450px;
       margin-bottom: 20px;
       /* margin-top: 15px; */
     
@@ -444,8 +470,23 @@ input[type="checkbox"] {
 /* Tablet Portrait and Landscape */
 @media only screen and (max-device-width: 1024px) {
 
+  .success-story-card {
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    -moz-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    border-radius: 12px;
+    width:90%;
+    padding: 20px;
+    margin-left:20px;
+    margin-bottom: 10px;
+    min-height: 500px;
+    margin-right:0px;
+    /* border:3px solid #219EBC; */
+  }
+
   .pagination1{
-    margin-left:10px;
+    margin-left:-30px;
   }
   .success-list {
     padding: 5px;
@@ -506,13 +547,163 @@ input[type="checkbox"] {
   }
 }
 
-/* mobile */
-@media only screen and (max-device-width: 795px) {
+@media only screen and (max-device-width: 991px) {
+
+  .stories_Fetched_Record_Text{
+    margin-left:40px; 
+    color:rgb(190, 68, 20);
+    font-size:20px;
+    font-weight:900px; 
+    letter-spacing: 0.2px;
+  }
+
+  .filter-button{
+    margin-left: -15px;
+    width: 150px;
+}
+  .category-success-title {
+    margin-top: -20px;
+    font-size: 22px;
+    background-color: #219EBC;
+    width: 350px;
+    height: 40px;
+    padding-top:3px;
+    
+    margin-left: 40px;
+    padding-left: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    color:#ffffff;
+    margin-bottom: 10px;
+  }
+
   .success-sidebar {
     background-color: #ffffff;
     padding: 12px;
     width: 80%;
-    margin-top: 90px;
+    margin-top: 0px;
+    margin-left: 100px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    -moz-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+  }
+
+ 
+
+  .success-subheading {
+    font-size: 15px;
+    font-weight: 400;
+    color: #676464;
+    margin-bottom: 20px;
+    margin-left: 150px;
+  }
+
+  .success-story-cdac-card-title {
+    height: auto;
+    width: 260px;
+    background-color: #f9db90;
+    border-radius: 30px;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 4px;
+    text-align: center;
+    margin-left: 200px;
+  }
+
+  .success-story-card-description {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+  }
+ 
+  .success-story-card {
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    -moz-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    border-radius: 12px;
+    width:125%;
+    padding: 20px;
+    margin-left:30px;
+    margin-bottom: 20px;
+    min-height: 500px;
+    margin-right:0px;
+    /* border:3px solid #219EBC; */
+  }
+
+  .pagination1{
+    margin-left:100px;
+  }
+  .success-list {
+    margin-left:40px;
+    padding: 5px;
+    font-size:20px;
+    font-weight:600px;
+  }
+
+
+  .success-story-card-title {
+    background-color: #ffebd2;
+    padding:0px 20px 0px 20px;
+    border-radius:10px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    text-align: left;
+  }
+  
+ 
+ 
+  .search-button{
+    width:100px
+  }
+
+
+  .success-header-1 {
+    /* font-size: 42px;
+        font-weight: 700;
+        text-align: center;
+        font-family: 'Inter', sans-serif; */
+    /* background: url("../../../static/Localisation_App/img/title2.png"); */
+    background-color: #023047;
+    background-size: cover;
+    color: #feffff;
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-left: 340px;
+    margin-top:40px;
+  }
+
+}
+
+/* mobile */
+@media only screen and (max-device-width: 795px) {
+  .success-story-card {
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    -moz-box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    box-shadow: 0px 0px 60px 0px rgba(59, 78, 83, 0.2);
+    border-radius: 12px;
+    width:125%;
+    
+    padding: 20px;
+    margin-left:30px;
+    margin-bottom: 20px;
+    min-height: 530px;
+    margin-right:0px;
+    /* border:3px solid #219EBC; */
+  }
+  .success-sidebar {
+    background-color: #ffffff;
+    padding: 12px;
+    width: 80%;
+    margin-top: 0px;
     margin-left: 90px;
     margin-bottom: 30px;
     border-radius: 20px;
@@ -562,5 +753,32 @@ input[type="checkbox"] {
     font-size: 18px;
     font-weight: 400;
     text-align: center;
+  }
+
+  .success-story-link {
+    font-size: 20px;
+    font-weight: 500;
+    /* border: 1px solid grey; */
+    margin-top: 50px;
+    padding: 8px 25px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+  }
+  
+  .success-story-link a {
+    text-decoration: none;
+    color: black;
+  }
+  .warning-1 {
+    border-color: #ecb471;
+    color: #ecb471;
+  }
+  
+  .warning-1:hover {
+    background: #ecb471;
+    color: white;
   }
 }

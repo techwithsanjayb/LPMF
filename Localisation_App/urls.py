@@ -32,7 +32,6 @@ urlpatterns = [
     path('faqs/', views.faqs, name='faqs'),
     path('faqsSearch/<faq_title>', views.faqsSearch, name='faqsSearch'),
     path('contactus/', views.contactus, name='contactus'),
-    path('base/', views.topmenu, name='base'),
     path('websitepolicy/', views.websitepolicy, name='websitepolicies'),
     path('websitepolicy/<int:id>', views.websitepolicydata,
          name='websitepolicydata'),
@@ -78,7 +77,7 @@ urlpatterns = [
     path('empanelled_agencies/', views.empanelled_agencies,
          name="empanelled_agencies"),
     path('bhashini/',views.bhashini,name="bhashini"),
-
+    path('anuvaad/',views.anuvaad, name="anuvaad")
 
     #     path("Slug_test/<slug:slug>", views.Slug_test, name="Slug_test"),
 ]

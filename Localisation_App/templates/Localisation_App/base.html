@@ -7,7 +7,11 @@
     <!-- CSS only -->
 
     {% comment %} favicon {% endcomment %}
-    <link rel="shortcut icon" type="image/png" href="{% static './Localisation_App/img/favicon.ico' %}" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static './Localisation_App/img/favicon.ico' %}"
+    />
 
     <link
       rel="stylesheet"
@@ -49,7 +53,7 @@
 
     <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script>
       // optional init
       window.onload = function () {
@@ -62,17 +66,16 @@
         setLanguageComboBox("GOTWL_L10N_DROPDOWN_CONTAINER_ID");
       };
     </script>
-   
+
     <link
       href="{% static 'Localisation_App/css/main.css' %}"
       rel="stylesheet"
     />
     <link
-    href="{% static 'Localisation_App/css/bhashini-home.css' %}"
-    rel="stylesheet"
-  />
-  
-    
+      href="{% static 'Localisation_App/css/bhashini-home.css' %}"
+      rel="stylesheet"
+    />
+
     <script
       src="https://nplt.in/demo/catalog/view/javascript/jquery/jquery.min.js"
       type="text/javascript"
@@ -82,7 +85,6 @@
       type="text/javascript"
       src="https://gistlangserver.in/Content/WSLToolbar/Scripts/GoTranslateWebLocalizer/latest/static/gotwl.min.js"
     ></script>
-
   </head>
 
   <body>
@@ -93,7 +95,10 @@
           <div class="col col-sm-12">
             <a class="navbar-brand" style="color: white" href="#"
               ><span style="margin-right: 10px"
-                ><i class="fa fa-envelope text-white" aria-hidden="true"></i></span
+                ><i
+                  class="fa fa-envelope text-white"
+                  aria-hidden="true"
+                ></i></span
               >lpmf@cdac.in</a
             >
             <a class="navbar-brand" style="color: white" href="#"
@@ -138,7 +143,6 @@
     {% block tools %} {% endblock %}
 
     <!-- SERVICES BLOCK -->
-    
 
     {% block services %} {% endblock %}
 
@@ -166,11 +170,11 @@
 
     {% block keyboard %} {% endblock %}
 
-   <!--TTS SERVICE BLOCK-->
-  {% block tts_service %} {% endblock %}
+    <!--TTS SERVICE BLOCK-->
+    {% block tts_service %} {% endblock %}
 
-  <!--TRANSLITERATION SERVICE BLOCK-->
-  {% block transliteration_service %} {% endblock %}
+    <!--TRANSLITERATION SERVICE BLOCK-->
+    {% block transliteration_service %} {% endblock %}
 
     <!--MACHINE TRANSLATION SERVICE BLOCK-->
     {% block machine_translation %} {% endblock %}
@@ -180,6 +184,9 @@
 
     <!--GoTranslate SERVICE BLOCK-->
     {% block gotranslate_service %} {% endblock%}
+
+    <!--ANUVAAD SERVICE BLOCK-->
+    {% block anuvaad %} {% endblock %}
 
     <!--Contact Us BLOCK -->
 
@@ -207,33 +214,27 @@
 
     {% block login %} {% endblock %}
 
-    <!--Logout Page-->
+    <!--Profile page-->
 
+    {% block profile %} {% endblock %}
+    <!--Logout Page-->
     {% block logout %} {% endblock %}
 
     <!-- Translation Quote Page -->
 
     {% block translation_quote %} {% endblock %}
-
-    {% comment %} Translation quote user dashboard {% endcomment %}
-
+    <!-- Translation Quote Page User -->
     {% block translation_quote_user_dashboard %} {% endblock %}
-
-    {% comment %} Translation quote  {% endcomment %}
-
+    <!-- Translation Quote Page show -->
     {% block translation_quote_show %} {% endblock %}
 
     <!--Dashboard Page-->
-    {% block dashboard %} {% endblock %} 
-    
-    {% comment %} Empanelled Agencies Page {% endcomment %} 
-    {% block empanelled_agencies %} {% endblock %}
+    {% block dashboard %} {% endblock %} {% comment %} Empanelled Agencies Page
+    {% endcomment %} {% block empanelled_agencies %} {% endblock %}
 
     <!-- Footer Section Start -->
     {% include 'Localisation_App/footer.html' %}
     <!-- Footer Section End -->
-
-
 
     <script>
       $("#maindiv").width($("#div1").width());
