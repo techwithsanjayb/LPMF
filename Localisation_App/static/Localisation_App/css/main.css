@@ -578,8 +578,8 @@ transform: rotate(180deg); */
 .loudspeaker{
     width: 50px;
     position: absolute;
-    top: 158%;
-    left: 3%;
+    top: 1%;
+    left: 55%;
     height: 50px;
 }
 
@@ -600,7 +600,7 @@ transform: rotate(180deg); */
     padding: 5px 0px 2px 1px;
     /* text-align: center; */
     width: 100px;
-    
+    position: relative;
 
 }
 
