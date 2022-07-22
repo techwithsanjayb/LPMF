@@ -41,7 +41,8 @@ global str_num
 # Menu
 global url
 
-CACHE_TTL = getattr(settings,'CACHE_TTL',DEFAULT_TIMEOUT)
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
 
 def topmenu(request):
     top_menu_items_data = TopMenuItems.objects.all()
@@ -68,51 +69,51 @@ def Home(request):
     request.session['requested_url'] = url
     print("url", url)
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
 
     if cache.get("All_Article_data"):
-        articleData=cache.get("All_Article_data")
+        articleData = cache.get("All_Article_data")
         print("cache data")
     else:
         articleData = Article.objects.all()
-        cache.set("All_Article_data",articleData)
+        cache.set("All_Article_data", articleData)
         print("database data")
-    
+
     if cache.get("All_SuccessStories_data"):
-        successStoriesData=cache.get("All_SuccessStories_data")
+        successStoriesData = cache.get("All_SuccessStories_data")
         print("cache data")
     else:
         successStoriesData = SuccessStories.objects.all()
-        cache.set("All_SuccessStories_data",successStoriesData)
+        cache.set("All_SuccessStories_data", successStoriesData)
         print("database data")
 
     if cache.get("All_Services_data"):
-        servicesdata=cache.get("All_Services_data")
+        servicesdata = cache.get("All_Services_data")
         print("cache data")
     else:
         servicesdata = Services.objects.all()
-        cache.set("All_Services_data",servicesdata)
+        cache.set("All_Services_data", servicesdata)
         print("database data")
 
     if cache.get("All_NewsAndEvents_data"):
-        newsAndEventsData=cache.get("All_NewsAndEvents_data")
+        newsAndEventsData = cache.get("All_NewsAndEvents_data")
         print("cache data")
     else:
         newsAndEventsData = NewsAndEvents.objects.all()
-        cache.set("All_NewsAndEvents_data",newsAndEventsData)
+        cache.set("All_NewsAndEvents_data", newsAndEventsData)
         print("database data")
     logger.info("Home page is getting displayed")
     context = {
@@ -133,26 +134,26 @@ def aboutus(request):
     request.session['requested_url'] = url
     print("hello")
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     if cache.get("All_About_data"):
-        articleData=cache.get("All_About_data")
+        articleData = cache.get("All_About_data")
         print("cache data")
     else:
         articleData = Article.objects.all().filter(Article_HeadingName="About Us")
-        cache.set("All_About_data",articleData)
+        cache.set("All_About_data", articleData)
         print("database data")
     logger.info("About Us page is getting displayed")
     context = {
@@ -169,19 +170,19 @@ def toolsPage(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     tools_Data = ToolsData.objects.all()
     # print("toolsdata",tools_Data['get_ResourcesData_slug_splited'])
@@ -222,19 +223,19 @@ def tools(request):
     pagestatus = False
     q = ToolsData.objects.none()
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     toolsCategory_data = Tools_Category.objects.all()
     tools_Data = ToolsData.objects.all()
@@ -367,19 +368,19 @@ def toolsSearch(request, tools_title):
     print("titlenone", tools_title)
     print("replace space ", tools_title.replace(" ", "-"))
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     toolsCategory_data = Tools_Category.objects.all()
     tools_Data = ToolsData.objects.all()
@@ -479,19 +480,19 @@ def toolsReset(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     tools_Data = ToolsData.objects.all()
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
@@ -623,19 +624,19 @@ def resourcesPage(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     resoucesCategory_data = Resources_Category.objects.all()
     resources_Data = ResourceData.objects.all()
@@ -668,19 +669,19 @@ def resources(request):
     pagestatus = False
     q = ResourceData.objects.none()
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     resoucesCategory_data = Resources_Category.objects.all()
     resources_Data = ResourceData.objects.all()
@@ -813,19 +814,19 @@ def resourceSearch(request, resource_title):
     print("replace space ", resource_title.replace(" ", "-"))
 
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     resoucesCategory_data = Resources_Category.objects.all()
     resources_Data = ResourceData.objects.all()
@@ -924,19 +925,19 @@ def resourcesReset(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     resources_Data = ResourceData.objects.all()
     Resources_Category.objects.all().update(Resources_Cat_Status=False)
@@ -1067,19 +1068,19 @@ def successstoryPage(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
     successStories_CategoryData = SuccessStories_Category.objects.order_by(
@@ -1115,19 +1116,19 @@ def successstory(request):
     pagestatus = False
     q = SuccessStories.objects.none()
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     # SuccessStrories_Category.objects.update(SuccessStrories_Cat_Status=False)
     successStories_CategoryData = SuccessStories_Category.objects.order_by(
@@ -1267,19 +1268,19 @@ def successstorySearch(request, story_title):
     print("replace space ", story_title.replace(" ", "-"))
     print("titlenone", story_title)
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     successStories_CategoryData = SuccessStories_Category.objects.order_by(
         'SuccessStories_Cat_Priority')
@@ -1380,19 +1381,19 @@ def successstoryReset(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     SuccessStories_Category.objects.update(SuccessStories_Cat_Status=False)
     successStories_CategoryData = SuccessStories_Category.objects.order_by(
@@ -1426,19 +1427,19 @@ def services(request):
     request.session['requested_url'] = url
     tTS_Form = TTSservice()
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     servicesdata = Services.objects.all()
     logger.info("Services page getting displayed with all data")
@@ -1456,19 +1457,19 @@ def ServicesDemoPage(request):
     request.session['requested_url'] = url
     tTS_Form = TTSservice()
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     logger.info("ServicesDemoPage page getting displayed with all data")
     context = {
@@ -1497,19 +1498,19 @@ def srvGoTranslateWebLocalizer(request):
     request.session['requested_url'] = url
     logger.info("Go Translate WebLocalizer page getting displayed with all data")
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     context = {
         'topmenus': top_menu_items_data,
@@ -1523,19 +1524,19 @@ def srvOnscreenKeyboard(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     if request.method == "POST":
         context = {
@@ -1560,19 +1561,19 @@ def srvTTS(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     tTS_Form = TTSservice()
     if request.method == "POST":
@@ -1627,19 +1628,19 @@ def srvTransliteration(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     if request.method == "POST":
         context = {
@@ -1665,26 +1666,26 @@ def faqs(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     if cache.get("All_Faqs_data"):
-        faqs_data=cache.get("All_Faqs_data")
+        faqs_data = cache.get("All_Faqs_data")
         print("cache data")
     else:
         faqs_data = FAQs.objects.all()
-        cache.set("All_Faqs_data",faqs_data)
+        cache.set("All_Faqs_data", faqs_data)
         print("database data")
     logger.info("Faqs page getting displayed")
     context = {
@@ -1701,19 +1702,19 @@ def faqsSearch(request, faq_title):
     request.session['requested_url'] = url
     print("titlenone", faq_title)
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     faqs_data = FAQs.objects.all()
     count = faqs_data.count()
@@ -1725,23 +1726,23 @@ def faqsSearch(request, faq_title):
         print("faqtitle", faq_title1)
 
         if cache.get(faq_title1):
-            fAQs_Data=cache.get(faq_title1)
-            print("data",fAQs_Data)
+            fAQs_Data = cache.get(faq_title1)
+            print("data", fAQs_Data)
             print("data from cache")
             context = {
-                    'topmenus': top_menu_items_data,
-                    'FooterMenuItemsdata': footer_menu_items_data,
-                    'data': fAQs_Data,
-                    'faq_title': faq_title1,
-                    'count': count
-                }
+                'topmenus': top_menu_items_data,
+                'FooterMenuItemsdata': footer_menu_items_data,
+                'data': fAQs_Data,
+                'faq_title': faq_title1,
+                'count': count
+            }
             return render(request, 'Localisation_App/faqs.html', context)
         else:
             if faq_title1 != '':
                 fAQs_Data = FAQs.objects.filter(
                     FAQs_Question__icontains=faq_title1)
                 count = fAQs_Data.count()
-                cache.set(faq_title1,fAQs_Data)
+                cache.set(faq_title1, fAQs_Data)
                 print("data from database")
                 logger.info("Faqs page getting displayed, with search filter")
                 context = {
@@ -1753,7 +1754,8 @@ def faqsSearch(request, faq_title):
                 }
                 return render(request, 'Localisation_App/faqs.html', context)
             else:
-                logger.info("Faqs page getting displayed, without search filter")
+                logger.info(
+                    "Faqs page getting displayed, without search filter")
                 count = faqs_data.count()
                 context = {
                     'topmenus': top_menu_items_data,
@@ -1772,19 +1774,19 @@ def termsandcondition(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     footer_data = Footer_Links.objects.get(
         Footer_Links_Title__contains='Terms & Conditions')
@@ -1805,19 +1807,19 @@ def accessibilityStatement(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     footer_data = Footer_Links.objects.get(
         Footer_Links_Title__contains='Accessibility Statement')
@@ -1835,19 +1837,19 @@ def websitepolicy(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     footer_sub_data = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="Website Policies")
@@ -1871,19 +1873,19 @@ def websitepolicydata(request, id):
     request.session['requested_url'] = url
     print("id : ", id)
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     # main_footer_data = Footer_Links.objects.all()
     footer_sub_data = Footer_Links_Info.objects.all().filter(
@@ -1905,19 +1907,19 @@ def sitemap(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     footer_data = Footer_Links.objects.get(
         Footer_Links_Title__contains='Sitemap')
@@ -1937,19 +1939,19 @@ def helpData(request, id):
     request.session['requested_url'] = url
     print("id : ", id)
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     footer_sub_data = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="help")
@@ -1971,19 +1973,19 @@ def help(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     footer_sub_data = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="help")
@@ -2005,23 +2007,23 @@ def contactus(request):
     request.session['requested_url'] = url
     logger.info("Contact us page getting displayed")
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     footer_sub_data = Footer_Links_Info.objects.all().filter(
         Footer_Links_Info_MainTitle__Footer_Links_Title__contains="help")
-    
+
     num = random.randrange(1121, 9899)
     logger.info("random num generated for captcha in contact us page")
     str_num = str(num)
@@ -2051,7 +2053,8 @@ def submit(request, img):
         ins.save()
         if img == captcha:
 
-            res = send_mail(option, option+" Recieved", "tanvip@cdac.in", [email,'sshivam@cdac.in'])
+            res = send_mail(option, option+" Recieved",
+                            "tanvip@cdac.in", [email, 'sshivam@cdac.in'])
             print("reponse form email", res)
             messages.add_message(request, messages.SUCCESS,
                                  'feedback submitted successfully')
@@ -2069,19 +2072,19 @@ def submit(request, img):
 
 def Register_user(request):
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     form = RegisterForm()
     context = {
@@ -2099,7 +2102,7 @@ def Register_user(request):
             form.save()
             print("Form Data")
             UserRegistration.objects.create(userregistration_email_field=form.cleaned_data.get(
-                'username'),userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'))
+                'username'), userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'))
             messages.success(request, 'Account creation successful')
             logger.info(
                 "Inside register page,If form is valid all data saved into UserRegistration model")
@@ -2124,19 +2127,19 @@ def login_user(request):
     form = UserLoginForm()
     url = request.session.get('requested_url')
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
@@ -2186,19 +2189,19 @@ def logout_user(request):
     request.session['requested_url'] = url
     print(url)
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     logger.error("Logout user")
     context = {
@@ -2210,43 +2213,41 @@ def logout_user(request):
     return render(request, 'Localisation_App/logout.html', context)
 
 
-
-
-def User_Profile(request,id):
+def User_Profile(request, id):
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
-    print("id",id)
-    user_obj=User.objects.get(pk=id)
-    username=user_obj.username
-    print("obje",user_obj.username)
-    userRegister_obj=UserRegistration.objects.get(userregistration_email_field=username)
-    print("obj454e",userRegister_obj.userregistration_email_field)
+    print("id", id)
+    user_obj = User.objects.get(pk=id)
+    username = user_obj.username
+    print("obje", user_obj.username)
+    userRegister_obj = UserRegistration.objects.get(
+        userregistration_email_field=username)
+    print("obj454e", userRegister_obj.userregistration_email_field)
 
-    context={
-        "User_obj":userRegister_obj,
+    context = {
+        "User_obj": userRegister_obj,
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
     }
-    return render(request,'Localisation_App/profile.html',context)
-
+    return render(request, 'Localisation_App/profile.html', context)
 
 
 def changePassword(request, token):
     form = UserChangePasswordForm()
-    print("token",token)
+    print("token", token)
     user_Profile_obj = UserRegistration.objects.get(
         userregistration_token=token)
     if user_Profile_obj is not None:
@@ -2314,19 +2315,19 @@ def changePassword(request, token):
 
 def forgetPassword(request):
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     form = UserForgetPasswordForm()
     try:
@@ -2347,16 +2348,16 @@ def forgetPassword(request):
                         "User found with this Email inside User model")
                     print('user is not none')
                     user_obj = User.objects.get(username=username)
-                    print("userghjkj",user_obj)
+                    print("userghjkj", user_obj)
                     token = str(uuid.uuid4())
                     # logger.info(
                     #     "Inside forgot password function, token is created")
                     logger.info(
                         "User found with this Email inside UserRegistration model")
-                    print("username",username)
+                    print("username", username)
                     user_Profile_obj = UserRegistration.objects.get(
                         userregistration_email_field=username)
-                    print("userrtyt",user_Profile_obj)
+                    print("userrtyt", user_Profile_obj)
                     user_Profile_obj.userregistration_token = token
                     user_Profile_obj.save()
                     logger.info(
@@ -2401,19 +2402,19 @@ def goTranslate(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     logger.info("goTranslate page is getting displayed")
     context = {
@@ -2429,19 +2430,19 @@ def dashboard(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     Total_Tools_DownloadCount = ToolsData.objects.aggregate(
         Sum('ToolsData_DownloadCounter'))
@@ -2600,19 +2601,19 @@ def translation_quote(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
 
     context = {
@@ -2687,8 +2688,6 @@ def translation_quote(request):
             context['email_error'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
 
-        
-
         if form.is_valid():
             print("validation success")
             print(form.cleaned_data['url'])
@@ -2704,18 +2703,19 @@ def translation_quote(request):
             print(current_user)
             try:
                 date1 = form.cleaned_data['delivery_date']
-                if date1 < date.today():  
-                    raise ValidationError("Delivery date cannot be in the past!")
+                if date1 < date.today():
+                    raise ValidationError(
+                        "Delivery date cannot be in the past!")
             except ValidationError as e:
                 context['date_error'] = e.message
                 return render(request, "Localisation_App/translation_quote.html", context)
-            
+
             try:
                 if len(client_remark) > 5000:
                     raise ValidationError(
                         # "You have entered " + str(len(client_remark)) + " characters But only 5000 characters allowed"
                         "Max. Character Limit Exceeded(maximum length 5000 characters)"
-                        )
+                    )
             except ValidationError as e:
                 context['remark_error'] = e.message
                 return render(request, "Localisation_App/translation_quote.html", context)
@@ -2730,6 +2730,10 @@ def translation_quote(request):
             data.save()
             context['status'] = 'success'
             context['message'] = "Form submitted successfully"
+            
+            # email sent
+            res = send_mail("Translation Quote", "Your request for translation quote with application No : " + application_number + " submitted ssuccessfully.","tanvip@cdac.in", [company_email])
+            print("reponse form email", res)
 
             return render(request, 'Localisation_App/translation_quote.html', context)
         else:
@@ -2748,19 +2752,19 @@ def machine_translation(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     logger.info("Machine Translation page is getting displayed")
     context = {
@@ -2776,19 +2780,19 @@ def name_matcher(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
     context = {
         'topmenus': top_menu_items_data,
@@ -2802,19 +2806,19 @@ def empanelled_agencies(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
 
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
 
     empanelled_agecies_data = EmpanelledAgencies.objects.all()
@@ -2845,19 +2849,19 @@ def empanelled_agencies(request):
 @login_required
 def translation_quote_user_dashboard(request):
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
 
     current_user = request.user
@@ -2881,34 +2885,34 @@ def translation_quote_user_dashboard(request):
 def translation_quote_show(request, application_number):
     # print("application number ", application_number)
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
 
     translation_quote_data = TranslationQuote.objects.filter(
         application_number=application_number)[0]
-    
+
     print(translation_quote_data)
     username = translation_quote_data.username
-    context = { 
-            'topmenus': top_menu_items_data,
-            'FooterMenuItemsdata': footer_menu_items_data,
-            'translation_quote_data': translation_quote_data,
-        }
-    
-    print("Email ",username.username)
-    
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'translation_quote_data': translation_quote_data,
+    }
+
+    print("Email ", username.username)
+
     if username.username == 'admin':
         print("hii")
         return render(request, 'Localisation_App/translation_quote_show.html', context)
@@ -2918,23 +2922,23 @@ def translation_quote_show(request, application_number):
 
         context['user_details'] = user_details
         return render(request, 'Localisation_App/translation_quote_show.html', context)
-    
-    
+
+
 def bhashini(request):
     if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data=cache.get("All_top_menu_items_data_data")
+        top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
     else:
         top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data",top_menu_items_data)
+        cache.set("All_top_menu_items_data_data", top_menu_items_data)
         print("database data")
-    
+
     if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data=cache.get("All_footer_menu_items_data_data")
+        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
         print("cache data")
     else:
         footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
+        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
 
     context = {
@@ -2945,3 +2949,4 @@ def bhashini(request):
 
 def anuvaad(request):
     return render(request,'Localisation_App/anuvaad.html')
+    
