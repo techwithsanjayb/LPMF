@@ -32,7 +32,6 @@ urlpatterns = [
     path('faqs/', views.faqs, name='faqs'),
     path('faqsSearch/<faq_title>', views.faqsSearch, name='faqsSearch'),
     path('contactus/', views.contactus, name='contactus'),
-    path('base/', views.topmenu, name='base'),
     path('websitepolicy/', views.websitepolicy, name='websitepolicies'),
     path('websitepolicy/<int:id>', views.websitepolicydata,
          name='websitepolicydata'),
@@ -41,10 +40,8 @@ urlpatterns = [
          name='accessibilityStatement'),
     path('sitemap/', views.sitemap, name='sitemap'),
     path('help/', views.help, name='help'),
-    path('test/', views.Test, name='test'),
     path('submit/<img>', views.submit, name='submit'),
     path('help/<int:id>', views.helpData, name='helpData'),
-    path('ServicesDemoPage/', views.ServicesDemoPage, name='ServicesDemoPage'),
     path('srvEnableTyping/', views.srvEnableTyping, name='srvEnableTyping'),
     path('srvGoTranslateWebLocalizer/', views.srvGoTranslateWebLocalizer,
          name='srvGoTranslateWebLocalizer'),
@@ -53,8 +50,6 @@ urlpatterns = [
     path('srvTTS/', views.srvTTS, name='srvTTS'),
     path('srvTransliteration/', views.srvTransliteration,
          name='srvTransliteration'),
-
-
     path('register/', views.Register_user, name="register"),
     path('login/', views.login_user, name='login'),
     path('logout/', views.logout_user, name='logout'),
@@ -78,7 +73,7 @@ urlpatterns = [
     path('empanelled_agencies/', views.empanelled_agencies,
          name="empanelled_agencies"),
     path('bhashini/',views.bhashini,name="bhashini"),
-
+    path('anuvaad/',views.anuvaad, name="anuvaad")
 
     #     path("Slug_test/<slug:slug>", views.Slug_test, name="Slug_test"),
 ]
