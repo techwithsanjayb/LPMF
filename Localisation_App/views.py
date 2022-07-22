@@ -212,7 +212,7 @@ def tools(request):
     checklist1 = []
     category_name = []
     pagestatus = False
-    q = ToolsData.objects.none()
+    filtered_Tools_Data = ToolsData.objects.none()
     if cache.get("All_top_menu_items_data_data"):
         top_menu_items_data = cache.get("All_top_menu_items_data_data")
         print("cache data")
@@ -236,52 +236,57 @@ def tools(request):
         tools_Data = ToolsData.objects.all()
         cache.set("All_ToolsData_data1",tools_Data)
         print("database data")
-    if cache.get("All_ToolsCategory_data1"):
-        toolsCategory_data=cache.get("All_ToolsCategory_data1")
-        print("cache data")
-    else:
-        toolsCategory_data = Tools_Category.objects.all()
-        cache.set("All_ToolsCategory_data1",toolsCategory_data)
-        print("database data")
+    
+    toolsCategory_data = Tools_Category.objects.all()
+       
     count = ToolsData.objects.all().count()
 
     if request.method == "POST":
-        # print("allcheched",request.POST.get('all_checkbox'))
         if request.POST.get('all_checkbox') != 'all_Checked':
             category_name = []
-            q = ToolsData.objects.none()
-            print("dumydata", q)
+            filtered_Tools_Data = ToolsData.objects.none()
+            print("dumydata", filtered_Tools_Data)
             checklist = request.POST.getlist('checkbox')
-            # print(checklist)
             Tools_Category.objects.all().update(Tools_Cat_Status=False)
+            for cat_check in checklist:
+                Tools_Category.objects.filter(
+                    pk=int(cat_check)).update(Tools_Cat_Status=True)
 
             if cache.get(checklist):
                 toolsData_Checked=cache.get(checklist)
                 print("cache data")
             else:
-                for n in checklist:
-                    Tools_Category.objects.filter(
-                        pk=int(n)).update(Tools_Cat_Status=True)
                 toolsData_Checked = Tools_Category.objects.filter(id__in=checklist)
                 cache.set(checklist,toolsData_Checked)
-                print("database data")
+                print("database data")        
 
+            if cache.get(checklist):
+                toolsData_Checked=cache.get(checklist)
+                print("cache data")
+            else:
+                toolsData_Checked = Tools_Category.objects.filter(id__in=checklist)
+                cache.set(checklist,toolsData_Checked)
+                print("database data")        
             
             
-            for n in toolsData_Checked:
+            for cat_check_name in toolsData_Checked:
                 # print('hello',n.Tools_CategoryType)
-                category_name.append(n.Tools_CategoryType)
+                category_name.append(cat_check_name.Tools_CategoryType)
             # print("list",category_name)
             # print("tuple",tuple(category_name))
             to_fetch = tuple(category_name)
 
-            for c in to_fetch:
-                # print(c)
-                q = q | ToolsData.objects.filter(
-                    ToolsData_CategoryType__Tools_CategoryType__contains=c)
-            # print("all data",q)
-            count = q.count()
-            page = Paginator(q, 8)
+            if cache.get(to_fetch):
+                filtered_Tools_Data=cache.get(to_fetch)
+                print("cache data")
+            else:
+                for cat_name in to_fetch:
+                    filtered_Tools_Data = filtered_Tools_Data | ToolsData.objects.filter(
+                        ToolsData_CategoryType__Tools_CategoryType__contains=cat_name)
+                cache.set(to_fetch,filtered_Tools_Data)
+                print("database data") 
+            count = filtered_Tools_Data.count()
+            page = Paginator(filtered_Tools_Data, 8)
             page_list = request.GET.get('page')
             # print("pagenumber",page_list)
             page = page.get_page(page_list)
@@ -291,7 +296,7 @@ def tools(request):
             context = {
                 'topmenus': top_menu_items_data,
                 'FooterMenuItemsdata': footer_menu_items_data,
-                'toolsdata': q,
+                'toolsdata': filtered_Tools_Data,
                 'tools_title': 'none',
                 'toolscategory': toolsCategory_data,
                 "page": page,
@@ -323,29 +328,32 @@ def tools(request):
             }
             print("inside 2")
             return render(request, 'Localisation_App/tools.html', context)
-    for p in toolsCategory_data:
-
-        if p.Tools_Cat_Status == True:
+    for category in toolsCategory_data:
+        if category.Tools_Cat_Status == True:
             print("true")
             pagestatus = True
-            category_name.append(p.Tools_CategoryType)
+            category_name.append(category.Tools_CategoryType)
     to_fetch = tuple(category_name)
-    for c in to_fetch:
-        q = q | ToolsData.objects.filter(
-            ToolsData_CategoryType__Tools_CategoryType__contains=c)
-    print(q)
-
+    if cache.get(to_fetch):
+        filtered_Tools_Data=cache.get(to_fetch)
+        print("cache data")
+    else:
+        for cat_name in to_fetch:
+            filtered_Tools_Data = filtered_Tools_Data | ToolsData.objects.filter(
+                ToolsData_CategoryType__Tools_CategoryType__contains=cat_name)
+        cache.set(to_fetch,filtered_Tools_Data)
+        print("database data") 
     if pagestatus == True:
         logger.info(
             "Tools page getting displayed with selected category filteration and pagination")
-        page = Paginator(q, 8)
+        page = Paginator(filtered_Tools_Data, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
-        count = q.count()
+        count = filtered_Tools_Data.count()
         context = {
             'topmenus': top_menu_items_data,
             'FooterMenuItemsdata': footer_menu_items_data,
-            'toolsdata': q,
+            'toolsdata': filtered_Tools_Data,
             'tools_title': 'none',
             'toolscategory': toolsCategory_data,
             "page": page,
@@ -397,8 +405,22 @@ def toolsSearch(request, tools_title):
         footer_menu_items_data = FooterMenuItems.objects.all()
         cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
-    toolsCategory_data = Tools_Category.objects.all()
-    tools_Data = ToolsData.objects.all()
+    
+    if cache.get("All_ToolsData_data1"):
+        tools_Data=cache.get("All_ToolsData_data1")
+        print("cache data")
+    else:
+        tools_Data = ToolsData.objects.all()
+        cache.set("All_ToolsData_data1",tools_Data)
+        print("database data")
+    
+    if cache.get("All_ToolsCat_Searcheddata"):
+        toolsCategory_data=cache.get("All_ToolsCat_Searcheddata")
+        print("cache data")
+    else:
+        toolsCategory_data = Tools_Category.objects.all()
+        cache.set("All_ToolsCat_Searcheddata",toolsCategory_data)
+        print("database data")
 
     if request.method == "POST":
         print("insideSearchMethod")
@@ -408,8 +430,14 @@ def toolsSearch(request, tools_title):
         tools_searchData1 = tools_title12.replace(" ", "-")
 
         if tools_searchData1 != '':
-            tools_Data = ToolsData.objects.filter(
-                ToolsData_slug__icontains=tools_searchData1)
+            if cache.get(tools_searchData1):
+                tools_Data=cache.get(tools_searchData1)
+                print("cache data")
+            else:
+                tools_Data = ToolsData.objects.filter(ToolsData_slug__icontains=tools_searchData1)
+                cache.set(tools_searchData1,tools_Data)
+                print("database data")
+           
             count = tools_Data.count()
             print("datatooldssds", count)
             page = Paginator(tools_Data, 8)
@@ -451,8 +479,13 @@ def toolsSearch(request, tools_title):
     if tools_searchData != 'none':
         logger.info(
             "Tools page getting displayed with searched tools data by slugs")
-        tools_Data1 = ToolsData.objects.filter(
-            ToolsData_slug__icontains=tools_searchData)
+        if cache.get(tools_searchData):
+            tools_Data1=cache.get(tools_searchData)
+            print("cache data")
+        else:
+            tools_Data1 = ToolsData.objects.filter(ToolsData_slug__icontains=tools_searchData)
+            cache.set(tools_searchData,tools_Data1)
+            print("database data")    
         page = Paginator(tools_Data1, 8)
         page_list = request.GET.get('page')
         page = page.get_page(page_list)
@@ -509,9 +542,21 @@ def toolsReset(request):
         footer_menu_items_data = FooterMenuItems.objects.all()
         cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
         print("database data")
-    tools_Data = ToolsData.objects.all()
+    if cache.get("All_ToolsData_data"):
+        tools_Data=cache.get("All_ToolsData_data")
+        print("cache data")
+    else:
+        tools_Data = ToolsData.objects.all()
+        cache.set("All_ToolsData_data",tools_Data)
+        print("database data")
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
-    toolsCategory_data = Tools_Category.objects.all()
+    if cache.get("All_ToolsCategory_data"):
+        toolsCategory_data=cache.get("All_ToolsCategory_data")
+        print("cache data")
+    else:
+        toolsCategory_data = Tools_Category.objects.all()
+        cache.set("All_ToolsCategory_data",toolsCategory_data)
+        print("database data")
     count = ToolsData.objects.all().count()
     page = Paginator(tools_Data, 8)
     page_list = request.GET.get('page')
