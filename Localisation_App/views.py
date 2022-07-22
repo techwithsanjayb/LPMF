@@ -1600,8 +1600,7 @@ def submit(request, img):
         ins.save()
         if img == captcha:
 
-            res = send_mail("feedback", "Feedback Recieved",
-                            "tanvip@cdac.in", [email])
+            res = send_mail(option, option+" Recieved", "tanvip@cdac.in", [email,'sshivam@cdac.in'])
             print("reponse form email", res)
             messages.add_message(request, messages.SUCCESS,
                                  'feedback submitted successfully')
