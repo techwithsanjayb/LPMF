@@ -186,8 +186,8 @@
 /* Sticky Button Section */
 
 .sticky-img {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
 }
 
 
@@ -2048,6 +2048,10 @@ transform: rotate(180deg); */
     .footer-logo-4 {
         width: 180px;
     }
+    .sticky-img {
+        height: 40px;
+        width: 40px;
+    }
 }
 
 /* ===================================================== */
@@ -2312,8 +2316,8 @@ transform: rotate(180deg); */
     /* Cost Esitmate Section Ends */
 
     .sticky-img {
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
     }
     
     
@@ -2584,8 +2588,8 @@ transform: rotate(180deg); */
 @media only screen and (max-device-width: 790px)  {
 
 .sticky-img {
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
 }
 
 
