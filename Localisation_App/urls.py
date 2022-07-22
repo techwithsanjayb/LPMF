@@ -78,7 +78,7 @@ urlpatterns = [
     path('empanelled_agencies/', views.empanelled_agencies,
          name="empanelled_agencies"),
     path('bhashini/',views.bhashini,name="bhashini"),
-
+    path('anuvaad/',views.anuvaad, name="anuvaad")
 
     #     path("Slug_test/<slug:slug>", views.Slug_test, name="Slug_test"),
 ]

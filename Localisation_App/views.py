@@ -2942,3 +2942,6 @@ def bhashini(request):
         'FooterMenuItemsdata': footer_menu_items_data,
     }
     return render(request,'Localisation_App/bhashini.html',context)
+
+def anuvaad(request):
+    return render(request,'Localisation_App/anuvaad.html')
