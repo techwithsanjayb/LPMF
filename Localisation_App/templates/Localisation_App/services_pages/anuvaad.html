@@ -57,7 +57,7 @@ rel="stylesheet"
             e.preventDefault();
             console.log("clicked");
             console.log("text entered ", $("#source").val())
-            const data={"useremail":"cdac_user3@gmail.com", "password":"Welcome@123"};
+            const data={"userName":"cdac_user3@gmail.com", "password":"Welcome@123"};
             const url = "https://users-auth.anuvaad.org/anuvaad/user-mgmt/v1/users/login";
             console.log("selected language ",$("#language").val())
             $.ajax({
@@ -69,7 +69,7 @@ rel="stylesheet"
             
             success: function (response) {
                 console.log(response.data);
-                let token = response.data;
+                let token = response.data.token;
                 let data = {
                     model_id: $("#language").val(),
                     source_language_code: "en",
@@ -93,7 +93,7 @@ rel="stylesheet"
         
                     success: function (response) {
                       console.log(response);
-                      $("#output").html(`${response.data.output.translations[0].tgt}\n`);
+                      $("#output").html(`Translated Text: ${response.output.translations[0].tgt}\n`);
                     },
                     error: function (err) {
                       //Do Something to handle error
