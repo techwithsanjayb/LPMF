@@ -1,0 +1,43 @@
+{% load static %} 
+<div class="container-fluid test pt-5">
+    <div class="row bhasha-row ">
+      <div class="col d-flex justify-content-center mb-4">
+        <div class="bhasha-description-section d-flex justify-content-center flex-wrap">
+          <img class="bhasha-img" src="{% static './Localisation_App/img/BhashiniLogo.png' %}"
+          alt="..." />
+          <div class="text-center">
+            <p>Bhashini aims to build a National Public Digital Platform for languages to develop services and products for citizens by leveraging the power of artificial intelligence and other emerging technologies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class=" bhasha-below-rows row justify-content-around">
+      <div class="col-4 bhasha-section">
+        <div class="bhasha-icon d-flex justify-content-center">
+          <img class="bhasha-img-1" src="{% static './Localisation_App/img/ulca2.png' %}"
+          alt="...">
+        </div>
+       <div class="bhasha-section-content">
+        UNIVERSAL LANGUAGE CONTRIBUTION API
+       </div>
+       <p class="bhasha-sub-section-content">
+        Standard API and open scalable data platform
+       </p>
+       <a class="bhasha-button" href="{% url 'Localisation_App:bhashini' %}"> Know More ..</a>
+      </div>
+      <div class="col-4  bhasha-section">
+        <div class="bhasha-icon d-flex justify-content-center">
+          <img class="bhasha-img-1" src="{% static './Localisation_App/img/ulca2.png' %}"
+          alt="...">
+        </div>
+        <div class="bhasha-section-content d-flex justify-content-center">
+          BHASHA DAAN
+         </div>
+         <p class="bhasha-sub-section-content">
+          Open repository of multilingual data
+         </p>
+         <a class="bhasha-button" href="{% url 'Localisation_App:bhashini' %}"> Know More ..</a>
+      </div>
+    </div>
+  </div>

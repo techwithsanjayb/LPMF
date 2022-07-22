@@ -1,0 +1,104 @@
+{% load static %} 
+<div class="container-fluid">
+    <div class="succ-header">
+      <span
+        ><img
+          class="img-fluid"
+          style="height: 60px; width: 60px; margin-top: -10px"
+          src="{% static './Localisation_App/img/Target.png' %}"
+          alt=""
+        />Success Stories</span
+      >
+    </div>
+    <div class="succ-subheader">
+      Know all our successfull Integration of Localisation services and tools over
+      different portals.
+    </div>
+    <div class="row px-4">
+      <div class="col-sm-12 col-lg-6 d-flex justify-content-center">
+        <img
+          class="img-fluid"
+          src="{% static './Localisation_App/img/successStories1.png' %}"
+          alt=""
+        />
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <div class="row mx-2 py-2 succ-main-card">
+          <div class="col-4">
+            <img
+              src="{% static './Localisation_App/img/Localization Deployment.png' %}"
+              class="succ-img img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="col-7 succ-desc mt-2">
+            <h2>Localisation Deployment</h2>
+            <p>
+              Different websites have been integrated with our Language Services
+              and Products .
+            </p>
+            <!-- <div class="succ-link">Know More</div> -->
+            <div class="succ-link">
+              <a href="{% url 'Localisation_App:successstoryPage' %}"
+                ><i
+                  class="fa fa-arrow-circle-right"
+                  style="font-size: 36px; color: #023047"
+                ></i
+              ></a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row m-2 py-2 succ-main-card">
+          <div class="col-7 succ-desc2 mt-2">
+            <h2>Proof Of Concept</h2>
+            <p>
+              Successfully deployed our Indian Language Services and products as
+              Proof of Concepts in various organizations.
+            </p>
+            <div class="succ-link">
+              <a href="{% url 'Localisation_App:successstoryPage' %}"
+                ><i
+                  class="fa fa-arrow-circle-right"
+                  style="font-size: 36px; color: #023047"
+                ></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-4">
+            <img
+              src="{% static './Localisation_App/img/Proof of Concept.png' %}"
+              class="succ-img img-fluid"
+              alt=""
+            />
+          </div>
+        </div>
+  
+        <div class="row m-2 py-2 succ-main-card">
+          <div class="col-4">
+            <img
+              src="{% static './Localisation_App/img/Portals Translated.png' %}"
+              class="succ-img img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="col-7 succ-desc3 mt-2">
+            <h2>Service Deployment</h2>
+            <p>
+              Various Organizations are using our Indian Language Services in
+              their websites .
+            </p>
+            <div class="succ-link">
+              <a href="{% url 'Localisation_App:successstoryPage' %}"
+                ><i
+                  class="fa fa-arrow-circle-right"
+                  style="font-size: 36px; color: #023047"
+                ></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

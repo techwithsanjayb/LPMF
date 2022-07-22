@@ -1,0 +1,104 @@
+{% load static %} 
+<div class="container-fluid testting py-3">
+    <div class="col-12" data-aos="fade-down" data-aos-duration="1000">
+      <h4 class="aboutUs-Title">{{ ArticleData.0.Article_HeadingName }}</h4>
+    </div>
+    <div class="row">
+      <div
+        class="col-sm-12 col-lg-6"
+        data-aos="fade-down"
+        data-aos-duration="1200"
+      >
+        {% if ArticleData.0.Article_Image != NUll %}
+        <img
+          class="d-block w-100"
+          src="/media/{{ ArticleData.0.Article_Image }}"
+          alt="..."
+        />
+        {% endif %}
+      </div>
+      <div
+        class="col-sm-12 col-lg-6 p-3"
+        data-aos="fade-down"
+        data-aos-duration="1200"
+      >
+        <div class="aboutUs-para">
+          {{ ArticleData.0.Article_Description|safe|slice:":1349" }}
+        </div>
+        <button class="aboutus-Button">
+          <a href="{% url 'Localisation_App:aboutus' %}">Read More</a>
+        </button>
+      </div>
+    </div>
+  
+    <div class="container my-3">
+      <div class="services-title">Our Services</div>
+      <div class="row">
+        <div
+          class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card1"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+        ><a href="{% url 'Localisation_App:services' %}">
+          <div class="icon">
+            <img
+              src="{% static './Localisation_App/img/Keyboard1.png' %}"
+              class="d-block w-100 pt-2"
+              alt="..."
+            />
+          </div>
+          <p class="card-description mt-2">{{ Servicesdata.0.Services_Name }}</p>
+        </a>
+        </div>
+        <div
+          class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card2"
+          data-aos="fade-down"
+          data-aos-duration="1500"
+        ><a href="{% url 'Localisation_App:services' %}">
+          <div class="icon">
+            <img
+              src="{% static './Localisation_App/img/Go-trans2.png' %}"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <p class="card-description mt-2">{{ Servicesdata.1.Services_Name }}</p>
+        </a>
+        </div>
+        <div
+          class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card3"
+          data-aos="fade-down"
+          data-aos-duration="2000"
+        ><a href="{% url 'Localisation_App:services' %}">
+          <div class="icon">
+            <img
+              src="{% static './Localisation_App/img/Go-trans.png' %}"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <p class="card-description mt-2">{{ Servicesdata.2.Services_Name }}</p>
+        </a>
+        </div>
+        <div
+          class="col col-xs-12 col-sm-12 col-md-12 col-lg-3 card4"
+          data-aos="fade-down"
+          data-aos-duration="2500"
+        ><a href="{% url 'Localisation_App:services' %}">
+          <div class="icon">
+            <img
+              src="{% static './Localisation_App/img/Clients.png' %}"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <p class="card-description mt-2">{{ Servicesdata.3.Services_Name }}</p>
+        </a>
+        </div>
+  
+        <button class="aboutus-Button2">
+          <a href="{% url 'Localisation_App:services' %}">More...</a>
+        </button>
+      </div>
+    </div>
+  </div>
+  
