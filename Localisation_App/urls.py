@@ -40,10 +40,8 @@ urlpatterns = [
          name='accessibilityStatement'),
     path('sitemap/', views.sitemap, name='sitemap'),
     path('help/', views.help, name='help'),
-    path('test/', views.Test, name='test'),
     path('submit/<img>', views.submit, name='submit'),
     path('help/<int:id>', views.helpData, name='helpData'),
-    path('ServicesDemoPage/', views.ServicesDemoPage, name='ServicesDemoPage'),
     path('srvEnableTyping/', views.srvEnableTyping, name='srvEnableTyping'),
     path('srvGoTranslateWebLocalizer/', views.srvGoTranslateWebLocalizer,
          name='srvGoTranslateWebLocalizer'),
@@ -52,8 +50,6 @@ urlpatterns = [
     path('srvTTS/', views.srvTTS, name='srvTTS'),
     path('srvTransliteration/', views.srvTransliteration,
          name='srvTransliteration'),
-
-
     path('register/', views.Register_user, name="register"),
     path('login/', views.login_user, name='login'),
     path('logout/', views.logout_user, name='logout'),

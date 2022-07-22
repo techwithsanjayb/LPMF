@@ -43,15 +43,6 @@ global url
 CACHE_TTL = getattr(settings,'CACHE_TTL',DEFAULT_TIMEOUT)
 
 
-# Test Page
-
-
-def Test(request):
-    mail_admins('Test Mail', 'Test', 'sgpltr@gmail.com',
-                'shubhiasati95@gmail.com')
-
-    return render(request, 'Localisation_App/test.html')
-
 # Home Page
 
 
@@ -1476,35 +1467,6 @@ def services(request):
     return render(request, 'Localisation_App/services.html', context)
 
 
-def ServicesDemoPage(request):
-    url = resolve(request.path_info).url_name
-    request.session['requested_url'] = url
-    tTS_Form = TTSservice()
-    if cache.get("All_top_menu_items_data_data"):
-        top_menu_items_data = cache.get("All_top_menu_items_data_data")
-        print("cache data")
-    else:
-        top_menu_items_data = TopMenuItems.objects.all()
-        cache.set("All_top_menu_items_data_data", top_menu_items_data)
-        print("database data")
-
-    if cache.get("All_footer_menu_items_data_data"):
-        footer_menu_items_data = cache.get("All_footer_menu_items_data_data")
-        print("cache data")
-    else:
-        footer_menu_items_data = FooterMenuItems.objects.all()
-        cache.set("All_footer_menu_items_data_data", footer_menu_items_data)
-        print("database data")
-    logger.info("ServicesDemoPage page getting displayed with all data")
-    context = {
-        'topmenus': top_menu_items_data,
-        'FooterMenuItemsdata': footer_menu_items_data,
-        "service": "srvTTS",
-        'TTS_Form': tTS_Form
-    }
-    return render(request, 'Localisation_App/ServicesDemoPage.html', context)
-
-
 def srvEnableTyping(request):
     url = resolve(request.path_info).url_name
     request.session['requested_url'] = url
@@ -1541,7 +1503,7 @@ def srvGoTranslateWebLocalizer(request):
         'FooterMenuItemsdata': footer_menu_items_data,
         "service": "goTranslate"
     }
-    return render(request, 'Localisation_App/gotranslate.html', context)
+    return render(request, 'Localisation_App/services_pages/gotranslate.html', context)
 
 
 def srvOnscreenKeyboard(request):
@@ -1635,7 +1597,7 @@ def srvTTS(request):
                 logger.info(
                     "TTS Page getting displayed with recieved success response, after APi called with form data")
                 print("returned")
-                return render(request, 'Localisation_App/ttsService.html', context)
+                return render(request, 'Localisation_App/services_pages/ttsService.html', context)
     logger.info("TTS page getting displayed with all data")
     context = {
         "service": "srvTTS",
@@ -1645,7 +1607,7 @@ def srvTTS(request):
         'FooterMenuItemsdata': footer_menu_items_data,
         "DIVTITLE": "HELLO"
     }
-    return render(request, 'Localisation_App/ttsService.html', context)
+    return render(request, 'Localisation_App/services_pages/ttsService.html', context)
 
 
 def srvTransliteration(request):
@@ -1682,7 +1644,7 @@ def srvTransliteration(request):
         'FooterMenuItemsdata': footer_menu_items_data,
 
     }
-    return render(request, 'Localisation_App/transliteration_modal.html', context)
+    return render(request, 'Localisation_App/services_pages/transliteration_modal.html', context)
 
 
 # Faqs Page
@@ -1822,7 +1784,7 @@ def termsandcondition(request):
         'content': footer_data
 
     }
-    return render(request, 'Localisation_App/termsandconditions.html', context)
+    return render(request, 'Localisation_App/footer_links/termsandconditions.html', context)
 
 # accessibility statement
 
@@ -1852,7 +1814,7 @@ def accessibilityStatement(request):
         'FooterMenuItemsdata': footer_menu_items_data,
         'content': footer_data
     }
-    return render(request, 'Localisation_App/accessibility_statement.html', context)
+    return render(request, 'Localisation_App/footer_links/accessibility_statement.html', context)
 
 # websitepolicies
 
@@ -1887,7 +1849,7 @@ def websitepolicy(request):
         'footer_sub_data': footer_sub_data,
         "content": content
     }
-    return render(request, 'Localisation_App/websitepolicies.html', context)
+    return render(request, 'Localisation_App/footer_links/websitepolicies.html', context)
 
 # websitepolicies
 
@@ -1922,7 +1884,7 @@ def websitepolicydata(request, id):
         'footer_sub_data': footer_sub_data,
         "content": content
     }
-    return render(request, 'Localisation_App/websitepolicies.html', context)
+    return render(request, 'Localisation_App/footer_links/websitepolicies.html', context)
 
 # Sitemap Page
 
@@ -1953,7 +1915,7 @@ def sitemap(request):
         'FooterMenuItemsdata': footer_menu_items_data,
         'content': footer_data
     }
-    return render(request, 'Localisation_App/sitemap.html', context)
+    return render(request, 'Localisation_App/footer_links/sitemap.html', context)
 
 # Help Page
 
@@ -1988,7 +1950,7 @@ def helpData(request, id):
         "footer_sub_data": footer_sub_data,
         "content": content
     }
-    return render(request, 'Localisation_App/help.html', context)
+    return render(request, 'Localisation_App/footer_links/help.html', context)
 
 # help
 
@@ -2023,7 +1985,7 @@ def help(request):
         "footer_sub_data": footer_sub_data,
         "content": content
     }
-    return render(request, 'Localisation_App/help.html', context)
+    return render(request, 'Localisation_App/footer_links/help.html', context)
 
 
 def contactus(request):
@@ -2141,9 +2103,9 @@ def Register_user(request):
                 'FooterMenuItemsdata': footer_menu_items_data,
                 'form': form
             }
-            return render(request, 'Localisation_App/register.html', context)
+            return render(request, 'Localisation_App/user/register.html', context)
     logger.info("Register page getting displayed with register form")
-    return render(request, 'Localisation_App/register.html', context)
+    return render(request, 'Localisation_App/user/register.html', context)
 
 
 def login_user(request):
@@ -2205,7 +2167,7 @@ def login_user(request):
             'FooterMenuItemsdata': footer_menu_items_data,
             'form': UserLoginForm()
         }
-        return render(request, 'Localisation_App/login.html', context)
+        return render(request, 'Localisation_App/user/login.html', context)
 
 
 def logout_user(request):
@@ -2234,7 +2196,7 @@ def logout_user(request):
 
     }
     logout(request)
-    return render(request, 'Localisation_App/logout.html', context)
+    return render(request, 'Localisation_App/user/logout.html', context)
 
 
 def User_Profile(request, id):
@@ -2266,7 +2228,7 @@ def User_Profile(request, id):
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
     }
-    return render(request, 'Localisation_App/profile.html', context)
+    return render(request, 'Localisation_App/user/profile.html', context)
 
 
 def changePassword(request, token):
@@ -2329,7 +2291,7 @@ def changePassword(request, token):
                 'User_Id': user_id
             }
             messages.error(request, '')
-            return render(request, 'Localisation_App/changePassword.html', context)
+            return render(request, 'Localisation_App/user/changePassword.html', context)
     else:
         logger.error("change password page, user not found")
         messages.success(request, 'User Not Found')
@@ -2419,7 +2381,7 @@ def forgetPassword(request):
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
     }
-    return render(request, 'Localisation_App/forgetPassword.html', context)
+    return render(request, 'Localisation_App/user/forgetPassword.html', context)
 
 
 def goTranslate(request):
@@ -2447,7 +2409,7 @@ def goTranslate(request):
         "service": "goTranslate"
 
     }
-    return render(request, 'Localisation_App/gotranslate.html', context)
+    return render(request, 'Localisation_App/services_pages/gotranslate.html', context)
 
 
 def dashboard(request):
@@ -2668,12 +2630,12 @@ def translation_quote(request):
     #             print(data["message"])
     #             context['error_message'] = data['message']
 
-    #         return render(request, "Localisation_App/translation_quote.html", context)
+    #         return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
     #     except ValidationError as e:
     #         context['error_message'] = e.message
-    #         return render(request, "Localisation_App/translation_quote.html", context)
+    #         return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
 
-    # return render(request, "Localisation_App/translation_quote.html", context)
+    # return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
 
     """ 
     OLD CODE ENDS HERE
@@ -2704,13 +2666,13 @@ def translation_quote(request):
 
         except ValidationError as e:
             context['url_error'] = e.message
-            return render(request, "Localisation_App/translation_quote.html", context)
+            return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
 
         try:
             validate_email(company_email)
         except ValidationError as e:
             context['email_error'] = e.message
-            return render(request, "Localisation_App/translation_quote.html", context)
+            return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
 
         if form.is_valid():
             print("validation success")
@@ -2732,7 +2694,7 @@ def translation_quote(request):
                         "Delivery date cannot be in the past!")
             except ValidationError as e:
                 context['date_error'] = e.message
-                return render(request, "Localisation_App/translation_quote.html", context)
+                return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
 
             try:
                 if len(client_remark) > 5000:
@@ -2742,7 +2704,7 @@ def translation_quote(request):
                     )
             except ValidationError as e:
                 context['remark_error'] = e.message
-                return render(request, "Localisation_App/translation_quote.html", context)
+                return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
 
             # generate application number (UNIQUE)
             #
@@ -2759,16 +2721,16 @@ def translation_quote(request):
             res = send_mail("Translation Quote", "Your request for translation quote with application No : " + application_number + " submitted ssuccessfully.","tanvip@cdac.in", [company_email])
             print("reponse form email", res)
 
-            return render(request, 'Localisation_App/translation_quote.html', context)
+            return render(request, 'Localisation_App/translation_quote/translation_quote.html', context)
         else:
             context['status'] = 'error'
             context['message'] = "Invalid URL!"
 
             # messages.error(request, 'Error Processing Your Request')
 
-            return render(request, 'Localisation_App/translation_quote.html', context)
+            return render(request, 'Localisation_App/translation_quote/translation_quote.html', context)
 
-    return render(request, "Localisation_App/translation_quote.html", context)
+    return render(request, "Localisation_App/translation_quote/translation_quote.html", context)
 
 
 def machine_translation(request):
@@ -2797,7 +2759,7 @@ def machine_translation(request):
 
     }
 
-    return render(request, 'Localisation_App/machine_translation.html', context)
+    return render(request, 'Localisation_App/services_pages/machine_translation.html', context)
 
 
 def name_matcher(request):
@@ -2823,7 +2785,7 @@ def name_matcher(request):
         'FooterMenuItemsdata': footer_menu_items_data,
     }
 
-    return render(request, 'Localisation_App/name_matcher.html', context)
+    return render(request, 'Localisation_App/services_pages/name_matcher.html', context)
 
 
 def empanelled_agencies(request):
@@ -2866,7 +2828,7 @@ def empanelled_agencies(request):
         'FooterMenuItemsdata': footer_menu_items_data,
         'empanelled_agencies_data': empanelled_agecies_data_list,
     }
-    return render(request, 'Localisation_App/empanelled_agencies.html', context)
+    return render(request, 'Localisation_App/footer_links/empanelled_agencies.html', context)
 
 
 # translation_quote_user_dashboard
@@ -2901,7 +2863,7 @@ def translation_quote_user_dashboard(request):
         'FooterMenuItemsdata': footer_menu_items_data,
         'translation_quote_data': translation_quote_data,
     }
-    return render(request, 'Localisation_App/translation_quote_user_dashboard.html', context)
+    return render(request, 'Localisation_App/translation_quote/translation_quote_user_dashboard.html', context)
 
 
 # translation_quote_show
@@ -2939,13 +2901,13 @@ def translation_quote_show(request, application_number):
 
     if username.username == 'admin':
         print("hii")
-        return render(request, 'Localisation_App/translation_quote_show.html', context)
+        return render(request, 'Localisation_App/translation_quote/translation_quote/translation_quote_show.html', context)
     else:
         user_details = UserRegistration.objects.filter(
             userregistration_email_field=username.username)[0]
 
         context['user_details'] = user_details
-        return render(request, 'Localisation_App/translation_quote_show.html', context)
+        return render(request, 'Localisation_App/translation_quote/translation_quote/translation_quote_show.html', context)
 
 
 def bhashini(request):
@@ -2972,5 +2934,5 @@ def bhashini(request):
     return render(request,'Localisation_App/bhashini.html',context)
 
 def anuvaad(request):
-    return render(request,'Localisation_App/anuvaad.html')
+    return render(request,'Localisation_App/services_pages/anuvaad.html')
     
