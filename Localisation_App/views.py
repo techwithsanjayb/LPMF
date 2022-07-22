@@ -2730,6 +2730,10 @@ def translation_quote(request):
             data.save()
             context['status'] = 'success'
             context['message'] = "Form submitted successfully"
+            
+            # email sent
+            res = send_mail("Translation Quote", "Your translation quote with application No : " + application_number + " submitted Successfully.","tanvip@cdac.in", [company_email])
+            print("reponse form email", res)
 
             return render(request, 'Localisation_App/translation_quote.html', context)
         else:
