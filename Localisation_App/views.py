@@ -40,16 +40,8 @@ global str_num
 
 # Menu
 global url
-
 CACHE_TTL = getattr(settings,'CACHE_TTL',DEFAULT_TIMEOUT)
 
-def topmenu(request):
-    top_menu_items_data = TopMenuItems.objects.all()
-    context = {
-        'topmenus': top_menu_items_data
-    }
-
-    return render(request, 'Localisation_App/base.html', context)
 
 # Test Page
 
@@ -183,13 +175,22 @@ def toolsPage(request):
         footer_menu_items_data = FooterMenuItems.objects.all()
         cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
         print("database data")
-    tools_Data = ToolsData.objects.all()
-    # print("toolsdata",tools_Data['get_ResourcesData_slug_splited'])
-    # for d in tools_Data:
-    #     print("data",d['get_ToolsData_slug_splited'])
 
+    if cache.get("All_ToolsData_data"):
+        tools_Data=cache.get("All_ToolsData_data")
+        print("cache data")
+    else:
+        tools_Data = ToolsData.objects.all()
+        cache.set("All_ToolsData_data",tools_Data)
+        print("database data")
     Tools_Category.objects.all().update(Tools_Cat_Status=False)
-    toolsCategory_data = Tools_Category.objects.all()
+    if cache.get("All_ToolsCategory_data"):
+        toolsCategory_data=cache.get("All_ToolsCategory_data")
+        print("cache data")
+    else:
+        toolsCategory_data = Tools_Category.objects.all()
+        cache.set("All_ToolsCategory_data",toolsCategory_data)
+        print("database data")
     count = ToolsData.objects.all().count()
     page = Paginator(tools_Data, 8)
     page_list = request.GET.get('page')
@@ -236,8 +237,21 @@ def tools(request):
         footer_menu_items_data = FooterMenuItems.objects.all()
         cache.set("All_footer_menu_items_data_data",footer_menu_items_data)
         print("database data")
-    toolsCategory_data = Tools_Category.objects.all()
-    tools_Data = ToolsData.objects.all()
+
+    if cache.get("All_ToolsData_data1"):
+        tools_Data=cache.get("All_ToolsData_data1")
+        print("cache data")
+    else:
+        tools_Data = ToolsData.objects.all()
+        cache.set("All_ToolsData_data1",tools_Data)
+        print("database data")
+    if cache.get("All_ToolsCategory_data1"):
+        toolsCategory_data=cache.get("All_ToolsCategory_data1")
+        print("cache data")
+    else:
+        toolsCategory_data = Tools_Category.objects.all()
+        cache.set("All_ToolsCategory_data1",toolsCategory_data)
+        print("database data")
     count = ToolsData.objects.all().count()
 
     if request.method == "POST":
@@ -249,10 +263,20 @@ def tools(request):
             checklist = request.POST.getlist('checkbox')
             # print(checklist)
             Tools_Category.objects.all().update(Tools_Cat_Status=False)
-            for n in checklist:
-                Tools_Category.objects.filter(
-                    pk=int(n)).update(Tools_Cat_Status=True)
-            toolsData_Checked = Tools_Category.objects.filter(id__in=checklist)
+
+            if cache.get(checklist):
+                toolsData_Checked=cache.get(checklist)
+                print("cache data")
+            else:
+                for n in checklist:
+                    Tools_Category.objects.filter(
+                        pk=int(n)).update(Tools_Cat_Status=True)
+                toolsData_Checked = Tools_Category.objects.filter(id__in=checklist)
+                cache.set(checklist,toolsData_Checked)
+                print("database data")
+
+            
+            
             for n in toolsData_Checked:
                 # print('hello',n.Tools_CategoryType)
                 category_name.append(n.Tools_CategoryType)
@@ -272,6 +296,7 @@ def tools(request):
             page = page.get_page(page_list)
             logger.info(
                 "Tools page getting displayed with selected category filteration")
+            
             context = {
                 'topmenus': top_menu_items_data,
                 'FooterMenuItemsdata': footer_menu_items_data,

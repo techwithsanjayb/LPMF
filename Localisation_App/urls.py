@@ -32,7 +32,6 @@ urlpatterns = [
     path('faqs/', views.faqs, name='faqs'),
     path('faqsSearch/<faq_title>', views.faqsSearch, name='faqsSearch'),
     path('contactus/', views.contactus, name='contactus'),
-    path('base/', views.topmenu, name='base'),
     path('websitepolicy/', views.websitepolicy, name='websitepolicies'),
     path('websitepolicy/<int:id>', views.websitepolicydata,
          name='websitepolicydata'),
