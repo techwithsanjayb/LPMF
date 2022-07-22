@@ -1636,8 +1636,9 @@ def Register_user(request):
             form.save()
             print("Form Data")
             UserRegistration.objects.create(userregistration_email_field=form.cleaned_data.get(
-                'username'),userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'))
-            messages.success(request, 'Account was created for ' +form.cleaned_data.get('username'))
+                'username'), userregistration_password=form.cleaned_data.get('password1'), userregistration_confirm_password=form.cleaned_data.get('password2'), userregistration_active_status=form.cleaned_data.get('check'))
+            messages.success(request, 'Account was created for ' +
+                             form.cleaned_data.get('username'))
             logger.info(
                 "Inside register page,If form is valid all data saved into UserRegistration model")
             return redirect('/')
@@ -1721,32 +1722,28 @@ def logout_user(request):
     return render(request, 'Localisation_App/logout.html', context)
 
 
-
-
-def User_Profile(request,id):
+def User_Profile(request, id):
     TopMenuItemsdata = TopMenuItems.objects.all()
     FooterMenuItemsdata = FooterMenuItems.objects.all()
-    print("id",id)
-    user_obj=User.objects.get(pk=id)
-    username=user_obj.username
-    print("obje",user_obj.username)
-    userRegister_obj=UserRegistration.objects.get(userregistration_email_field=username)
-    print("obj454e",userRegister_obj.userregistration_email_field)
+    print("id", id)
+    user_obj = User.objects.get(pk=id)
+    username = user_obj.username
+    print("obje", user_obj.username)
+    userRegister_obj = UserRegistration.objects.get(
+        userregistration_email_field=username)
+    print("obj454e", userRegister_obj.userregistration_email_field)
 
-    context={
-        "User_obj":userRegister_obj,
+    context = {
+        "User_obj": userRegister_obj,
         'topmenus': TopMenuItemsdata,
         'FooterMenuItemsdata': FooterMenuItemsdata,
     }
-    return render(request,'Localisation_App/profile.html',context)
-
-
-
+    return render(request, 'Localisation_App/profile.html', context)
 
 
 def changePassword(request, token):
     form = UserChangePasswordForm()
-    print("token",token)
+    print("token", token)
     user_Profile_obj = UserRegistration.objects.get(
         userregistration_token=token)
     if user_Profile_obj is not None:
@@ -1834,16 +1831,16 @@ def forgetPassword(request):
                         "User found with this Email inside User model")
                     print('user is not none')
                     user_obj = User.objects.get(username=username)
-                    print("userghjkj",user_obj)
+                    print("userghjkj", user_obj)
                     token = str(uuid.uuid4())
                     # logger.info(
                     #     "Inside forgot password function, token is created")
                     logger.info(
                         "User found with this Email inside UserRegistration model")
-                    print("username",username)
+                    print("username", username)
                     user_Profile_obj = UserRegistration.objects.get(
                         userregistration_email_field=username)
-                    print("userrtyt",user_Profile_obj)
+                    print("userrtyt", user_Profile_obj)
                     user_Profile_obj.userregistration_token = token
                     user_Profile_obj.save()
                     logger.info(
@@ -2135,8 +2132,6 @@ def translation_quote(request):
             context['email_error'] = e.message
             return render(request, "Localisation_App/translation_quote.html", context)
 
-        
-
         if form.is_valid():
             print("validation success")
             print(form.cleaned_data['url'])
@@ -2152,18 +2147,19 @@ def translation_quote(request):
             print(current_user)
             try:
                 date1 = form.cleaned_data['delivery_date']
-                if date1 < date.today():  
-                    raise ValidationError("Delivery date cannot be in the past!")
+                if date1 < date.today():
+                    raise ValidationError(
+                        "Delivery date cannot be in the past!")
             except ValidationError as e:
                 context['date_error'] = e.message
                 return render(request, "Localisation_App/translation_quote.html", context)
-            
+
             try:
                 if len(client_remark) > 5000:
                     raise ValidationError(
                         # "You have entered " + str(len(client_remark)) + " characters But only 5000 characters allowed"
                         "Max. Character Limit Exceeded(maximum length 5000 characters)"
-                        )
+                    )
             except ValidationError as e:
                 context['remark_error'] = e.message
                 return render(request, "Localisation_App/translation_quote.html", context)
@@ -2281,17 +2277,17 @@ def translation_quote_show(request, application_number):
 
     translation_quote_data = TranslationQuote.objects.filter(
         application_number=application_number)[0]
-    
+
     print(translation_quote_data)
     username = translation_quote_data.username
-    context = { 
-            'topmenus': top_menu_items_data,
-            'FooterMenuItemsdata': footer_menu_items_data,
-            'translation_quote_data': translation_quote_data,
-        }
-    
-    print("Email ",username.username)
-    
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+        'translation_quote_data': translation_quote_data,
+    }
+
+    print("Email ", username.username)
+
     if username.username == 'admin':
         print("hii")
         return render(request, 'Localisation_App/translation_quote_show.html', context)
@@ -2301,8 +2297,8 @@ def translation_quote_show(request, application_number):
 
         context['user_details'] = user_details
         return render(request, 'Localisation_App/translation_quote_show.html', context)
-    
-    
+
+
 def bhashini(request):
     top_menu_items_data = TopMenuItems.objects.all()
     footer_menu_items_data = FooterMenuItems.objects.all()
@@ -2311,4 +2307,4 @@ def bhashini(request):
         'topmenus': top_menu_items_data,
         'FooterMenuItemsdata': footer_menu_items_data,
     }
-    return render(request,'Localisation_App/bhashini.html',context)
+    return render(request, 'Localisation_App/bhashini.html', context)
