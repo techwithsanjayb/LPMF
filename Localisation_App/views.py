@@ -2732,7 +2732,7 @@ def translation_quote(request):
             context['message'] = "Form submitted successfully"
             
             # email sent
-            res = send_mail("Translation Quote", "Your translation quote with application No : " + application_number + " submitted Successfully.","tanvip@cdac.in", [company_email])
+            res = send_mail("Translation Quote", "Your request for translation quote with application No : " + application_number + " submitted ssuccessfully.","tanvip@cdac.in", [company_email])
             print("reponse form email", res)
 
             return render(request, 'Localisation_App/translation_quote.html', context)
