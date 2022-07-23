@@ -1,0 +1,68 @@
+{% load static %} 
+<div id="carouselExampleControls" class="carousel slide text-center p-5" data-bs-ride="carousel" style="background-color:#9ed2df; background-image: url('{% static './Localisation_App/img/Frame 3.png' %}'); background-repeat: no-repeat;  background-size: cover">
+    <div class="carousel-inner px-5">
+      <div class="carousel-item active">
+        {% comment %} <img
+        width="100%"
+        src="{% static './Localisation_App/img/marketing carousel1.png' %}"
+        alt=""
+      /> {% endcomment %}
+         <div class="row text-center">
+            <div class="col-4 d-flex-content center">
+              <img
+               src="{% static './Localisation_App/img/marketing carousel1.png' %}"
+               width="200px"
+               height="200px"
+               alt=""
+              />
+            </div>
+            <div class="col-7 fs-3 py-4 fw-semibold">CDAC GIST Keyboard available in 22 indian languages which is compatible to all devices</div>
+         </div>
+      </div>
+      <div class="carousel-item">
+        {% comment %} <img
+        width="100%"
+        src="{% static './Localisation_App/img/marketing carousel2.png' %}"
+        alt=""
+      /> {% endcomment %}
+      
+         <div class="row text-center">
+            <div class="col-4 d-flex-content center">
+              <img
+                src="{% static './Localisation_App/img/marketing carousel2.png' %}"
+                width="200px"
+                height="200px"
+                alt=""
+              />
+            </div>
+            <div class="col-7 fs-3 py-4 fw-semibold">Added New MT Options Setting with available MT Engines such as EILMT, AnglaMT & GistMT (NMT) in GoTranslate</div>
+         </div>
+      </div>
+      <div class="carousel-item">
+        {% comment %} <img
+        width="100%"
+        src="{% static './Localisation_App/img/marketing carousel3.png' %}"
+        alt=""
+      /> {% endcomment %}
+      <div class="row text-center">
+        <div class="col-4 d-flex-content center">
+          <img
+            src="{% static './Localisation_App/img/marketing carousel3.png' %}"
+            width="200px"
+            height="200px"
+            alt=""
+          />
+        </div>
+        <div class="col-7 fs-3 py-4 fw-semibold">"GIST Translation System" engine is designed using Deep Learning (Neural Machine Translation) techniques and has been trained on data from generic domains</div>
+     </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>

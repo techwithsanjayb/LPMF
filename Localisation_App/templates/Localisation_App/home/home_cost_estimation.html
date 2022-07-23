@@ -1,0 +1,26 @@
+{% load static %} 
+<div class="container-fluid p-3">
+    <div class="row">
+      <div class="col-lg-6">
+        <img
+          src="/media/{{ ArticleData.1.Article_Image }}"
+          class="esitimate-cost-img"
+          alt="..."
+        />
+      </div>
+  
+      <div class="col-lg-6 estimate-cost-content">
+        <h1 class="estimate-cost-title">
+          {{ ArticleData.1.Article_HeadingName }}
+        </h1>
+        <!-- <div class="estimate-cost-money-img">
+            <img src="{% static './Localisation_App/img/cost.png' %}" class="test" alt="..." />
+          </div> -->
+        <div class="estimate-cost-button">
+          <a href="{% url 'Localisation_App:translation_quote' %}"
+            >Your Website Domain</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
