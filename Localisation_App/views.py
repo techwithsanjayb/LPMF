@@ -2979,5 +2979,12 @@ def bhashini(request):
     return render(request,'Localisation_App/bhashini.html',context)
 
 def anuvaad(request):
-    return render(request,'Localisation_App/services_pages/anuvaad.html')
+    top_menu_items_data = TopMenuItems.objects.all()
+    footer_menu_items_data = FooterMenuItems.objects.all()
+    
+    context = {
+        'topmenus': top_menu_items_data,
+        'FooterMenuItemsdata': footer_menu_items_data,
+    }
+    return render(request,'Localisation_App/services_pages/anuvaad.html', context)
     

@@ -28,12 +28,15 @@ rel="stylesheet"
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                       <textarea class="form-control" id="source" rows="5"></textarea>
+                    <div class="col-6">
+                       <textarea class="form-control" id="source" placeholder='Input' rows="5"></textarea>
+                    </div>
+                    <div class="col-6">
+                       <textarea class="form-control" id="output" rows="5" placeholder='Output' disabled></textarea>
                     </div>
                 </div>
-                <div class="row d-flex justify-content-center mt-2">
-                  <div class="col-2 d-flex">
+                <div class="row mt-2">
+                  <div class="col-6 d-flex justify-content-center">
                       <button
                       class="btn btn-primary"
                       type="submit"
@@ -44,9 +47,6 @@ rel="stylesheet"
                 </div>
             </div>
         </div>
-        <span id="output">
-            
-        </span>
     </div>
 </div>
 
@@ -93,7 +93,7 @@ rel="stylesheet"
         
                     success: function (response) {
                       console.log(response);
-                      $("#output").html(`Translated Text: ${response.output.translations[0].tgt}\n`);
+                      $("#output").text(`${response.output.translations[0].tgt}\n`);
                     },
                     error: function (err) {
                       //Do Something to handle error
