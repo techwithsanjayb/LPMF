@@ -41,7 +41,7 @@
 				</form>
 				</div>
 				<div class="col-2">
-					<form action={% url 'Localisation_App:toolsReset' %} method="POST" enctype="multipart/form-data"> {% csrf_token %}
+					<form action={% url 'Localisation_App:toolsPage' %} method="POST" enctype="multipart/form-data"> {% csrf_token %}
 						<button class='btn btn-primary filter-button' style="background-color:#219EBC ;border-color:#219EBC" type="submit" value="Fetch">Reset</button>
 					</form>
 				</div>
