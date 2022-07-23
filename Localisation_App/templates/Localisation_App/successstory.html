@@ -98,7 +98,7 @@
         </form>
         </div>
         <div class="col-2">
-        <form action={% url 'Localisation_App:successstoryReset' %} method="POST" enctype="multipart/form-data">
+        <form action={% url 'Localisation_App:successstoryPage' %} method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <button class='btn btn-primary filter-button' type="submit" style="background-color:#219EBC ;border-color:#219EBC; " value="Fetch">Reset</button>
         </form>
